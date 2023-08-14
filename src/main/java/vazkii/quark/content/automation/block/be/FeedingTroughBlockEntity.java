@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.authlib.GameProfile;
 
@@ -178,13 +178,13 @@ public class FeedingTroughBlockEntity extends RandomizableContainerBlockEntity {
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	protected Component getDefaultName() {
 		return Component.translatable("quark.container.feeding_trough");
 	}
 
 	@Override
-	public void load(@Nonnull CompoundTag nbt) {
+	public void load(@NotNull CompoundTag nbt) {
 		super.load(nbt);
 
 		this.cooldown = nbt.getInt("Cooldown");
@@ -196,7 +196,7 @@ public class FeedingTroughBlockEntity extends RandomizableContainerBlockEntity {
 	}
 
 	@Override
-	protected void saveAdditional(@Nonnull CompoundTag nbt) {
+	protected void saveAdditional(@NotNull CompoundTag nbt) {
 		super.saveAdditional(nbt);
 
 		nbt.putInt("Cooldown", cooldown);
@@ -206,19 +206,19 @@ public class FeedingTroughBlockEntity extends RandomizableContainerBlockEntity {
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	protected NonNullList<ItemStack> getItems() {
 		return this.stacks;
 	}
 
 	@Override
-	protected void setItems(@Nonnull NonNullList<ItemStack> items) {
+	protected void setItems(@NotNull NonNullList<ItemStack> items) {
 		this.stacks = items;
 	}
 
 	@Override
-	@Nonnull
-	protected AbstractContainerMenu createMenu(int id, @Nonnull Inventory playerInventory) {
+	@NotNull
+	protected AbstractContainerMenu createMenu(int id, @NotNull Inventory playerInventory) {
 		return new DispenserMenu(id, playerInventory, this);
 	}
 }

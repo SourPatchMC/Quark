@@ -9,7 +9,7 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.base.Supplier;
 import com.google.common.collect.Multimap;
@@ -210,7 +210,7 @@ public final class InventoryButtonHandler {
 		}
 
 		@Override
-		public int compareTo(@Nonnull ButtonProviderHolder o) {
+		public int compareTo(@NotNull ButtonProviderHolder o) {
 			return priority - o.priority;
 		}
 

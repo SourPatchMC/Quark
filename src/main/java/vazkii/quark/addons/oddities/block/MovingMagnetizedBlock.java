@@ -3,8 +3,8 @@ package vazkii.quark.addons.oddities.block;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -52,14 +52,14 @@ public class MovingMagnetizedBlock extends QuarkBlock implements EntityBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public RenderShape getRenderShape(@Nonnull BlockState state) {
+	public RenderShape getRenderShape(@NotNull BlockState state) {
 		return RenderShape.INVISIBLE;
 	}
 
 	@Override
-	public void onRemove(BlockState state, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull BlockState newState, boolean isMoving) {
+	public void onRemove(BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
 			MagnetizedBlockBlockEntity tile = getMagnetTileEntity(worldIn, pos);
 			if (tile != null)
@@ -68,13 +68,13 @@ public class MovingMagnetizedBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public boolean useShapeForLightOcclusion(@Nonnull BlockState state) {
+	public boolean useShapeForLightOcclusion(@NotNull BlockState state) {
 		return true;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult use(@Nonnull BlockState state, Level worldIn, @Nonnull BlockPos pos, @Nonnull Player player, @Nonnull InteractionHand handIn, @Nonnull BlockHitResult hit) {
+	public InteractionResult use(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
 		if (!worldIn.isClientSide && worldIn.getBlockEntity(pos) == null) {
 			worldIn.removeBlock(pos, false);
 			return InteractionResult.SUCCESS;
@@ -83,21 +83,21 @@ public class MovingMagnetizedBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	@Nonnull
-	public List<ItemStack> getDrops(@Nonnull BlockState state, @Nonnull LootContext.Builder builder) {
+	@NotNull
+	public List<ItemStack> getDrops(@NotNull BlockState state, @NotNull LootContext.Builder builder) {
 		MagnetizedBlockBlockEntity tile = this.getMagnetTileEntity(builder.getLevel(), builder.getParameter(LootContextParams.ORIGIN)); // origin
 		return tile == null ? Collections.emptyList() : tile.getMagnetState().getDrops(builder);
 	}
 
 	@Override
-	@Nonnull
-	public VoxelShape getShape(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	@NotNull
+	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return Shapes.empty();
 	}
 
 	@Override
-	@Nonnull
-	public VoxelShape getCollisionShape(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	@NotNull
+	public VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		MagnetizedBlockBlockEntity tile = this.getMagnetTileEntity(worldIn, pos);
 		return tile != null ? tile.getCollisionShape(worldIn, pos) : Shapes.empty();
 	}
@@ -115,20 +115,20 @@ public class MovingMagnetizedBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	@Nonnull
-	public ItemStack getCloneItemStack(@Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull BlockState state) {
+	@NotNull
+	public ItemStack getCloneItemStack(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state) {
 		return ItemStack.EMPTY;
 	}
 
 	@Override
-	@Nonnull
-	public BlockState rotate(@Nonnull BlockState state, Rotation rot) {
+	@NotNull
+	public BlockState rotate(@NotNull BlockState state, Rotation rot) {
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
-	@Nonnull
-	public BlockState mirror(@Nonnull BlockState state, Mirror mirrorIn) {
+	@NotNull
+	public BlockState mirror(@NotNull BlockState state, Mirror mirrorIn) {
 		return rotate(state, mirrorIn.getRotation(state.getValue(FACING)));
 	}
 
@@ -138,17 +138,17 @@ public class MovingMagnetizedBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public boolean isPathfindable(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull PathComputationType type) {
+	public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull PathComputationType type) {
 		return false;
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return null;
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level world, @Nonnull BlockState state, @Nonnull BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
 		return createTickerHelper(type, MagnetsModule.magnetizedBlockType, MagnetizedBlockBlockEntity::tick);
 	}
 

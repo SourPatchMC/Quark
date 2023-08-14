@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class TranslucentButton extends Button {
 
@@ -14,7 +14,7 @@ public class TranslucentButton extends Button {
 	}
 
 	@Override
-	public void blit(@Nonnull PoseStack stack, int x, int y, int textureX, int textureY, int width, int height) {
+	public void blit(@NotNull PoseStack stack, int x, int y, int textureX, int textureY, int width, int height) {
 		fill(stack, x, y, x + width, y + height, Integer.MIN_VALUE);
 	}
 

@@ -1,6 +1,6 @@
 package vazkii.quark.base.recipe;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
@@ -38,7 +38,7 @@ public class DataMaintainingSmeltingRecipe extends SmeltingRecipe {
 	}
 
 	@Override
-	public boolean matches(@Nonnull Container inv, @Nonnull Level level) {
+	public boolean matches(@NotNull Container inv, @NotNull Level level) {
 		return parent.matches(inv, level);
 	}
 
@@ -52,9 +52,9 @@ public class DataMaintainingSmeltingRecipe extends SmeltingRecipe {
 		return parent.getCookingTime();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack assemble(@Nonnull Container inv) {
+	public ItemStack assemble(@NotNull Container inv) {
 		ItemStack stack = parent.assemble(inv);
 		for(int i = 0; i < inv.getContainerSize(); i++) {
 			ItemStack inInv = inv.getItem(i);
@@ -74,37 +74,37 @@ public class DataMaintainingSmeltingRecipe extends SmeltingRecipe {
 		return parent.canCraftInDimensions(width, height);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getResultItem() {
 		return parent.getResultItem();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ResourceLocation getId() {
 		return parent.getId();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RecipeType<?> getType() {
 		return parent.getType();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public NonNullList<ItemStack> getRemainingItems(@Nonnull Container inv) {
+	public NonNullList<ItemStack> getRemainingItems(@NotNull Container inv) {
 		return parent.getRemainingItems(inv);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
 		return parent.getIngredients();
@@ -115,13 +115,13 @@ public class DataMaintainingSmeltingRecipe extends SmeltingRecipe {
 		return parent.isSpecial();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public String getGroup() {
 		return parent.getGroup();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getToastSymbol() {
 		return parent.getToastSymbol();
@@ -129,9 +129,9 @@ public class DataMaintainingSmeltingRecipe extends SmeltingRecipe {
 
 	public static class Serializer implements RecipeSerializer<DataMaintainingSmeltingRecipe> {
 
-		@Nonnull
+		@NotNull
 		@Override
-		public DataMaintainingSmeltingRecipe fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+		public DataMaintainingSmeltingRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
 			String trueType = "minecraft:smelting";
 
 			Ingredient pullFrom = Ingredient.fromJson(json.get("copy_data_from"));
@@ -146,9 +146,9 @@ public class DataMaintainingSmeltingRecipe extends SmeltingRecipe {
 			return new DataMaintainingSmeltingRecipe(cookingRecipe, pullFrom);
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
-		public DataMaintainingSmeltingRecipe fromNetwork(@Nonnull ResourceLocation recipeId, @Nonnull FriendlyByteBuf buffer) {
+		public DataMaintainingSmeltingRecipe fromNetwork(@NotNull ResourceLocation recipeId, @NotNull FriendlyByteBuf buffer) {
 			Ingredient pullFrom = Ingredient.fromNetwork(buffer);
 
 			String trueType = "minecraft:smelting";
@@ -165,7 +165,7 @@ public class DataMaintainingSmeltingRecipe extends SmeltingRecipe {
 
 		@Override
 		@SuppressWarnings("unchecked")
-		public void toNetwork(@Nonnull FriendlyByteBuf buffer, @Nonnull DataMaintainingSmeltingRecipe recipe) {
+		public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull DataMaintainingSmeltingRecipe recipe) {
 			recipe.pullDataFrom.toNetwork(buffer);
 			((RecipeSerializer<Recipe<?>>) recipe.parent.getSerializer()).toNetwork(buffer, recipe.parent);
 		}

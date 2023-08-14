@@ -18,8 +18,8 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public record SelfProvider<V>(Capability<V> capability,
 							  V self) implements ICapabilityProvider {
@@ -42,10 +42,10 @@ public record SelfProvider<V>(Capability<V> capability,
 	}
 
 
-	@Nonnull
+	@NotNull
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
+	public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction facing) {
 		return capability == this.capability ? LazyOptional.of(() -> (T) self) : LazyOptional.empty();
 	}
 }

@@ -48,7 +48,7 @@ import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.content.mobs.module.ToretoiseModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 
@@ -112,7 +112,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor world, @Nonnull DifficultyInstance difficulty, @Nonnull MobSpawnType spawnType, SpawnGroupData spawnData, CompoundTag additionalData) {
+	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType spawnType, SpawnGroupData spawnData, CompoundTag additionalData) {
 		popOre(true);
 		return spawnData;
 	}
@@ -137,9 +137,9 @@ public class Toretoise extends Animal {
 		return getOreType() == 0 && eatCooldown == 0;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public SoundEvent getEatingSound(@Nonnull ItemStack itemStackIn) {
+	public SoundEvent getEatingSound(@NotNull ItemStack itemStackIn) {
 		return null;
 	}
 
@@ -331,7 +331,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public boolean isFood(@Nonnull ItemStack stack) {
+	public boolean isFood(@NotNull ItemStack stack) {
 		return getGoodFood().test(stack);
 	}
 
@@ -345,7 +345,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public boolean checkSpawnRules(@Nonnull LevelAccessor world, @Nonnull MobSpawnType reason) {
+	public boolean checkSpawnRules(@NotNull LevelAccessor world, @NotNull MobSpawnType reason) {
 		BlockState state = world.getBlockState((new BlockPos(position())).below());
 		if (state.getMaterial() != Material.STONE)
 			return false;
@@ -359,7 +359,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public boolean causeFallDamage(float distance, float damageMultiplier, @Nonnull DamageSource source) {
+	public boolean causeFallDamage(float distance, float damageMultiplier, @NotNull DamageSource source) {
 		return false;
 	}
 
@@ -369,7 +369,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public boolean canBeLeashed(@Nonnull Player player) {
+	public boolean canBeLeashed(@NotNull Player player) {
 		return false;
 	}
 
@@ -384,7 +384,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
+	protected SoundEvent getHurtSound(@NotNull DamageSource damageSourceIn) {
 		return QuarkSounds.ENTITY_TORETOISE_HURT;
 	}
 
@@ -398,7 +398,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public void addAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean(TAG_TAMED, isTamed);
 		compound.putInt(TAG_ORE, getOreType());
@@ -407,7 +407,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override
-	public void readAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		isTamed = compound.getBoolean(TAG_TAMED);
 		entityData.set(ORE_TYPE, compound.getInt(TAG_ORE));
@@ -423,7 +423,7 @@ public class Toretoise extends Animal {
 	}
 
 	@Override // createChild
-	public Toretoise getBreedOffspring(@Nonnull ServerLevel sworld, @Nonnull AgeableMob otherParent) {
+	public Toretoise getBreedOffspring(@NotNull ServerLevel sworld, @NotNull AgeableMob otherParent) {
 		Toretoise e = new Toretoise(ToretoiseModule.toretoiseType, level);
 		e.kill(); // kill the entity cuz toretoise doesn't make babies
 		return e;

@@ -17,7 +17,7 @@ import net.minecraftforge.common.Tags;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.module.MatrixEnchantingModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class MatrixEnchantingMenu extends AbstractContainerMenu {
 
@@ -38,7 +38,7 @@ public class MatrixEnchantingMenu extends AbstractContainerMenu {
 		// Lapis Slot
 		addSlot(new Slot(tile, 1, 15, 44) {
 			@Override
-			public boolean mayPlace(@Nonnull ItemStack stack) {
+			public boolean mayPlace(@NotNull ItemStack stack) {
 				return isLapis(stack);
 			}
 		});
@@ -46,12 +46,12 @@ public class MatrixEnchantingMenu extends AbstractContainerMenu {
 		// Output Slot
 		addSlot(new Slot(tile, 2, 59, 32) {
 			@Override
-			public boolean mayPlace(@Nonnull ItemStack stack) {
+			public boolean mayPlace(@NotNull ItemStack stack) {
 				return false;
 			}
 
 			@Override
-			public void onTake(@Nonnull Player thePlayer, @Nonnull ItemStack stack) {
+			public void onTake(@NotNull Player thePlayer, @NotNull ItemStack stack) {
 				finish(thePlayer, stack);
 				super.onTake(thePlayer, stack);
 			}
@@ -91,7 +91,7 @@ public class MatrixEnchantingMenu extends AbstractContainerMenu {
 	}
 
 	@Override
-	public boolean stillValid(@Nonnull Player playerIn) {
+	public boolean stillValid(@NotNull Player playerIn) {
 		Level world = enchanter.getLevel();
 		BlockPos pos = enchanter.getBlockPos();
 		if(world.getBlockState(pos).getBlock() != MatrixEnchantingModule.matrixEnchanter)
@@ -100,9 +100,9 @@ public class MatrixEnchantingMenu extends AbstractContainerMenu {
 			return playerIn.distanceToSqr(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack quickMoveStack(@Nonnull Player playerIn, int index) {
+	public ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
 		ItemStack originalStack = ItemStack.EMPTY;
 		Slot slot = slots.get(index);
 

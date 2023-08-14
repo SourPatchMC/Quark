@@ -31,7 +31,7 @@ import vazkii.quark.content.tools.config.PickarangType;
 import vazkii.quark.content.tools.entity.rang.AbstractPickarang;
 import vazkii.quark.content.tools.module.PickarangModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -45,13 +45,13 @@ public class PickarangItem extends QuarkItem {
 	}
 
 	@Override
-	public boolean hurtEnemy(ItemStack stack, @Nonnull LivingEntity target, @Nonnull LivingEntity attacker) {
+	public boolean hurtEnemy(ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
 		stack.hurtAndBreak(2, attacker, (player) -> player.broadcastBreakEvent(InteractionHand.MAIN_HAND));
 		return true;
 	}
 
 	@Override
-	public boolean isCorrectToolForDrops(@Nonnull BlockState blockIn) {
+	public boolean isCorrectToolForDrops(@NotNull BlockState blockIn) {
 		return switch (type.harvestLevel) {
 			case 0 -> Items.WOODEN_PICKAXE.isCorrectToolForDrops(blockIn) ||
 				(type.canActAsAxe && Items.WOODEN_AXE.isCorrectToolForDrops(blockIn)) ||
@@ -82,15 +82,15 @@ public class PickarangItem extends QuarkItem {
 	}
 
 	@Override
-	public boolean mineBlock(@Nonnull ItemStack stack, @Nonnull Level worldIn, BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity entityLiving) {
+	public boolean mineBlock(@NotNull ItemStack stack, @NotNull Level worldIn, BlockState state, @NotNull BlockPos pos, @NotNull LivingEntity entityLiving) {
 		if (state.getDestroySpeed(worldIn, pos) != 0)
 			stack.hurtAndBreak(1, entityLiving, (player) -> player.broadcastBreakEvent(InteractionHand.MAIN_HAND));
 		return true;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @Nonnull InteractionHand handIn) {
+	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @NotNull InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		playerIn.setItemInHand(handIn, ItemStack.EMPTY);
 		int eff = itemstack.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY);
@@ -121,9 +121,9 @@ public class PickarangItem extends QuarkItem {
 		return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(@Nonnull EquipmentSlot slot, ItemStack stack) {
+	public Multimap<Attribute, AttributeModifier> getAttributeModifiers(@NotNull EquipmentSlot slot, ItemStack stack) {
 		Multimap<Attribute, AttributeModifier> multimap = Multimaps.newSetMultimap(new HashMap<>(), HashSet::new);
 
 		if (slot == EquipmentSlot.MAINHAND) {
@@ -135,17 +135,17 @@ public class PickarangItem extends QuarkItem {
 	}
 
 	@Override
-	public float getDestroySpeed(@Nonnull ItemStack stack, @Nonnull BlockState state) {
+	public float getDestroySpeed(@NotNull ItemStack stack, @NotNull BlockState state) {
 		return 0F;
 	}
 
 	@Override
-	public boolean isRepairable(@Nonnull ItemStack stack) {
+	public boolean isRepairable(@NotNull ItemStack stack) {
 		return true;
 	}
 
 	@Override
-	public boolean isValidRepairItem(@Nonnull ItemStack toRepair, ItemStack repair) {
+	public boolean isValidRepairItem(@NotNull ItemStack toRepair, ItemStack repair) {
 		return type.repairMaterial != null && repair.getItem() == type.repairMaterial;
 	}
 

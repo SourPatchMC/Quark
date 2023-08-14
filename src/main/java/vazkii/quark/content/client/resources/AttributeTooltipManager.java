@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.apache.logging.log4j.Logger;
 
@@ -33,9 +33,9 @@ public class AttributeTooltipManager extends SimplePreparableReloadListener<Map<
 
 	private static final TypeToken<Map<String, AttributeIconEntry>> ATTRIBUTE_ICON_ENTRY_TYPE = new TypeToken<>() {};
 
-	@Nonnull
+	@NotNull
 	@Override
-	protected Map<String, AttributeIconEntry> prepare(@Nonnull ResourceManager manager, @Nonnull ProfilerFiller profiler) {
+	protected Map<String, AttributeIconEntry> prepare(@NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
 		Map<String, AttributeIconEntry> tooltips = new HashMap<>();
 		profiler.startTick();
 		try {
@@ -98,7 +98,7 @@ public class AttributeTooltipManager extends SimplePreparableReloadListener<Map<
 	}
 
 	@Override
-	protected void apply(@Nonnull Map<String, AttributeIconEntry> tooltips, @Nonnull ResourceManager manager, @Nonnull ProfilerFiller profiler) {
+	protected void apply(@NotNull Map<String, AttributeIconEntry> tooltips, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
 		AttributeTooltips.receiveAttributes(tooltips);
 	}
 }

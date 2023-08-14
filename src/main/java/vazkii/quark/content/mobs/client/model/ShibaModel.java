@@ -15,7 +15,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import vazkii.quark.content.mobs.entity.Shiba;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class ShibaModel extends EntityModel<Shiba> {
 
@@ -126,7 +126,7 @@ public class ShibaModel extends EntityModel<Shiba> {
 	}
 
 	@Override
-	public void prepareMobModel(@Nonnull Shiba shiba, float limbSwing, float limbSwingAmount, float partialTickTime) {
+	public void prepareMobModel(@NotNull Shiba shiba, float limbSwing, float limbSwingAmount, float partialTickTime) {
 		this.entity = shiba;
 
 		setRotationAngle(rFrontLeg, Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount, 0, 0);
@@ -191,7 +191,7 @@ public class ShibaModel extends EntityModel<Shiba> {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack matrixStack, @Nonnull VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(PoseStack matrixStack, @NotNull VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		matrixStack.pushPose();
 
 		BlockState state = entity.getFeetBlockState();

@@ -3,14 +3,14 @@ package vazkii.quark.base.world;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.world.generator.IGenerator;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public record WeightedGenerator(QuarkModule module,
 								IGenerator generator,
 								int weight) implements Comparable<WeightedGenerator> {
 
 	@Override
-	public int compareTo(@Nonnull WeightedGenerator o) {
+	public int compareTo(@NotNull WeightedGenerator o) {
 		int diff = weight - o.weight;
 		if (diff != 0)
 			return diff;

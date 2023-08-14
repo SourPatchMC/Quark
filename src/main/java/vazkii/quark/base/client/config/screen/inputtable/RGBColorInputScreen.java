@@ -1,6 +1,6 @@
 package vazkii.quark.base.client.config.screen.inputtable;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -43,7 +43,7 @@ public class RGBColorInputScreen extends AbstractInputtableConfigTypeScreen<RGBC
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		super.render(mstack, mouseX, mouseY, partialTicks);
 
 		int titleLeft = width / 2;

@@ -1,6 +1,6 @@
 package vazkii.quark.content.building.block;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -81,13 +81,13 @@ public class StoolBlock extends QuarkBlock implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public void tick(@Nonnull BlockState state, @Nonnull ServerLevel worldIn, @Nonnull BlockPos pos, @Nonnull RandomSource rand) {
+	public void tick(@NotNull BlockState state, @NotNull ServerLevel worldIn, @NotNull BlockPos pos, @NotNull RandomSource rand) {
 		fixState(worldIn, pos, state);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult use(BlockState state, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull Player player, @Nonnull InteractionHand handIn, @Nonnull BlockHitResult hit) {
+	public InteractionResult use(BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
 		if(state.getValue(SAT_IN) || !worldIn.getBlockState(pos.above()).isAir() || player.getVehicle() != null)
 			return super.use(state, worldIn, pos, player, handIn, hit);
 
@@ -105,12 +105,12 @@ public class StoolBlock extends QuarkBlock implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public void fallOn(@Nonnull Level worldIn, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull Entity entityIn, float fallDistance) {
+	public void fallOn(@NotNull Level worldIn, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Entity entityIn, float fallDistance) {
 		super.fallOn(worldIn, state, pos, entityIn, fallDistance * 0.5F);
 	}
 
 	@Override
-	public void updateEntityAfterFallOn(@Nonnull BlockGetter worldIn, Entity entityIn) {
+	public void updateEntityAfterFallOn(@NotNull BlockGetter worldIn, Entity entityIn) {
 		if(entityIn.isSuppressingBounce())
 			super.updateEntityAfterFallOn(worldIn, entityIn);
 		else
@@ -125,18 +125,18 @@ public class StoolBlock extends QuarkBlock implements SimpleWaterloggedBlock {
 		}
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return state.getValue(BIG) ? SHAPE_BIG : SHAPE;
 	}
 
 	@Override
-	public boolean propagatesSkylightDown(BlockState state, @Nonnull BlockGetter reader, @Nonnull BlockPos pos) {
+	public boolean propagatesSkylightDown(BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
 		return !state.getValue(WATERLOGGED);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public FluidState getFluidState(BlockState state) {
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
@@ -147,9 +147,9 @@ public class StoolBlock extends QuarkBlock implements SimpleWaterloggedBlock {
 		return getStateFor(context.getLevel(), context.getClickedPos());
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState updateShape(BlockState state, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor level, @Nonnull BlockPos pos, @Nonnull BlockPos facingPos) {
+	public BlockState updateShape(BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos facingPos) {
 		if (state.getValue(WATERLOGGED)) {
 			level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
@@ -158,7 +158,7 @@ public class StoolBlock extends QuarkBlock implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public void neighborChanged(@Nonnull BlockState state, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull Block blockIn, @Nonnull BlockPos fromPos, boolean isMoving) {
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull Block blockIn, @NotNull BlockPos fromPos, boolean isMoving) {
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
 
 		fixState(worldIn, pos, state);
@@ -178,12 +178,12 @@ public class StoolBlock extends QuarkBlock implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public boolean hasAnalogOutputSignal(@Nonnull BlockState state) {
+	public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
 		return true;
 	}
 
 	@Override
-	public int getAnalogOutputSignal(BlockState blockState, @Nonnull Level worldIn, @Nonnull BlockPos pos) {
+	public int getAnalogOutputSignal(BlockState blockState, @NotNull Level worldIn, @NotNull BlockPos pos) {
 		return blockState.getValue(SAT_IN) ? 15 : 0;
 	}
 

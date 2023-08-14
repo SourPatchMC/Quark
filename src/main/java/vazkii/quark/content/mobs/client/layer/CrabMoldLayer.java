@@ -10,7 +10,7 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.content.mobs.client.model.CrabModel;
 import vazkii.quark.content.mobs.entity.Crab;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class CrabMoldLayer extends RenderLayer<Crab, CrabModel> {
 
@@ -21,7 +21,7 @@ public class CrabMoldLayer extends RenderLayer<Crab, CrabModel> {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack matrix, @Nonnull MultiBufferSource buffer, int light, Crab crab, float limbAngle, float limbDistance, float tickDelta, float customAngle, float headYaw, float headPitch) {
+	public void render(@NotNull PoseStack matrix, @NotNull MultiBufferSource buffer, int light, Crab crab, float limbAngle, float limbDistance, float tickDelta, float customAngle, float headYaw, float headPitch) {
 		if(crab.getVariant() >= Crab.COLORS)
 			renderColoredCutoutModel(getParentModel(), MOLD_LAYER, matrix, buffer, light, crab, 1F, 1F, 1F);
 	}

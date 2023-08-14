@@ -14,7 +14,7 @@ import vazkii.quark.base.block.QuarkFlammableBlock;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.module.ThatchModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class ThatchBlock extends QuarkFlammableBlock {
 
@@ -26,7 +26,7 @@ public class ThatchBlock extends QuarkFlammableBlock {
 	}
 
 	@Override
-	public void fallOn(@Nonnull Level worldIn, @Nonnull BlockState state, @Nonnull BlockPos pos, Entity entityIn, float fallDistance) {
+	public void fallOn(@NotNull Level worldIn, @NotNull BlockState state, @NotNull BlockPos pos, Entity entityIn, float fallDistance) {
 		entityIn.causeFallDamage(fallDistance, (float) ThatchModule.fallDamageMultiplier, DamageSource.FALL);
 	}
 

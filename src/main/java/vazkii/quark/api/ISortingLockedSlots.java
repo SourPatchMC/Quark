@@ -1,6 +1,6 @@
 package vazkii.quark.api;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Implement in a Menu to provide slots that shouldn't be sorted

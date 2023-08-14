@@ -2,7 +2,7 @@ package vazkii.quark.base.client.config.screen.inputtable;
 
 import java.util.Arrays;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -51,7 +51,7 @@ public class ConvulsionMatrixInputScreen extends AbstractInputtableConfigTypeScr
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		super.render(mstack, mouseX, mouseY, partialTicks);
 
 		int x = width / 2 - 203;

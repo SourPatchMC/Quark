@@ -2,7 +2,7 @@ package vazkii.quark.addons.oddities.client.screen;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -54,7 +54,7 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu> {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		renderBackground(matrixStack);
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
 		renderTooltip(matrixStack, mouseX, mouseY);
@@ -135,7 +135,7 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu> {
 	}
 
 	@Override
-	protected void renderBg(@Nonnull PoseStack matrixStack, float partialTicks, int x, int y) {
+	protected void renderBg(@NotNull PoseStack matrixStack, float partialTicks, int x, int y) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, TEXTURE);
@@ -159,7 +159,7 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu> {
 	}
 
 	@Override
-	protected void renderLabels(@Nonnull PoseStack poseStack, int mouseX, int mouseY) {
+	protected void renderLabels(@NotNull PoseStack poseStack, int mouseX, int mouseY) {
 		int color = MiscUtil.getGuiTextColor("crate_count");
 
 		this.font.draw(poseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, color);

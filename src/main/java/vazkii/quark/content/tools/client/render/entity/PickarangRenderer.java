@@ -1,6 +1,6 @@
 package vazkii.quark.content.tools.client.render.entity;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -22,7 +22,7 @@ public class PickarangRenderer extends EntityRenderer<AbstractPickarang<?>> {
 	}
 
 	@Override
-	public void render(AbstractPickarang<?> entity, float yaw, float partialTicks, PoseStack matrix, @Nonnull MultiBufferSource buffer, int light) {
+	public void render(AbstractPickarang<?> entity, float yaw, float partialTicks, PoseStack matrix, @NotNull MultiBufferSource buffer, int light) {
 		if (entity.tickCount >= 2) {
 			matrix.pushPose();
 			matrix.translate(0, 0.2, 0);
@@ -38,9 +38,9 @@ public class PickarangRenderer extends EntityRenderer<AbstractPickarang<?>> {
 		}
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull AbstractPickarang<?> entity) {
+	public ResourceLocation getTextureLocation(@NotNull AbstractPickarang<?> entity) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}
 

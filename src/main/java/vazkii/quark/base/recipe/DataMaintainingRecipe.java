@@ -2,7 +2,7 @@ package vazkii.quark.base.recipe;
 
 import java.util.Objects;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
@@ -41,13 +41,13 @@ public class DataMaintainingRecipe implements CraftingRecipe {
 	}
 
 	@Override
-	public boolean matches(@Nonnull CraftingContainer inv, @Nonnull Level worldIn) {
+	public boolean matches(@NotNull CraftingContainer inv, @NotNull Level worldIn) {
 		return parent.matches(inv, worldIn);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack assemble(@Nonnull CraftingContainer inv) {
+	public ItemStack assemble(@NotNull CraftingContainer inv) {
 		ItemStack stack = parent.assemble(inv);
 		for(int i = 0; i < inv.getContainerSize(); i++) {
 			ItemStack inInv = inv.getItem(i);
@@ -67,37 +67,37 @@ public class DataMaintainingRecipe implements CraftingRecipe {
 		return parent.canCraftInDimensions(width, height);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getResultItem() {
 		return parent.getResultItem();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ResourceLocation getId() {
 		return parent.getId();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RecipeType<?> getType() {
 		return parent.getType();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public NonNullList<ItemStack> getRemainingItems(@Nonnull CraftingContainer inv) {
+	public NonNullList<ItemStack> getRemainingItems(@NotNull CraftingContainer inv) {
 		return parent.getRemainingItems(inv);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
 		return parent.getIngredients();
@@ -108,13 +108,13 @@ public class DataMaintainingRecipe implements CraftingRecipe {
 		return parent.isSpecial();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public String getGroup() {
 		return parent.getGroup();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getToastSymbol() {
 		return parent.getToastSymbol();
@@ -142,9 +142,9 @@ public class DataMaintainingRecipe implements CraftingRecipe {
 
 	public static class Serializer implements RecipeSerializer<DataMaintainingRecipe> {
 
-		@Nonnull
+		@NotNull
 		@Override
-		public DataMaintainingRecipe fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+		public DataMaintainingRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
 			String trueType = GsonHelper.getAsString(json, "true_type");
 			if (trueType.equals("quark:maintaining"))
 				throw new JsonSyntaxException("Recipe type circularity");
@@ -163,9 +163,9 @@ public class DataMaintainingRecipe implements CraftingRecipe {
 			return new DataMaintainingRecipe(craftingRecipe, pullFrom);
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
-		public DataMaintainingRecipe fromNetwork(@Nonnull ResourceLocation recipeId, @Nonnull FriendlyByteBuf buffer) {
+		public DataMaintainingRecipe fromNetwork(@NotNull ResourceLocation recipeId, @NotNull FriendlyByteBuf buffer) {
 			Ingredient pullFrom = Ingredient.fromNetwork(buffer);
 
 			String trueType = buffer.readUtf(32767);
@@ -184,7 +184,7 @@ public class DataMaintainingRecipe implements CraftingRecipe {
 
 		@Override
 		@SuppressWarnings("unchecked")
-		public void toNetwork(@Nonnull FriendlyByteBuf buffer, @Nonnull DataMaintainingRecipe recipe) {
+		public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull DataMaintainingRecipe recipe) {
 			recipe.pullDataFrom.toNetwork(buffer);
 			buffer.writeUtf(Objects.toString(Registry.RECIPE_SERIALIZER.getKey(recipe.parent.getSerializer())), 32767);
 			((RecipeSerializer<Recipe<?>>) recipe.parent.getSerializer()).toNetwork(buffer, recipe.parent);

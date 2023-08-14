@@ -34,7 +34,7 @@ import vazkii.quark.base.handler.SimilarBlockTypeHandler;
 import vazkii.quark.content.client.module.ChestSearchingModule;
 import vazkii.quark.content.client.module.ImprovedTooltipsModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +95,7 @@ public class ShulkerBoxTooltips {
 
 
 		@Override
-		public void renderImage(@Nonnull Font font, int tooltipX, int tooltipY, @Nonnull PoseStack pose, @Nonnull ItemRenderer itemRenderer, int something) {
+		public void renderImage(@NotNull Font font, int tooltipX, int tooltipY, @NotNull PoseStack pose, @NotNull ItemRenderer itemRenderer, int something) {
 			Minecraft mc = Minecraft.getInstance();
 
 			CompoundTag cmp = ItemNBTHelper.getCompound(stack, "BlockEntityTag", true);
@@ -224,7 +224,7 @@ public class ShulkerBoxTooltips {
 		}
 
 		@Override
-		public int getWidth(@Nonnull Font font) {
+		public int getWidth(@NotNull Font font) {
 			return 171;
 		}
 	}

@@ -4,7 +4,7 @@ import vazkii.quark.api.config.IConfigCategory;
 import vazkii.quark.api.config.IExternalCategory;
 import vazkii.quark.base.client.config.ConfigCategory;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.io.PrintStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class ExternalCategory extends ConfigCategory implements IExternalCategor
 	}
 
 	@Override
-	public IConfigCategory addCategory(String name, @Nonnull String comment, Object holderObject) {
+	public IConfigCategory addCategory(String name, @NotNull String comment, Object holderObject) {
 		IConfigCategory category = super.addCategory(name, comment, holderObject);
 		topLevelCategories.put(name, category);
 		return category;

@@ -14,7 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import vazkii.quark.content.mobs.entity.Crab;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 public class CrabModel extends EntityModel<Crab> {
@@ -208,7 +208,7 @@ public class CrabModel extends EntityModel<Crab> {
 
 
 	@Override
-	public void renderToBuffer(PoseStack matrix, @Nonnull VertexConsumer vb, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(PoseStack matrix, @NotNull VertexConsumer vb, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
 		matrix.pushPose();
 		matrix.translate(0, 1.5 - crabSize * 1.5, 0);
 		matrix.scale(crabSize, crabSize, crabSize);

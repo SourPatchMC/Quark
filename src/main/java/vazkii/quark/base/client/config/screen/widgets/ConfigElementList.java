@@ -3,7 +3,7 @@ package vazkii.quark.base.client.config.screen.widgets;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -55,7 +55,7 @@ public class ConfigElementList<T extends IConfigElement & IWidgetProvider> exten
 		}
 
 		@Override
-		public void render(@Nonnull PoseStack mstack, int index, int rowTop, int rowLeft, int rowWidth, int rowHeight, int mouseX, int mouseY, boolean hovered, float partialTicks) {
+		public void render(@NotNull PoseStack mstack, int index, int rowTop, int rowLeft, int rowWidth, int rowHeight, int mouseX, int mouseY, boolean hovered, float partialTicks) {
 			super.render(mstack, index, rowTop, rowLeft, rowWidth, rowHeight, mouseX, mouseY, hovered, partialTicks);
 
 			Minecraft mc = Minecraft.getInstance();
@@ -114,7 +114,7 @@ public class ConfigElementList<T extends IConfigElement & IWidgetProvider> exten
 			}
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
 		public Component getNarration() {
 			return Component.literal(element == null ? "" : element.getGuiDisplayName());

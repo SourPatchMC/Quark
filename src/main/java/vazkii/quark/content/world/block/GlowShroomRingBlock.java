@@ -28,7 +28,7 @@ import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 
 // Mostly a copy of BaseCoralWallFanBlock
@@ -50,21 +50,21 @@ public class GlowShroomRingBlock extends QuarkBlock implements SimpleWaterlogged
 		registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return SHAPES.get(state.getValue(FACING));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public BlockState rotate(BlockState state, Rotation rotation) {
 		return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState mirror(@Nonnull BlockState state, Mirror mirror) {
+	public BlockState mirror(@NotNull BlockState state, Mirror mirror) {
 		return rotate(state, mirror.getRotation(state.getValue(FACING)));
 	}
 
@@ -73,9 +73,9 @@ public class GlowShroomRingBlock extends QuarkBlock implements SimpleWaterlogged
 		builder.add(FACING, WATERLOGGED);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState updateShape(BlockState state, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor world, @Nonnull BlockPos pos, @Nonnull BlockPos facingPos) {
+	public BlockState updateShape(BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor world, @NotNull BlockPos pos, @NotNull BlockPos facingPos) {
 		if (state.getValue(WATERLOGGED)) {
 			world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
 		}
@@ -92,7 +92,7 @@ public class GlowShroomRingBlock extends QuarkBlock implements SimpleWaterlogged
 	}
 
 	@Override
-	public BlockState getStateForPlacement(@Nonnull BlockPlaceContext context) {
+	public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
 		BlockState blockstate = super.getStateForPlacement(context);
 		LevelReader levelreader = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();

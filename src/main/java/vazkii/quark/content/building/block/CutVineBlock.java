@@ -1,6 +1,6 @@
 package vazkii.quark.content.building.block;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
@@ -28,7 +28,7 @@ public class CutVineBlock extends QuarkVineBlock implements IBlockColorProvider 
 	}
 
 	@Override
-	public boolean canSupportAtFace(@Nonnull BlockGetter level, @Nonnull BlockPos pos, @Nonnull Direction dir) {
+	public boolean canSupportAtFace(@NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction dir) {
 		if(dir != Direction.UP) {
 			BooleanProperty booleanproperty = PROPERTY_BY_DIRECTION.get(dir);
 			BlockState blockstate = level.getBlockState(pos.above());

@@ -26,7 +26,7 @@ import vazkii.quark.api.ICrawlSpaceBlock;
 import vazkii.quark.base.block.QuarkPillarBlock;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class HollowPillarBlock extends QuarkPillarBlock implements SimpleWaterloggedBlock, ICrawlSpaceBlock {
 
@@ -82,19 +82,19 @@ public class HollowPillarBlock extends QuarkPillarBlock implements SimpleWaterlo
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState state, @Nonnull BlockGetter reader, @Nonnull BlockPos pos) {
+    public boolean propagatesSkylightDown(BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
         return !state.getValue(WATERLOGGED) && state.getValue(AXIS) == Axis.Y;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public BlockState updateShape(BlockState state, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor level, @Nonnull BlockPos pos, @Nonnull BlockPos facingPos) {
+    public BlockState updateShape(BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos facingPos) {
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }

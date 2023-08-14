@@ -28,7 +28,7 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.recipe.DyeRecipe;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +68,7 @@ public final class DyeHandler {
 		});
 	}
 
-	@Nonnull
+	@NotNull
 	private static InteractionResult cauldronInteract(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
 	      if(!isDyed(stack))
 	         return InteractionResult.PASS;

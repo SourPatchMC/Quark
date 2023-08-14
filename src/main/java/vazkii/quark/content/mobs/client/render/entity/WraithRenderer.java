@@ -7,7 +7,7 @@ import vazkii.quark.base.client.handler.ModelHandler;
 import vazkii.quark.content.mobs.client.model.WraithModel;
 import vazkii.quark.content.mobs.entity.Wraith;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class WraithRenderer extends MobRenderer<Wraith, WraithModel> {
 
@@ -17,9 +17,9 @@ public class WraithRenderer extends MobRenderer<Wraith, WraithModel> {
 		super(context, ModelHandler.model(ModelHandler.wraith), 0F);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull Wraith entity) {
+	public ResourceLocation getTextureLocation(@NotNull Wraith entity) {
 		return TEXTURE;
 	}
 

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.Lists;
 
@@ -28,7 +28,7 @@ public class WeightedSelector<U> {
 		this.random = rand;
 	}
 
-	public void add(@Nonnull U value, int weight) {
+	public void add(@NotNull U value, int weight) {
 		this.entries.add(new WeightedSelector.Entry<>(value, weight));
 	}
 
@@ -37,7 +37,7 @@ public class WeightedSelector<U> {
 		this.entries.sort(Comparator.comparingDouble(WeightedSelector.Entry::getWeightedPower));
 	}
 
-	@Nonnull
+	@NotNull
 	public U select(U defaultValue) {
 		shuffle();
 		if (this.entries.isEmpty())
@@ -50,7 +50,7 @@ public class WeightedSelector<U> {
 		return select(null);
 	}
 
-	@Nonnull
+	@NotNull
 	public Stream<? extends U> stream() {
 		return this.entries.stream().map(WeightedSelector.Entry::getValue);
 	}
@@ -60,7 +60,7 @@ public class WeightedSelector<U> {
 		return "WeightedList[" + this.entries + "]";
 	}
 
-	@Nonnull
+	@NotNull
 	public WeightedSelector<U> copy() {
 		WeightedSelector<U> copied = new WeightedSelector<>();
 		for (Entry<? extends U> entry : entries)
@@ -86,7 +86,7 @@ public class WeightedSelector<U> {
 			this.weightedPower = -Math.pow(randValue, (1.0F / this.weight));
 		}
 
-		@Nonnull
+		@NotNull
 		public T getValue() {
 			return this.value;
 		}

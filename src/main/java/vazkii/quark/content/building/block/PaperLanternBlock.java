@@ -1,6 +1,6 @@
 package vazkii.quark.content.building.block;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,9 +31,9 @@ public class PaperLanternBlock extends QuarkBlock {
 						.strength(1.5F));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return SHAPE;
 	}
 

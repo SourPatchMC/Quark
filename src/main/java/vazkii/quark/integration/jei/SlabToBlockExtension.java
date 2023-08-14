@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.apache.commons.compress.utils.Lists;
 
@@ -22,7 +22,7 @@ import vazkii.quark.content.tweaks.recipe.SlabToBlockRecipe;
 public record SlabToBlockExtension(SlabToBlockRecipe recipe) implements ICraftingCategoryExtension {
 	
 	@Override
-	public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ICraftingGridHelper craftingGridHelper, @Nonnull IFocusGroup focuses) {
+	public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull ICraftingGridHelper craftingGridHelper, @NotNull IFocusGroup focuses) {
 		List<ItemStack> input1 = Lists.newArrayList();
 		List<ItemStack> input2 = Lists.newArrayList();
 		List<ItemStack> outputs = Lists.newArrayList();

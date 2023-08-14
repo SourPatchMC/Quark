@@ -24,7 +24,7 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.content.tools.config.PickarangType;
 import vazkii.quark.content.tools.module.PickarangModule;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.function.BiConsumer;
 
 import static vazkii.quark.content.tools.module.PickarangModule.echorangBreaksAnywayTag;

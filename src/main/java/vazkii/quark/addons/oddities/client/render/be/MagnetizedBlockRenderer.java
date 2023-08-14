@@ -1,6 +1,6 @@
 package vazkii.quark.addons.oddities.client.render.be;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -33,7 +33,7 @@ public class MagnetizedBlockRenderer implements BlockEntityRenderer<MagnetizedBl
 	}
 
 	@Override
-	public void render(MagnetizedBlockBlockEntity tileEntityIn, float partialTicks, @Nonnull PoseStack matrixStackIn, @Nonnull MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+	public void render(MagnetizedBlockBlockEntity tileEntityIn, float partialTicks, @NotNull PoseStack matrixStackIn, @NotNull MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
 		Level world = tileEntityIn.getLevel();
 		if (world != null) {
 			BlockPos truepos = tileEntityIn.getBlockPos();

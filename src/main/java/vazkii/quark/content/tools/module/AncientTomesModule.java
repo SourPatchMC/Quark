@@ -61,8 +61,8 @@ import vazkii.quark.content.tools.item.AncientTomeItem;
 import vazkii.quark.content.tools.loot.EnchantTome;
 import vazkii.quark.content.world.module.MonsterBoxModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -371,9 +371,9 @@ public class AncientTomesModule extends QuarkModule {
 			LazyOptional<IRuneColorProvider> holder = LazyOptional.of(() -> provider);
 
 			event.addCapability(OVERLEVEL_COLOR_HANDLER, new ICapabilityProvider() {
-				@Nonnull
+				@NotNull
 				@Override
-				public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+				public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 					return QuarkCapabilities.RUNE_COLOR.orEmpty(cap, holder);
 				}
 			});
@@ -515,7 +515,7 @@ public class AncientTomesModule extends QuarkModule {
 	private class ExchangeAncientTomesTrade implements ItemListing {
 		@Nullable
 		@Override
-		public MerchantOffer getOffer(@Nonnull Entity trader, @Nonnull RandomSource random) {
+		public MerchantOffer getOffer(@NotNull Entity trader, @NotNull RandomSource random) {
 			if (validEnchants.isEmpty() || !enabled)
 				return null;
 			Enchantment target = validEnchants.get(random.nextInt(validEnchants.size()));

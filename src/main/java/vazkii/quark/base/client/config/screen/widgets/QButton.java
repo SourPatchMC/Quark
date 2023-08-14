@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -115,7 +115,7 @@ public class QButton extends Button {
 	}
 
 	@Override
-	public void renderButton(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void renderButton(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		super.renderButton(mstack, mouseX, mouseY, partialTicks);
 
 		int iconIndex = Math.min(4, ContributorRewardHandler.localPatronTier);

@@ -26,7 +26,7 @@ import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.Calendar;
 
 // A copy of ChestTileEntityRenderer from vanilla but less private
@@ -91,7 +91,7 @@ public abstract class GenericChestBERenderer<T extends BlockEntity & LidBlockEnt
 	}
 
 	@Override
-	public void render(T chest, float partialTicks, @Nonnull PoseStack matrix, @Nonnull MultiBufferSource buffer, int light, int overlay) {
+	public void render(T chest, float partialTicks, @NotNull PoseStack matrix, @NotNull MultiBufferSource buffer, int light, int overlay) {
 		Level world = chest.getLevel();
 		boolean flag = world != null;
 		BlockState blockstate = flag ? chest.getBlockState() : Blocks.CHEST.defaultBlockState().setValue(ChestBlock.FACING, Direction.SOUTH);

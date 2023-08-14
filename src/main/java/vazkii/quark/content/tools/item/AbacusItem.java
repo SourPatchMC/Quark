@@ -19,7 +19,7 @@ import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class AbacusItem extends QuarkItem {
 
@@ -34,7 +34,7 @@ public class AbacusItem extends QuarkItem {
 		super("abacus", module, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).stacksTo(1));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		ItemStack stack = context.getItemInHand();

@@ -1,7 +1,7 @@
 package vazkii.quark.content.tweaks.client.item;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
@@ -37,7 +37,7 @@ public class ClockTimeGetter {
 		
 		@Override
 		@ClientOnly
-		public float call(@Nonnull ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int id) {
+		public float call(@NotNull ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int id) {
 			if(!isCalculated(stack))
 				return 0F;
 			

@@ -42,7 +42,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.automation.module.PistonsMoveTileEntitiesModule;
 import vazkii.quark.content.building.module.RopeModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class RopeBlock extends QuarkBlock implements IBlockItemProvider, SimpleWaterloggedBlock {
 
@@ -67,13 +67,13 @@ public class RopeBlock extends QuarkBlock implements IBlockItemProvider, SimpleW
 		};
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getCollisionShape(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return Shapes.empty();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public FluidState getFluidState(BlockState state) {
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
@@ -85,7 +85,7 @@ public class RopeBlock extends QuarkBlock implements IBlockItemProvider, SimpleW
 	}
 
 	@Override
-	public boolean propagatesSkylightDown(BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos) {
+	public boolean propagatesSkylightDown(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
 		return !state.getValue(WATERLOGGED);
 	}
 
@@ -94,9 +94,9 @@ public class RopeBlock extends QuarkBlock implements IBlockItemProvider, SimpleW
 		builder.add(WATERLOGGED);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState updateShape(BlockState state, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor level, @Nonnull BlockPos pos, @Nonnull BlockPos facingPos) {
+	public BlockState updateShape(BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos facingPos) {
 		if (state.getValue(WATERLOGGED)) {
 			level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
@@ -104,9 +104,9 @@ public class RopeBlock extends QuarkBlock implements IBlockItemProvider, SimpleW
 		return super.updateShape(state, facing, facingState, level, pos, facingPos);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult use(@Nonnull BlockState state, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull Player player, @Nonnull InteractionHand hand, @Nonnull BlockHitResult hit) {
+	public InteractionResult use(@NotNull BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
 		if(hand == InteractionHand.MAIN_HAND) {
 			ItemStack stack = player.getItemInHand(hand);
 			if(stack.getItem() == asItem() && !player.isDiscrete()) {
@@ -269,14 +269,14 @@ public class RopeBlock extends QuarkBlock implements IBlockItemProvider, SimpleW
 	}
 
 	@Override
-	public boolean canSurvive(@Nonnull BlockState state, LevelReader worldIn, BlockPos pos) {
+	public boolean canSurvive(@NotNull BlockState state, LevelReader worldIn, BlockPos pos) {
 		BlockPos upPos = pos.above();
 		BlockState upState = worldIn.getBlockState(upPos);
 		return upState.getBlock() == this || upState.isFaceSturdy(worldIn, upPos, Direction.DOWN);
 	}
 
 	@Override
-	public void neighborChanged(BlockState state, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull Block blockIn, @Nonnull BlockPos fromPos, boolean isMoving) {
+	public void neighborChanged(BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull Block blockIn, @NotNull BlockPos fromPos, boolean isMoving) {
 		if(!state.canSurvive(worldIn, pos)) {
 			worldIn.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(worldIn.getBlockState(pos)));
 			dropResources(state, worldIn, pos);
@@ -289,9 +289,9 @@ public class RopeBlock extends QuarkBlock implements IBlockItemProvider, SimpleW
 		return true;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return SHAPE;
 	}
 

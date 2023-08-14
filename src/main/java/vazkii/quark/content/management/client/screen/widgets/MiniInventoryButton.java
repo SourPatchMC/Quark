@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -48,7 +48,7 @@ public class MiniInventoryButton extends Button {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack matrix, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack matrix, int mouseX, int mouseY, float partialTicks) {
 		if(parent instanceof RecipeUpdateListener)
 			x = parent.getGuiLeft() + startX;
 
@@ -56,7 +56,7 @@ public class MiniInventoryButton extends Button {
 	}
 
 	@Override
-	public void renderButton(@Nonnull PoseStack matrix, int mouseX, int mouseY, float partialTicks) {
+	public void renderButton(@NotNull PoseStack matrix, int mouseX, int mouseY, float partialTicks) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, MiscUtil.GENERAL_ICONS);
@@ -76,7 +76,7 @@ public class MiniInventoryButton extends Button {
 			TopLayerTooltipHandler.setTooltip(getTooltip(), mouseX, mouseY);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected MutableComponent createNarrationMessage() {
 		List<String> tooltip = getTooltip();

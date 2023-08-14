@@ -1,6 +1,6 @@
 package vazkii.quark.content.mobs.entity;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -73,7 +73,7 @@ public class Wraith extends Zombie {
 	}
 
 	@Override
-	protected void populateDefaultEquipmentSlots(RandomSource rand, @Nonnull DifficultyInstance difficulty) {
+	protected void populateDefaultEquipmentSlots(RandomSource rand, @NotNull DifficultyInstance difficulty) {
 		// NO-OP
 	}
 
@@ -83,7 +83,7 @@ public class Wraith extends Zombie {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(@Nonnull DamageSource damageSource) {
+	protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
 		return getSound(HURT_SOUND);
 	}
 
@@ -121,7 +121,7 @@ public class Wraith extends Zombie {
 	}
 
 	@Override
-	public boolean doHurtTarget(@Nonnull Entity entityIn) {
+	public boolean doHurtTarget(@NotNull Entity entityIn) {
 		boolean did = super.doHurtTarget(entityIn);
 		if(did) {
 			if(entityIn instanceof LivingEntity living)
@@ -137,7 +137,7 @@ public class Wraith extends Zombie {
 	}
 	
 	@Override
-	public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor worldIn, @Nonnull DifficultyInstance difficultyIn, @Nonnull MobSpawnType reason, SpawnGroupData spawnDataIn, CompoundTag dataTag) {
+	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, SpawnGroupData spawnDataIn, CompoundTag dataTag) {
 		int idx = random.nextInt(WraithModule.validWraithSounds.size());
 		String sound = WraithModule.validWraithSounds.get(idx);
 		String[] split = sound.split("\\|");
@@ -150,12 +150,12 @@ public class Wraith extends Zombie {
 	}
 
 	@Override
-	public boolean causeFallDamage(float distance, float damageMultiplier, @Nonnull DamageSource source) {
+	public boolean causeFallDamage(float distance, float damageMultiplier, @NotNull DamageSource source) {
 		return false;
 	}
 
 	@Override
-	public void addAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 
 		compound.putString(TAG_IDLE_SOUND, entityData.get(IDLE_SOUND));
@@ -164,7 +164,7 @@ public class Wraith extends Zombie {
 	}
 
 	@Override
-	public void readAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 
 		entityData.set(IDLE_SOUND, compound.getString(TAG_IDLE_SOUND));
@@ -172,7 +172,7 @@ public class Wraith extends Zombie {
 		entityData.set(DEATH_SOUND, compound.getString(TAG_DEATH_SOUND));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected ResourceLocation getDefaultLootTable() {
 		return LOOT_TABLE;
@@ -189,13 +189,13 @@ public class Wraith extends Zombie {
 	}
 
 	@Override
-	public float getWalkTargetValue(@Nonnull BlockPos pos, LevelReader worldIn) {
+	public float getWalkTargetValue(@NotNull BlockPos pos, LevelReader worldIn) {
 		BlockState state = worldIn.getBlockState(pos);
 		return state.is(WraithModule.wraithSpawnableTag) ? 1F : 0F;
 	}
 
 	@Override
-	public boolean hurt(@Nonnull DamageSource source, float amount) {
+	public boolean hurt(@NotNull DamageSource source, float amount) {
 		if (!super.hurt(source, amount)) {
 			return false;
 		} else {

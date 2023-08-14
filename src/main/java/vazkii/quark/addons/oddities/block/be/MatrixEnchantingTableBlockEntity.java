@@ -7,8 +7,8 @@ import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.Lists;
 
@@ -356,11 +356,11 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 	}
 
 	@Override
-	public AbstractContainerMenu createMenu(int id, @Nonnull Inventory inv, @Nonnull Player player) {
+	public AbstractContainerMenu createMenu(int id, @NotNull Inventory inv, @NotNull Player player) {
 		return new MatrixEnchantingMenu(id, inv, this);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Component getDisplayName() {
 		return getName();

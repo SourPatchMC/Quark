@@ -9,7 +9,7 @@ import net.minecraft.world.level.material.PushReaction;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class SturdyStoneBlock extends QuarkBlock {
 
@@ -21,9 +21,9 @@ public class SturdyStoneBlock extends QuarkBlock {
 				.sound(SoundType.STONE));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public PushReaction getPistonPushReaction(@Nonnull BlockState state) {
+	public PushReaction getPistonPushReaction(@NotNull BlockState state) {
 		return PushReaction.BLOCK;
 	}
 

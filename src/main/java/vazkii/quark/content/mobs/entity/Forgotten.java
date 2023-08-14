@@ -3,8 +3,8 @@ package vazkii.quark.content.mobs.entity;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -78,7 +78,7 @@ public class Forgotten extends Skeleton {
 
 	@Override
 	@Nullable
-	public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor worldIn, @Nonnull DifficultyInstance difficultyIn, @Nonnull MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
+	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn, @Nullable CompoundTag dataTag) {
 		SpawnGroupData ilivingentitydata = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 		reassessWeaponGoal();
 
@@ -123,14 +123,14 @@ public class Forgotten extends Skeleton {
 	}
 
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected ResourceLocation getDefaultLootTable() {
 		return FORGOTTEN_LOOT_TABLE;
 	}
 
 	@Override
-	public void addAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 
 		CompoundTag sheathed = new CompoundTag();
@@ -139,7 +139,7 @@ public class Forgotten extends Skeleton {
 	}
 
 	@Override
-	public void readAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 
 		CompoundTag sheathed = compound.getCompound("sheathed");
@@ -147,12 +147,12 @@ public class Forgotten extends Skeleton {
 	}
 
 	@Override
-	protected float getStandingEyeHeight(@Nonnull Pose poseIn, @Nonnull EntityDimensions sizeIn) {
+	protected float getStandingEyeHeight(@NotNull Pose poseIn, @NotNull EntityDimensions sizeIn) {
 		return 2.1F;
 	}
 
 	@Override
-	protected void dropCustomDeathLoot(@Nonnull DamageSource source, int looting, boolean recentlyHitIn) {
+	protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
 		// NO-OP
 	}
 	
@@ -162,7 +162,7 @@ public class Forgotten extends Skeleton {
 	}
 	
 	@Override
-	protected void populateDefaultEquipmentSlots(RandomSource rand, @Nonnull DifficultyInstance difficulty) {
+	protected void populateDefaultEquipmentSlots(RandomSource rand, @NotNull DifficultyInstance difficulty) {
 		super.populateDefaultEquipmentSlots(rand, difficulty);
 
 		prepareEquipment();
@@ -195,9 +195,9 @@ public class Forgotten extends Skeleton {
 		setItemSlot(EquipmentSlot.HEAD, new ItemStack(ForgottenModule.forgotten_hat));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	protected AbstractArrow getArrow(@Nonnull ItemStack arrowStack, float distanceFactor) {
+	protected AbstractArrow getArrow(@NotNull ItemStack arrowStack, float distanceFactor) {
 		AbstractArrow arrow = super.getArrow(arrowStack, distanceFactor);
 		if(arrow instanceof Arrow arrowInstance) {
 			ItemStack stack = new ItemStack(Items.TIPPED_ARROW);
@@ -208,7 +208,7 @@ public class Forgotten extends Skeleton {
 		return arrow;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);

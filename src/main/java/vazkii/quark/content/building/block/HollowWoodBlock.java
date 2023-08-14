@@ -23,7 +23,7 @@ import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import static vazkii.quark.base.handler.MiscUtil.directionProperty;
 
@@ -74,9 +74,9 @@ public class HollowWoodBlock extends HollowFrameBlock {
         return newState;
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public BlockState mirror(@Nonnull BlockState state, @Nonnull Mirror mirror) {
+    public BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
         BlockState newState = state;
         for (Direction dir : Direction.values())
             newState = newState.setValue(directionProperty(dir), state.getValue(directionProperty(mirror.mirror(dir))));
@@ -96,7 +96,7 @@ public class HollowWoodBlock extends HollowFrameBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(@Nonnull StateDefinition.Builder<Block, BlockState> def) {
+    protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> def) {
         super.createBlockStateDefinition(def);
         def.add(UP, DOWN, NORTH, SOUTH, WEST, EAST);
     }

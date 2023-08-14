@@ -19,8 +19,8 @@ import vazkii.quark.base.block.QuarkGlassBlock;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.module.RainbowLampsModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author WireSegal
@@ -49,7 +49,7 @@ public class RainbowLampBlock extends QuarkGlassBlock {
 		colorComponents = new float[]{r, g, b};
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public String getDescriptionId() {
 		if (RainbowLampsModule.isCorundum()) {
@@ -70,7 +70,7 @@ public class RainbowLampBlock extends QuarkGlassBlock {
 	}
 
 	@Override
-	public void neighborChanged(@Nonnull BlockState state, @Nonnull Level world, @Nonnull BlockPos pos, @Nonnull Block blockIn, @Nonnull BlockPos fromPos, boolean isMoving) {
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Block blockIn, @NotNull BlockPos fromPos, boolean isMoving) {
 		if (!world.isClientSide) {
 			boolean flag = state.getValue(LIT);
 			if (flag != world.hasNeighborSignal(pos)) {
@@ -84,7 +84,7 @@ public class RainbowLampBlock extends QuarkGlassBlock {
 	}
 
 	@Override
-	public void tick(@Nonnull BlockState state, @Nonnull ServerLevel world, @Nonnull BlockPos pos, @Nonnull RandomSource rand) {
+	public void tick(@NotNull BlockState state, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull RandomSource rand) {
 		if (state.getValue(LIT) && !world.hasNeighborSignal(pos)) {
 			world.setBlock(pos, state.cycle(LIT), 2);
 		}

@@ -1,6 +1,6 @@
 package vazkii.quark.content.tweaks.recipe;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +24,7 @@ public class ElytraDuplicationRecipe extends CustomRecipe {
 	}
 
 	@Override
-	public boolean matches(@Nonnull CraftingContainer var1, @Nonnull Level var2) {
+	public boolean matches(@NotNull CraftingContainer var1, @NotNull Level var2) {
 		int sources = 0;
 		boolean foundTarget = false;
 
@@ -46,13 +46,13 @@ public class ElytraDuplicationRecipe extends CustomRecipe {
 		return sources == 1 && foundTarget;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack assemble(@Nonnull CraftingContainer var1) {
+	public ItemStack assemble(@NotNull CraftingContainer var1) {
 		return getResultItem();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getResultItem() {
 		ItemStack stack = new ItemStack(Items.ELYTRA);
@@ -62,7 +62,7 @@ public class ElytraDuplicationRecipe extends CustomRecipe {
 		return stack;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public NonNullList<ItemStack> getRemainingItems(CraftingContainer inv) {
 		NonNullList<ItemStack> ret = NonNullList.withSize(inv.getContainerSize(), ItemStack.EMPTY);
@@ -87,7 +87,7 @@ public class ElytraDuplicationRecipe extends CustomRecipe {
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	public NonNullList<Ingredient> getIngredients() {
 		NonNullList<Ingredient> list = NonNullList.withSize(2, Ingredient.EMPTY);
 		list.set(0, Ingredient.of(new ItemStack(Items.ELYTRA)));
@@ -95,7 +95,7 @@ public class ElytraDuplicationRecipe extends CustomRecipe {
 		return list;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;

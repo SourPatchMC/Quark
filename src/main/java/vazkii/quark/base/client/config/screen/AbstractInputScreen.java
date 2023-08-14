@@ -1,6 +1,6 @@
 package vazkii.quark.base.client.config.screen;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -20,7 +20,7 @@ public abstract class AbstractInputScreen<T> extends AbstractQScreen {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		renderBackground(mstack);
 
 		super.render(mstack, mouseX, mouseY, partialTicks);

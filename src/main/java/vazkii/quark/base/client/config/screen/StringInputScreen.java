@@ -1,6 +1,6 @@
 package vazkii.quark.base.client.config.screen;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -23,7 +23,7 @@ public class StringInputScreen<T> extends AbstractInputScreen<T> {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		super.render(mstack, mouseX, mouseY, partialTicks);
 
 		drawCenteredString(mstack, font, Component.literal(object.getGuiDisplayName()).withStyle(ChatFormatting.BOLD), width / 2, 20, 0xFFFFFF);

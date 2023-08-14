@@ -13,8 +13,8 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemHandlerHelper;
 import vazkii.arl.util.ItemNBTHelper;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author WireSegal
@@ -55,7 +55,7 @@ public class ProxiedItemStackHandler implements IItemHandler, IItemHandlerModifi
 		return list;
 	}
 
-	private void writeStack(int index, @Nonnull ItemStack stack) {
+	private void writeStack(int index, @NotNull ItemStack stack) {
 		getStackList().set(index, stack.serializeNBT());
 		onContentsChanged(index);
 	}
@@ -65,7 +65,7 @@ public class ProxiedItemStackHandler implements IItemHandler, IItemHandlerModifi
 	}
 
 	@Override
-	public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
+	public void setStackInSlot(int slot, @NotNull ItemStack stack) {
 		validateSlotIndex(slot);
 		writeStack(slot, stack);
 		onContentsChanged(slot);
@@ -77,15 +77,15 @@ public class ProxiedItemStackHandler implements IItemHandler, IItemHandlerModifi
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	public ItemStack getStackInSlot(int slot) {
 		validateSlotIndex(slot);
 		return readStack(slot);
 	}
 
 	@Override
-	@Nonnull
-	public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+	@NotNull
+	public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
 		if (stack.isEmpty())
 			return ItemStack.EMPTY;
 
@@ -114,7 +114,7 @@ public class ProxiedItemStackHandler implements IItemHandler, IItemHandlerModifi
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	public ItemStack extractItem(int slot, int amount, boolean simulate) {
 		if (amount == 0)
 			return ItemStack.EMPTY;
@@ -146,12 +146,12 @@ public class ProxiedItemStackHandler implements IItemHandler, IItemHandlerModifi
 		return 64;
 	}
 
-	protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+	protected int getStackLimit(int slot, @NotNull ItemStack stack) {
 		return Math.min(getSlotLimit(slot), stack.getMaxStackSize());
 	}
 
 	@Override
-	public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+	public boolean isItemValid(int slot, @NotNull ItemStack stack) {
 		return true;
 	}
 
@@ -164,9 +164,9 @@ public class ProxiedItemStackHandler implements IItemHandler, IItemHandlerModifi
 		// NO-OP
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
+	public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction facing) {
 		return ForgeCapabilities.ITEM_HANDLER.orEmpty(capability, LazyOptional.of(() -> this));
 	}
 }

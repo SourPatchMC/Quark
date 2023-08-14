@@ -24,7 +24,7 @@ import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import vazkii.quark.content.client.module.ImprovedTooltipsModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class FoodTooltips {
@@ -95,7 +95,7 @@ public class FoodTooltips {
 								int height) implements ClientTooltipComponent, TooltipComponent {
 
 		@Override
-		public void renderImage(@Nonnull Font font, int tooltipX, int tooltipY, @Nonnull PoseStack pose, @Nonnull ItemRenderer itemRenderer, int something) {
+		public void renderImage(@NotNull Font font, int tooltipX, int tooltipY, @NotNull PoseStack pose, @NotNull ItemRenderer itemRenderer, int something) {
 			if (stack.isEdible()) {
 				FoodProperties food = stack.getItem().getFoodProperties();
 				if (food != null) {
@@ -159,7 +159,7 @@ public class FoodTooltips {
 		}
 
 		@Override
-		public int getWidth(@Nonnull Font font) {
+		public int getWidth(@NotNull Font font) {
 			return width;
 		}
 	}

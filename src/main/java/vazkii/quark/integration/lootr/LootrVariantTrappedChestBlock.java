@@ -31,7 +31,7 @@ import vazkii.arl.interf.IItemPropertiesFiller;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.block.VariantTrappedChestBlock;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 /**

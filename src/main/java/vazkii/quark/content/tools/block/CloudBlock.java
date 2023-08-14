@@ -30,7 +30,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.tools.block.be.CloudBlockEntity;
 import vazkii.quark.content.tools.module.BottledCloudModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class CloudBlock extends QuarkBlock implements EntityBlock {
 
@@ -43,15 +43,15 @@ public class CloudBlock extends QuarkBlock implements EntityBlock {
 				.noCollission());
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public PushReaction getPistonPushReaction(@Nonnull BlockState state) {
+	public PushReaction getPistonPushReaction(@NotNull BlockState state) {
 		return PushReaction.BLOCK;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult use(@Nonnull BlockState state, @Nonnull Level world, @Nonnull BlockPos pos, Player player, @Nonnull InteractionHand hand, @Nonnull BlockHitResult raytrace) {
+	public InteractionResult use(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult raytrace) {
 		ItemStack stack = player.getItemInHand(hand);
 
 		if(stack.getItem() == Items.GLASS_BOTTLE) {
@@ -104,12 +104,12 @@ public class CloudBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new CloudBlockEntity(pos, state);
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level world, @Nonnull BlockState state, @Nonnull BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
 		return createTickerHelper(type, BottledCloudModule.blockEntityType, CloudBlockEntity::tick);
 	}
 

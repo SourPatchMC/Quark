@@ -1,7 +1,7 @@
 package vazkii.quark.content.tools.item;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -32,7 +32,7 @@ public class RuneItem extends QuarkItem implements IRuneColorProvider {
 	}
 
 	@Override
-	public boolean isFoil(@Nonnull ItemStack stack) {
+	public boolean isFoil(@NotNull ItemStack stack) {
 		return glow;
 	}
 
@@ -48,9 +48,9 @@ public class RuneItem extends QuarkItem implements IRuneColorProvider {
 
 		return new ICapabilityProvider() {
 
-			@Nonnull
+			@NotNull
 			@Override
-			public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+			public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 				return QuarkCapabilities.RUNE_COLOR.orEmpty(cap, holder);
 			}
 

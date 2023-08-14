@@ -2,8 +2,8 @@ package vazkii.quark.addons.oddities.block;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -50,7 +50,7 @@ public class MagnetBlock extends QuarkBlock implements EntityBlock {
 
 	@Override
 	@ClientOnly
-	public void appendHoverText(@Nonnull ItemStack stack, @Nullable BlockGetter worldIn, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flagIn) {
+	public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
 		if (stack.getHoverName().getString().equals("Q"))
 			tooltip.add(Component.literal("haha yes"));
 	}
@@ -61,7 +61,7 @@ public class MagnetBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public void neighborChanged(@Nonnull BlockState state, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull Block blockIn, @Nonnull BlockPos fromPos, boolean isMoving) {
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull Block blockIn, @NotNull BlockPos fromPos, boolean isMoving) {
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
 
 		boolean wasPowered = state.getValue(POWERED);
@@ -128,25 +128,25 @@ public class MagnetBlock extends QuarkBlock implements EntityBlock {
 				.setValue(POWERED, isPowered(context.getLevel(), context.getClickedPos(), facing));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState rotate(@Nonnull BlockState state, Rotation rot) {
+	public BlockState rotate(@NotNull BlockState state, Rotation rot) {
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState mirror(@Nonnull BlockState state, Mirror mirrorIn) {
+	public BlockState mirror(@NotNull BlockState state, Mirror mirrorIn) {
 		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new MagnetBlockEntity(pos, state);
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level world, @Nonnull BlockState state, @Nonnull BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
 		return createTickerHelper(type, MagnetsModule.magnetType, MagnetBlockEntity::tick);
 	}
 

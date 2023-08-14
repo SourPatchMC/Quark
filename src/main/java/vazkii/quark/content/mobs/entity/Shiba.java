@@ -3,7 +3,7 @@ package vazkii.quark.content.mobs.entity;
 import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -189,7 +189,7 @@ public class Shiba extends TamableAnimal {
 		return item.isEdible() && item.getFoodProperties().isMeat();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
@@ -225,7 +225,7 @@ public class Shiba extends TamableAnimal {
 	}
 
 	@Override
-	public boolean canMate(@Nonnull Animal otherAnimal) {
+	public boolean canMate(@NotNull Animal otherAnimal) {
 		if (otherAnimal == this) {
 			return false;
 		} else if (!this.isTame()) {
@@ -244,7 +244,7 @@ public class Shiba extends TamableAnimal {
 	}
 
 	@Override
-	public void addAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putByte("CollarColor", (byte)this.getCollarColor().getId());
 
@@ -256,7 +256,7 @@ public class Shiba extends TamableAnimal {
 	}
 
 	@Override
-	public void readAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		if (compound.contains("CollarColor"))
 			this.setCollarColor(DyeColor.byId(compound.getInt("CollarColor")));
@@ -267,9 +267,9 @@ public class Shiba extends TamableAnimal {
 		}
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult mobInteract(Player player, @Nonnull InteractionHand hand) {
+	public InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		Item item = itemstack.getItem();
 		if(player.isDiscrete() && player.getMainHandItem().isEmpty()) {
@@ -381,7 +381,7 @@ public class Shiba extends TamableAnimal {
 	}
 
 	@Override
-	protected void playStepSound(@Nonnull BlockPos pos, @Nonnull BlockState blockIn) {
+	protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
 		playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
 	}
 
@@ -394,7 +394,7 @@ public class Shiba extends TamableAnimal {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
+	protected SoundEvent getHurtSound(@NotNull DamageSource damageSourceIn) {
 		return SoundEvents.WOLF_HURT;
 	}
 
@@ -409,7 +409,7 @@ public class Shiba extends TamableAnimal {
 	}
 
 	@Override // make baby
-	public AgeableMob getBreedOffspring(@Nonnull ServerLevel world, @Nonnull AgeableMob mate) {
+	public AgeableMob getBreedOffspring(@NotNull ServerLevel world, @NotNull AgeableMob mate) {
 		Shiba wolfentity = ShibaModule.shibaType.create(world);
 		UUID uuid = this.getOwnerUUID();
 		if (uuid != null) {

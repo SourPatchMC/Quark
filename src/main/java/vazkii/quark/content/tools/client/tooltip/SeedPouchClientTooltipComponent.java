@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemStack;
 import vazkii.quark.content.tools.item.SeedPouchItem;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 @ClientOnly
 public class SeedPouchClientTooltipComponent implements ClientTooltipComponent {
@@ -35,7 +35,7 @@ public class SeedPouchClientTooltipComponent implements ClientTooltipComponent {
 	}
 
 	@Override
-	public void renderImage(@Nonnull Font font, int tooltipX, int tooltipY, @Nonnull PoseStack pose, @Nonnull ItemRenderer itemRenderer, int something) {
+	public void renderImage(@NotNull Font font, int tooltipX, int tooltipY, @NotNull PoseStack pose, @NotNull ItemRenderer itemRenderer, int something) {
 		Pair<ItemStack, Integer> contents = SeedPouchItem.getContents(stack);
 		if(contents != null) {
 			ItemStack seed = contents.getLeft().copy();
@@ -65,7 +65,7 @@ public class SeedPouchClientTooltipComponent implements ClientTooltipComponent {
 	}
 
 	@Override
-	public int getWidth(@Nonnull Font font) {
+	public int getWidth(@NotNull Font font) {
 		return width;
 	}
 

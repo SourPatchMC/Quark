@@ -19,7 +19,7 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.oddities.HandleBackpackMessage;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -92,7 +92,7 @@ public class BackpackInventoryScreen extends InventoryScreen {
 	}
 
 	@Override
-	protected void renderBg(@Nonnull PoseStack stack, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(@NotNull PoseStack stack, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, BACKPACK_INVENTORY_BACKGROUND);

@@ -30,8 +30,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.block.be.VariantChestBlockEntity;
 import vazkii.quark.content.building.module.VariantChestsModule.IChestTextureProvider;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -73,7 +73,7 @@ public class VariantChestBlock extends ChestBlock implements IBlockItemProvider,
 	}
 
 	@Override
-	public void fillItemCategory(@Nonnull CreativeModeTab group, @Nonnull NonNullList<ItemStack> items) {
+	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
 		if(isEnabled() || group == CreativeModeTab.TAB_SEARCH)
 			super.fillItemCategory(group, items);
 	}
@@ -96,7 +96,7 @@ public class VariantChestBlock extends ChestBlock implements IBlockItemProvider,
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new VariantChestBlockEntity(pos, state);
 	}
 
@@ -135,7 +135,7 @@ public class VariantChestBlock extends ChestBlock implements IBlockItemProvider,
 						private final BlockEntity tile = new VariantChestBlockEntity(BlockPos.ZERO, getBlock().defaultBlockState());
 
 						@Override
-						public void renderByItem(@Nonnull ItemStack stack, @Nonnull TransformType transformType, @Nonnull PoseStack pose, @Nonnull MultiBufferSource buffer, int x, int y) {
+						public void renderByItem(@NotNull ItemStack stack, @NotNull TransformType transformType, @NotNull PoseStack pose, @NotNull MultiBufferSource buffer, int x, int y) {
 							mc.getBlockEntityRenderDispatcher().renderItem(tile, pose, buffer, x, y);
 						}
 

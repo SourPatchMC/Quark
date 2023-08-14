@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.Quark;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 @ClientOnly
 public class ForgottenEyesLayer<T extends Skeleton, M extends SkeletonModel<T>> extends EyesLayer<T, M> {
@@ -22,7 +22,7 @@ public class ForgottenEyesLayer<T extends Skeleton, M extends SkeletonModel<T>> 
 		super(rendererIn);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RenderType renderType() {
 		return RENDER_TYPE;

@@ -5,7 +5,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.CreativeModeTab;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class QuarkWoodenButtonBlock extends QuarkButtonBlock {
 
@@ -13,7 +13,7 @@ public class QuarkWoodenButtonBlock extends QuarkButtonBlock {
 		super(regname, module, CreativeModeTab.TAB_REDSTONE, properties);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected SoundEvent getSound(boolean powered) {
 		return powered ? SoundEvents.WOODEN_BUTTON_CLICK_ON : SoundEvents.WOODEN_BUTTON_CLICK_OFF;

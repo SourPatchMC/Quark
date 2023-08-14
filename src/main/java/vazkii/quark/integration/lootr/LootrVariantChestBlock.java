@@ -48,8 +48,8 @@ import vazkii.arl.interf.IItemPropertiesFiller;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.block.VariantChestBlock;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -213,7 +213,7 @@ public class LootrVariantChestBlock extends VariantChestBlock implements IItemPr
 						private final BlockEntity tile = new LootrVariantChestBlockEntity(BlockPos.ZERO, getBlock().defaultBlockState());
 
 						@Override
-						public void renderByItem(@Nonnull ItemStack stack, @Nonnull ItemTransforms.TransformType transformType, @Nonnull PoseStack pose, @Nonnull MultiBufferSource buffer, int x, int y) {
+						public void renderByItem(@NotNull ItemStack stack, @NotNull ItemTransforms.TransformType transformType, @NotNull PoseStack pose, @NotNull MultiBufferSource buffer, int x, int y) {
 							mc.getBlockEntityRenderDispatcher().renderItem(tile, pose, buffer, x, y);
 						}
 

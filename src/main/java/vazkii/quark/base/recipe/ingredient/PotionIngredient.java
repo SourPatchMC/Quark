@@ -16,8 +16,8 @@ import net.minecraftforge.common.crafting.IIngredientSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.handler.BrewingHandler;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -48,13 +48,13 @@ public class PotionIngredient extends Ingredient {
 		return false;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public IIngredientSerializer<? extends Ingredient> getSerializer() {
 		return PotionIngredient.Serializer.INSTANCE;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public JsonElement toJson() {
 		JsonObject json = new JsonObject();
@@ -67,24 +67,24 @@ public class PotionIngredient extends Ingredient {
 	public static class Serializer implements IIngredientSerializer<PotionIngredient> {
 		public static final PotionIngredient.Serializer INSTANCE = new PotionIngredient.Serializer();
 
-		@Nonnull
+		@NotNull
 		@Override
-		public PotionIngredient parse(@Nonnull FriendlyByteBuf buffer) {
+		public PotionIngredient parse(@NotNull FriendlyByteBuf buffer) {
 			Item item = ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation());
 			Potion potion = ForgeRegistries.POTIONS.getValue(buffer.readResourceLocation());
 			return new PotionIngredient(item, potion);
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
-		public PotionIngredient parse(@Nonnull JsonObject json) {
+		public PotionIngredient parse(@NotNull JsonObject json) {
 			Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(json.getAsJsonPrimitive("item").getAsString()));
 			Potion potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(json.getAsJsonPrimitive("potion").getAsString()));
 			return new PotionIngredient(item, potion);
 		}
 
 		@Override
-		public void write(@Nonnull FriendlyByteBuf buffer, @Nonnull PotionIngredient ingredient) {
+		public void write(@NotNull FriendlyByteBuf buffer, @NotNull PotionIngredient ingredient) {
 			buffer.writeUtf(Objects.toString(ForgeRegistries.ITEMS.getKey(ingredient.item)));
 			buffer.writeUtf(Objects.toString(ForgeRegistries.POTIONS.getKey(ingredient.potion)));
 		}

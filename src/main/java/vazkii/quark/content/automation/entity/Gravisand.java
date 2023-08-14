@@ -24,7 +24,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import vazkii.quark.content.automation.module.GravisandModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class Gravisand extends FallingBlockEntity {
 
@@ -93,7 +93,7 @@ public class Gravisand extends FallingBlockEntity {
 	}
 
 	@Override
-	public void move(@Nonnull MoverType type, @Nonnull Vec3 vec) {
+	public void move(@NotNull MoverType type, @NotNull Vec3 vec) {
 		if (type == MoverType.SELF)
 			super.move(type, vec.scale(getFallDirection() * -1));
 		else
@@ -101,7 +101,7 @@ public class Gravisand extends FallingBlockEntity {
 	}
 
 	@Override
-	public boolean causeFallDamage(float distance, float damageMultiplier, @Nonnull DamageSource source) {
+	public boolean causeFallDamage(float distance, float damageMultiplier, @NotNull DamageSource source) {
 		return false;
 	}
 
@@ -110,20 +110,20 @@ public class Gravisand extends FallingBlockEntity {
 	}
 
 	@Override
-	protected void addAdditionalSaveData(@Nonnull CompoundTag compound) {
+	protected void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 
 		compound.putFloat(TAG_DIRECTION, getFallDirection());
 	}
 
 	@Override
-	protected void readAdditionalSaveData(@Nonnull CompoundTag compound) {
+	protected void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 
 		entityData.set(DIRECTION, compound.getFloat(TAG_DIRECTION));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);

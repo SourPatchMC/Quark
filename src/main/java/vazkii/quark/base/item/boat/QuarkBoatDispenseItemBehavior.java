@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.LevelEvent;
 import vazkii.quark.base.handler.WoodSetHandler;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 // Pretty much just a copy of BoatDispenseItemBehavior but for the quark boat
 public class QuarkBoatDispenseItemBehavior extends DefaultDispenseItemBehavior {
@@ -26,9 +26,9 @@ public class QuarkBoatDispenseItemBehavior extends DefaultDispenseItemBehavior {
 		this.chest = chest;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack execute(BlockSource world, @Nonnull ItemStack stack) {
+	public ItemStack execute(BlockSource world, @NotNull ItemStack stack) {
 		Direction direction = world.getBlockState().getValue(DispenserBlock.FACING);
 		Level level = world.getLevel();
 		double boatX = world.x() + (double)((float)direction.getStepX() * 1.125F);

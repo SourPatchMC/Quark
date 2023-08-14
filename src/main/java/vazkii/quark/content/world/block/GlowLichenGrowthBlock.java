@@ -3,7 +3,7 @@ package vazkii.quark.content.world.block;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.Lists;
 
@@ -40,7 +40,7 @@ public class GlowLichenGrowthBlock extends QuarkBushBlock implements Bonemealabl
 
 	@Override
 	@ClientOnly
-	public void animateTick(@Nonnull BlockState stateIn, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull RandomSource rand) {
+	public void animateTick(@NotNull BlockState stateIn, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull RandomSource rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
 
 		// spreading
@@ -59,19 +59,19 @@ public class GlowLichenGrowthBlock extends QuarkBushBlock implements Bonemealabl
 				0, 0, 0);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return SHAPE;
 	}
 
 	@Override
-	protected boolean mayPlaceOn(BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos) {
+	protected boolean mayPlaceOn(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
 		return state.isFaceSturdy(world, pos, Direction.UP);
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(@Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull BlockState state, boolean idkmansomething) {
+	public boolean isValidBonemealTarget(@NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull BlockState state, boolean idkmansomething) {
 		for(Direction dir : MiscUtil.HORIZONTALS)
 			if(canSpread(world, pos.relative(dir)))
 				return true;
@@ -80,12 +80,12 @@ public class GlowLichenGrowthBlock extends QuarkBushBlock implements Bonemealabl
 	}
 
 	@Override
-	public boolean isBonemealSuccess(@Nonnull Level world, @Nonnull RandomSource random, @Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public boolean isBonemealSuccess(@NotNull Level world, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(@Nonnull ServerLevel world, @Nonnull RandomSource rand, @Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public void performBonemeal(@NotNull ServerLevel world, @NotNull RandomSource rand, @NotNull BlockPos pos, @NotNull BlockState state) {
 		List<Direction> list = Lists.newArrayList(MiscUtil.HORIZONTALS);
 		Collections.shuffle(list);
 		for(Direction dir : list) {

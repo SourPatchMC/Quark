@@ -2,7 +2,7 @@ package vazkii.quark.content.mobs.client.model;
 
 import java.util.Random;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -97,7 +97,7 @@ public class WraithModel extends EntityModel<Wraith> {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack matrix, @Nonnull VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(PoseStack matrix, @NotNull VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
 		alpha *= alphaMult;
 
 		matrix.pushPose();

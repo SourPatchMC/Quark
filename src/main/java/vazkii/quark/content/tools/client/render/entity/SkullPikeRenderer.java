@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import vazkii.quark.content.tools.entity.SkullPike;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class SkullPikeRenderer extends EntityRenderer<SkullPike> {
 
@@ -17,12 +17,12 @@ public class SkullPikeRenderer extends EntityRenderer<SkullPike> {
 	}
 
 	@Override
-	public void render(@Nonnull SkullPike entity, float yaw, float partialTicks, @Nonnull PoseStack matrix, @Nonnull MultiBufferSource buffer, int light) {
+	public void render(@NotNull SkullPike entity, float yaw, float partialTicks, @NotNull PoseStack matrix, @NotNull MultiBufferSource buffer, int light) {
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull SkullPike arg0) {
+	public ResourceLocation getTextureLocation(@NotNull SkullPike arg0) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}
 

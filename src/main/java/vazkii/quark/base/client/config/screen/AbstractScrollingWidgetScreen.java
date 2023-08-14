@@ -3,7 +3,7 @@ package vazkii.quark.base.client.config.screen;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -67,7 +67,7 @@ public abstract class AbstractScrollingWidgetScreen extends AbstractQScreen {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		if(needsScrollUpdate) {
 			elementList.setScrollAmount(currentScroll);
 			needsScrollUpdate = false;

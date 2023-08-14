@@ -36,7 +36,7 @@ import vazkii.quark.base.client.handler.NetworkProfilingHandler;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.QuarkSounds;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -360,12 +360,12 @@ public class PipeBlockEntity extends SimpleInventoryBlockEntity {
 	}
 
 	@Override
-	public boolean canPlaceItemThroughFace(int index, @Nonnull ItemStack itemStackIn, @Nonnull Direction direction) {
+	public boolean canPlaceItemThroughFace(int index, @NotNull ItemStack itemStackIn, @NotNull Direction direction) {
 		return direction != null && index == direction.ordinal() && isPipeEnabled();
 	}
 
 	@Override
-	public void setItem(int i, @Nonnull ItemStack itemstack) {
+	public void setItem(int i, @NotNull ItemStack itemstack) {
 		if (!itemstack.isEmpty()) {
 			Direction side = Direction.values()[i];
 			passIn(itemstack, side);

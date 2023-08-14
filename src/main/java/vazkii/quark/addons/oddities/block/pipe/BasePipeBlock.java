@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.quark.addons.oddities.block.be.PipeBlockEntity;
 import vazkii.quark.addons.oddities.module.PipesModule;
@@ -30,7 +31,6 @@ import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -82,9 +82,9 @@ public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 		return conn.isSolid;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult use(@Nonnull BlockState state, @Nonnull Level worldIn, @Nonnull BlockPos pos, Player player, @Nonnull InteractionHand handIn, @Nonnull BlockHitResult hit) {
+	public InteractionResult use(@NotNull BlockState state, @NotNull Level worldIn, @NotNull BlockPos pos, Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
 		ItemStack stack = player.getItemInHand(handIn);
 
 		// fix pipes if they're ruined
@@ -133,9 +133,9 @@ public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 		return newState;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState mirror(@Nonnull BlockState state, @Nonnull Mirror mirror) {
+	public BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
 		BlockState newState = state;
 		for (Direction dir : Direction.values())
 			newState = newState.setValue(property(dir), state.getValue(property(mirror.mirror(dir))));
@@ -185,12 +185,12 @@ public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public boolean hasAnalogOutputSignal(@Nonnull BlockState state) {
+	public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
 		return true;
 	}
 
 	@Override
-	public int getAnalogOutputSignal(@Nonnull BlockState blockState, Level worldIn, @Nonnull BlockPos pos) {
+	public int getAnalogOutputSignal(@NotNull BlockState blockState, Level worldIn, @NotNull BlockPos pos) {
 		BlockEntity tile = worldIn.getBlockEntity(pos);
 		if(tile instanceof PipeBlockEntity pipe)
 			return pipe.getComparatorOutput();
@@ -198,7 +198,7 @@ public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public void onRemove(@Nonnull BlockState state, Level worldIn, @Nonnull BlockPos pos, @Nonnull BlockState newState, boolean isMoving) {
+	public void onRemove(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
 		BlockEntity be = worldIn.getBlockEntity(pos);
 
 		if(be instanceof PipeBlockEntity pipe)
@@ -208,12 +208,12 @@ public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new PipeBlockEntity(pos, state);
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level world, @Nonnull BlockState state, @Nonnull BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
 		return createTickerHelper(type, PipesModule.blockEntityType, PipeBlockEntity::tick);
 	}
 }

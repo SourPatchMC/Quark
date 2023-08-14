@@ -21,7 +21,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.tools.module.BottledCloudModule;
 import vazkii.quark.integration.claim.IClaimIntegration;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class BottledCloudItem extends QuarkItem {
 
@@ -29,9 +29,9 @@ public class BottledCloudItem extends QuarkItem {
 		super("bottled_cloud", module, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResultHolder<ItemStack> use(@Nonnull Level world, Player player, @Nonnull InteractionHand hand) {
+	public InteractionResultHolder<ItemStack> use(@NotNull Level world, Player player, @NotNull InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 
 		HitResult result = RayTraceHandler.rayTrace(player, world, player, Block.OUTLINE, Fluid.ANY);

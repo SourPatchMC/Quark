@@ -1,6 +1,6 @@
 package vazkii.quark.content.building.block;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,20 +28,20 @@ public class BambooMatCarpetBlock extends BambooMatBlock {
 		super(name, module, BAMBOO_CARPET_MATERIAL, CreativeModeTab.TAB_DECORATIONS);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return SHAPE;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState updateShape(BlockState stateIn, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor worldIn, @Nonnull BlockPos currentPos, @Nonnull BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
 		return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 	@Override
-	public boolean canSurvive(@Nonnull BlockState state, LevelReader world, BlockPos pos) {
+	public boolean canSurvive(@NotNull BlockState state, LevelReader world, BlockPos pos) {
 		return !world.isEmptyBlock(pos.below());
 	}
 

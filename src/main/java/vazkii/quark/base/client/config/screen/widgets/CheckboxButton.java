@@ -2,7 +2,7 @@ package vazkii.quark.base.client.config.screen.widgets;
 
 import java.util.function.Supplier;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -27,7 +27,7 @@ public class CheckboxButton extends Button {
 	}
 
 	@Override
-	public void renderButton(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partial) {
+	public void renderButton(@NotNull PoseStack mstack, int mouseX, int mouseY, float partial) {
 		super.renderButton(mstack, mouseX, mouseY, partial);
 
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);

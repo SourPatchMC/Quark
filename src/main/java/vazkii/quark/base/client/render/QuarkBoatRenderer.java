@@ -2,7 +2,7 @@ package vazkii.quark.base.client.render;
 
 import java.util.Map;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.base.Functions;
 import com.google.common.collect.ImmutableMap;
@@ -50,7 +50,7 @@ public class QuarkBoatRenderer extends EntityRenderer<Boat> {
 	// All BoatRenderer copy from here on out =====================================================================================================================
 
 	@Override
-	public void render(Boat boat, float yaw, float partialTicks, PoseStack matrix, @Nonnull MultiBufferSource buffer, int light) {
+	public void render(Boat boat, float yaw, float partialTicks, PoseStack matrix, @NotNull MultiBufferSource buffer, int light) {
 		matrix.pushPose();
 		matrix.translate(0.0D, 0.375D, 0.0D);
 		matrix.mulPose(Vector3f.YP.rotationDegrees(180.0F - yaw));
@@ -87,10 +87,10 @@ public class QuarkBoatRenderer extends EntityRenderer<Boat> {
 		super.render(boat, yaw, partialTicks, matrix, buffer, light);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	@Deprecated // forge: override getModelWithLocation to change the texture / model
-	public ResourceLocation getTextureLocation(@Nonnull Boat boat) {
+	public ResourceLocation getTextureLocation(@NotNull Boat boat) {
 		return getModelWithLocation(boat).resloc();
 	}
 

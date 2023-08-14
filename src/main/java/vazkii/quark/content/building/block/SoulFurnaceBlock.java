@@ -1,6 +1,6 @@
 package vazkii.quark.content.building.block;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -30,7 +30,7 @@ public class SoulFurnaceBlock extends VariantFurnaceBlock {
 	}
 
 	@Override
-	public void animateTick(BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull RandomSource random) {
+	public void animateTick(BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
 		if(state.getValue(LIT) && state.getValue(SOUL)) {
 			double d0 = (double)pos.getX() + 0.5D;
 			double d1 = pos.getY();
@@ -63,9 +63,9 @@ public class SoulFurnaceBlock extends VariantFurnaceBlock {
 		return super.getStateForPlacement(context).setValue(SOUL, downState.is(BlockTags.SOUL_FIRE_BASE_BLOCKS));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState updateShape(@Nonnull BlockState stateIn, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor worldIn, @Nonnull BlockPos currentPos, @Nonnull BlockPos facingPos) {
+	public BlockState updateShape(@NotNull BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
 		if(facing == Direction.DOWN)
 			return stateIn.setValue(SOUL, facingState.is(BlockTags.SOUL_FIRE_BASE_BLOCKS));
 
@@ -73,7 +73,7 @@ public class SoulFurnaceBlock extends VariantFurnaceBlock {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(@Nonnull StateDefinition.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(SOUL);
 	}

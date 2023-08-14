@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import vazkii.quark.content.mobs.entity.Foxhound;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class FindPlaceToSleepGoal extends MoveToBlockGoal {
 	private final Foxhound foxhound;
@@ -82,7 +82,7 @@ public class FindPlaceToSleepGoal extends MoveToBlockGoal {
 	}
 
 	@Override
-	protected boolean isValidTarget(@Nonnull LevelReader world, @Nonnull BlockPos pos) {
+	protected boolean isValidTarget(@NotNull LevelReader world, @NotNull BlockPos pos) {
 		if (!world.isEmptyBlock(pos.above())) {
 			return false;
 		} else {

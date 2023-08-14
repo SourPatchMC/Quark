@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.content.tools.module.ParrotEggsModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class ParrotEgg extends ThrowableItemProjectile {
 	public static final int VARIANTS = 5;
@@ -55,7 +55,7 @@ public class ParrotEgg extends ThrowableItemProjectile {
 		getEntityData().set(COLOR, Mth.clamp(variant, 0, VARIANTS - 1));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected Item getDefaultItem() {
 		return ParrotEggsModule.parrotEggs.get(getVariant());
@@ -75,13 +75,13 @@ public class ParrotEgg extends ThrowableItemProjectile {
 	}
 
 	@Override
-	protected void onHitEntity(@Nonnull EntityHitResult entityHitResult) {
+	protected void onHitEntity(@NotNull EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
 		entityHitResult.getEntity().hurt(DamageSource.thrown(this, this.getOwner()), 0.0F);
 	}
 
 	@Override
-	protected void onHit(@Nonnull HitResult hitResult) {
+	protected void onHit(@NotNull HitResult hitResult) {
 		super.onHit(hitResult);
 		if (!this.level.isClientSide) {
 			Parrot parrot = EntityType.PARROT.create(level);

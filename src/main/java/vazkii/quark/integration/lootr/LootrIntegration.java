@@ -13,7 +13,7 @@ import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.content.building.module.VariantChestsModule;
 import vazkii.quark.integration.lootr.client.LootrVariantChestRenderer;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

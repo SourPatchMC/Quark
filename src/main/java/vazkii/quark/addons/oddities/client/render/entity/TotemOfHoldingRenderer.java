@@ -1,6 +1,6 @@
 package vazkii.quark.addons.oddities.client.render.entity;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -39,7 +39,7 @@ public class TotemOfHoldingRenderer extends EntityRenderer<TotemOfHoldingEntity>
 	}
 
 	@Override
-	public void render(TotemOfHoldingEntity entity, float entityYaw, float partialTicks, @Nonnull PoseStack matrixStackIn, @Nonnull MultiBufferSource bufferIn, int packedLightIn) {
+	public void render(TotemOfHoldingEntity entity, float entityYaw, float partialTicks, @NotNull PoseStack matrixStackIn, @NotNull MultiBufferSource bufferIn, int packedLightIn) {
 		int deathTicks = entity.getDeathTicks();
 		boolean dying = entity.isDying();
 		float time = ClientTicker.ticksInGame + partialTicks;
@@ -66,7 +66,7 @@ public class TotemOfHoldingRenderer extends EntityRenderer<TotemOfHoldingEntity>
 	}
 
 	@Override
-	protected int getBlockLightLevel(@Nonnull TotemOfHoldingEntity entityIn, @Nonnull BlockPos position) {
+	protected int getBlockLightLevel(@NotNull TotemOfHoldingEntity entityIn, @NotNull BlockPos position) {
 		return 15;
 	}
 
@@ -82,9 +82,9 @@ public class TotemOfHoldingRenderer extends EntityRenderer<TotemOfHoldingEntity>
 		return false;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull TotemOfHoldingEntity entity) {
+	public ResourceLocation getTextureLocation(@NotNull TotemOfHoldingEntity entity) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}
 }

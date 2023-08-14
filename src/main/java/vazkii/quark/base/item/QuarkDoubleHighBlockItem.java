@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.function.BooleanSupplier;
 
 public class QuarkDoubleHighBlockItem extends DoubleHighBlockItem implements IQuarkItem {
@@ -23,7 +23,7 @@ public class QuarkDoubleHighBlockItem extends DoubleHighBlockItem implements IQu
 	}
 
 	@Override
-	public void fillItemCategory(@Nonnull CreativeModeTab group, @Nonnull NonNullList<ItemStack> items) {
+	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
 		if(isEnabled() || group == CreativeModeTab.TAB_SEARCH)
 			super.fillItemCategory(group, items);
 	}

@@ -63,8 +63,8 @@ import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.content.mobs.ai.RaveGoal;
 import vazkii.quark.content.mobs.module.CrabsModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.function.BiConsumer;
 
 public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketable {
@@ -110,7 +110,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 
 	@Override
 	@SuppressWarnings("deprecation")
-	public void saveToBucketTag(@Nonnull ItemStack stack) {
+	public void saveToBucketTag(@NotNull ItemStack stack) {
 		Bucketable.saveDefaultDataToBucketTag(this, stack);
 		CompoundTag tag = stack.getOrCreateTag();
 
@@ -120,20 +120,20 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 
 	@Override
 	@SuppressWarnings("deprecation")
-	public void loadFromBucketTag(@Nonnull CompoundTag tag) {
+	public void loadFromBucketTag(@NotNull CompoundTag tag) {
 		Bucketable.loadDefaultDataFromBucketTag(this, tag);
 
 		if (tag.contains("NoSpike")) noSpike = tag.getBoolean("NoSpike");
 		if (tag.contains("Variant", Tag.TAG_ANY_NUMERIC)) entityData.set(VARIANT, tag.getInt("Variant"));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getBucketItemStack() {
 		return new ItemStack(CrabsModule.crab_bucket);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public SoundEvent getPickupSound() {
 		return QuarkSounds.BUCKET_FILL_CRAB;
@@ -150,7 +150,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public void updateDynamicGameEventListener(@Nonnull BiConsumer<DynamicGameEventListener<?>, ServerLevel> acceptor) {
+	public void updateDynamicGameEventListener(@NotNull BiConsumer<DynamicGameEventListener<?>, ServerLevel> acceptor) {
 		Level level = this.level;
 		if (level instanceof ServerLevel serverlevel) acceptor.accept(this.dynamicJukeboxListener, serverlevel);
 	}
@@ -169,7 +169,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		return true;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public MobType getMobType() {
 		return MobType.ARTHROPOD;
@@ -185,9 +185,9 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		entityData.define(FROM_BUCKET, false);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult mobInteract(@Nonnull Player player, @Nonnull InteractionHand hand) {
+	public InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
 		if (getSizeModifier() >= 2) {
 			if (!this.isFood(player.getItemInHand(hand)) && !this.isVehicle() && !player.isSecondaryUseActive()) {
 				if (!this.level.isClientSide) player.startRiding(this);
@@ -208,9 +208,9 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		return super.getPassengersRidingOffset() / 0.75 * 0.9;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public Vec3 getDismountLocationForPassenger(@Nonnull LivingEntity entity) {
+	public Vec3 getDismountLocationForPassenger(@NotNull LivingEntity entity) {
 		Direction direction = this.getMotionDirection();
 		if (direction.getAxis() != Direction.Axis.Y) {
 			float scale = getScale();
@@ -252,12 +252,12 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 
 	@Nullable
 	@Override
-	protected SoundEvent getHurtSound(@Nonnull DamageSource source) {
+	protected SoundEvent getHurtSound(@NotNull DamageSource source) {
 		return QuarkSounds.ENTITY_CRAB_HURT;
 	}
 
 	@Override
-	protected float getStandingEyeHeight(@Nonnull Pose pose, EntityDimensions size) {
+	protected float getStandingEyeHeight(@NotNull Pose pose, EntityDimensions size) {
 		return 0.2f * size.height;
 	}
 
@@ -327,9 +327,9 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		return baseStep;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public EntityDimensions getDimensions(@Nonnull Pose poseIn) {
+	public EntityDimensions getDimensions(@NotNull Pose poseIn) {
 		return super.getDimensions(poseIn).scale(this.getSizeModifier());
 	}
 
@@ -344,7 +344,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public boolean isInvulnerableTo(@Nonnull DamageSource source) {
+	public boolean isInvulnerableTo(@NotNull DamageSource source) {
 		return super.isInvulnerableTo(source) ||
 			source == DamageSource.CACTUS ||
 			source == DamageSource.SWEET_BERRY_BUSH ||
@@ -358,7 +358,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public void thunderHit(@Nonnull ServerLevel sworld, @Nonnull LightningBolt lightningBolt) { // onStruckByLightning
+	public void thunderHit(@NotNull ServerLevel sworld, @NotNull LightningBolt lightningBolt) { // onStruckByLightning
 		if (lightningCooldown > 0 || level.isClientSide)
 			return;
 
@@ -383,13 +383,13 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public void push(@Nonnull Entity entityIn) {
+	public void push(@NotNull Entity entityIn) {
 		if (getSizeModifier() <= 1)
 			super.push(entityIn);
 	}
 
 	@Override
-	protected void doPush(@Nonnull Entity entityIn) {
+	protected void doPush(@NotNull Entity entityIn) {
 		super.doPush(entityIn);
 		if (level.getDifficulty() != Difficulty.PEACEFUL && !noSpike && !hasPassenger(entityIn))
 			if (entityIn instanceof LivingEntity && !(entityIn instanceof Crab))
@@ -413,11 +413,11 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 
 	@Nullable
 	@Override // createChild
-	public AgeableMob getBreedOffspring(@Nonnull ServerLevel sworld, @Nonnull AgeableMob other) {
+	public AgeableMob getBreedOffspring(@NotNull ServerLevel sworld, @NotNull AgeableMob other) {
 		return new Crab(CrabsModule.crabType, level);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected ResourceLocation getDefaultLootTable() {
 		return CRAB_LOOT_TABLE;
@@ -455,14 +455,14 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public void onSyncedDataUpdated(@Nonnull EntityDataAccessor<?> parameter) {
+	public void onSyncedDataUpdated(@NotNull EntityDataAccessor<?> parameter) {
 		if (parameter.equals(SIZE_MODIFIER))
 			refreshDimensions();
 
 		super.onSyncedDataUpdated(parameter);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
@@ -479,7 +479,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public void readAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 
 		lightningCooldown = compound.getInt("LightningCooldown");
@@ -497,7 +497,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public void addAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putFloat("EnemyCrabRating", getSizeModifier());
 		compound.putInt("LightningCooldown", lightningCooldown);
@@ -516,7 +516,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		}
 
 		@Override
-		@Nonnull
+		@NotNull
 		public PositionSource getListenerSource() {
 			return this.listenerSource;
 		}
@@ -527,7 +527,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		}
 
 		@Override
-		public boolean handleGameEvent(@Nonnull ServerLevel level, GameEvent.Message message) {
+		public boolean handleGameEvent(@NotNull ServerLevel level, GameEvent.Message message) {
 			if (message.gameEvent() == GameEvent.JUKEBOX_PLAY) {
 				Crab.this.party(new BlockPos(message.source()), true);
 				return true;

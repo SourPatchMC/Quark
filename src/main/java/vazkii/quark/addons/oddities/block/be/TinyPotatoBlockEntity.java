@@ -4,8 +4,8 @@ package vazkii.quark.addons.oddities.block.be;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -216,11 +216,11 @@ public class TinyPotatoBlockEntity extends SimpleInventoryBlockEntity implements
 	}
 
 	@Override
-	public boolean canPlaceItem(int slot, @Nonnull ItemStack itemstack) {
+	public boolean canPlaceItem(int slot, @NotNull ItemStack itemstack) {
 		return this.getItem(slot).isEmpty();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Component getName() {
 		return Component.translatable(TinyPotatoModule.tiny_potato.getDescriptionId());
@@ -232,7 +232,7 @@ public class TinyPotatoBlockEntity extends SimpleInventoryBlockEntity implements
 		return name.getString().isEmpty() ? null : name;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Component getDisplayName() {
 		if (hasCustomName()) {

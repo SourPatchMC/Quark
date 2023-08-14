@@ -1,6 +1,6 @@
 package vazkii.quark.content.client.tooltip;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -54,7 +54,7 @@ public class FuelTooltips {
 	public record FuelComponent(ItemStack stack, int width, int count) implements ClientTooltipComponent, TooltipComponent {
 
 		@Override
-		public void renderImage(@Nonnull Font font, int tooltipX, int tooltipY, @Nonnull PoseStack pose, @Nonnull ItemRenderer itemRenderer, int something) {
+		public void renderImage(@NotNull Font font, int tooltipX, int tooltipY, @NotNull PoseStack pose, @NotNull ItemRenderer itemRenderer, int something) {
 			pose.pushPose();
 			pose.translate(tooltipX, tooltipY, 500);
 		
@@ -75,7 +75,7 @@ public class FuelTooltips {
 		}
 
 		@Override
-		public int getWidth(@Nonnull Font font) {
+		public int getWidth(@NotNull Font font) {
 			return width;
 		}
 	}

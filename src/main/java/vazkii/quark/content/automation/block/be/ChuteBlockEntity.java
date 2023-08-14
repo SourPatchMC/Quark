@@ -14,8 +14,8 @@ import vazkii.quark.content.automation.block.ChuteBlock;
 import vazkii.quark.content.automation.module.ChuteModule;
 import vazkii.quark.content.building.module.GrateModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author WireSegal
@@ -43,15 +43,15 @@ public class ChuteBlockEntity extends ARLBlockEntity {
 			return 1;
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
 		public ItemStack getStackInSlot(int slot) {
 			return ItemStack.EMPTY;
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
-		public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+		public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
 			if (!canDropItem())
 				return stack;
 
@@ -64,7 +64,7 @@ public class ChuteBlockEntity extends ARLBlockEntity {
 			return ItemStack.EMPTY;
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
 		public ItemStack extractItem(int slot, int amount, boolean simulate) {
 			return ItemStack.EMPTY;
@@ -76,14 +76,14 @@ public class ChuteBlockEntity extends ARLBlockEntity {
 		}
 
 		@Override
-		public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+		public boolean isItemValid(int slot, @NotNull ItemStack stack) {
 			return true;
 		}
 	};
 
-	@Nonnull
+	@NotNull
 	@Override
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+	public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 		if (side != Direction.DOWN && cap == ForgeCapabilities.ITEM_HANDLER)
 			return LazyOptional.of(() -> handler).cast();
 		return super.getCapability(cap, side);

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -345,7 +345,7 @@ public class PathfinderMapsModule extends QuarkModule {
 	private record PathfinderQuillTrade(TradeInfo info, boolean hasCompass) implements ItemListing {
 
 		@Override
-		public MerchantOffer getOffer(@Nonnull Entity entity, @Nonnull RandomSource random) {
+		public MerchantOffer getOffer(@NotNull Entity entity, @NotNull RandomSource random) {
 			if (!info.enabled)
 				return null;
 
