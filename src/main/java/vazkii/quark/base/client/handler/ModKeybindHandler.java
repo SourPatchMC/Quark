@@ -14,7 +14,7 @@ import vazkii.quark.base.client.util.PredicatedKeyBinding;
 import vazkii.quark.base.client.util.SortedKeyBinding;
 import vazkii.quark.base.client.util.SortedPredicatedKeyBinding;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class ModKeybindHandler {
 
 	public static final String MISC_GROUP = "quark.gui.keygroup.misc";

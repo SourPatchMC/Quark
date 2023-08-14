@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.addons.oddities.block.TinyPotatoBlock;
 import vazkii.quark.addons.oddities.client.render.be.TinyPotatoRenderer;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public record TinyPotatoModel(BakedModel originalModel) implements BakedModel {
 
 	@Override

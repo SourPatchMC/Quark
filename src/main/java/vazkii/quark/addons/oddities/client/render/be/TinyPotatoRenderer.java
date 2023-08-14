@@ -42,7 +42,7 @@ import vazkii.quark.content.tools.item.RuneItem;
 import vazkii.quark.content.tools.module.ColorRunesModule;
 import vazkii.quark.mixin.client.accessor.AccessorModelManager;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class TinyPotatoRenderer implements BlockEntityRenderer<TinyPotatoBlockEntity> {
 	public static final String DEFAULT = "default";
 	public static final String HALLOWEEN = "halloween";

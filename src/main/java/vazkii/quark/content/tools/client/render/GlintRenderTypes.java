@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class GlintRenderTypes extends RenderType {
 	private GlintRenderTypes(String name, VertexFormat vf, VertexFormat.Mode mode, int bufSize, boolean affectsCrumbling, boolean sortOnUpload, Runnable setup, Runnable clean) {
 		super(name, vf, mode, bufSize, affectsCrumbling, sortOnUpload, setup, clean);

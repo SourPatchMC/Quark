@@ -37,7 +37,7 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class ClientProxy extends CommonProxy {
 
 	public static boolean jingleBellsMotherfucker = false;
@@ -110,7 +110,7 @@ public class ClientProxy extends CommonProxy {
 		ModuleLoader.INSTANCE.registerAdditionalModels(event);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
 		ModuleLoader.INSTANCE.registerClientTooltipComponentFactories(event);
 	}

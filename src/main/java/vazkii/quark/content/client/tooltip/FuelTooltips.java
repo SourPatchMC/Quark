@@ -26,7 +26,7 @@ import vazkii.quark.content.client.module.ImprovedTooltipsModule;
 
 public class FuelTooltips {
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
 		ItemStack stack = event.getItemStack();
 		if(!stack.isEmpty()) {
@@ -50,7 +50,7 @@ public class FuelTooltips {
 	}
 	
 	
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public record FuelComponent(ItemStack stack, int width, int count) implements ClientTooltipComponent, TooltipComponent {
 
 		@Override

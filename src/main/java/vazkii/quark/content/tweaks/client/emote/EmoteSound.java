@@ -24,7 +24,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class EmoteSound extends AbstractSoundInstance implements TickableSoundInstance {
 
 	protected boolean donePlaying;

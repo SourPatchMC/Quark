@@ -80,7 +80,7 @@ public class StonelingsModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(stonelingType, StonelingRenderer::new);
 	}

@@ -23,7 +23,7 @@ public interface IInputtableConfigType<T extends IInputtableConfigType<T>> exten
 	void markDirty(boolean dirty);
 	boolean isDirty();
 	
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	static void addPencil(CategoryScreen parent, IConfigElement element, List<WidgetWrapper> widgets, Supplier<Screen> screenSupplier) {
 		Minecraft minecraft = Minecraft.getInstance();
 		widgets.add(new WidgetWrapper(new PencilButton(230, 3, b -> minecraft.setScreen(screenSupplier.get()))));

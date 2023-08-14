@@ -95,7 +95,7 @@ public class FoxhoundModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(foxhoundType, FoxhoundRenderer::new);
 	}

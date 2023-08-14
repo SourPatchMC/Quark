@@ -52,7 +52,7 @@ public class TinyPotatoModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void modelBake(ModelEvent.BakingCompleted event) {
 		ResourceLocation tinyPotato = new ModelResourceLocation(new ResourceLocation("quark", "tiny_potato"), "inventory");
 		Map<ResourceLocation, BakedModel> map = event.getModels();
@@ -61,7 +61,7 @@ public class TinyPotatoModule extends QuarkModule {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
 		ResourceManager rm = Minecraft.getInstance().getResourceManager();
 		Set<String> usedNames = new HashSet<>(); 
@@ -71,7 +71,7 @@ public class TinyPotatoModule extends QuarkModule {
 		registerTaters(event, "botania", usedNames, rm);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private void registerTaters(ModelEvent.RegisterAdditional event, String mod, Set<String> usedNames, ResourceManager rm) {
 		Map<ResourceLocation, Resource> resources = rm.listResources("models/tiny_potato", r -> r.getPath().endsWith(".json")); 
 		for (ResourceLocation model : resources.keySet()) {
@@ -89,7 +89,7 @@ public class TinyPotatoModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		BlockEntityRenderers.register(blockEntityType, TinyPotatoRenderer::new);
 	}

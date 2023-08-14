@@ -218,7 +218,7 @@ public class EnhancedLaddersModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onInput(MovementInputUpdateEvent event) {
 		if(!allowInventorySneak)
 			return;

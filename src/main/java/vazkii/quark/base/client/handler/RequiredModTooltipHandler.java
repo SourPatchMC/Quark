@@ -44,7 +44,7 @@ public class RequiredModTooltipHandler {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void onTooltip(ItemTooltipEvent event) {
 		if(!BLOCKS.isEmpty() && event.getEntity() != null && event.getEntity().level != null) {
 			for(Block b : BLOCKS.keySet())

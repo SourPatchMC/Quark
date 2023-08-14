@@ -111,7 +111,7 @@ public class VariantChestBlock extends ChestBlock implements IBlockItemProvider,
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public BlockItem provideItemBlock(Block block, Item.Properties props) {
 		return new Item(block, props);
 	}
@@ -123,7 +123,7 @@ public class VariantChestBlock extends ChestBlock implements IBlockItemProvider,
 		}
 
 		@Override
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public void initializeClient(Consumer<IClientItemExtensions> consumer) {
 			consumer.accept(new IClientItemExtensions() {
 

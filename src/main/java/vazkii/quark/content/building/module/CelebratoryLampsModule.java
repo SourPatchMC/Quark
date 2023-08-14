@@ -32,7 +32,7 @@ public class CelebratoryLampsModule extends QuarkModule {
 	}
 	
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onTooltip(ItemTooltipEvent event) {
 		if(event.getFlags().isAdvanced()) {
 			ItemStack stack = event.getItemStack();

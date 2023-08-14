@@ -28,7 +28,7 @@ public class UpdateTridentMessage implements IMessage {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public boolean receive(NetworkEvent.Context context) {
 		context.enqueueWork(() -> {
 			Level level = Minecraft.getInstance().level;

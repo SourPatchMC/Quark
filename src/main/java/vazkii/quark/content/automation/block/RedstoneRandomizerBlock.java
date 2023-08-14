@@ -189,7 +189,7 @@ public class RedstoneRandomizerBlock extends QuarkBlock {
 		world.updateNeighborsAtExceptFromFacing(neighborPos, block, face);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	@Override
 	public void animateTick(BlockState stateIn, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull RandomSource rand) {
 		if (stateIn.getValue(POWERED) != RandomizerPowerState.OFF) {

@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.content.mobs.entity.Forgotten;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class ForgottenSheathedItemLayer<M extends EntityModel<Forgotten>> extends RenderLayer<Forgotten, M> {
 
 	private final ItemInHandRenderer itemInHandRenderer;

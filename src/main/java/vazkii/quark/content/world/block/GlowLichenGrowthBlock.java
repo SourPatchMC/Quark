@@ -39,7 +39,7 @@ public class GlowLichenGrowthBlock extends QuarkBushBlock implements Bonemealabl
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void animateTick(@Nonnull BlockState stateIn, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull RandomSource rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
 

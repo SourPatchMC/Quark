@@ -77,7 +77,7 @@ public class RGBAColorConfig extends RGBColorConfig {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public String getSubtitle() {
 		return String.format("[%.1f, %.1f, %.1f, %.1f]", r, g, b, a);
 	}

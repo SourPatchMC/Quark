@@ -201,7 +201,7 @@ public class LootrVariantChestBlock extends VariantChestBlock implements IItemPr
 		}
 
 		@Override
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public void initializeClient(Consumer<IClientItemExtensions> consumer) {
 			consumer.accept(new IClientItemExtensions() {
 

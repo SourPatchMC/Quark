@@ -285,7 +285,7 @@ public class VariantChestsModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		BlockEntityRenderers.register(chestTEType, VariantChestRenderer::new);
 		BlockEntityRenderers.register(trappedChestTEType, VariantChestRenderer::new);

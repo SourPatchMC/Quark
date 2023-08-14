@@ -36,7 +36,7 @@ public class CompassesWorkEverywhereModule extends QuarkModule {
 	@Hint("clock_nerf") Item clock = Items.CLOCK;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		// register = addPropertyOverride
 		if(enabled && (enableCompassNerf || enableNether || enableEnd))

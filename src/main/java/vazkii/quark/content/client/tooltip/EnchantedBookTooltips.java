@@ -47,7 +47,7 @@ public class EnchantedBookTooltips {
 		testItems = null;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.player == null)
@@ -174,7 +174,7 @@ public class EnchantedBookTooltips {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public record EnchantedBookComponent(int width, int height,
 										 Enchantment enchantment, boolean tableOnly) implements ClientTooltipComponent, TooltipComponent {
 

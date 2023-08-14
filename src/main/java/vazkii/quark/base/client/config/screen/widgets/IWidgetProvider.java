@@ -10,10 +10,10 @@ import vazkii.quark.base.client.config.screen.WidgetWrapper;
 
 public interface IWidgetProvider {
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	void addWidgets(CategoryScreen parent, IConfigElement element, List<WidgetWrapper> widgets);
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	String getSubtitle();
 
 }

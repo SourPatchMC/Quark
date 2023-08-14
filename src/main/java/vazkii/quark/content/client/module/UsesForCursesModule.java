@@ -47,20 +47,20 @@ public class UsesForCursesModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void modelLayers(AddLayers event) {
 		ArmorStandRenderer render = event.getRenderer(EntityType.ARMOR_STAND);
 		render.addLayer(new ArmorStandFakePlayerLayer<>(render, event.getEntityModels()));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static boolean shouldHideArmorStandModel(ItemStack stack) {
 		if(!staticEnabled || !bindArmorStandsWithPlayerHeads || !stack.is(Items.PLAYER_HEAD))
 			return false;
 		return EnchantmentHelper.hasBindingCurse(stack);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static boolean shouldHidePumpkinOverlay(ResourceLocation location, Player player) {
 		if(!staticEnabled || !vanishPumpkinOverlay || !location.equals(PUMPKIN_OVERLAY))
 			return false;

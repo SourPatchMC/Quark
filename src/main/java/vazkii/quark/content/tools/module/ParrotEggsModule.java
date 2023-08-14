@@ -120,13 +120,13 @@ public class ParrotEggsModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(parrotEggType, ThrownItemRenderer::new);
 	}
 
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getTextureForParrot(Parrot parrot) {
 		if (!isEnabled || !enableKotobirb)
 			return null;

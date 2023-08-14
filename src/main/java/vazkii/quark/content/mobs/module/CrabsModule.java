@@ -124,7 +124,7 @@ public class CrabsModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(crabType, CrabRenderer::new);
 	}

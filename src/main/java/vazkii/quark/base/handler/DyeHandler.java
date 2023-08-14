@@ -44,7 +44,7 @@ public final class DyeHandler {
 		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":dye_item", DyeRecipe.SERIALIZER);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void clientSetup(ParallelDispatchEvent event) {
 		ResourceLocation res = new ResourceLocation("quark_dyed");
 		ItemColors colors = Minecraft.getInstance().getItemColors();

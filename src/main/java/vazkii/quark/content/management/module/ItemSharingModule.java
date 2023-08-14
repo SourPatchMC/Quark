@@ -56,7 +56,7 @@ public class ItemSharingModule extends QuarkModule {
 	//global variable to apply 5 sec cooldown
 	private static long lastShareTimestamp = -1;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void renderItemForMessage(PoseStack poseStack, FormattedCharSequence sequence, float x, float y, int color) {
 		if (!ModuleLoader.INSTANCE.isModuleEnabled(ItemSharingModule.class) || !renderItemsInChat)
 			return;
@@ -77,7 +77,7 @@ public class ItemSharingModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onKeyInput(KeyPressed.Pre event) {
 		KeyMapping key = getChatKey();
 		if(key.getKey().getType() == Type.KEYSYM && event.getKeyCode() == key.getKey().getValue())
@@ -86,7 +86,7 @@ public class ItemSharingModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onMouseInput(MouseButtonPressed.Post event) {
 		KeyMapping key = getChatKey();
 		int btn = event.getButton();
@@ -177,7 +177,7 @@ public class ItemSharingModule extends QuarkModule {
 		return out.append(component);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static void render(Minecraft mc, PoseStack pose, String before, float x, float y, Style style, int color) {
 		float a = (color >> 24 & 255) / 255.0F;
 

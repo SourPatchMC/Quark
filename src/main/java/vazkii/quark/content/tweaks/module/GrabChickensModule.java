@@ -102,7 +102,7 @@ public class GrabChickensModule extends QuarkModule {
 		return (!needsNoHelmet || player.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) && !player.isUnderWater();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void setRenderChickenFeetStatus(Chicken entity, ChickenModel<Chicken> model) {
 		if(!staticEnabled)
 			return;

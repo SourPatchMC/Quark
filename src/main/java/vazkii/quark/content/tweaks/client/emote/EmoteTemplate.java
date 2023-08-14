@@ -17,7 +17,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class EmoteTemplate {
 
 	private static final Map<String, Integer> parts = new HashMap<>();

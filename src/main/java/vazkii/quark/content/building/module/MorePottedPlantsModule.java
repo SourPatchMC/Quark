@@ -69,7 +69,7 @@ public class MorePottedPlantsModule extends QuarkModule {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		for(Block b : tintedBlocks.keySet()) {
 			BlockState tState = tintedBlocks.get(b).defaultBlockState();

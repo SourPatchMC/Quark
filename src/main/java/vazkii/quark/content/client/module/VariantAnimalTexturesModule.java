@@ -93,7 +93,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 	}
 
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getCowTexture(Cow entity) {
 		if (!isEnabled || !enableCow)
 			return null;
@@ -101,7 +101,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 	}
 
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getPigTexture(Pig entity) {
 		if (!isEnabled || !enablePig)
 			return null;
@@ -109,7 +109,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 	}
 
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getChickenTexture(Chicken entity) {
 		if (!isEnabled || !enableChicken)
 			return null;
@@ -117,7 +117,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 	}
 
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getRabbitTexture(Rabbit entity) {
 		if (!isEnabled || !enableShinyRabbit)
 			return null;
@@ -125,7 +125,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 	}
 
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getLlamaTexture(Llama entity) {
 		if (!isEnabled || !enableShinyLlama)
 			return null;
@@ -133,7 +133,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 	}
 
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getDolphinTexture(Dolphin entity) {
 		if (!isEnabled || !enableShinyDolphin)
 			return null;
@@ -141,7 +141,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 	}
 	
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getSlimeTexture(Slime entity) {
 		if (!isEnabled || !enableShinySlime)
 			return null;
@@ -154,7 +154,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 			"panbee", "polysexbee", "transbee", "helen");
 
 	@Nullable
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getBeeTexture(Bee entity) {
 		if (!isEnabled || !enableLGBTBees)
 			return null;
@@ -201,7 +201,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 		return null;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static boolean isShiny(Entity e) {
 		EntityType<?> type = e.getType();
 		if ((type != EntityType.COW || !enableCow) &&
@@ -217,7 +217,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 		return shinyAnimalChance > 0 && most % shinyAnimalChance == 0;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	@SubscribeEvent
 	public void doShinySparkles(LivingEvent.LivingTickEvent event) {
 		if (!shinySparkles)
@@ -236,12 +236,12 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getTextureOrShiny(Entity e, VariantTextureType type) {
 		return getTextureOrShiny(e, type, () -> getRandomTexture(e, type));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static ResourceLocation getTextureOrShiny(Entity e, VariantTextureType type, Supplier<ResourceLocation> nonShiny) {
 		UUID id = e.getUUID();
 		long most = id.getMostSignificantBits();
@@ -251,7 +251,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 		return nonShiny.get();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static ResourceLocation getRandomTexture(Entity e, VariantTextureType type) {
 		List<ResourceLocation> styles = textures.get(type);
 
@@ -261,7 +261,7 @@ public class VariantAnimalTexturesModule extends QuarkModule {
 		return styles.get(choice);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static void registerTextures(VariantTextureType type, int count, ResourceLocation vanilla) {
 		String name = type.name().toLowerCase(Locale.ROOT);
 		for(int i = 1; i < count + 1; i++)

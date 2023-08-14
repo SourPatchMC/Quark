@@ -38,7 +38,7 @@ public class SignEditingModule extends QuarkModule {
 	
 	@Config public static boolean requiresEmptyHand = false;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void openSignGuiClient(BlockPos pos) {
 		if(!ModuleLoader.INSTANCE.isModuleEnabled(SignEditingModule.class))
 			return;

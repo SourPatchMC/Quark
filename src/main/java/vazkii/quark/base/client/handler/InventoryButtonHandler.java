@@ -40,7 +40,7 @@ import vazkii.quark.base.handler.GeneralConfig;
 import vazkii.quark.base.handler.InventoryTransferHandler;
 import vazkii.quark.base.module.QuarkModule;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 @EventBusSubscriber(modid = Quark.MOD_ID, value = Dist.CLIENT)
 public final class InventoryButtonHandler {
 

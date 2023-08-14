@@ -21,13 +21,13 @@ public interface IMyaliteColorProvider extends IBlockColorProvider {
 			ImmutableList.of(-4, -3, -2, -1, 0, 1, 2, 3, 4));
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	default BlockColor getBlockColor() {
 		return (state, world, pos, tintIndex) -> getColor(pos, myaliteS(), myaliteB());
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	default ItemColor getItemColor() {
 		return (stack, tintIndex) -> {
 			Minecraft mc = Minecraft.getInstance();

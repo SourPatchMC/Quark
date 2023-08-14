@@ -47,12 +47,12 @@ public interface ILootrIntegration {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	default void clientSetup() {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	default void stitch(TextureStitchEvent.Pre event) {
 
 	}

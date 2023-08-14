@@ -64,7 +64,7 @@ public class ShibaModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(shibaType, ShibaRenderer::new);
 	}

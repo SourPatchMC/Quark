@@ -27,33 +27,33 @@ import vazkii.quark.base.module.QuarkModule;
 @LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class BackButtonKeybindModule extends QuarkModule {
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static KeyMapping backKey;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static List<GuiEventListener> listeners;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		backKey = ModKeybindHandler.initMouse(event, "back", 4, ModKeybindHandler.MISC_GROUP, (modifier, key) -> key.getType() != Type.MOUSE || key.getValue() != 0);
 	}
 	
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void openGui(ScreenEvent.Init event) {
 		listeners = event.getListenersList();
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onKeyInput(KeyPressed.Post event) {
 		if(backKey.getKey().getType() == Type.KEYSYM && event.getKeyCode() == backKey.getKey().getValue())
 			clicc();
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onMouseInput(MouseButtonPressed.Post event) {
 		int btn = event.getButton();
 		if(backKey.getKey().getType() == Type.MOUSE && btn != GLFW.GLFW_MOUSE_BUTTON_LEFT && btn == backKey.getKey().getValue())

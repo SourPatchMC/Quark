@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.aurelienribon.tweenengine.Timeline;
 import vazkii.aurelienribon.tweenengine.TweenManager;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public abstract class EmoteBase {
 
 	public static final float PI_F = (float) Math.PI;

@@ -71,13 +71,13 @@ public class PipesModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		BlockEntityRenderers.register(blockEntityType, PipeRenderer::new);
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerAdditionalModels(RegisterAdditional event) {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/pipe_flare", "inventory"));
 	}

@@ -77,7 +77,7 @@ public class WoodSetHandler {
 		});
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void clientSetup(FMLClientSetupEvent event) {
 		EntityRenderers.register(quarkBoatEntityType, r -> new QuarkBoatRenderer(r, false));
 		EntityRenderers.register(quarkChestBoatEntityType, r -> new QuarkBoatRenderer(r, true));

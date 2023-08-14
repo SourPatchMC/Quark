@@ -17,14 +17,14 @@ public class AdjustableChatModule extends QuarkModule {
 	@Config public static int verticalShift = 0;
 	
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void pre(RenderGuiOverlayEvent.Pre event) {
 		if(event.getOverlay() == VanillaGuiOverlay.CHAT_PANEL.type())
 			event.getPoseStack().translate(horizontalShift, verticalShift, 0);
 	}
 	
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void post(RenderGuiOverlayEvent.Post event) {
 		if(event.getOverlay() == VanillaGuiOverlay.CHAT_PANEL.type())
 			event.getPoseStack().translate(-horizontalShift, -verticalShift, 0);

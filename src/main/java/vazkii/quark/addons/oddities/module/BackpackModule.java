@@ -72,7 +72,7 @@ public class BackpackModule extends QuarkModule {
 	public static MenuType<BackpackMenu> menyType;
 	private static ItemStack heldStack = null;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static boolean backpackRequested;
 
 	@Override
@@ -97,7 +97,7 @@ public class BackpackModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		MenuScreens.register(menyType, BackpackInventoryScreen::new);
 
@@ -123,7 +123,7 @@ public class BackpackModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onOpenGUI(ScreenEvent.Opening event) {
 		Player player = Minecraft.getInstance().player;
 		if(player != null && isInventoryGUI(event.getScreen()) && !player.getAbilities().instabuild && isEntityWearingBackpack(player) && !player.isInsidePortal) {
@@ -133,7 +133,7 @@ public class BackpackModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientTick(ClientTickEvent event) {
 		Minecraft mc = Minecraft.getInstance();
 		if(isInventoryGUI(mc.screen) && !backpackRequested && isEntityWearingBackpack(mc.player) && !mc.player.isInsidePortal) {
@@ -155,7 +155,7 @@ public class BackpackModule extends QuarkModule {
 		QuarkNetwork.sendToServer(new HandleBackpackMessage(true));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static boolean isInventoryGUI(Screen gui) {
 		return gui != null && gui.getClass() == InventoryScreen.class;
 	}

@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.Cancelable;
 import net.minecraftforge.eventbus.api.Event;
 
 @Cancelable
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class UsageTickerEvent extends Event {
 
 	public final EquipmentSlot slot;

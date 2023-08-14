@@ -35,7 +35,7 @@ import vazkii.quark.content.mobs.client.model.ToretoiseModel;
 import vazkii.quark.content.mobs.client.model.WraithModel;
 
 @EventBusSubscriber(modid = Quark.MOD_ID, bus = Bus.MOD, value = Dist.CLIENT)
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class ModelHandler {
 
 	private static final Map<ModelLayerLocation, Layer> layers = new HashMap<>();

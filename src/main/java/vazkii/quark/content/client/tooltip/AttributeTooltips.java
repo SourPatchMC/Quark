@@ -99,7 +99,7 @@ public class AttributeTooltips {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
 		ItemStack stack = event.getItemStack();
 
@@ -198,7 +198,7 @@ public class AttributeTooltips {
 		return onlyInvalid;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static int renderAttribute(PoseStack matrix, Attribute attribute, AttributeSlot slot, int x, int y, ItemStack stack, Multimap<Attribute, AttributeModifier> slotAttributes, Minecraft mc, boolean forceRenderIfZero, Multimap<Attribute, AttributeModifier> equippedSlotAttributes, @Nullable Set<Attribute> equippedAttrsToRender) {
 		AttributeIconEntry entry = getIconForAttribute(attribute);
 		if (entry != null) {
@@ -330,7 +330,7 @@ public class AttributeTooltips {
 	}
 
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public record AttributeComponent(ItemStack stack,
 									 AttributeSlot slot) implements ClientTooltipComponent, TooltipComponent {
 

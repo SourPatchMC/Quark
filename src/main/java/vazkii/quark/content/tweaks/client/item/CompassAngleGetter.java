@@ -63,14 +63,14 @@ public class CompassAngleGetter {
 		return stack.hasTag() && ItemNBTHelper.getBoolean(stack, TAG_CALCULATED, false);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static class Impl implements ItemPropertyFunction {
 
 		private final Angle normalAngle = new Angle();
 		private final Angle unknownAngle = new Angle();
 
 		@Override
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public float call(@Nonnull ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int id) {
 			if(entityIn == null && !stack.isFramed())
 				return 0F;
@@ -168,7 +168,7 @@ public class CompassAngleGetter {
 			return world.dimensionType().natural() ? world.getSharedSpawnPos() : null;
 		}
 
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		private static class Angle {
 			private double rotation;
 			private double rota;

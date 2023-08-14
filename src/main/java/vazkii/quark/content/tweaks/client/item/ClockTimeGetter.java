@@ -28,7 +28,7 @@ public class ClockTimeGetter {
 		return stack.hasTag() && ItemNBTHelper.getBoolean(stack, TAG_CALCULATED, false);
 	}
 	
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static class Impl implements ItemPropertyFunction {
 		
 		private double rotation;
@@ -36,7 +36,7 @@ public class ClockTimeGetter {
 		private long lastUpdateTick;
 		
 		@Override
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public float call(@Nonnull ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int id) {
 			if(!isCalculated(stack))
 				return 0F;

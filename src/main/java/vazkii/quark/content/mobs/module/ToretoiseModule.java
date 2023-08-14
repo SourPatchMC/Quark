@@ -79,7 +79,7 @@ public class ToretoiseModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(toretoiseType, ToretoiseRenderer::new);
 	}

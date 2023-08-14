@@ -75,7 +75,7 @@ public class AbacusItem extends QuarkItem {
 		return -1;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static int getCount(ItemStack stack, LivingEntity entityIn) {
 		int count = -1;
 		Minecraft mc = Minecraft.getInstance();
@@ -92,7 +92,7 @@ public class AbacusItem extends QuarkItem {
 		return count;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static float count(ItemStack stack, ClientLevel world, LivingEntity entityIn, int id) {
 		int count = getCount(stack, entityIn);
 		if(count == -1)

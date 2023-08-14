@@ -15,7 +15,7 @@ import vazkii.quark.content.tools.item.SeedPouchItem;
 
 import javax.annotation.Nonnull;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class SeedPouchClientTooltipComponent implements ClientTooltipComponent {
 
 	private final ItemStack stack;

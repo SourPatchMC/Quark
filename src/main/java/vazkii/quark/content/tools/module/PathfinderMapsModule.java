@@ -146,14 +146,14 @@ public class PathfinderMapsModule extends QuarkModule {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		enqueue(() -> ItemProperties.register(pathfinders_quill, new ResourceLocation("has_biome"),
 				(stack, world, entity, i) -> (PathfindersQuillItem.getTargetBiome(stack) != null) ? 1 : 0));
 	}
 	
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void drawHUD(RenderGuiOverlayEvent.Post event) {
 		if(drawHud && event.getOverlay() == VanillaGuiOverlay.HOTBAR.type()) {
 			Minecraft mc = Minecraft.getInstance();

@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author WireSegal
  * Created at 12:19 PM on 10/6/19.
  */
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class SortedKeyBinding extends KeyMapping {
 	private final int priority;
 

@@ -54,7 +54,7 @@ public final class ModuleLoader {
 		resolveConfigSpec();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientStart() {
 		dispatch(Step.CONSTRUCT_CLIENT, QuarkModule::constructClient);
 		MinecraftForge.EVENT_BUS.register(this);
@@ -92,7 +92,7 @@ public final class ModuleLoader {
 		dispatch(Step.CONFIG_CHANGED, QuarkModule::configChanged);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void configChangedClient() {
 		if(!stepsHandled.contains(Step.POST_REGISTER))
 			return; // We don't want to mess with changing config values before objects are registered
@@ -106,48 +106,48 @@ public final class ModuleLoader {
 		dispatch(Step.SETUP, QuarkModule::setup);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup(ParallelDispatchEvent event) {
 		this.event = event;
 		dispatch(Step.SETUP_CLIENT, QuarkModule::clientSetup);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerReloadListeners(RegisterClientReloadListenersEvent event) {
 		dispatch(Step.SETUP_CLIENT, m -> m.registerReloadListeners(event::registerReloadListener));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void modelBake(BakingCompleted event) {
 		dispatch(Step.MODEL_BAKE, m -> m.modelBake(event));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void modelLayers(EntityRenderersEvent.AddLayers event) {
 		dispatch(Step.MODEL_LAYERS, m -> m.modelLayers(event));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void textureStitch(TextureStitchEvent.Pre event) {
 		dispatch(Step.TEXTURE_STITCH, m -> m.textureStitch(event));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void postTextureStitch(TextureStitchEvent.Post event) {
 		dispatch(Step.POST_TEXTURE_STITCH, m -> m.postTextureStitch(event));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		dispatch(Step.REGISTER_KEYBINDS, m -> m.registerKeybinds(event));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
 		dispatch(Step.REGISTER_ADDITIONAL_MODELS, m -> m.registerAdditionalModels(event));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
 		dispatch(Step.REGISTER_TOOLTIP_COMPONENT_FACTORIES, m -> m.registerClientTooltipComponentFactories(event));
 	}
@@ -164,7 +164,7 @@ public final class ModuleLoader {
 		});
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	@SubscribeEvent
 	public void firstClientTick(ClientTickEvent event) {
 		if(!clientTicked && event.phase == Phase.END) {

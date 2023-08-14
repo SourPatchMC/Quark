@@ -15,7 +15,7 @@ public class RenderLayerHandler {
 	private static final Map<Block, RenderTypeSkeleton> mapping = new HashMap<>();
 	private static final Map<Block, Block> inheritances = new HashMap<>();
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static Map<RenderTypeSkeleton, RenderType> renderTypes;
 
 	public static void setRenderType(Block block, RenderTypeSkeleton skeleton) {
@@ -26,7 +26,7 @@ public class RenderLayerHandler {
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> setInheritedClient(block, parent));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void init() {
 		for(Block b : inheritances.keySet()) {
 			Block inherit = inheritances.get(b);
@@ -41,19 +41,19 @@ public class RenderLayerHandler {
 		mapping.clear();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static void setRenderTypeClient(Block block, RenderTypeSkeleton skeleton) {
 		resolveRenderTypes();
 		mapping.put(block, skeleton);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static void setInheritedClient(Block block, Block parent) {
 		resolveRenderTypes();
 		inheritances.put(block, parent);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static void resolveRenderTypes() {
 		if(renderTypes == null) {
 			renderTypes = new HashMap<>();

@@ -10,7 +10,7 @@ import net.minecraftforge.client.settings.KeyModifier;
 import javax.annotation.Nonnull;
 import java.util.function.BiPredicate;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class PredicatedKeyBinding extends KeyMapping {
 	private final BiPredicate<KeyModifier, InputConstants.Key> allowed;
 

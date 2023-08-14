@@ -32,7 +32,7 @@ public class MapTooltips {
 
 	private static final ResourceLocation RES_MAP_BACKGROUND = new ResourceLocation("textures/map/map_background.png");
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
 		ItemStack stack = event.getItemStack();
 		if(!stack.isEmpty() && stack.getItem() instanceof MapItem) {
@@ -45,7 +45,7 @@ public class MapTooltips {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public record MapComponent(ItemStack stack) implements ClientTooltipComponent, TooltipComponent {
 
 		@Override

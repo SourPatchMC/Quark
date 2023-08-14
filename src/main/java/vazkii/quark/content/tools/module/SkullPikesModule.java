@@ -59,7 +59,7 @@ public class SkullPikesModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(skullPikeType, SkullPikeRenderer::new);
 	}

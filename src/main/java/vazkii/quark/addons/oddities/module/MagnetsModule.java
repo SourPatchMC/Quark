@@ -62,7 +62,7 @@ public class MagnetsModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		BlockEntityRenderers.register(magnetizedBlockType, MagnetizedBlockRenderer::new);
 	}

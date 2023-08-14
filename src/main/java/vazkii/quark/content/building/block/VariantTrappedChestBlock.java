@@ -102,7 +102,7 @@ public class VariantTrappedChestBlock extends ChestBlock implements IBlockItemPr
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public BlockItem provideItemBlock(Block block, Item.Properties props) {
 		return new VariantChestBlock.Item(block, props);
 	}

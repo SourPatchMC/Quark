@@ -119,7 +119,7 @@ public class GreenerGrassModule extends QuarkModule {
 		registerGreenerColor(leavesList, colorMatrix,() -> affectLeaves);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private void registerGreenerColor(Iterable<String> ids, ConvulsionMatrixConfig config, Supplier<Boolean> condition) {
 		BlockColors colors = Minecraft.getInstance().getBlockColors();
 
@@ -142,7 +142,7 @@ public class GreenerGrassModule extends QuarkModule {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private BlockColor getConvulsedColor(ConvulsionMatrixConfig config, BlockColor color, Supplier<Boolean> condition) {
 		return (state, world, pos, tintIndex) -> {
 			int originalColor = color.getColor(state, world, pos, tintIndex);

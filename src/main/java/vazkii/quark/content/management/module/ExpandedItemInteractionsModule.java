@@ -131,7 +131,7 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onScroll(ScreenEvent.MouseScrolled.Pre event) {
 		if (!allowRotatingBundles)
 			return;
@@ -218,7 +218,7 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onDrawScreen(ScreenEvent.Render.Post event) {
 		Minecraft mc = Minecraft.getInstance();
 		Screen gui = mc.screen;
@@ -248,7 +248,7 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOW)
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void gatherTooltip(RenderTooltipEvent.GatherComponents event) {
 		if (!enableArmorInteraction && (!enableShulkerBoxInteraction || !allowOpeningShulkerBoxes))
 			return;

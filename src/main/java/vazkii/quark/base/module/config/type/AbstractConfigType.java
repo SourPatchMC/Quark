@@ -6,13 +6,13 @@ import vazkii.quark.base.client.config.ConfigCategory;
 
 public class AbstractConfigType implements IConfigType {
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	protected ConfigCategory category;
 
 	public AbstractConfigType() { }
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void setCategory(ConfigCategory category) {
 		this.category = category;
 	}

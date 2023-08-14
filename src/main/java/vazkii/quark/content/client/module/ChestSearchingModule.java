@@ -63,7 +63,7 @@ public class ChestSearchingModule extends QuarkModule {
 	@Config
 	public RGBAColorConfig overlayColor = RGBAColorConfig.forColor(0, 0, 0, 0.67);
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static EditBox searchBar;
 
 	private static String text = "";
@@ -72,7 +72,7 @@ public class ChestSearchingModule extends QuarkModule {
 	private static int matched;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		InventoryButtonHandler.addButtonProvider(this, ButtonTargetType.CONTAINER_INVENTORY, 1, (parent, x, y) ->
 				new MiniInventoryButton(parent, 3, x, y, "quark.gui.button.filter", (b) -> {
@@ -84,7 +84,7 @@ public class ChestSearchingModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void initGui(ScreenEvent.Init.Post event) {
 		Screen gui = event.getScreen();
 		boolean apiAllowed = gui instanceof IQuarkButtonAllowed;
@@ -154,7 +154,7 @@ public class ChestSearchingModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void renderForeground(ContainerScreenEvent.Render.Foreground event) {
 		if(searchBar != null && searchEnabled) {
 			PoseStack matrix = event.getPoseStack();

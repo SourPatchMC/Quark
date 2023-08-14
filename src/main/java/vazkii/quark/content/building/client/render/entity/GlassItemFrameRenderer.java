@@ -56,7 +56,7 @@ import vazkii.quark.content.building.module.GlassItemFrameModule;
  * Created at 11:58 AM on 8/25/19.
  */
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class GlassItemFrameRenderer extends EntityRenderer<GlassItemFrame> {
 
 	private static final ModelResourceLocation LOCATION_MODEL = new ModelResourceLocation(new ResourceLocation(Quark.MOD_ID, "extra/glass_item_frame"), "inventory");

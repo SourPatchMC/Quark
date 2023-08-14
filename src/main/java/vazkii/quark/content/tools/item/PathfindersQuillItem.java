@@ -357,7 +357,7 @@ public class PathfindersQuillItem extends QuarkItem implements IItemColorProvide
         return stack;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @ClientOnly
     public static MutableComponent getSearchingComponent() {
         MutableComponent comp = Component.translatable("quark.misc.quill_searching");
 
@@ -377,7 +377,7 @@ public class PathfindersQuillItem extends QuarkItem implements IItemColorProvide
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @ClientOnly
     public void appendHoverText(ItemStack stack, Level level, List<Component> comps, TooltipFlag flags) {
         ResourceLocation biome = this.getTarget(stack);
         if (biome != null) {
@@ -389,7 +389,7 @@ public class PathfindersQuillItem extends QuarkItem implements IItemColorProvide
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @ClientOnly
     public ItemColor getItemColor() {
         return (stack, id) -> id == 0 ? 0xFFFFFF : getOverlayColor(stack);
     }

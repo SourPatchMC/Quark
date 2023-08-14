@@ -90,7 +90,7 @@ public class DiamondHeartItem extends QuarkItem {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public boolean isFoil(@Nonnull ItemStack stack) {
 		return true;
 	}

@@ -63,7 +63,7 @@ public class AmbientDiscsModule extends QuarkModule {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void onJukeboxLoad(JukeboxBlockEntity tile) {
 		Minecraft mc = Minecraft.getInstance();
 		LevelRenderer render = mc.levelRenderer;

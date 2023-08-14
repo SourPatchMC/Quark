@@ -37,16 +37,16 @@ import vazkii.quark.base.module.QuarkModule;
 @LoadModule(category = ModuleCategory.EXPERIMENTAL, enabledByDefault = false, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class NarratorReadoutModule extends QuarkModule {
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private KeyMapping keybind;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private KeyMapping keybindFull;
 
 	private float last;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		if(enabled) {
 			keybind = ModKeybindHandler.init(event, "narrator_readout", null, ModKeybindHandler.MISC_GROUP);
@@ -55,7 +55,7 @@ public class NarratorReadoutModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onMouseInput(InputEvent.MouseButton event) {
 		boolean down = isDown(event.getButton(), 0, true, keybind);
 		boolean full = isDown(event.getButton(), 0, true, keybindFull);
@@ -64,7 +64,7 @@ public class NarratorReadoutModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onKeyInput(InputEvent.Key event) {
 		boolean down = isDown(event.getKey(), event.getScanCode(), false, keybind);
 		boolean full = isDown(event.getKey(), event.getScanCode(), false, keybindFull);
@@ -72,7 +72,7 @@ public class NarratorReadoutModule extends QuarkModule {
 		acceptInput(down || full, down);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private boolean isDown(int key, int scancode, boolean mouse, KeyMapping keybind) {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.screen != null) {
@@ -86,7 +86,7 @@ public class NarratorReadoutModule extends QuarkModule {
 		else return keybind.isDown();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private void acceptInput(boolean down, boolean full) {
 		Minecraft mc = Minecraft.getInstance();
 
@@ -101,7 +101,7 @@ public class NarratorReadoutModule extends QuarkModule {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private String getReadout(Minecraft mc, boolean full) {
 		Player player = mc.player;
 		if(player == null)

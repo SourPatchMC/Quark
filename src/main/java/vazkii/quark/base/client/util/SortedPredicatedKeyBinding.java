@@ -9,7 +9,7 @@ import net.minecraftforge.client.settings.KeyModifier;
 import javax.annotation.Nonnull;
 import java.util.function.BiPredicate;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class SortedPredicatedKeyBinding extends SortedKeyBinding {
 	private final BiPredicate<KeyModifier, InputConstants.Key> allowed;
 

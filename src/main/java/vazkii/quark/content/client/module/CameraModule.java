@@ -80,7 +80,7 @@ public class CameraModule extends QuarkModule {
 			new ResourceLocation(Quark.MOD_ID, "shaders/post/colorblind/achromatopsia.json")
 	};
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static KeyMapping cameraModeKey;
 
 	private static int currentHeldItem = -1;
@@ -100,13 +100,13 @@ public class CameraModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void screenshotTaken(ScreenshotEvent event) {
 		screenshotting = false;
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void keystroke(Key event) {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.level != null && event.getAction() == GLFW.GLFW_PRESS) {
@@ -163,7 +163,7 @@ public class CameraModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void renderTick(RenderTickEvent event) {
 		Minecraft mc = Minecraft.getInstance();
 

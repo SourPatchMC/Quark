@@ -62,7 +62,7 @@ public class ParrotEgg extends ThrowableItemProjectile {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void handleEntityEvent(byte id) {
 		if(id == EVENT_BREAK) {
 			Vec3 pos = position();

@@ -49,7 +49,7 @@ public class MagnetBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void appendHoverText(@Nonnull ItemStack stack, @Nullable BlockGetter worldIn, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flagIn) {
 		if (stack.getHoverName().getString().equals("Q"))
 			tooltip.add(Component.literal("haha yes"));

@@ -134,13 +134,13 @@ public class RGBColorConfig extends AbstractInputtableType<RGBColorConfig> {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void addWidgets(CategoryScreen parent, IConfigElement element, List<WidgetWrapper> widgets) {
 		IInputtableConfigType.addPencil(parent, element, widgets, () -> new RGBColorInputScreen(parent, this, element, parent.category));
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public String getSubtitle() {
 		return String.format("[%.1f, %.1f, %.1f]", r, g, b);
 	}

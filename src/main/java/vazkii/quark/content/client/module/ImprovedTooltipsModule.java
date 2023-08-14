@@ -79,7 +79,7 @@ public class ImprovedTooltipsModule extends QuarkModule {
 	public static boolean staticEnabled;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
 		register(event, AttributeTooltips.AttributeComponent.class);
 		register(event, FoodTooltips.FoodComponent.class);
@@ -90,7 +90,7 @@ public class ImprovedTooltipsModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerReloadListeners(Consumer<PreparableReloadListener> registry) {
 		registry.accept(new AttributeTooltipManager());
 	}
@@ -105,13 +105,13 @@ public class ImprovedTooltipsModule extends QuarkModule {
 		return ItemNBTHelper.getBoolean(stack, IGNORE_TAG, false);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static <T extends ClientTooltipComponent & TooltipComponent> void register(RegisterClientTooltipComponentFactoriesEvent event, Class<T> clazz) {
 		event.register(clazz, Function.identity());
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void makeTooltip(RenderTooltipEvent.GatherComponents event) {
 		if(ignore(event.getItemStack()))
 			return;

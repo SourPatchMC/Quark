@@ -54,7 +54,7 @@ public class BackpackItem extends DyeableArmorItem implements IQuarkItem, IItemC
 
 	private final QuarkModule module;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	@SuppressWarnings("rawtypes")
 	private HumanoidModel model;
 
@@ -224,7 +224,7 @@ public class BackpackItem extends DyeableArmorItem implements IQuarkItem, IItemC
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
 		consumer.accept(new IClientItemExtensions() {
 

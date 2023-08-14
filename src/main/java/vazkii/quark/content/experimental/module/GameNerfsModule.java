@@ -209,7 +209,7 @@ public class GameNerfsModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onTooltip(ItemTooltipEvent event) {
 		if(!nerfMending)
 			return;

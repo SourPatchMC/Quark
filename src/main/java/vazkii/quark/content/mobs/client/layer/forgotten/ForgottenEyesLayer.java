@@ -12,7 +12,7 @@ import vazkii.quark.base.Quark;
 
 import javax.annotation.Nonnull;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class ForgottenEyesLayer<T extends Skeleton, M extends SkeletonModel<T>> extends EyesLayer<T, M> {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/forgotten/eye.png");

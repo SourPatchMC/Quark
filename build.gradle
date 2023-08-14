@@ -30,6 +30,9 @@ dependencies {
 
     modImplementation(include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${porting_lib_version}"))
 
+    modImplementation(include("com.github.LlamaLad7:MixinExtras:0.1.1"))
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
+
     //modLocalRuntime "dev.emi:emi-fabric:${emi_version}" // EMI
 }
 

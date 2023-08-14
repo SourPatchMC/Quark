@@ -105,7 +105,7 @@ public class MiscUtil {
 		};
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void drawChatBubble(PoseStack matrix, int x, int y, Font font, String text, float alpha, boolean extendRight) {
 		matrix.pushPose();
 		matrix.translate(0, 0, 200);
@@ -304,12 +304,12 @@ public class MiscUtil {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static int getGuiTextColor(String name) {
 		return getGuiTextColor(name, BASIC_GUI_TEXT_COLOR);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static int getGuiTextColor(String name, int base) {
 		int ret = base;
 
@@ -321,7 +321,7 @@ public class MiscUtil {
 
 	private static int progress;
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void onKeystroke(KeyPressed.Pre event) {
 		final String[] ids = new String[] {
 				"-FCYE87P5L0","mybsDDymrsc","6a4BWpBJppI","thpTOAS1Vgg","ZNcBZM5SvbY","_qJEoSa3Ie0",

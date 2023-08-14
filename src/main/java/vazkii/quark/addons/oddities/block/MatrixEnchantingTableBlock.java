@@ -110,7 +110,7 @@ public class MatrixEnchantingTableBlock extends EnchantmentTableBlock implements
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void animateTick(@Nonnull BlockState stateIn, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull RandomSource rand) {
 		boolean enabled = ModuleLoader.INSTANCE.isModuleEnabled(MatrixEnchantingModule.class);
 		boolean showInfluences = enabled && MatrixEnchantingModule.allowInfluencing;

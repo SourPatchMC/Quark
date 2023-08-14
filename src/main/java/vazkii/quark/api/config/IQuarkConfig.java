@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.function.Consumer;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public interface IQuarkConfig {
 
 	class Holder {

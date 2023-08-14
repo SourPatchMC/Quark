@@ -30,7 +30,7 @@ import vazkii.quark.base.Quark;
 import vazkii.quark.content.tweaks.entity.DyedItemFrame;
 
 // yes this shit again
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class DyedItemFrameRenderer extends EntityRenderer<DyedItemFrame> {
 
 	private static final ModelResourceLocation FRAME_LOCATION = new ModelResourceLocation(Quark.MOD_ID, "extra/dyed_item_frame", "inventory");

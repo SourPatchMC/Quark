@@ -101,10 +101,10 @@ public class EmotesModule extends QuarkModule {
 	public static boolean emotesVisible = false;
 	public static File emotesDir;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static CustomEmoteIconResourcePack resourcePack;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static Map<KeyMapping, String> emoteKeybinds;
 
 	@Override
@@ -136,7 +136,7 @@ public class EmotesModule extends QuarkModule {
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		int sortOrder = 0;
 
@@ -148,7 +148,7 @@ public class EmotesModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void configChangedClient() {
 		EmoteHandler.clearEmotes();
 
@@ -165,7 +165,7 @@ public class EmotesModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void initGui(ScreenEvent.Init.Post event) {
 		Screen gui = event.getScreen();
 		if(gui instanceof ChatScreen) {
@@ -247,7 +247,7 @@ public class EmotesModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onKeyInput(InputEvent.Key event) {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.isWindowActive()) {
@@ -262,7 +262,7 @@ public class EmotesModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void drawHUD(RenderGuiOverlayEvent.Post event) {
 		if(event.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type()) {
 			Minecraft mc = Minecraft.getInstance();
@@ -301,20 +301,20 @@ public class EmotesModule extends QuarkModule {
 
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void renderTick(RenderTickEvent event) {
 		EmoteHandler.onRenderTick(Minecraft.getInstance());
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void preRenderLiving(RenderLivingEvent.Pre<Player, ?> event) {
 		if(event.getEntity() instanceof Player player)
 			EmoteHandler.preRender(event.getPoseStack(), player);
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void postRenderLiving(RenderLivingEvent.Post<Player, ?> event) {
 		if(event.getEntity() instanceof Player player)
 			EmoteHandler.postRender(event.getPoseStack(), player);

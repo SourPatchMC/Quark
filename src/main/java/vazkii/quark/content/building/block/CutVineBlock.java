@@ -44,14 +44,14 @@ public class CutVineBlock extends QuarkVineBlock implements IBlockColorProvider 
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public BlockColor getBlockColor() {
 		final BlockState grass = Blocks.VINE.defaultBlockState();
 		return (state, world, pos, tintIndex) -> Minecraft.getInstance().getBlockColors().getColor(grass, world, pos, tintIndex);
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public ItemColor getItemColor() {
 		final ItemStack grass = new ItemStack(Items.VINE);
 		return (stack, tintIndex) -> Minecraft.getInstance().getItemColors().getColor(grass, tintIndex);

@@ -25,6 +25,7 @@ import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import vazkii.quark.base.client.handler.ModKeybindHandler;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
@@ -35,7 +36,7 @@ import vazkii.quark.base.network.message.ChangeHotbarMessage;
 @LoadModule(category = ModuleCategory.MANAGEMENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class HotbarChangerModule extends QuarkModule {
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static KeyMapping changeHotbarKey;
 
 	private static final ResourceLocation WIDGETS = new ResourceLocation("textures/gui/widgets.png");
@@ -56,13 +57,13 @@ public class HotbarChangerModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onMouseInput(InputEvent.MouseButton event) {
 		acceptInput(-1);
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onKeyInput(InputEvent.Key event) {
 		acceptInput(event.getKey());
 	}
@@ -95,7 +96,7 @@ public class HotbarChangerModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void hudPre(RenderGuiOverlayEvent.Pre event) {
 		float shift = -getRealHeight(event.getPartialTick()) + 22;
 		if(shift < 0) {
@@ -111,7 +112,7 @@ public class HotbarChangerModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void hudPost(RenderGuiOverlayEvent.Post event) {
 		if(height <= 0)
 			return;
@@ -167,7 +168,7 @@ public class HotbarChangerModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onTick(ClientTickEvent event) {
 		if(event.phase == Phase.END) {
 			Player player = Minecraft.getInstance().player;

@@ -25,7 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.Quark;
 import vazkii.quark.content.tweaks.module.EmotesModule;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class CustomEmoteIconResourcePack extends AbstractPackResources {
 
 	private final List<String> verifiedNames = new ArrayList<>();

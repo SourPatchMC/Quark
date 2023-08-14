@@ -57,7 +57,7 @@
 //	}
 //
 //	@SubscribeEvent
-//	@OnlyIn(Dist.CLIENT)
+//	@ClientOnly
 //	public void onRender(RenderGuiOverlayEvent.Pre event) {
 //		if(event.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
 //			return;

@@ -8,7 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.base.client.render.QuarkArmorModel;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class BackpackModel {
 
 	public static LayerDefinition createBodyLayer() {

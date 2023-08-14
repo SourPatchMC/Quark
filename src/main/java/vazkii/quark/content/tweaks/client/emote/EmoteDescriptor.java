@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class EmoteDescriptor {
 
 	public static final ResourceLocation TIER_1 = new ResourceLocation("quark", "textures/emote/patreon_t1.png");
@@ -47,7 +47,7 @@ public class EmoteDescriptor {
 		return "quark.emote." + name;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public String getLocalizedName() {
 		return I18n.get(getTranslationKey());
 	}

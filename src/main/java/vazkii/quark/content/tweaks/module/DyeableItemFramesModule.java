@@ -62,14 +62,14 @@ public class DyeableItemFramesModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)	
+	@ClientOnly	
 	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/dyed_item_frame", "inventory"));
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/dyed_item_frame_map", "inventory"));
 	}
 	
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(entityType, DyedItemFrameRenderer::new);
 	}

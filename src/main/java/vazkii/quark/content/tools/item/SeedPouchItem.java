@@ -155,7 +155,7 @@ public class SeedPouchItem extends QuarkItem implements IUsageTickerOverride, IT
 		return BAR_COLOR;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static float itemFraction(ItemStack stack, ClientLevel world, LivingEntity entityIn, int i) {
 		if(entityIn instanceof Player player) {
 			if(player.containerMenu != null) {

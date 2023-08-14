@@ -58,13 +58,13 @@ public class GlassItemFrameModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(glassFrameEntity, GlassItemFrameRenderer::new);
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)	
+	@ClientOnly	
 	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/glass_item_frame", "inventory"));
 	}

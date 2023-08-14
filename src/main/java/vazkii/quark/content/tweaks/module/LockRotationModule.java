@@ -63,10 +63,10 @@ public class LockRotationModule extends QuarkModule {
 
 	private static final HashMap<UUID, LockProfile> lockProfiles = new HashMap<>();
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private LockProfile clientProfile;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private KeyMapping keybind;
 
 	@Override
@@ -80,7 +80,7 @@ public class LockRotationModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		keybind = ModKeybindHandler.init(event, "lock_rotation", "k", ModKeybindHandler.MISC_GROUP);
 	}
@@ -153,13 +153,13 @@ public class LockRotationModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onMouseInput(InputEvent.MouseButton event) {
 		acceptInput();
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onKeyInput(InputEvent.Key event) {
 		acceptInput();
 	}
@@ -196,7 +196,7 @@ public class LockRotationModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onHUDRender(RenderGuiOverlayEvent.Post event) {
 		if(event.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type() && clientProfile != null) {
 			PoseStack matrix = event.getPoseStack();

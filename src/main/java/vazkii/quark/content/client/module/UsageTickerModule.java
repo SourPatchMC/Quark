@@ -64,7 +64,7 @@ public class UsageTickerModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientTick(ClientTickEvent event) {
 		if(event.phase == Phase.START) {
 			Minecraft mc = Minecraft.getInstance();
@@ -76,7 +76,7 @@ public class UsageTickerModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void renderHUD(RenderGuiOverlayEvent.Post event) {
 		if(event.getOverlay() == VanillaGuiOverlay.HOTBAR.type()) {
 			Window window = event.getWindow();
@@ -104,7 +104,7 @@ public class UsageTickerModule extends QuarkModule {
 			this.slot = slot;
 		}
 
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public void tick(Player player) {
 			ItemStack realStack = getStack(player);
 			int count = getStackCount(player, realStack, realStack, false);
@@ -132,7 +132,7 @@ public class UsageTickerModule extends QuarkModule {
 			currRealStack = realStack;
 		}
 
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public void render(Window window, Player player, boolean invert, float partialTicks) {
 			if(liveTicks > 0) {
 				float animProgress;
@@ -173,17 +173,17 @@ public class UsageTickerModule extends QuarkModule {
 			}
 		}
 
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public boolean shouldChange(ItemStack currStack, ItemStack prevStack, int currentTotal, int pastTotal) {
 			return !prevStack.sameItem(currStack) || (currStack.isDamageableItem() && currStack.getDamageValue() != prevStack.getDamageValue()) || currentTotal != pastTotal;
 		}
 
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public ItemStack getStack(Player player) {
 			return player.getItemBySlot(slot);
 		}
 
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public ItemStack getLogicalStack(ItemStack stack, int count, Player player, boolean renderPass) {
 			boolean verifySize = true;
 			ItemStack returnStack = stack;
@@ -211,7 +211,7 @@ public class UsageTickerModule extends QuarkModule {
 			return event.isCanceled() ? ItemStack.EMPTY : event.getResultStack();
 		}
 
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public int getStackCount(Player player, ItemStack displayStack, ItemStack original, boolean renderPass) {
 			int val = 1;
 
@@ -242,7 +242,7 @@ public class UsageTickerModule extends QuarkModule {
 			return (stack.getItem() instanceof ProjectileWeaponItem) && stack.getEnchantmentLevel(Enchantments.INFINITY_ARROWS) == 0;
 		}
 
-		@OnlyIn(Dist.CLIENT)
+		@ClientOnly
 		public ItemStack getRenderedStack(Player player) {
 			ItemStack stack = getStack(player);
 			int count = getStackCount(player, stack, stack, true);

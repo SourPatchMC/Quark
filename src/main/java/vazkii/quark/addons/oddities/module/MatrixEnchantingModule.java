@@ -189,14 +189,14 @@ public class MatrixEnchantingModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		MenuScreens.register(menuType, MatrixEnchantingScreen::new);
 		BlockEntityRenderers.register(blockEntityType, MatrixEnchantingTableRenderer::new);
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onTooltip(ItemTooltipEvent event) {
 		ItemStack stack = event.getItemStack();
 		if(showTooltip && ItemNBTHelper.verifyExistence(stack, MatrixEnchantingTableBlockEntity.TAG_STACK_MATRIX))

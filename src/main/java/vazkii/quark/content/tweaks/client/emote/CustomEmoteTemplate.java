@@ -9,7 +9,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.content.tweaks.module.EmotesModule;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class CustomEmoteTemplate extends EmoteTemplate {
 
 	private String name;

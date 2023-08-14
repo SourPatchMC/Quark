@@ -76,14 +76,14 @@ public class LootrIntegration implements ILootrIntegration {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		BlockEntityRenderers.register(chestTEType, LootrVariantChestRenderer::new);
 		BlockEntityRenderers.register(trappedChestTEType, LootrVariantChestRenderer::new);
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void stitch(TextureStitchEvent.Pre event) {
 		for (Block b : allChests)
 			LootrVariantChestRenderer.accept(event, b);

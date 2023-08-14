@@ -78,7 +78,7 @@ public class LeafCarpetBlock extends QuarkBlock implements IBlockColorProvider {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public ItemColor getItemColor() {
 		if (baseStack == null)
 			baseStack = new ItemStack(baseState.getBlock());
@@ -87,7 +87,7 @@ public class LeafCarpetBlock extends QuarkBlock implements IBlockColorProvider {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public BlockColor getBlockColor() {
 		return (state, worldIn, pos, tintIndex) -> Minecraft.getInstance().getBlockColors().getColor(baseState, worldIn, pos, tintIndex);
 	}

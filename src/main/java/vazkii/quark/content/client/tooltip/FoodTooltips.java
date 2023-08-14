@@ -38,7 +38,7 @@ public class FoodTooltips {
 		return false;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void makeTooltip(RenderTooltipEvent.GatherComponents event, boolean showFood, boolean showSaturation) {
 		ItemStack stack = event.getItemStack();
 		if(stack.isEdible()) {
@@ -90,7 +90,7 @@ public class FoodTooltips {
 	}
 
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public record FoodComponent(ItemStack stack, int width,
 								int height) implements ClientTooltipComponent, TooltipComponent {
 

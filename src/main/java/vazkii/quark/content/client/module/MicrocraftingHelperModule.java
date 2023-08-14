@@ -45,7 +45,7 @@ import vazkii.quark.base.module.QuarkModule;
 @LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
 public class MicrocraftingHelperModule extends QuarkModule {
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static Screen currentScreen;
 	private static Recipe<?> currentRecipe;
 
@@ -53,7 +53,7 @@ public class MicrocraftingHelperModule extends QuarkModule {
 	private static int compoundCount = 1;
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onClick(MouseButtonPressed.Pre event) {
 		Minecraft mc = Minecraft.getInstance();
 		Screen screen = mc.screen;
@@ -126,7 +126,7 @@ public class MicrocraftingHelperModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onDrawGui(ContainerScreenEvent.Render.Background event) {
 		Minecraft mc = Minecraft.getInstance();
 
@@ -172,7 +172,7 @@ public class MicrocraftingHelperModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onTick(ClientTickEvent event) {
 		Minecraft mc = Minecraft.getInstance();
 		Screen prevScreen = currentScreen;
@@ -264,7 +264,7 @@ public class MicrocraftingHelperModule extends QuarkModule {
 		return null;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private int compareRecipes(Recipe<?> r1, Recipe<?> r2) {
 		if(r1 == r2)
 			return 0;
@@ -281,7 +281,7 @@ public class MicrocraftingHelperModule extends QuarkModule {
 		return id1.compareTo(id2);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private BooleanSupplier getClearCondition(final Ingredient ingr, final int req) {
 		Minecraft mc = Minecraft.getInstance();
 		return () -> {
@@ -299,7 +299,7 @@ public class MicrocraftingHelperModule extends QuarkModule {
 		};
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private Pair<GhostRecipe, GhostIngredient> getHoveredGhost(AbstractContainerScreen<?> cscreen, RecipeBookComponent recipeBook) {
 		Slot slot = cscreen.getSlotUnderMouse();
 

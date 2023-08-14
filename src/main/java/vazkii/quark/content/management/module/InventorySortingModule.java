@@ -34,7 +34,7 @@ public class InventorySortingModule extends QuarkModule {
 	public static boolean satisfyingClick = true;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		KeyMapping sortPlayer = ModKeybindHandler.init(event, "sort_player", null, ModKeybindHandler.INV_GROUP);
 
@@ -75,13 +75,13 @@ public class InventorySortingModule extends QuarkModule {
 				() -> enableChests);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private ButtonProvider provider(String tooltip, boolean forcePlayer, BooleanSupplier condition) {
 		return (parent, x, y) -> !condition.getAsBoolean() ? null :
 				new MiniInventoryButton(parent, 0, x, y, "quark.gui.button." + tooltip, (b) -> QuarkNetwork.sendToServer(new SortInventoryMessage(forcePlayer)));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private void click() {
 		Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
 	}

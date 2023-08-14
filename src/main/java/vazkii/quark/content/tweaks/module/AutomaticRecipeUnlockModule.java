@@ -86,7 +86,7 @@ public class AutomaticRecipeUnlockModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onInitGui(Init.Post event) {
 		Screen gui = event.getScreen();
 		if(disableRecipeBook && gui instanceof RecipeUpdateListener) {
@@ -102,7 +102,7 @@ public class AutomaticRecipeUnlockModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientTick(ClientTickEvent event) {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.player != null && mc.player.tickCount < 20) {

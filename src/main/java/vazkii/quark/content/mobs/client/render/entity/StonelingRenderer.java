@@ -13,7 +13,7 @@ import vazkii.quark.content.mobs.client.layer.StonelingLichenLayer;
 import vazkii.quark.content.mobs.client.model.StonelingModel;
 import vazkii.quark.content.mobs.entity.Stoneling;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class StonelingRenderer extends MobRenderer<Stoneling, StonelingModel> {
 
 	public StonelingRenderer(EntityRendererProvider.Context context) {

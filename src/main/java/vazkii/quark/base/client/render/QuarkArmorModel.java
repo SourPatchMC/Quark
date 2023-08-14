@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class QuarkArmorModel extends HumanoidModel<LivingEntity> {
 
 	protected final EquipmentSlot slot;

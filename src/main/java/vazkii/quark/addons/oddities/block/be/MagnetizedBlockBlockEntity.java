@@ -61,17 +61,17 @@ public class MagnetizedBlockBlockEntity extends BlockEntity {
 		return Mth.lerp(ticks, this.lastProgress, this.progress);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public float getOffsetX(float ticks) {
 		return this.magnetFacing.getStepX() * this.getExtendedProgress(this.getProgress(ticks));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public float getOffsetY(float ticks) {
 		return this.magnetFacing.getStepY() * this.getExtendedProgress(this.getProgress(ticks));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public float getOffsetZ(float ticks) {
 		return this.magnetFacing.getStepZ() * this.getExtendedProgress(this.getProgress(ticks));
 	}

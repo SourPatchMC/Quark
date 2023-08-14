@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public interface IConfigCategory extends IConfigElement {
 
 	IConfigCategory addCategory(String name, @Nonnull String comment, Object holderObject);

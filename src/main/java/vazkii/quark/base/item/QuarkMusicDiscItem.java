@@ -60,7 +60,7 @@ public class QuarkMusicDiscItem extends RecordItem implements IQuarkItem {
 		return enabledSupplier.getAsBoolean();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public boolean playAmbientSound(BlockPos pos) {
 		if(isAmbient) {
 			Minecraft mc = Minecraft.getInstance();

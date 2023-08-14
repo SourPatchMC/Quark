@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public interface IConfigElement extends Comparable<IConfigElement> {
 
 	String getName();

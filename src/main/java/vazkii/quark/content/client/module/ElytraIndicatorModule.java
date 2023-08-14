@@ -32,7 +32,7 @@ public class ElytraIndicatorModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void hudPre(RenderGuiOverlayEvent.Pre event) {
 		Minecraft mc = Minecraft.getInstance();
 		Player player = mc.player;
@@ -64,7 +64,7 @@ public class ElytraIndicatorModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void hudPost(RenderGuiOverlayEvent.Post event) {
 		if(shift != 0) {
 			event.getPoseStack().translate(-shift, 0, 0);

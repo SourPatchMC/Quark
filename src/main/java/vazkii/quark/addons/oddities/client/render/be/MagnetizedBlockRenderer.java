@@ -23,7 +23,7 @@ import net.minecraftforge.client.ForgeHooksClient;
 import vazkii.quark.addons.oddities.block.be.MagnetizedBlockBlockEntity;
 import vazkii.quark.content.automation.client.render.QuarkPistonBlockEntityRenderer;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class MagnetizedBlockRenderer implements BlockEntityRenderer<MagnetizedBlockBlockEntity> {
 
 	private BlockRenderDispatcher blockRenderer = Minecraft.getInstance().getBlockRenderer();

@@ -68,13 +68,13 @@ public class QuarkWallBlock extends WallBlock implements IQuarkBlock, IBlockColo
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public BlockColor getBlockColor() {
 		return parent instanceof IBlockColorProvider provider ? provider.getBlockColor() : null;
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public ItemColor getItemColor() {
 		return parent instanceof IItemColorProvider provider ? provider.getItemColor() : null;
 	}

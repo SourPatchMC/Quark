@@ -49,13 +49,13 @@ public class AbacusModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		enqueue(() -> ItemProperties.register(abacus, new ResourceLocation("count"), AbacusItem::count));
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onHUDRender(RenderGuiOverlayEvent event) {
 		if(event.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type()) {
 			Minecraft mc = Minecraft.getInstance();
@@ -82,7 +82,7 @@ public class AbacusModule extends QuarkModule {
 		}
 	}
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onHighlightBlock(RenderHighlightEvent.Block event) {
 		VertexConsumer bufferIn = event.getMultiBufferSource().getBuffer(RenderType.lines());
 

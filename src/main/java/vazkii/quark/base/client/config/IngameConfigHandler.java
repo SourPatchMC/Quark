@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public final class IngameConfigHandler implements IConfigCallback {
 
 	public static final IngameConfigHandler INSTANCE = new IngameConfigHandler();

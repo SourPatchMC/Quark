@@ -34,7 +34,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public final class EmoteHandler {
 
 	public static final String CUSTOM_EMOTE_NAMESPACE = "quark_custom";
@@ -64,14 +64,14 @@ public final class EmoteHandler {
 		emoteMap.put(reg, desc);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void putEmote(Entity player, String emoteName, int tier) {
 		if(player instanceof AbstractClientPlayer clientPlayer && emoteMap.containsKey(emoteName)) {
 			putEmote(clientPlayer, emoteMap.get(emoteName), tier);
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static void putEmote(AbstractClientPlayer player, EmoteDescriptor desc, int tier) {
 		String name = player.getGameProfile().getName();
 		if(desc == null)

@@ -20,7 +20,7 @@ import vazkii.aurelienribon.tweenengine.TweenAccessor;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class ModelAccessor implements TweenAccessor<HumanoidModel<?>> {
 
 	public static final ModelAccessor INSTANCE = new ModelAccessor();

@@ -11,6 +11,6 @@ import java.util.List;
 public interface AccessorLootTable {
 
 	@Accessor("pools")
-	List<LootPool> quark$getPools();
+	LootPool[] quark$getPools();
 
 }

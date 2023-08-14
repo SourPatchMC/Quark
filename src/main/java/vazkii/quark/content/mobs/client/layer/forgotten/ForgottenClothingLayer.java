@@ -18,7 +18,7 @@ import vazkii.quark.base.Quark;
 
 import javax.annotation.Nonnull;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class ForgottenClothingLayer<T extends Mob & RangedAttackMob, M extends EntityModel<T>> extends RenderLayer<T, M> {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation(Quark.MOD_ID, "textures/model/entity/forgotten/overlay.png");

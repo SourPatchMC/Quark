@@ -34,7 +34,7 @@ public class EnchantmentPredicatesModule extends QuarkModule {
 	public static List<String> enchantmentsToRegister = Lists.newArrayList();
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		if(enabled) {
 			enqueue(() -> {

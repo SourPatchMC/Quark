@@ -43,7 +43,7 @@ public class CrateModule extends QuarkModule {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @ClientOnly
     public void clientSetup() {
         MenuScreens.register(menuType, CrateScreen::new);
     }

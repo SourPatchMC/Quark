@@ -28,7 +28,7 @@ import vazkii.quark.content.mobs.entity.Stoneling;
 
 import javax.annotation.Nonnull;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class StonelingItemLayer extends RenderLayer<Stoneling, StonelingModel> {
 
 	public StonelingItemLayer(RenderLayerParent<Stoneling, StonelingModel> renderer) {

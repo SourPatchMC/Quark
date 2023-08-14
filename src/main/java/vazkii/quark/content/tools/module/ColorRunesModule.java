@@ -113,42 +113,42 @@ public class ColorRunesModule extends QuarkModule {
 		return proxyCap.orElse((s) -> -1).getRuneColor(target);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static RenderType getGlint() {
 		return renderType(GlintRenderTypes.glint, RenderType::glint);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static RenderType getGlintTranslucent() {
 		return renderType(GlintRenderTypes.glintTranslucent, RenderType::glintTranslucent);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static RenderType getEntityGlint() {
 		return renderType(GlintRenderTypes.entityGlint, RenderType::entityGlint);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static RenderType getGlintDirect() {
 		return renderType(GlintRenderTypes.glintDirect, RenderType::glintDirect);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static RenderType getEntityGlintDirect() {
 		return renderType(GlintRenderTypes.entityGlintDirect, RenderType::entityGlintDirect);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static RenderType getArmorGlint() {
 		return renderType(GlintRenderTypes.armorGlint, RenderType::armorGlint);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static RenderType getArmorEntityGlint() {
 		return renderType(GlintRenderTypes.armorEntityGlint, RenderType::armorEntityGlint);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private static RenderType renderType(List<RenderType> list, Supplier<RenderType> vanilla) {
 		int color = changeColor();
 		return color >= 0 && color <= RUNE_TYPES ? list.get(color) : vanilla.get();

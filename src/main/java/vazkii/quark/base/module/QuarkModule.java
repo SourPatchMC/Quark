@@ -57,7 +57,7 @@ public class QuarkModule {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void constructClient() {
 		// NO-OP
 	}
@@ -78,7 +78,7 @@ public class QuarkModule {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void configChangedClient() {
 		// NO-OP
 	}
@@ -87,47 +87,47 @@ public class QuarkModule {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerReloadListeners(Consumer<PreparableReloadListener> manager) {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void modelBake(ModelEvent.BakingCompleted event) {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void modelLayers(EntityRenderersEvent.AddLayers event) {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void textureStitch(TextureStitchEvent.Pre event) {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void postTextureStitch(TextureStitchEvent.Post event) {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
 		// NO-OP
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerClientTooltipComponentFactories(RegisterClientTooltipComponentFactoriesEvent event) {
 		// NO-OP
 	}
@@ -149,7 +149,7 @@ public class QuarkModule {
 
 	}	
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void firstClientTick() {
 		// NO-OP
 	}

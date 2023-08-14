@@ -56,7 +56,7 @@ public class ForgottenHatItem extends ArmorItem implements IQuarkItem {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
 		consumer.accept(new IClientItemExtensions() {
 

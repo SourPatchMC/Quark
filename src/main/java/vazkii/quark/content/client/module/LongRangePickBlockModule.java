@@ -26,7 +26,7 @@ public class LongRangePickBlockModule extends QuarkModule {
 		staticEnabled = enabled;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static HitResult transformHitResult(HitResult hitResult) {
 		if(staticEnabled) {
 			Minecraft mc = Minecraft.getInstance();

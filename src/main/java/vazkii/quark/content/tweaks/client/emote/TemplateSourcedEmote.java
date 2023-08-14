@@ -9,7 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.aurelienribon.tweenengine.Timeline;
 import vazkii.quark.base.Quark;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class TemplateSourcedEmote extends EmoteBase {
 
 	private static final boolean DEOBF = Launcher.INSTANCE.environment().getProperty(IEnvironment.Keys.NAMING.get()).orElse("").equals("mcp");

@@ -73,13 +73,13 @@ public class TotemOfHoldingModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(totemType, TotemOfHoldingRenderer::new);
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
 		event.register(new ModelResourceLocation(Quark.MOD_ID, "extra/totem_of_holding", "inventory"));
 	}

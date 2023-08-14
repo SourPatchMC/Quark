@@ -28,7 +28,7 @@ public class NetworkProfilingHandler {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void showF3(CustomizeGuiOverlayEvent.DebugText event) {
 		if(GeneralConfig.enableNetworkProfiling) {
 			event.getLeft().add("");

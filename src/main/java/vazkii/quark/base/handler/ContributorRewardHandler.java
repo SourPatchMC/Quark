@@ -50,7 +50,7 @@ public class ContributorRewardHandler {
 	public static int localPatronTier = 0;
 	public static String featuredPatron = "N/A";
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void getLocalName() {
 		name = Minecraft.getInstance().getUser().getName().toLowerCase(Locale.ROOT);
 	}
@@ -71,7 +71,7 @@ public class ContributorRewardHandler {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void onRenderPlayer(RenderPlayerEvent.Post event) {
 		Player player = event.getEntity();
 		String uuid = player.getUUID().toString();

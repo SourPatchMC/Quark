@@ -23,7 +23,7 @@ public class EasyTransferingModule extends QuarkModule {
 	@Config public static boolean enableShiftLock = true;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		addButton(event, 1, "insert", false);
 		addButton(event, 2, "extract", true);
@@ -37,7 +37,7 @@ public class EasyTransferingModule extends QuarkModule {
 					() -> enableShiftLock);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private void addButton(RegisterKeyMappingsEvent event, int priority, String name, boolean restock) {
 		InventoryButtonHandler.addButtonProvider(event, this, ButtonTargetType.CONTAINER_PLAYER_INVENTORY, priority,
 				"transfer_" + name,

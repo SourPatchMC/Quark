@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public interface IExternalCategory extends IConfigCategory {
 
 	void commit();

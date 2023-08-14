@@ -30,7 +30,7 @@ public class DoEmoteMessage implements IMessage {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public boolean receive(NetworkEvent.Context context) {
 		context.enqueueWork(() -> {
 			Level world = Minecraft.getInstance().level;

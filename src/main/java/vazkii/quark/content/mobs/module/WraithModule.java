@@ -118,7 +118,7 @@ public class WraithModule extends QuarkModule {
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientSetup() {
 		EntityRenderers.register(wraithType, WraithRenderer::new);
 		EntityRenderers.register(soulBeadType, SoulBeadRenderer::new);

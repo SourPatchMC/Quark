@@ -29,7 +29,7 @@ import vazkii.quark.base.Quark;
  * @author WireSegal
  * Created at 2:01 PM on 3/30/20.
  */
-@OnlyIn(Dist.CLIENT)
+@ClientOnly
 public class TotemOfHoldingRenderer extends EntityRenderer<TotemOfHoldingEntity> {
 
 	private static final ModelResourceLocation LOCATION_MODEL = new ModelResourceLocation(Quark.MOD_ID, "extra/totem_of_holding", "inventory");

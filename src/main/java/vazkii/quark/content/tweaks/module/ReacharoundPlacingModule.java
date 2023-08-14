@@ -75,7 +75,7 @@ public class ReacharoundPlacingModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onRender(RenderGuiOverlayEvent.Pre event) {
 		if(event.getOverlay() == VanillaGuiOverlay.CROSSHAIR.type())
 			return;
@@ -106,7 +106,7 @@ public class ReacharoundPlacingModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void clientTick(ClientTickEvent event) {
 		if(event.phase == Phase.END) {
 			currentTarget = null;

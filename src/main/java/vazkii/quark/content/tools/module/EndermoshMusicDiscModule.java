@@ -33,9 +33,9 @@ public class EndermoshMusicDiscModule extends QuarkModule {
 
 	@Hint public static QuarkMusicDiscItem endermosh;
 
-	@OnlyIn(Dist.CLIENT) private boolean isFightingDragon;
-	@OnlyIn(Dist.CLIENT) private int delay;
-	@OnlyIn(Dist.CLIENT) private SimpleSoundInstance sound;
+	@ClientOnly private boolean isFightingDragon;
+	@ClientOnly private int delay;
+	@ClientOnly private SimpleSoundInstance sound;
 
 	@Override
 	public void register() {
@@ -58,7 +58,7 @@ public class EndermoshMusicDiscModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void tick(ClientTickEvent event) {
 		if(event.phase == Phase.END && playEndermoshDuringEnderdragonFight) {
 			boolean wasFightingDragon = isFightingDragon;

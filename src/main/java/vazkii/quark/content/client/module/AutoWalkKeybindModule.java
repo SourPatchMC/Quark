@@ -30,7 +30,7 @@ public class AutoWalkKeybindModule extends QuarkModule {
 	@Config public static boolean drawHud = true;
 	@Config public static int hudHeight = 10;
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private KeyMapping keybind;
 
 	private boolean autorunning;
@@ -38,25 +38,25 @@ public class AutoWalkKeybindModule extends QuarkModule {
 	private boolean shouldAccept;
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void registerKeybinds(RegisterKeyMappingsEvent event) {
 		keybind = ModKeybindHandler.init(event, "autorun", null, ModKeybindHandler.MISC_GROUP);
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onMouseInput(InputEvent.MouseButton event) {
 		acceptInput();
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onKeyInput(InputEvent.Key event) {
 		acceptInput();
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void drawHUD(RenderGuiOverlayEvent.Post event) {
 		if(drawHud && autorunning && event.getOverlay() == VanillaGuiOverlay.HOTBAR.type()) {
 			String message = I18n.get("quark.misc.autowalking");
@@ -79,7 +79,7 @@ public class AutoWalkKeybindModule extends QuarkModule {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	private void acceptInput() {
 		Minecraft mc = Minecraft.getInstance();
 
@@ -112,7 +112,7 @@ public class AutoWalkKeybindModule extends QuarkModule {
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public void onInput(MovementInputUpdateEvent event) {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.player != null && autorunning) {

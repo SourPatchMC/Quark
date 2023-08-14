@@ -42,7 +42,7 @@ public class ShulkerBoxTooltips {
 
 	public static final ResourceLocation WIDGET_RESOURCE = new ResourceLocation("quark", "textures/misc/shulker_widget.png");
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
 		ItemStack stack = event.getItemStack();
 		if(SimilarBlockTypeHandler.isShulkerBox(stack)) {
@@ -76,7 +76,7 @@ public class ShulkerBoxTooltips {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public record ShulkerComponent(ItemStack stack) implements ClientTooltipComponent, TooltipComponent {
 
 		private static final int[][] TARGET_RATIOS = new int[][]{

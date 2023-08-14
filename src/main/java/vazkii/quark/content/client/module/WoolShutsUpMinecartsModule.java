@@ -24,7 +24,7 @@ public class WoolShutsUpMinecartsModule extends QuarkModule {
 		staticEnabled = enabled;
 	}
 	
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public static boolean canPlay(AbstractMinecart cart) {
 		return !staticEnabled || !cart.level.getBlockState(cart.blockPosition().below()).is(BlockTags.DAMPENS_VIBRATIONS);
 	}
