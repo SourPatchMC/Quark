@@ -4,17 +4,16 @@ plugins {
 }
 
 version = version
-group = "vazkii.$mod_id"
-archivesBaseName = mod_name
+group = maven_group
+archivesBaseName = archives_base_name
 
 repositories {
+    maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt, Quilt Mappings
     maven { url = 'https://maven.parchmentmc.org' } // Parchment Mappings
-    maven { url = 'https://maven.minecraftforge.net/' } // TerraBlender
-    maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
-    maven { url = "https://mvn.devos.one/snapshots/" } // Registrate Fabric
+    maven { url = "https://mvn.devos.one/snapshots/" } // Porting Lib
     maven { url = "https://jitpack.io/" } // Mixin Extras
     maven { url = "https://maven.terraformersmc.com/" } // EMI
-    maven { url "https://maven.shedaniel.me" } // REI
+    maven { url = 'https://maven.minecraftforge.net/' } // TerraBlender
 }
 
 dependencies {
@@ -25,14 +24,13 @@ dependencies {
         it.officialMojangMappings { nameSyntheticMembers = false }
     })
 
-    modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
+    modImplementation "org.quiltmc:quilt-loader:${quilt_loader_version}"
 
     modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
 
-    // Disabled since using it throws a Weird CreativeModeTab mixin apply error
-    //modLocalRuntime "dev.emi:emi-fabric:${emi_version}" // EMI
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${porting_lib_version}"))
 
-//    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}" // REI
+    //modLocalRuntime "dev.emi:emi-fabric:${emi_version}" // EMI
 }
 
 sourceSets {
@@ -45,7 +43,6 @@ sourceSets {
 }
 
 loom {
-//    silentMojangMappingsLicense()
 //    accessWidenerPath = file("src/main/resources/quark.accesswidener")
 
     runs {
