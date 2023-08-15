@@ -3,7 +3,7 @@ package vazkii.quark.addons.oddities.client.screen;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -82,7 +82,7 @@ public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchan
 	}
 
 	@Override
-	protected void renderBg(@Nonnull PoseStack stack, float partialTicks, int mouseX, int mouseY) {
+	protected void renderBg(@NotNull PoseStack stack, float partialTicks, int mouseX, int mouseY) {
 		Minecraft mc = getMinecraft();
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -127,7 +127,7 @@ public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchan
 	}
 
 	@Override
-	protected void renderLabels(@Nonnull PoseStack matrix, int mouseX, int mouseY) {
+	protected void renderLabels(@NotNull PoseStack matrix, int mouseX, int mouseY) {
 		int color = MiscUtil.getGuiTextColor("matrix_enchanting");
 
 		font.draw(matrix, enchanter.getDisplayName().getString(), 12, 5, color);
@@ -142,7 +142,7 @@ public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchan
 		}
 	}
 	@Override
-	public void render(@Nonnull PoseStack stack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack stack, int mouseX, int mouseY, float partialTicks) {
 		renderBackground(stack);
 		super.render(stack, mouseX, mouseY, partialTicks);
 

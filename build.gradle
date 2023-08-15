@@ -32,8 +32,10 @@ dependencies {
 
     modImplementation(include("com.github.LlamaLad7:MixinExtras:0.1.1"))
     annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
+    //compileOnly('org.jetbrains:annotations:23.0.0')
 
-    //modLocalRuntime "dev.emi:emi-fabric:${emi_version}" // EMI
+    //modImplementation "dev.emi:emi-fabric:${emi_version}" // EMI
+
 }
 
 sourceSets {

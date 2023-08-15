@@ -44,8 +44,8 @@ import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, ICrawlSpaceBlock {
 	private static final VoxelShape TRUE_SHAPE = box(0, 15, 0, 16, 16, 16);
@@ -89,9 +89,9 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 		return false;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return TRUE_SHAPE;
 	}
 
@@ -107,9 +107,9 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 		return false;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getCollisionShape(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		Entity entity = context instanceof EntityCollisionContext ? ((EntityCollisionContext) context).getEntity() : null;
 
 		if (entity != null) {
@@ -148,7 +148,7 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 	}
 
 	@Override
-	public boolean isPathfindable(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull PathComputationType path) {
+	public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull PathComputationType path) {
 		return false;
 	}
 
@@ -158,7 +158,7 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 	}
 
 	@Override
-	public boolean propagatesSkylightDown(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos) {
+	public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
 		return fluidContained(state) == Fluids.EMPTY;
 	}
 
@@ -168,7 +168,7 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 	}
 
 	@Override
-	public void neighborChanged(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull Block updatedBlock, @Nonnull BlockPos neighbor, boolean isMoving) {
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block updatedBlock, @NotNull BlockPos neighbor, boolean isMoving) {
 		super.neighborChanged(state, level, pos, updatedBlock, neighbor, isMoving);
 		if (!pos.below().equals(neighbor)) {
 			BlockState neighborState = level.getBlockState(neighbor);
@@ -181,9 +181,9 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 		}
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState updateShape(@Nonnull BlockState state, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor level, @Nonnull BlockPos pos, @Nonnull BlockPos facingPos) {
+	public BlockState updateShape(@NotNull BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos facingPos) {
 		if (state.getValue(LAVALOGGED) && state.getValue(WATERLOGGED))
 			state = withFluid(state, Fluids.WATER);
 
@@ -199,9 +199,9 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 		builder.add(WATERLOGGED, LAVALOGGED);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public FluidState getFluidState(@Nonnull BlockState state) {
+	public FluidState getFluidState(@NotNull BlockState state) {
 		FluidState contained = fluidContained(state).defaultFluidState();
 		if (contained.hasProperty(BlockStateProperties.FALLING))
 			contained = contained.setValue(BlockStateProperties.FALLING, false);
@@ -209,21 +209,21 @@ public class GrateBlock extends QuarkBlock implements SimpleFluidloggedBlock, IC
 	}
 
 	@Override
-	public boolean acceptsFluid(@Nonnull Fluid fluid) {
+	public boolean acceptsFluid(@NotNull Fluid fluid) {
 		return fluid == Fluids.WATER || fluid == Fluids.LAVA;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState withFluid(@Nonnull BlockState state, @Nonnull Fluid fluid) {
+	public BlockState withFluid(@NotNull BlockState state, @NotNull Fluid fluid) {
 		return state
 				.setValue(WATERLOGGED, fluid == Fluids.WATER)
 				.setValue(LAVALOGGED, fluid == Fluids.LAVA);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public Fluid fluidContained(@Nonnull BlockState state) {
+	public Fluid fluidContained(@NotNull BlockState state) {
 		if (state.getValue(WATERLOGGED))
 			return Fluids.WATER;
 		else if (state.getValue(LAVALOGGED))

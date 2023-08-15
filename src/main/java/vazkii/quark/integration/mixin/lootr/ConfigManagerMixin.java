@@ -1,5 +1,6 @@
 package vazkii.quark.integration.mixin.lootr;
 
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -13,7 +14,7 @@ import vazkii.quark.integration.lootr.ILootrIntegration;
 public class ConfigManagerMixin {
 	@ModifyVariable(method = "addSafeReplacement", at = @At("HEAD"), argsOnly = true, remap = false)
 	private static Block replacement(Block original, ResourceLocation location) {
-		Block block = ForgeRegistries.BLOCKS.getValue(location);
+		Block block = Registry.BLOCK.get(location);
 		if (block != null) {
 			Block lootrVariant = ILootrIntegration.INSTANCE.lootrVariant(block);
 			if (lootrVariant != null)

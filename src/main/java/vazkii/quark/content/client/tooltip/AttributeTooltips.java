@@ -47,8 +47,8 @@ import vazkii.quark.content.client.resources.AttributeIconEntry;
 import vazkii.quark.content.client.resources.AttributeIconEntry.CompareType;
 import vazkii.quark.content.client.resources.AttributeSlot;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 /**
@@ -335,7 +335,7 @@ public class AttributeTooltips {
 									 AttributeSlot slot) implements ClientTooltipComponent, TooltipComponent {
 
 		@Override
-		public void renderImage(@Nonnull Font font, int tooltipX, int tooltipY, @Nonnull PoseStack pose, @Nonnull ItemRenderer itemRenderer, int something) {
+		public void renderImage(@NotNull Font font, int tooltipX, int tooltipY, @NotNull PoseStack pose, @NotNull ItemRenderer itemRenderer, int something) {
 			if (!Screen.hasShiftDown()) {
 				pose.pushPose();
 				pose.translate(0, 0, 500);
@@ -410,7 +410,7 @@ public class AttributeTooltips {
 		}
 
 		@Override
-		public int getWidth(@Nonnull Font font) {
+		public int getWidth(@NotNull Font font) {
 			int width = 0;
 
 			if (canShowAttributes(stack, slot)) {

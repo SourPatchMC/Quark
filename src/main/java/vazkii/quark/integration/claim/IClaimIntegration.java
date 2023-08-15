@@ -6,7 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.ModList;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public interface IClaimIntegration {
 
@@ -18,23 +18,23 @@ public interface IClaimIntegration {
         }; //NO OP
     });
 
-    default boolean canBreak(@Nonnull Player player, @Nonnull BlockPos pos) {
+    default boolean canBreak(@NotNull Player player, @NotNull BlockPos pos) {
         return true;
     }
 
-    default boolean canPlace(@Nonnull Player player, @Nonnull BlockPos pos) {
+    default boolean canPlace(@NotNull Player player, @NotNull BlockPos pos) {
         return true;
     }
 
-    default boolean canReplace(@Nonnull Player player, @Nonnull BlockPos pos) {
+    default boolean canReplace(@NotNull Player player, @NotNull BlockPos pos) {
         return true;
     }
 
-    default boolean canAttack(@Nonnull Player player, @Nonnull Entity victim) {
+    default boolean canAttack(@NotNull Player player, @NotNull Entity victim) {
         return true;
     }
 
-    default boolean canInteract(@Nonnull Player player, @Nonnull BlockPos targetPos) {
+    default boolean canInteract(@NotNull Player player, @NotNull BlockPos targetPos) {
         return true;
     }
 

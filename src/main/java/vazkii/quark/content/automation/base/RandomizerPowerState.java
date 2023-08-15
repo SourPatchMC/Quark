@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import net.minecraft.util.StringRepresentable;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author WireSegal
@@ -14,7 +14,7 @@ public enum RandomizerPowerState implements StringRepresentable {
 	OFF, LEFT, RIGHT;
 
 
-	@Nonnull
+	@NotNull
 	@Override
 	public String getSerializedName() {
 		return name().toLowerCase(Locale.ROOT);

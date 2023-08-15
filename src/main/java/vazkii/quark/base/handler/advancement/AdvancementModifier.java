@@ -1,6 +1,6 @@
 package vazkii.quark.base.handler.advancement;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.base.Supplier;
 

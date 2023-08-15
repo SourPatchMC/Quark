@@ -18,7 +18,7 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 @ClientOnly
 public class QuarkArmorModel extends HumanoidModel<LivingEntity> {
@@ -50,7 +50,7 @@ public class QuarkArmorModel extends HumanoidModel<LivingEntity> {
 	// [VanillaCopy] ArmorStandArmorModel.setupAnim because armor stands are dumb
 	// This fixes the armor "breathing" and helmets always facing south on armor stands
 	@Override
-	public void setupAnim(@Nonnull LivingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(@NotNull LivingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		if (!(entity instanceof ArmorStand entityIn)) {
 			super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 			return;
@@ -81,7 +81,7 @@ public class QuarkArmorModel extends HumanoidModel<LivingEntity> {
 	}
 
 	@Override
-	public void renderToBuffer(@Nonnull PoseStack ms, @Nonnull VertexConsumer buffer, int light, int overlay, float r, float g, float b, float a) {
+	public void renderToBuffer(@NotNull PoseStack ms, @NotNull VertexConsumer buffer, int light, int overlay, float r, float g, float b, float a) {
 		setPartVisibility(slot);
 		super.renderToBuffer(ms, buffer, light, overlay, r, g, b, a);
 	}

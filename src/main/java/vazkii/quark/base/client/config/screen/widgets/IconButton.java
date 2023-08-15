@@ -2,7 +2,7 @@ package vazkii.quark.base.client.config.screen.widgets;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -25,7 +25,7 @@ public class IconButton extends Button {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		super.render(mstack, mouseX, mouseY, partialTicks);
 
 		if(!active && mouseX >= x && mouseY >= y && mouseX < (x + width) && mouseY < (y + height))

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -119,7 +119,7 @@ public class ConfigCategory extends AbstractConfigElement implements IConfigCate
 	}
 
 	@Override
-	public IConfigCategory addCategory(String name, @Nonnull String comment, Object holderObject) {
+	public IConfigCategory addCategory(String name, @NotNull String comment, Object holderObject) {
 		ConfigCategory newCategory = new ConfigCategory(name, comment, this, holderObject); 
 		if(holderObject instanceof IConfigType configType)
 			configType.setCategory(newCategory);
@@ -133,7 +133,7 @@ public class ConfigCategory extends AbstractConfigElement implements IConfigCate
 	}
 
 	@Override
-	public <T> IConfigObject<T> addEntry(ConfigValue<T> value, T default_, Supplier<T> getter, @Nonnull String comment, @Nonnull Predicate<Object> restriction) {
+	public <T> IConfigObject<T> addEntry(ConfigValue<T> value, T default_, Supplier<T> getter, @NotNull String comment, @NotNull Predicate<Object> restriction) {
 		IConfigObject<T> obj = ConfigObject.create(value, comment, default_, getter, restriction, this);
 		addEntry(obj, default_);
 		return obj;
@@ -182,7 +182,7 @@ public class ConfigCategory extends AbstractConfigElement implements IConfigCate
 	}
 
 	@Override
-	public int compareTo(@Nonnull IConfigElement o) {
+	public int compareTo(@NotNull IConfigElement o) {
 		if(o == this)
 			return 0;
 		if(!(o instanceof ConfigCategory cat))

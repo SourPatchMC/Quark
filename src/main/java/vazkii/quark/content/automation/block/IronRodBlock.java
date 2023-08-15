@@ -24,8 +24,8 @@ import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.automation.module.IronRodModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.function.BooleanSupplier;
 
 public class IronRodBlock extends EndRodBlock implements ICollateralMover, IQuarkBlock {
@@ -67,13 +67,13 @@ public class IronRodBlock extends EndRodBlock implements ICollateralMover, IQuar
 	}
 
 	@Override
-	public void fillItemCategory(@Nonnull CreativeModeTab group, @Nonnull NonNullList<ItemStack> items) {
+	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
 		if(isEnabled() || group == CreativeModeTab.TAB_SEARCH)
 			super.fillItemCategory(group, items);
 	}
 
 	@Override
-	protected void createBlockStateDefinition(@Nonnull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(CONNECTED);
 	}
@@ -90,7 +90,7 @@ public class IronRodBlock extends EndRodBlock implements ICollateralMover, IQuar
 	}
 
 	@Override
-	public void animateTick(@Nonnull BlockState stateIn, @Nonnull Level worldIn, @Nonnull BlockPos pos, @Nonnull RandomSource rand) {
+	public void animateTick(@NotNull BlockState stateIn, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull RandomSource rand) {
 		// NO-OP
 	}
 

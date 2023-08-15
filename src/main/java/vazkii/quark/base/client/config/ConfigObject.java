@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import vazkii.quark.api.config.IConfigElement;
@@ -128,7 +128,7 @@ public abstract class ConfigObject<T> extends AbstractConfigElement implements I
 	}
 
 	@Override
-	public int compareTo(@Nonnull IConfigElement o) {
+	public int compareTo(@NotNull IConfigElement o) {
 		if(o == this)
 			return 0;
 		if(!(o instanceof IConfigObject<?>))

@@ -1,6 +1,6 @@
 package vazkii.quark.base.item.boat;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -47,13 +47,13 @@ public class QuarkBoat extends Boat implements IQuarkBoat {
 	}
 
 	@Override
-	protected void addAdditionalSaveData(@Nonnull CompoundTag tag) {
+	protected void addAdditionalSaveData(@NotNull CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
 		tag.putString("QuarkType", getQuarkBoatType());
 	}
 
 	@Override
-	protected void readAdditionalSaveData(@Nonnull CompoundTag tag) {
+	protected void readAdditionalSaveData(@NotNull CompoundTag tag) {
 		super.readAdditionalSaveData(tag);
 		if (tag.contains("QuarkType", 8)) {
 			setQuarkBoatType(tag.getString("QuarkType"));
@@ -67,20 +67,20 @@ public class QuarkBoat extends Boat implements IQuarkBoat {
 		return super.spawnAtLocation(itemLike);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Item getDropItem() {
 		return getQuarkBoatTypeObj().boat();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Type getBoatType() {
 		return Boat.Type.OAK;
 	}
 
 	@Override
-	public void setType(@Nonnull Type type) {
+	public void setType(@NotNull Type type) {
 		// NO-OP
 	}
 

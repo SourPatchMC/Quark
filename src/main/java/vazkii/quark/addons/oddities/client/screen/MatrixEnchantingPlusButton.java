@@ -1,6 +1,6 @@
 package vazkii.quark.addons.oddities.client.screen;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -16,7 +16,7 @@ public class MatrixEnchantingPlusButton extends Button {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack stack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack stack, int mouseX, int mouseY, float partialTicks) {
 		boolean hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
 		if(!visible)
 			return;

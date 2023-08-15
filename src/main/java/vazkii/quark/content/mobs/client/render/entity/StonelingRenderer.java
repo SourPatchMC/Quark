@@ -1,6 +1,6 @@
 package vazkii.quark.content.mobs.client.render.entity;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -22,9 +22,9 @@ public class StonelingRenderer extends MobRenderer<Stoneling, StonelingModel> {
 		addLayer(new StonelingLichenLayer(this));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull Stoneling entity) {
+	public ResourceLocation getTextureLocation(@NotNull Stoneling entity) {
 		return entity.getVariant().getTexture();
 	}
 

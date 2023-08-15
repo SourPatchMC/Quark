@@ -2,7 +2,7 @@ package vazkii.quark.base.item;
 
 import java.util.function.BooleanSupplier;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.world.item.Item;
 import vazkii.quark.base.module.QuarkModule;

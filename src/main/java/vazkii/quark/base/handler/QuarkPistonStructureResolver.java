@@ -16,7 +16,7 @@ import vazkii.quark.api.IConditionalSticky;
 import vazkii.quark.api.IIndirectConnector;
 import vazkii.quark.mixin.accessor.AccessorPistonStructureResolver;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -307,7 +307,7 @@ public class QuarkPistonStructureResolver extends PistonStructureResolver {
 		return null;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public List<BlockPos> getToPush() {
 		if(!GeneralConfig.usePistonLogicRepl)
@@ -316,7 +316,7 @@ public class QuarkPistonStructureResolver extends PistonStructureResolver {
 		return toMove;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public List<BlockPos> getToDestroy() {
 		if(!GeneralConfig.usePistonLogicRepl)

@@ -23,8 +23,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.content.tweaks.module.CompassesWorkEverywhereModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class CompassAngleGetter {
@@ -71,7 +71,7 @@ public class CompassAngleGetter {
 
 		@Override
 		@ClientOnly
-		public float call(@Nonnull ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int id) {
+		public float call(@NotNull ItemStack stack, @Nullable ClientLevel worldIn, @Nullable LivingEntity entityIn, int id) {
 			if(entityIn == null && !stack.isFramed())
 				return 0F;
 

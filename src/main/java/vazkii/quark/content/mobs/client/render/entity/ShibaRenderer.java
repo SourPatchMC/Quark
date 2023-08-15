@@ -1,6 +1,6 @@
 package vazkii.quark.content.mobs.client.render.entity;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -29,7 +29,7 @@ public class ShibaRenderer extends MobRenderer<Shiba, ShibaModel> {
 		addLayer(new ShibaMouthItemLayer(this, context.getItemInHandRenderer()));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ResourceLocation getTextureLocation(Shiba entity) {
 		if(entity.hasCustomName() && entity.getCustomName().getContents().toString().trim().equalsIgnoreCase("doge"))

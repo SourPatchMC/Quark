@@ -9,7 +9,7 @@ import vazkii.quark.content.mobs.client.layer.ToretoiseOreLayer;
 import vazkii.quark.content.mobs.client.model.ToretoiseModel;
 import vazkii.quark.content.mobs.entity.Toretoise;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class ToretoiseRenderer extends MobRenderer<Toretoise, ToretoiseModel>{
 
@@ -20,9 +20,9 @@ public class ToretoiseRenderer extends MobRenderer<Toretoise, ToretoiseModel>{
 		addLayer(new ToretoiseOreLayer(this));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull Toretoise entity) {
+	public ResourceLocation getTextureLocation(@NotNull Toretoise entity) {
 		return BASE_TEXTURE;
 	}
 

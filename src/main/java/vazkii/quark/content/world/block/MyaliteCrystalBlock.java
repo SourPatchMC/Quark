@@ -1,6 +1,6 @@
 package vazkii.quark.content.world.block;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.CreativeModeTab;

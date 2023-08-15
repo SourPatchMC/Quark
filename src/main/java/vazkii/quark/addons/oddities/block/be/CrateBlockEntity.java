@@ -28,7 +28,7 @@ import vazkii.quark.addons.oddities.capability.CrateItemHandler;
 import vazkii.quark.addons.oddities.inventory.CrateMenu;
 import vazkii.quark.addons.oddities.module.CrateModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class CrateBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer {
 
@@ -71,14 +71,14 @@ public class CrateBlockEntity extends BaseContainerBlockEntity implements Worldl
 	}
 
 	@Override
-	protected void saveAdditional(@Nonnull CompoundTag compound) {
+	protected void saveAdditional(@NotNull CompoundTag compound) {
 		super.saveAdditional(compound);
 
 		compound.merge(itemHandler().serializeNBT());
 	}
 
 	@Override
-	public void load(@Nonnull CompoundTag nbt) {
+	public void load(@NotNull CompoundTag nbt) {
 		super.load(nbt);
 
 		itemHandler().deserializeNBT(nbt);
@@ -93,24 +93,24 @@ public class CrateBlockEntity extends BaseContainerBlockEntity implements Worldl
 		return new CrateItemHandler();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getItem(int slot) {
 		return itemHandler().getStackInSlot(slot);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack removeItemNoUpdate(int slot) {
 		return itemHandler().extractItem(slot, 64, true);
 	}
 
 	@Override
-	public void setItem(int slot, @Nonnull ItemStack stack) {
+	public void setItem(int slot, @NotNull ItemStack stack) {
 		itemHandler().setStackInSlot(slot, stack);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack removeItem(int slot, int count) {
 		return itemHandler().extractItem(slot, 64, true);
@@ -132,18 +132,18 @@ public class CrateBlockEntity extends BaseContainerBlockEntity implements Worldl
 	}
 
 	@Override
-	public boolean canTakeItemThroughFace(int index, @Nonnull ItemStack stack, @Nonnull Direction dir) {
+	public boolean canTakeItemThroughFace(int index, @NotNull ItemStack stack, @NotNull Direction dir) {
 		return true;
 	}
 
 	@Override
-	public boolean canPlaceItemThroughFace(int index, @Nonnull ItemStack stack, Direction dir) {
+	public boolean canPlaceItemThroughFace(int index, @NotNull ItemStack stack, Direction dir) {
 		return itemHandler().getSlotLimit(index) > 0;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public int[] getSlotsForFace(@Nonnull Direction dir) {
+	public int[] getSlotsForFace(@NotNull Direction dir) {
 		int slotCount = itemHandler().getSlots();
 		if (visibleSlots.length != slotCount) {
 			visibleSlots = new int[slotCount];
@@ -152,19 +152,19 @@ public class CrateBlockEntity extends BaseContainerBlockEntity implements Worldl
 		return visibleSlots;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected Component getDefaultName() {
 		return Component.translatable(CrateModule.crate.getDescriptionId());
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	protected AbstractContainerMenu createMenu(int id, @Nonnull Inventory player) {
+	protected AbstractContainerMenu createMenu(int id, @NotNull Inventory player) {
 		return new CrateMenu(id, player, this, crateData);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected IItemHandler createUnSidedHandler() {
 		return new CrateItemHandler();
@@ -173,7 +173,7 @@ public class CrateBlockEntity extends BaseContainerBlockEntity implements Worldl
 	// Vaniller copy =========================
 
 	@Override
-	public boolean stillValid(@Nonnull Player player) {
+	public boolean stillValid(@NotNull Player player) {
 		if (this.level.getBlockEntity(this.worldPosition) != this) {
 			return false;
 		} else {

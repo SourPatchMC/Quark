@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -120,7 +120,7 @@ public class EmotesModule extends QuarkModule {
 		mc.getResourcePackRepository().addPackFinder(new RepositorySource() {
 
 			@Override
-			public void loadPacks(@Nonnull Consumer<Pack> packConsumer, @Nonnull Pack.PackConstructor packInfoFactory) {
+			public void loadPacks(@NotNull Consumer<Pack> packConsumer, @NotNull Pack.PackConstructor packInfoFactory) {
 				resourcePack = new CustomEmoteIconResourcePack();
 
 				String name = "quark:emote_resources";

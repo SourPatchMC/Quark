@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -94,7 +94,7 @@ public class TinyPotatoRenderer implements BlockEntityRenderer<TinyPotatoBlockEn
 	}
 
 	@Override
-	public void render(@Nonnull TinyPotatoBlockEntity potato, float partialTicks, @Nonnull PoseStack ms, @Nonnull MultiBufferSource buffers, int light, int overlay) {
+	public void render(@NotNull TinyPotatoBlockEntity potato, float partialTicks, @NotNull PoseStack ms, @NotNull MultiBufferSource buffers, int light, int overlay) {
 		if (runeStacks == null) {
 			List<ItemStack> stacks = new ArrayList<>();
 			for (RuneItem item : ColorRunesModule.runes) {

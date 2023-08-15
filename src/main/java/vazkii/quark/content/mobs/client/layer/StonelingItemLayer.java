@@ -26,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.quark.content.mobs.client.model.StonelingModel;
 import vazkii.quark.content.mobs.entity.Stoneling;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 @ClientOnly
 public class StonelingItemLayer extends RenderLayer<Stoneling, StonelingModel> {
@@ -36,7 +36,7 @@ public class StonelingItemLayer extends RenderLayer<Stoneling, StonelingModel> {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack matrix, @Nonnull MultiBufferSource buffer, int light, Stoneling stoneling, float limbAngle, float limbDistance, float tickDelta, float customAngle, float headYaw, float headPitch) {
+	public void render(@NotNull PoseStack matrix, @NotNull MultiBufferSource buffer, int light, Stoneling stoneling, float limbAngle, float limbDistance, float tickDelta, float customAngle, float headYaw, float headPitch) {
 		ItemStack stack = stoneling.getCarryingItem();
 		if (!stack.isEmpty()) {
 			boolean isBlock = stack.getItem() instanceof BlockItem;

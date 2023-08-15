@@ -6,14 +6,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class CachedItemHandlerSlot extends SlotItemHandler {
 	public CachedItemHandlerSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
 		super(itemHandler, index, xPosition, yPosition);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getItem() {
 		if (caching)
@@ -21,7 +21,7 @@ public class CachedItemHandlerSlot extends SlotItemHandler {
 		return super.getItem();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack remove(int amount) {
 		if (caching) {
@@ -35,7 +35,7 @@ public class CachedItemHandlerSlot extends SlotItemHandler {
 	}
 
 	@Override
-	public void set(@Nonnull ItemStack stack) {
+	public void set(@NotNull ItemStack stack) {
 		super.set(stack);
 		if (caching)
 			cached = stack;

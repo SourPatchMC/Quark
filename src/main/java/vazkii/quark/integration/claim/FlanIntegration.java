@@ -10,12 +10,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import vazkii.quark.base.Quark;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public final class FlanIntegration implements IClaimIntegration{
 
 	@Override
-    public boolean canBreak(@Nonnull Player player, @Nonnull BlockPos pos) {
+    public boolean canBreak(@NotNull Player player, @NotNull BlockPos pos) {
         if (player.level.isClientSide) return true; //should only be used from server but client can call too
         try {
             ClaimStorage storage = ClaimStorage.get((ServerLevel) player.level);
@@ -28,7 +28,7 @@ public final class FlanIntegration implements IClaimIntegration{
     }
 
 	@Override
-    public boolean canPlace(@Nonnull Player player, @Nonnull BlockPos pos) {
+    public boolean canPlace(@NotNull Player player, @NotNull BlockPos pos) {
         if (player.level.isClientSide) return true; //should only be used from server but client can call too
         try {
             ClaimStorage storage = ClaimStorage.get((ServerLevel) player.level);
@@ -41,7 +41,7 @@ public final class FlanIntegration implements IClaimIntegration{
     }
 
 	@Override
-    public boolean canReplace(@Nonnull Player player, @Nonnull BlockPos pos) {
+    public boolean canReplace(@NotNull Player player, @NotNull BlockPos pos) {
         if (player.level.isClientSide) return true; //should only be used from server but client can call too
         try {
             ClaimStorage storage = ClaimStorage.get((ServerLevel) player.level);
@@ -54,7 +54,7 @@ public final class FlanIntegration implements IClaimIntegration{
     }
 
 	@Override
-    public boolean canAttack(@Nonnull Player player, @Nonnull Entity victim) {
+    public boolean canAttack(@NotNull Player player, @NotNull Entity victim) {
         if (player.level.isClientSide) return true; //should only be used from server but client can call too
         try {
             ClaimStorage storage = ClaimStorage.get((ServerLevel) player.level);
@@ -67,7 +67,7 @@ public final class FlanIntegration implements IClaimIntegration{
     }
 
 	@Override
-    public boolean canInteract(@Nonnull Player player, @Nonnull BlockPos targetPos) {
+    public boolean canInteract(@NotNull Player player, @NotNull BlockPos targetPos) {
         if (player.level.isClientSide) return true; //should only be used from server but client can call too
         try {
             ClaimStorage storage = ClaimStorage.get((ServerLevel) player.level);

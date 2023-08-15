@@ -23,7 +23,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.automation.block.be.EnderWatcherBlockEntity;
 import vazkii.quark.content.automation.module.EnderWatcherModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class EnderWatcherBlock extends QuarkBlock implements EntityBlock {
 
@@ -45,22 +45,22 @@ public class EnderWatcherBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public boolean isSignalSource(@Nonnull BlockState state) {
+	public boolean isSignalSource(@NotNull BlockState state) {
 		return true;
 	}
 
 	@Override
-	public int getSignal(BlockState blockState, @Nonnull BlockGetter blockAccess, @Nonnull BlockPos pos, @Nonnull Direction side) {
+	public int getSignal(BlockState blockState, @NotNull BlockGetter blockAccess, @NotNull BlockPos pos, @NotNull Direction side) {
 		return blockState.getValue(POWER);
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new EnderWatcherBlockEntity(pos, state);
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level world, @Nonnull BlockState state, @Nonnull BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
 		return createTickerHelper(type, EnderWatcherModule.blockEntityType, EnderWatcherBlockEntity::tick);
 	}
 

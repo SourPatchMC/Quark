@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.SkullBlock;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.content.client.module.UsesForCursesModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class ArmorStandFakePlayerLayer<M extends EntityModel<ArmorStand>> extends RenderLayer<ArmorStand, M> {
 
@@ -44,7 +44,7 @@ public class ArmorStandFakePlayerLayer<M extends EntityModel<ArmorStand>> extend
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack pose, @Nonnull MultiBufferSource buffer, int light, @Nonnull ArmorStand armor, float p_117353_, float p_117354_, float p_117355_, float p_117356_, float p_117357_, float p_117358_) {
+	public void render(@NotNull PoseStack pose, @NotNull MultiBufferSource buffer, int light, @NotNull ArmorStand armor, float p_117353_, float p_117354_, float p_117355_, float p_117356_, float p_117357_, float p_117358_) {
 		if(!UsesForCursesModule.staticEnabled || !UsesForCursesModule.bindArmorStandsWithPlayerHeads)
 			return;
 

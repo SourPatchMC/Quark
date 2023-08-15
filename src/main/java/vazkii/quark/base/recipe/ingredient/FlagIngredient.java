@@ -9,8 +9,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
 import vazkii.quark.base.module.config.ConfigFlagManager;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.stream.Stream;
 
 /**
@@ -34,7 +34,7 @@ public class FlagIngredient extends Ingredient {
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	public ItemStack[] getItems() {
 		if (!isEnabled())
 			return new ItemStack[0];
@@ -42,7 +42,7 @@ public class FlagIngredient extends Ingredient {
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	public IntList getStackingIds() {
 		if (!isEnabled())
 			return IntLists.EMPTY_LIST;
@@ -67,7 +67,7 @@ public class FlagIngredient extends Ingredient {
 		return parent.isSimple();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public IIngredientSerializer<? extends Ingredient> getSerializer() {
 		return Serializer.INSTANCE;
@@ -82,22 +82,22 @@ public class FlagIngredient extends Ingredient {
 			INSTANCE = this;
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
-		public FlagIngredient parse(@Nonnull FriendlyByteBuf buffer) {
+		public FlagIngredient parse(@NotNull FriendlyByteBuf buffer) {
 			return new FlagIngredient(Ingredient.fromNetwork(buffer), buffer.readUtf());
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
-		public FlagIngredient parse(@Nonnull JsonObject json) {
+		public FlagIngredient parse(@NotNull JsonObject json) {
 			Ingredient value = Ingredient.fromJson(json.get("value"));
 			String flag = json.getAsJsonPrimitive("flag").getAsString();
 			return new FlagIngredient(value, flag);
 		}
 
 		@Override
-		public void write(@Nonnull FriendlyByteBuf buffer, @Nonnull FlagIngredient ingredient) {
+		public void write(@NotNull FriendlyByteBuf buffer, @NotNull FlagIngredient ingredient) {
 			ingredient.parent.toNetwork(buffer);
 			buffer.writeUtf(ingredient.flag);
 		}

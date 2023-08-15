@@ -1,6 +1,6 @@
 package vazkii.quark.base.client.config.screen;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -124,7 +124,7 @@ public class QuarkConfigHomeScreen extends AbstractQScreen {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		time += partialTicks;
 
 		Minecraft mc = Minecraft.getInstance();

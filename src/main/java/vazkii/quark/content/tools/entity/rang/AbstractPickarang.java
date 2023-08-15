@@ -53,8 +53,8 @@ import vazkii.quark.content.mobs.entity.Toretoise;
 import vazkii.quark.content.tools.config.PickarangType;
 import vazkii.quark.content.tools.module.PickarangModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
@@ -193,7 +193,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 	}
 
 	@Override
-	protected void onHit(@Nonnull HitResult result) {
+	protected void onHit(@NotNull HitResult result) {
 		LivingEntity owner = getThrower();
 
 		if(result.getType() == Type.BLOCK && result instanceof BlockHitResult blockHitResult) {
@@ -563,7 +563,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 	}
 
 	@Override
-	protected boolean canAddPassenger(@Nonnull Entity passenger) {
+	protected boolean canAddPassenger(@NotNull Entity passenger) {
 		return super.canAddPassenger(passenger) || passenger instanceof ItemEntity || passenger instanceof ExperienceOrb;
 	}
 
@@ -572,7 +572,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 		return 0;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public SoundSource getSoundSource() {
 		return SoundSource.PLAYERS;
@@ -595,7 +595,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 	}
 
 	@Override
-	public void readAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		entityData.set(RETURNING, compound.getBoolean(TAG_RETURNING));
 		liveTime = compound.getInt(TAG_LIVE_TIME);
 		blockHitCount = compound.getInt(TAG_BLOCKS_BROKEN);
@@ -614,7 +614,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 	}
 
 	@Override
-	public void addAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		compound.putBoolean(TAG_RETURNING, isReturning());
 		compound.putInt(TAG_LIVE_TIME, liveTime);
 		compound.putInt(TAG_BLOCKS_BROKEN, blockHitCount);
@@ -625,7 +625,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 			compound.put("owner", NbtUtils.createUUID(this.ownerId));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);

@@ -2,7 +2,7 @@ package vazkii.quark.content.building.block;
 
 import java.util.Optional;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -25,34 +25,34 @@ public class WeatheringCopperVerticalSlabBlock extends QuarkVerticalSlabBlock im
 	}
 
 	@Override
-	public void randomTick(@Nonnull BlockState state, @Nonnull ServerLevel world, @Nonnull BlockPos pos, @Nonnull RandomSource random) {
+	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull RandomSource random) {
 		this.onRandomTick(state, world, pos, random);
 	}
 
 	@Override
-	public boolean isRandomlyTicking(@Nonnull BlockState state) {
+	public boolean isRandomlyTicking(@NotNull BlockState state) {
 		return getNext(state).isPresent();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public Optional<BlockState> getNext(@Nonnull BlockState state) {
+	public Optional<BlockState> getNext(@NotNull BlockState state) {
 		return next == null ? Optional.empty() : Optional.of(next.withPropertiesOf(state));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public Optional<BlockState> getPrevious(@Nonnull BlockState state) {
+	public Optional<BlockState> getPrevious(@NotNull BlockState state) {
 		return prev == null ? Optional.empty() : Optional.of(prev.withPropertiesOf(state));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState getFirst(@Nonnull BlockState state) {
+	public BlockState getFirst(@NotNull BlockState state) {
 		return first.withPropertiesOf(state);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public WeatheringCopper.WeatherState getAge() {
 		return weatherState;

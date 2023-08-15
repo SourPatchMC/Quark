@@ -32,7 +32,7 @@ import vazkii.quark.addons.oddities.block.be.PipeBlockEntity;
 import vazkii.quark.addons.oddities.module.PipesModule;
 import vazkii.quark.base.module.QuarkModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import static vazkii.quark.base.handler.MiscUtil.directionProperty;
 
@@ -107,15 +107,15 @@ public class PipeBlock extends BasePipeBlock implements SimpleWaterloggedBlock {
 				level.getFluidState(pos).getType() == Fluids.WATER);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public FluidState getFluidState(BlockState state) {
 		return isPipeWaterlogged(state) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState updateShape(BlockState state, @Nonnull Direction direction, @Nonnull BlockState neighbor, @Nonnull LevelAccessor level, @Nonnull BlockPos pos, @Nonnull BlockPos neighborPos) {
+	public BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState neighbor, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
 		if (isPipeWaterlogged(state)) {
 			level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
@@ -128,9 +128,9 @@ public class PipeBlock extends BasePipeBlock implements SimpleWaterloggedBlock {
 		builder.add(WATERLOGGED);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		int index = 0;
 		for(Direction dir : Direction.values()) {
 			if(state.getValue(directionProperty(dir)))

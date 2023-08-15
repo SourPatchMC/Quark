@@ -1,6 +1,6 @@
 package vazkii.quark.content.tools.item;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -45,7 +45,7 @@ public class SlimeInABucketItem extends QuarkItem {
 	}
 
 	@Override
-	public void inventoryTick(@Nonnull ItemStack stack, @Nonnull Level world, @Nonnull Entity entity, int itemSlot, boolean isSelected) {
+	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int itemSlot, boolean isSelected) {
 		if(world instanceof ServerLevel serverLevel) {
 			Vec3 pos = entity.position();
 			int x = Mth.floor(pos.x);
@@ -57,7 +57,7 @@ public class SlimeInABucketItem extends QuarkItem {
 		}
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
 		BlockPos pos = context.getClickedPos();
@@ -97,9 +97,9 @@ public class SlimeInABucketItem extends QuarkItem {
 		return InteractionResult.SUCCESS;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public Component getName(@Nonnull ItemStack stack) {
+	public Component getName(@NotNull ItemStack stack) {
 		if(stack.hasTag()) {
 			CompoundTag cmp = ItemNBTHelper.getCompound(stack, TAG_ENTITY_DATA, false);
 			if(cmp != null && cmp.contains("CustomName")) {

@@ -1,6 +1,6 @@
 package vazkii.quark.content.world.block;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -20,7 +20,7 @@ public class BlossomLeavesBlock extends QuarkLeavesBlock {
 	}
 
 	@Override
-	public void animateTick(@Nonnull BlockState stateIn, Level worldIn, BlockPos pos, @Nonnull RandomSource rand) {
+	public void animateTick(@NotNull BlockState stateIn, Level worldIn, BlockPos pos, @NotNull RandomSource rand) {
 		if(BlossomTreesModule.dropLeafParticles && rand.nextInt(5) == 0 && worldIn.isEmptyBlock(pos.below())) {
 			double windStrength = 5 + Math.cos((double) worldIn.getGameTime() / 2000) * 2;
 			double windX = Math.cos((double) worldIn.getGameTime() / 1200) * windStrength;

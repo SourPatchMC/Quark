@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import vazkii.quark.content.mobs.entity.SoulBead;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class SoulBeadRenderer extends EntityRenderer<SoulBead> {
 
@@ -15,14 +15,14 @@ public class SoulBeadRenderer extends EntityRenderer<SoulBead> {
 		super(context);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull SoulBead entity) {
+	public ResourceLocation getTextureLocation(@NotNull SoulBead entity) {
 		return TextureAtlas.LOCATION_BLOCKS;
 	}
 
 	@Override
-	public boolean shouldRender(@Nonnull SoulBead livingEntityIn, @Nonnull Frustum camera, double camX, double camY, double camZ) {
+	public boolean shouldRender(@NotNull SoulBead livingEntityIn, @NotNull Frustum camera, double camX, double camY, double camZ) {
 		return false;
 	}
 

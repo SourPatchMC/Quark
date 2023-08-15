@@ -2,7 +2,7 @@ package vazkii.quark.content.automation.block;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -31,17 +31,17 @@ public class ObsidianPressurePlateBlock extends QuarkPressurePlateBlock {
 	}
 
 	@Override
-	protected void playOnSound(@Nonnull LevelAccessor worldIn, @Nonnull BlockPos pos) {
+	protected void playOnSound(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos) {
 		worldIn.playSound(null, pos, SoundEvents.STONE_PRESSURE_PLATE_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.5F);
 	}
 
 	@Override
-	protected void playOffSound(@Nonnull LevelAccessor worldIn, @Nonnull BlockPos pos) {
+	protected void playOffSound(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos) {
 		worldIn.playSound(null, pos, SoundEvents.STONE_PRESSURE_PLATE_CLICK_OFF, SoundSource.BLOCKS, 0.3F, 0.4F);
 	}
 
 	@Override
-	protected int getSignalStrength(@Nonnull Level worldIn, @Nonnull BlockPos pos) {
+	protected int getSignalStrength(@NotNull Level worldIn, @NotNull BlockPos pos) {
 		AABB bounds = TOUCH_AABB.move(pos);
 		List<? extends Entity> entities = worldIn.getEntitiesOfClass(Player.class, bounds);
 

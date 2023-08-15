@@ -2,8 +2,8 @@ package vazkii.quark.base.capability;
 
 import java.util.concurrent.Callable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -79,9 +79,9 @@ public class CapabilityHandler {
 		MagnetTracker tracker = new MagnetTracker(world);
 
 		event.addCapability(MAGNET_TRACKER, new ICapabilityProvider() {
-			@Nonnull
+			@NotNull
 			@Override
-			public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+			public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 				return QuarkCapabilities.MAGNET_TRACKER_CAPABILITY.orEmpty(cap, LazyOptional.of(() -> tracker));
 			}
 		});

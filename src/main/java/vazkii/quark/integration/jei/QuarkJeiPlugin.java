@@ -56,7 +56,7 @@ import vazkii.quark.content.tweaks.module.DiamondRepairModule;
 import vazkii.quark.content.tweaks.recipe.ElytraDuplicationRecipe;
 import vazkii.quark.content.tweaks.recipe.SlabToBlockRecipe;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -68,19 +68,19 @@ public class QuarkJeiPlugin implements IModPlugin {
 	public static final RecipeType<InfluenceEntry> INFLUENCING =
 			RecipeType.create(Quark.MOD_ID, "influence", InfluenceEntry.class);
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ResourceLocation getPluginUid() {
 		return UID;
 	}
 
 	@Override
-	public void registerItemSubtypes(@Nonnull ISubtypeRegistration registration) {
+	public void registerItemSubtypes(@NotNull ISubtypeRegistration registration) {
 		registration.useNbtForSubtypes(AncientTomesModule.ancient_tome);
 	}
 
 	@Override
-	public void onRuntimeAvailable(@Nonnull final IJeiRuntime jeiRuntime) {
+	public void onRuntimeAvailable(@NotNull final IJeiRuntime jeiRuntime) {
 		List<ItemStack> disabledItems = RequiredModTooltipHandler.disabledItems();
 		if (!disabledItems.isEmpty())
 			jeiRuntime.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, disabledItems);
@@ -125,7 +125,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 	}
 
 	@Override
-	public void registerVanillaCategoryExtensions(@Nonnull IVanillaCategoryExtensionRegistration registration) {
+	public void registerVanillaCategoryExtensions(@NotNull IVanillaCategoryExtensionRegistration registration) {
 		registration.getCraftingCategory().addCategoryExtension(ElytraDuplicationRecipe.class, ElytraDuplicationExtension::new);
 		registration.getCraftingCategory().addCategoryExtension(SlabToBlockRecipe.class, SlabToBlockExtension::new);
 	}
@@ -135,13 +135,13 @@ public class QuarkJeiPlugin implements IModPlugin {
 	}
 
 	@Override
-	public void registerCategories(@Nonnull IRecipeCategoryRegistration registration) {
+	public void registerCategories(@NotNull IRecipeCategoryRegistration registration) {
 		if (matrix())
 			registration.addRecipeCategories(new InfluenceCategory(registration.getJeiHelpers().getGuiHelper()));
 	}
 
 	@Override
-	public void registerRecipes(@Nonnull IRecipeRegistration registration) {
+	public void registerRecipes(@NotNull IRecipeRegistration registration) {
 		IVanillaRecipeFactory factory = registration.getVanillaRecipeFactory();
 
 		if (ModuleLoader.INSTANCE.isModuleEnabled(AncientTomesModule.class))
@@ -182,7 +182,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 	}
 
 	@Override
-	public void registerRecipeCatalysts(@Nonnull IRecipeCatalystRegistration registration) {
+	public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registration) {
 		if(ModuleLoader.INSTANCE.isModuleEnabled(VariantFurnacesModule.class)) {
 			registration.addRecipeCatalyst(new ItemStack(VariantFurnacesModule.deepslateFurnace), RecipeTypes.FUELING, RecipeTypes.SMELTING);
 			registration.addRecipeCatalyst(new ItemStack(VariantFurnacesModule.blackstoneFurnace), RecipeTypes.FUELING, RecipeTypes.SMELTING);
@@ -197,7 +197,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 	}
 
 	@Override
-	public void registerGuiHandlers(@Nonnull IGuiHandlerRegistration registration) {
+	public void registerGuiHandlers(@NotNull IGuiHandlerRegistration registration) {
 		registration.addGuiContainerHandler(CrateScreen.class, new CrateGuiHandler());
 		registration.addRecipeClickArea(BackpackInventoryScreen.class, 137, 29, 10, 13, RecipeTypes.CRAFTING);
 	}
@@ -207,7 +207,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 		registration.addRecipeTransferHandler(new BackpackRecipeTransferHandler(registration.getTransferHelper()), RecipeTypes.CRAFTING);
 	}
 
-	private void registerAncientTomeAnvilRecipes(@Nonnull IRecipeRegistration registration, @Nonnull IVanillaRecipeFactory factory) {
+	private void registerAncientTomeAnvilRecipes(@NotNull IRecipeRegistration registration, @NotNull IVanillaRecipeFactory factory) {
 		List<IJeiAnvilRecipe> recipes = new ArrayList<>();
 		for (Enchantment enchant : AncientTomesModule.validEnchants) {
 			EnchantmentInstance data = new EnchantmentInstance(enchant, enchant.getMaxLevel());
@@ -218,7 +218,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 		registration.addRecipes(RecipeTypes.ANVIL, recipes);
 	}
 
-	private void registerRuneAnvilRecipes(@Nonnull IRecipeRegistration registration, @Nonnull IVanillaRecipeFactory factory) {
+	private void registerRuneAnvilRecipes(@NotNull IRecipeRegistration registration, @NotNull IVanillaRecipeFactory factory) {
 		RandomSource random = RandomSource.create();
 		Stream<ItemStack> displayItems;
 		if (ModuleLoader.INSTANCE.isModuleEnabled(ImprovedTooltipsModule.class) && ImprovedTooltipsModule.enchantingTooltips) {
@@ -250,7 +250,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 	}
 
 	// Runes only show up and can be only anvilled on enchanted items, so make some random enchanted items
-	@Nonnull
+	@NotNull
 	private static ItemStack makeEnchantedDisplayItem(ItemStack input, RandomSource random) {
 		ItemStack stack = input.copy();
 		stack.setHoverName(Component.translatable("quark.jei.any_enchanted"));
@@ -261,7 +261,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 		return EnchantmentHelper.enchantItem(random, stack, 25, false);
 	}
 
-	private void registerPickarangAnvilRepairs(Item pickarang, Item repairMaterial, @Nonnull IRecipeRegistration registration, @Nonnull IVanillaRecipeFactory factory) {
+	private void registerPickarangAnvilRepairs(Item pickarang, Item repairMaterial, @NotNull IRecipeRegistration registration, @NotNull IVanillaRecipeFactory factory) {
 		//Repair ratios taken from JEI anvil maker
 		ItemStack nearlyBroken = new ItemStack(pickarang);
 		nearlyBroken.setDamageValue(nearlyBroken.getMaxDamage());
@@ -278,7 +278,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 		registration.addRecipes(RecipeTypes.ANVIL, Arrays.asList(materialRepair, toolRepair));
 	}
 
-	private void registerInfluenceRecipes(@Nonnull IRecipeRegistration registration) {
+	private void registerInfluenceRecipes(@NotNull IRecipeRegistration registration) {
 		registration.addRecipes(INFLUENCING,
 				Arrays.stream(DyeColor.values()).map(color -> {
 					Block candle = MatrixEnchantingTableBlockEntity.CANDLES.get(color.getId());
@@ -296,7 +296,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 				}).filter(InfluenceEntry::hasAny).collect(Collectors.toList()));
 	}
 
-	private void hideAnvilRepairRecipes(@Nonnull IRecipeManager manager) {
+	private void hideAnvilRepairRecipes(@NotNull IRecipeManager manager) {
 		Stream<IJeiAnvilRecipe> anvilRecipe = manager.createRecipeLookup(RecipeTypes.ANVIL).get();
 		List<IJeiAnvilRecipe> hidden =
 				anvilRecipe.filter(r -> {
@@ -322,7 +322,7 @@ public class QuarkJeiPlugin implements IModPlugin {
 		manager.hideRecipes(RecipeTypes.ANVIL, hidden);
 	}
 
-	private void registerCustomAnvilRecipes(@Nonnull IRecipeRegistration registration, @Nonnull IVanillaRecipeFactory factory) {
+	private void registerCustomAnvilRecipes(@NotNull IRecipeRegistration registration, @NotNull IVanillaRecipeFactory factory) {
 		for(Item item : DiamondRepairModule.repairChanges.keySet()) {
 			ItemStack left = new ItemStack(item);
 			ItemStack out = left.copy();
@@ -342,9 +342,9 @@ public class QuarkJeiPlugin implements IModPlugin {
 
 	private static class CrateGuiHandler implements IGuiContainerHandler<CrateScreen> {
 
-		@Nonnull
+		@NotNull
 		@Override
-		public List<Rect2i> getGuiExtraAreas(@Nonnull CrateScreen containerScreen) {
+		public List<Rect2i> getGuiExtraAreas(@NotNull CrateScreen containerScreen) {
 			return containerScreen.getExtraAreas();
 		}
 

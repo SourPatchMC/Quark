@@ -2,7 +2,7 @@ package vazkii.quark.addons.oddities.block.be;
 
 import java.util.Random;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -133,7 +133,7 @@ public abstract class AbstractEnchantingTableBlockEntity extends SimpleInventory
 			Containers.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), stack);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Component getName() {
 		return hasCustomName() ? customName : Component.translatable("container.enchant");

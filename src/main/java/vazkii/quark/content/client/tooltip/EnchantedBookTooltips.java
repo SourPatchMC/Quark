@@ -30,7 +30,7 @@ import vazkii.quark.content.client.module.ImprovedTooltipsModule;
 import vazkii.quark.content.tools.item.AncientTomeItem;
 import vazkii.quark.content.tools.module.AncientTomesModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -179,7 +179,7 @@ public class EnchantedBookTooltips {
 										 Enchantment enchantment, boolean tableOnly) implements ClientTooltipComponent, TooltipComponent {
 
 		@Override
-		public void renderImage(@Nonnull Font font, int tooltipX, int tooltipY, @Nonnull PoseStack basePose, @Nonnull ItemRenderer itemRenderer, int something) {
+		public void renderImage(@NotNull Font font, int tooltipX, int tooltipY, @NotNull PoseStack basePose, @NotNull ItemRenderer itemRenderer, int something) {
 			PoseStack modelviewPose = RenderSystem.getModelViewStack();
 
 			modelviewPose.pushPose();
@@ -203,7 +203,7 @@ public class EnchantedBookTooltips {
 		}
 
 		@Override
-		public int getWidth(@Nonnull Font font) {
+		public int getWidth(@NotNull Font font) {
 			return width;
 		}
 

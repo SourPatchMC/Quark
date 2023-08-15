@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -138,7 +138,7 @@ public class Foxhound extends Wolf implements Enemy {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, @Nonnull DifficultyInstance difficultyIn, @Nonnull MobSpawnType reason, SpawnGroupData spawnDataIn, CompoundTag dataTag) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, @NotNull DifficultyInstance difficultyIn, @NotNull MobSpawnType reason, SpawnGroupData spawnDataIn, CompoundTag dataTag) {
 		Holder<Biome> biome = worldIn.getBiome(new BlockPos(position()));
 		if(biome.is(Biomes.SOUL_SAND_VALLEY.location()))
 			setBlue(true);
@@ -235,7 +235,7 @@ public class Foxhound extends Wolf implements Enemy {
 		return false;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected ResourceLocation getDefaultLootTable() {
 		return FOXHOUND_LOOT_TABLE;
@@ -297,14 +297,14 @@ public class Foxhound extends Wolf implements Enemy {
 	}
 
 	@Override
-	public boolean hurt(@Nonnull DamageSource source, float amount) {
+	public boolean hurt(@NotNull DamageSource source, float amount) {
 		setWoke();
 		return super.hurt(source, amount);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult mobInteract(Player player, @Nonnull InteractionHand hand) {
+	public InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 
 		if(itemstack.getItem() == Items.BONE && !isTame())
@@ -348,12 +348,12 @@ public class Foxhound extends Wolf implements Enemy {
 	}
 
 	@Override
-	public boolean canMate(@Nonnull Animal otherAnimal) {
+	public boolean canMate(@NotNull Animal otherAnimal) {
 		return super.canMate(otherAnimal) && otherAnimal instanceof Foxhound;
 	}
 
 	@Override // createChild
-	public Wolf getBreedOffspring(@Nonnull ServerLevel sworld, @Nonnull AgeableMob otherParent) {
+	public Wolf getBreedOffspring(@NotNull ServerLevel sworld, @NotNull AgeableMob otherParent) {
 		Foxhound kid = new Foxhound(FoxhoundModule.foxhoundType, this.level);
 		UUID uuid = this.getOwnerUUID();
 
@@ -369,7 +369,7 @@ public class Foxhound extends Wolf implements Enemy {
 	}
 
 	@Override
-	public void addAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 
 		compound.putInt("OhLawdHeComin", timeUntilPotatoEmerges);
@@ -378,7 +378,7 @@ public class Foxhound extends Wolf implements Enemy {
 	}
 
 	@Override
-	public void readAdditionalSaveData(@Nonnull CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 
 		timeUntilPotatoEmerges = compound.getInt("OhLawdHeComin");
@@ -401,7 +401,7 @@ public class Foxhound extends Wolf implements Enemy {
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
+	protected SoundEvent getHurtSound(@NotNull DamageSource damageSourceIn) {
 		return QuarkSounds.ENTITY_FOXHOUND_HURT;
 	}
 
@@ -456,7 +456,7 @@ public class Foxhound extends Wolf implements Enemy {
 		}
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);

@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import vazkii.quark.content.building.module.VariantChestsModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class VariantTrappedChestBlockEntity extends VariantChestBlockEntity {
 
@@ -15,7 +15,7 @@ public class VariantTrappedChestBlockEntity extends VariantChestBlockEntity {
 	}
 
 	@Override
-	protected void signalOpenCount(@Nonnull Level world, @Nonnull BlockPos pos, @Nonnull BlockState state, int prevOpenCount, int openCount) {
+	protected void signalOpenCount(@NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState state, int prevOpenCount, int openCount) {
 		super.signalOpenCount(world, pos, state, prevOpenCount, openCount);
 		if (prevOpenCount != openCount) {
 			Block block = state.getBlock();

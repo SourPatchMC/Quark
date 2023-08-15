@@ -1,6 +1,6 @@
 package vazkii.quark.content.tools.loot;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -26,20 +26,20 @@ public record InBiomeCondition(ResourceLocation target) implements LootItemCondi
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	public LootItemConditionType getType() {
 		return PathfinderMapsModule.inBiomeConditionType;
 	}
 
 	public static class InBiomeSerializer implements Serializer<InBiomeCondition> {
 		@Override
-		public void serialize(@Nonnull JsonObject object, @Nonnull InBiomeCondition condition, @Nonnull JsonSerializationContext serializationContext) {
+		public void serialize(@NotNull JsonObject object, @NotNull InBiomeCondition condition, @NotNull JsonSerializationContext serializationContext) {
 			object.addProperty("target", condition.target.toString());
 		}
 
 		@Override
-		@Nonnull
-		public InBiomeCondition deserialize(@Nonnull JsonObject object, @Nonnull JsonDeserializationContext deserializationContext) {
+		@NotNull
+		public InBiomeCondition deserialize(@NotNull JsonObject object, @NotNull JsonDeserializationContext deserializationContext) {
 			String key = GsonHelper.getAsString(object, "target");
 			ResourceLocation target = new ResourceLocation(key);
 

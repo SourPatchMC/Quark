@@ -1,6 +1,6 @@
 package vazkii.quark.content.mobs.client.layer.forgotten;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -27,7 +27,7 @@ public class ForgottenSheathedItemLayer<M extends EntityModel<Forgotten>> extend
 	}
 
 	@Override
-	public void render(PoseStack matrix, @Nonnull MultiBufferSource bufferIn, int packedLightIn, Forgotten entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void render(PoseStack matrix, @NotNull MultiBufferSource bufferIn, int packedLightIn, Forgotten entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		ItemStack item = entitylivingbaseIn.getEntityData().get(Forgotten.SHEATHED_ITEM);
 
 		matrix.pushPose();

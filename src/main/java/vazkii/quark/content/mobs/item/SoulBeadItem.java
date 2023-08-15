@@ -19,7 +19,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.mobs.entity.SoulBead;
 import vazkii.quark.content.mobs.module.WraithModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class SoulBeadItem extends QuarkItem {
 
@@ -27,9 +27,9 @@ public class SoulBeadItem extends QuarkItem {
 		super("soul_bead", module, new Item.Properties().tab(CreativeModeTab.TAB_MISC));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @Nonnull InteractionHand handIn) {
+	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @NotNull InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 
 		if(!worldIn.isClientSide) {

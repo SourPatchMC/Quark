@@ -19,7 +19,7 @@ import vazkii.quark.content.mobs.client.layer.FoxhoundCollarLayer;
 import vazkii.quark.content.mobs.client.model.FoxhoundModel;
 import vazkii.quark.content.mobs.entity.Foxhound;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 
 public class FoxhoundRenderer extends MobRenderer<Foxhound, FoxhoundModel> {
@@ -43,9 +43,9 @@ public class FoxhoundRenderer extends MobRenderer<Foxhound, FoxhoundModel> {
 		addLayer(new FoxhoundCollarLayer(this));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull Foxhound entity) {
+	public ResourceLocation getTextureLocation(@NotNull Foxhound entity) {
 		if(entity.isBlue())
 			return entity.isSleeping() ? SOULHOUND_SLEEPING : (entity.getRemainingPersistentAngerTime() > 0 ? SOULHOUND_HOSTILE : SOULHOUND_IDLE);
 

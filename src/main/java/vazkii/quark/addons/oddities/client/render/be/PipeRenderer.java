@@ -3,7 +3,7 @@ package vazkii.quark.addons.oddities.client.render.be;
 import java.util.Iterator;
 import java.util.Random;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -42,7 +42,7 @@ public class PipeRenderer implements BlockEntityRenderer<PipeBlockEntity> {
 	}
 
 	@Override
-	public void render(PipeBlockEntity te, float partialTicks, PoseStack matrix, @Nonnull MultiBufferSource buffer, int light, int overlay) {
+	public void render(PipeBlockEntity te, float partialTicks, PoseStack matrix, @NotNull MultiBufferSource buffer, int light, int overlay) {
 		matrix.pushPose();
 		matrix.translate(0.5, 0.5, 0.5);
 		ItemRenderer render = Minecraft.getInstance().getItemRenderer();

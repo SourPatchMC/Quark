@@ -1,6 +1,6 @@
 package vazkii.quark.content.tweaks.client.screen.widgets;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -23,7 +23,7 @@ public class EmoteButton extends TranslucentButton {
 	}
 
 	@Override
-	public void renderButton(@Nonnull PoseStack matrix, int mouseX, int mouseY, float partial) {
+	public void renderButton(@NotNull PoseStack matrix, int mouseX, int mouseY, float partial) {
 		super.renderButton(matrix, mouseX, mouseY, partial);
 
 		if(visible) {

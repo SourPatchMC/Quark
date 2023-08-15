@@ -7,7 +7,7 @@ import net.minecraft.client.gui.components.ObjectSelectionList;
 import vazkii.quark.base.client.config.screen.AbstractScrollingWidgetScreen;
 import vazkii.quark.base.client.config.screen.WidgetWrapper;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -56,7 +56,7 @@ public abstract class ScrollableWidgetList<S extends AbstractScrollingWidgetScre
 		}
 
 		@Override
-		public void render(@Nonnull PoseStack mstack, int index, int rowTop, int rowLeft, int rowWidth, int rowHeight, int mouseX, int mouseY, boolean hovered, float partialTicks) {
+		public void render(@NotNull PoseStack mstack, int index, int rowTop, int rowLeft, int rowWidth, int rowHeight, int mouseX, int mouseY, boolean hovered, float partialTicks) {
 			children.forEach(c -> c.updatePosition(rowLeft, rowTop));
 		}
 

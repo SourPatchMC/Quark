@@ -1,6 +1,6 @@
 package vazkii.quark.content.automation.block;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -33,7 +33,7 @@ public class MetalButtonBlock extends QuarkButtonBlock {
 		return speed;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	protected SoundEvent getSound(boolean powered) {
 		return powered ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF;

@@ -7,7 +7,7 @@ import java.util.OptionalInt;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -58,7 +58,7 @@ public class AncientSaplingBlock extends QuarkSaplingBlock {
 		}
 
 		@Override
-		protected Holder<ConfiguredFeature<TreeConfiguration, ?>> getConfiguredFeature(@Nonnull RandomSource rand, boolean hjskfsd) {
+		protected Holder<ConfiguredFeature<TreeConfiguration, ?>> getConfiguredFeature(@NotNull RandomSource rand, boolean hjskfsd) {
 			return Holder.direct(new ConfiguredFeature<>(Feature.TREE, config));
 		}
 

@@ -6,7 +6,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.settings.KeyModifier;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.function.BiPredicate;
 
 @ClientOnly
@@ -19,7 +19,7 @@ public class SortedPredicatedKeyBinding extends SortedKeyBinding {
 	}
 
 	@Override
-	public void setKeyModifierAndCode(@Nonnull KeyModifier keyModifier, @Nonnull InputConstants.Key keyCode) {
+	public void setKeyModifierAndCode(@NotNull KeyModifier keyModifier, @NotNull InputConstants.Key keyCode) {
 		if (allowed.test(keyModifier, keyCode))
 			super.setKeyModifierAndCode(keyModifier, keyCode);
 	}

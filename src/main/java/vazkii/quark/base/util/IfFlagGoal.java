@@ -3,7 +3,7 @@ package vazkii.quark.base.util;
 import java.util.EnumSet;
 import java.util.function.BooleanSupplier;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.world.entity.ai.goal.Goal;
 
@@ -51,7 +51,7 @@ public class IfFlagGoal extends Goal {
 		parent.tick();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public EnumSet<Flag> getFlags() {
 		return parent.getFlags();

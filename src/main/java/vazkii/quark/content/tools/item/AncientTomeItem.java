@@ -2,7 +2,7 @@ package vazkii.quark.content.tools.item;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
@@ -32,12 +32,12 @@ public class AncientTomeItem extends QuarkItem {
 	}
 
 	@Override
-	public boolean isEnchantable(@Nonnull ItemStack stack) {
+	public boolean isEnchantable(@NotNull ItemStack stack) {
 		return false;
 	}
 
 	@Override
-	public boolean isFoil(@Nonnull ItemStack stack) {
+	public boolean isFoil(@NotNull ItemStack stack) {
 		return true;
 	}
 
@@ -53,7 +53,7 @@ public class AncientTomeItem extends QuarkItem {
 	}
 
 	@Override
-	public void fillItemCategory(@Nonnull CreativeModeTab group, @Nonnull NonNullList<ItemStack> items) {
+	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
 		if (isEnabled() || group == CreativeModeTab.TAB_SEARCH) {
 			if (group == CreativeModeTab.TAB_SEARCH || group.getEnchantmentCategories().length != 0) {
 				ForgeRegistries.ENCHANTMENTS.forEach(ench -> {
@@ -75,7 +75,7 @@ public class AncientTomeItem extends QuarkItem {
 
 	@Override
 	@ClientOnly
-	public void appendHoverText(@Nonnull ItemStack stack, Level worldIn, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flagIn) {
+	public void appendHoverText(@NotNull ItemStack stack, Level worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
 		Enchantment ench = AncientTomesModule.getTomeEnchantment(stack);

@@ -2,7 +2,7 @@ package vazkii.quark.content.building.block;
 
 import java.util.function.BooleanSupplier;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableList;
 
@@ -135,12 +135,12 @@ public class HedgeBlock extends FenceBlock implements IQuarkBlock, IBlockColorPr
 
 
 	@Override
-	public boolean connectsTo(BlockState state, boolean isSideSolid, @Nonnull Direction direction) {
+	public boolean connectsTo(BlockState state, boolean isSideSolid, @NotNull Direction direction) {
 		return state.is(HedgesModule.hedgesTag);
 	}
 
 	@Override
-	public boolean canSustainPlant(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull Direction facing, @Nonnull IPlantable plantable) {
+	public boolean canSustainPlant(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull Direction facing, @NotNull IPlantable plantable) {
 		return facing == Direction.UP && !state.getValue(WATERLOGGED) && plantable.getPlantType(world, pos) == PlantType.PLAINS;
 	}
 
@@ -155,9 +155,9 @@ public class HedgeBlock extends FenceBlock implements IQuarkBlock, IBlockColorPr
 				.setValue(EXTEND, downState.getBlock() instanceof HedgeBlock);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public BlockState updateShape(BlockState stateIn, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor worldIn, @Nonnull BlockPos currentPos, @Nonnull BlockPos facingPos) {
+	public BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
 		if (stateIn.getValue(WATERLOGGED)) {
 			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
@@ -169,7 +169,7 @@ public class HedgeBlock extends FenceBlock implements IQuarkBlock, IBlockColorPr
 	}
 
 	@Override
-	protected void createBlockStateDefinition(@Nonnull StateDefinition.Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(EXTEND);
 	}
@@ -189,7 +189,7 @@ public class HedgeBlock extends FenceBlock implements IQuarkBlock, IBlockColorPr
 	}
 
 	@Override
-	public void fillItemCategory(@Nonnull CreativeModeTab group, @Nonnull NonNullList<ItemStack> items) {
+	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
 		if(isEnabled() || group == CreativeModeTab.TAB_SEARCH)
 			super.fillItemCategory(group, items);
 	}

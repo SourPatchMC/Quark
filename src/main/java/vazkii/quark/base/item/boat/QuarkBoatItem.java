@@ -3,7 +3,7 @@ package vazkii.quark.base.item.boat;
 import java.util.List;
 import java.util.function.Predicate;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
@@ -42,9 +42,9 @@ public class QuarkBoatItem extends QuarkItem {
 	}
 
 	// Vanilla copy
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResultHolder<ItemStack> use(@Nonnull Level world, Player player, @Nonnull InteractionHand hand) {
+	public InteractionResultHolder<ItemStack> use(@NotNull Level world, Player player, @NotNull InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 		HitResult hitresult = getPlayerPOVHitResult(world, player, ClipContext.Fluid.ANY);
 		if (hitresult.getType() == HitResult.Type.MISS) {

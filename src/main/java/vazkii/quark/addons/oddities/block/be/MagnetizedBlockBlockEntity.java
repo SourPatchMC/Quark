@@ -26,7 +26,7 @@ import vazkii.quark.addons.oddities.magnetsystem.MagnetSystem;
 import vazkii.quark.addons.oddities.module.MagnetsModule;
 import vazkii.quark.api.IMagnetMoveAction;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class MagnetizedBlockBlockEntity extends BlockEntity {
@@ -303,7 +303,7 @@ public class MagnetizedBlockBlockEntity extends BlockEntity {
 
 
 	@Override
-	public void load(@Nonnull CompoundTag compound) {
+	public void load(@NotNull CompoundTag compound) {
 		super.load(compound);
 
 		this.magnetState = NbtUtils.readBlockState(compound.getCompound("blockState"));
@@ -314,13 +314,13 @@ public class MagnetizedBlockBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	@Nonnull
+	@NotNull
 	public CompoundTag getUpdateTag() {
 		return writeNBTData(serializeNBT(), false);
 	}
 
 	@Override
-	protected void saveAdditional(@Nonnull CompoundTag nbt) {
+	protected void saveAdditional(@NotNull CompoundTag nbt) {
 		super.saveAdditional(nbt);
 		writeNBTData(nbt, true);
 	}

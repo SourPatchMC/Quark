@@ -18,7 +18,7 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.block.be.VariantFurnaceBlockEntity;
 import vazkii.quark.content.building.module.VariantFurnacesModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.function.BooleanSupplier;
 
 public class VariantFurnaceBlock extends FurnaceBlock implements IQuarkBlock {
@@ -35,17 +35,17 @@ public class VariantFurnaceBlock extends FurnaceBlock implements IQuarkBlock {
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new VariantFurnaceBlockEntity(pos, state);
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level world, @Nonnull BlockState state, @Nonnull BlockEntityType<T> beType) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> beType) {
 		return createFurnaceTicker(world, beType, VariantFurnacesModule.blockEntityType);
 	}
 
 	@Override
-	protected void openContainer(Level world, @Nonnull BlockPos pos, @Nonnull Player player) {
+	protected void openContainer(Level world, @NotNull BlockPos pos, @NotNull Player player) {
 		BlockEntity blockentity = world.getBlockEntity(pos);
 		if(blockentity instanceof AbstractFurnaceBlockEntity furnace) {
 			player.openMenu(furnace);

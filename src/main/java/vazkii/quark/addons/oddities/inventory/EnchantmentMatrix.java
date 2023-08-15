@@ -17,7 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.addons.oddities.module.MatrixEnchantingModule;
 import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.util.List;
 import java.util.*;
@@ -533,7 +533,7 @@ public class EnchantmentMatrix {
 			}
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
 		public Weight getWeight() {
 			return mutableWeight;

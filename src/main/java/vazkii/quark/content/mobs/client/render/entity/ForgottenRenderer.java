@@ -11,7 +11,7 @@ import vazkii.quark.content.mobs.client.layer.forgotten.ForgottenClothingLayer;
 import vazkii.quark.content.mobs.client.layer.forgotten.ForgottenEyesLayer;
 import vazkii.quark.content.mobs.client.layer.forgotten.ForgottenSheathedItemLayer;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class ForgottenRenderer extends SkeletonRenderer {
 
@@ -25,14 +25,14 @@ public class ForgottenRenderer extends SkeletonRenderer {
 		addLayer(new ForgottenSheathedItemLayer(this, context.getItemInHandRenderer()));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull AbstractSkeleton entity) {
+	public ResourceLocation getTextureLocation(@NotNull AbstractSkeleton entity) {
 		return TEXTURE;
 	}
 
 	@Override
-	protected void scale(@Nonnull AbstractSkeleton entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
+	protected void scale(@NotNull AbstractSkeleton entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
 		matrixStackIn.scale(1.2F, 1.2F, 1.2F);
 	}
 

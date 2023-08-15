@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -44,7 +44,7 @@ public class ExclusionRecipe implements CraftingRecipe {
 	}
 
 	@Override
-	public boolean matches(@Nonnull CraftingContainer inv, @Nonnull Level worldIn) {
+	public boolean matches(@NotNull CraftingContainer inv, @NotNull Level worldIn) {
 		for (ResourceLocation recipeLoc : excluded) {
 			Optional<? extends Recipe<?>> recipeHolder = worldIn.getRecipeManager().byKey(recipeLoc);
 			if (recipeHolder.isPresent()) {
@@ -59,9 +59,9 @@ public class ExclusionRecipe implements CraftingRecipe {
 		return parent.matches(inv, worldIn);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack assemble(@Nonnull CraftingContainer inv) {
+	public ItemStack assemble(@NotNull CraftingContainer inv) {
 		return parent.assemble(inv);
 	}
 
@@ -70,37 +70,37 @@ public class ExclusionRecipe implements CraftingRecipe {
 		return parent.canCraftInDimensions(width, height);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getResultItem() {
 		return parent.getResultItem();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ResourceLocation getId() {
 		return parent.getId();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RecipeType<?> getType() {
 		return parent.getType();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public NonNullList<ItemStack> getRemainingItems(@Nonnull CraftingContainer inv) {
+	public NonNullList<ItemStack> getRemainingItems(@NotNull CraftingContainer inv) {
 		return parent.getRemainingItems(inv);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
 		return parent.getIngredients();
@@ -111,13 +111,13 @@ public class ExclusionRecipe implements CraftingRecipe {
 		return parent.isSpecial();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public String getGroup() {
 		return parent.getGroup();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getToastSymbol() {
 		return parent.getToastSymbol();
@@ -145,9 +145,9 @@ public class ExclusionRecipe implements CraftingRecipe {
 
 	public static class Serializer implements RecipeSerializer<ExclusionRecipe> {
 
-		@Nonnull
+		@NotNull
 		@Override
-		public ExclusionRecipe fromJson(@Nonnull ResourceLocation recipeId, @Nonnull JsonObject json) {
+		public ExclusionRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
 			String trueType = GsonHelper.getAsString(json, "true_type");
 			if (trueType.equals("quark:exclusion"))
 				throw new JsonSyntaxException("Recipe type circularity");
@@ -172,9 +172,9 @@ public class ExclusionRecipe implements CraftingRecipe {
 			return new ExclusionRecipe((CraftingRecipe) parent, excludedRecipes);
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
-		public ExclusionRecipe fromNetwork(@Nonnull ResourceLocation recipeId, @Nonnull FriendlyByteBuf buffer) {
+		public ExclusionRecipe fromNetwork(@NotNull ResourceLocation recipeId, @NotNull FriendlyByteBuf buffer) {
 			int exclusions = buffer.readVarInt();
 			List<ResourceLocation> excludedRecipes = new ArrayList<>();
 			for (int i = 0; i < exclusions; i++) {
@@ -198,7 +198,7 @@ public class ExclusionRecipe implements CraftingRecipe {
 
 		@Override
 		@SuppressWarnings("unchecked")
-		public void toNetwork(@Nonnull FriendlyByteBuf buffer, @Nonnull ExclusionRecipe recipe) {
+		public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull ExclusionRecipe recipe) {
 			buffer.writeVarInt(recipe.excluded.size());
 			for (ResourceLocation loc : recipe.excluded)
 				buffer.writeUtf(loc.toString(), 32767);

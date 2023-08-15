@@ -25,7 +25,7 @@ import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -85,7 +85,7 @@ public class DispensersPlaceBlocksModule extends QuarkModule {
 			this.wrapped = wrapped;
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
 		public ItemStack execute(BlockSource source, ItemStack stack) {
 			if(wrapped != null) {
@@ -135,7 +135,7 @@ public class DispensersPlaceBlocksModule extends QuarkModule {
 			return replaceClicked;
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
 		public Direction getNearestLookingDirection() {
 			return direction.getOpposite();

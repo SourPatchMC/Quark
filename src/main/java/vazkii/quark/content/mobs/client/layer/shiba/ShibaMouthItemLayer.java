@@ -1,6 +1,6 @@
 package vazkii.quark.content.mobs.client.layer.shiba;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -26,7 +26,7 @@ public class ShibaMouthItemLayer extends RenderLayer<Shiba, ShibaModel> {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack matrix, @Nonnull MultiBufferSource bufferIn, int packedLightIn, Shiba entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void render(@NotNull PoseStack matrix, @NotNull MultiBufferSource bufferIn, int packedLightIn, Shiba entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 		ItemStack item = entitylivingbaseIn.getMouthItem();
 		if(item.isEmpty())
 			return;

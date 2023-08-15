@@ -1,6 +1,6 @@
 package vazkii.quark.content.building.recipe;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
 
@@ -59,32 +59,32 @@ public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<Craft
 		return x == 3 && y == 3;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack assemble(@Nonnull CraftingContainer arg0) {
+	public ItemStack assemble(@NotNull CraftingContainer arg0) {
 		return output.copy();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ResourceLocation getId() {
 		return res;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public ItemStack getResultItem() {
 		return output.copy();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}
 
 	@Override
-	public boolean matches(CraftingContainer inv, @Nonnull Level world) {
+	public boolean matches(CraftingContainer inv, @NotNull Level world) {
 		if(inv.getItem(4).isEmpty()) {
 			ItemStack first = null;
 			boolean foundDifference = false;
@@ -116,7 +116,7 @@ public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<Craft
 		return 3;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
 		if(ingredients == null) {
@@ -137,15 +137,15 @@ public class MixedExclusionRecipe implements CraftingRecipe, IShapedRecipe<Craft
 
 	private static class Serializer implements RecipeSerializer<MixedExclusionRecipe> {
 
-		@Nonnull
+		@NotNull
 		@Override
-		public MixedExclusionRecipe fromJson(@Nonnull ResourceLocation arg0, JsonObject arg1) {
+		public MixedExclusionRecipe fromJson(@NotNull ResourceLocation arg0, JsonObject arg1) {
 			String type = arg1.get("subtype").getAsString();
 			return forType(arg0, type);
 		}
 
 		@Override
-		public MixedExclusionRecipe fromNetwork(@Nonnull ResourceLocation arg0, FriendlyByteBuf arg1) {
+		public MixedExclusionRecipe fromNetwork(@NotNull ResourceLocation arg0, FriendlyByteBuf arg1) {
 			return forType(arg0, arg1.readUtf());
 		}
 

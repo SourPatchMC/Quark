@@ -13,7 +13,7 @@ import vazkii.quark.addons.oddities.inventory.slot.BackpackSlot;
 import vazkii.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import vazkii.quark.addons.oddities.module.BackpackModule;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class BackpackMenu extends InventoryMenu {
 
@@ -46,9 +46,9 @@ public class BackpackMenu extends InventoryMenu {
 		return new BackpackMenu(windowId, playerInventory.player);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack quickMoveStack(@Nonnull Player playerIn, int index) {
+	public ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
 		final int topSlots = 8;
 		final int invStart = topSlots + 1;
 		final int invEnd = invStart + 27;
@@ -178,7 +178,7 @@ public class BackpackMenu extends InventoryMenu {
 	}
 
 	@Override
-	public void clicked(int slotId, int dragType, @Nonnull ClickType clickTypeIn, @Nonnull Player player) {
+	public void clicked(int slotId, int dragType, @NotNull ClickType clickTypeIn, @NotNull Player player) {
 		CachedItemHandlerSlot.cache(this);
 		super.clicked(slotId, dragType, clickTypeIn, player);
 		CachedItemHandlerSlot.applyCache(this);
@@ -203,7 +203,7 @@ public class BackpackMenu extends InventoryMenu {
 	}
 
 	@Override
-	public @Nonnull MenuType<?> getType() {
+	public @NotNull MenuType<?> getType() {
 		return BackpackModule.menyType;
 	}
 

@@ -3,7 +3,7 @@ package vazkii.quark.content.automation.module;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableSet;

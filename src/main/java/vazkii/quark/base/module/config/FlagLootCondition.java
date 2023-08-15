@@ -8,7 +8,7 @@ import net.minecraft.world.level.storage.loot.Serializer;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author WireSegal
@@ -23,7 +23,7 @@ public record FlagLootCondition(ConfigFlagManager manager,
 	}
 
 
-	@Nonnull
+	@NotNull
 	@Override
 	public LootItemConditionType getType() {
 		return ConfigFlagManager.flagLootConditionType;
@@ -33,13 +33,13 @@ public record FlagLootCondition(ConfigFlagManager manager,
 	public record FlagSerializer(ConfigFlagManager manager) implements Serializer<FlagLootCondition> {
 
 		@Override
-		public void serialize(@Nonnull JsonObject json, @Nonnull FlagLootCondition value, @Nonnull JsonSerializationContext context) {
+		public void serialize(@NotNull JsonObject json, @NotNull FlagLootCondition value, @NotNull JsonSerializationContext context) {
 			json.addProperty("flag", value.flag);
 		}
 
-		@Nonnull
+		@NotNull
 		@Override
-		public FlagLootCondition deserialize(@Nonnull JsonObject json, @Nonnull JsonDeserializationContext context) {
+		public FlagLootCondition deserialize(@NotNull JsonObject json, @NotNull JsonDeserializationContext context) {
 			String flag = json.getAsJsonPrimitive("flag").getAsString();
 			return new FlagLootCondition(manager, flag);
 		}

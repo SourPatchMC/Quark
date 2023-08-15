@@ -15,7 +15,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import vazkii.quark.content.mobs.entity.Stoneling;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class StonelingModel extends EntityModel<Stoneling> {
 
@@ -94,7 +94,7 @@ public class StonelingModel extends EntityModel<Stoneling> {
 	}
 
 	@Override
-	public void renderToBuffer(@Nonnull PoseStack matrix, @Nonnull VertexConsumer vb, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(@NotNull PoseStack matrix, @NotNull VertexConsumer vb, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
 		body.render(matrix, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
 		arm_right.render(matrix, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);
 		arm_left.render(matrix, vb, packedLightIn, packedOverlayIn, red, green, blue, alpha);

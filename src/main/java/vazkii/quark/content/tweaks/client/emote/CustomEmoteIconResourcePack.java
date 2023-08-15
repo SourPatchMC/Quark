@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -35,17 +35,17 @@ public class CustomEmoteIconResourcePack extends AbstractPackResources {
 		super(EmotesModule.emotesDir);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public Set<String> getNamespaces(@Nonnull PackType type) {
+	public Set<String> getNamespaces(@NotNull PackType type) {
 		if (type == PackType.CLIENT_RESOURCES)
 			return ImmutableSet.of(EmoteHandler.CUSTOM_EMOTE_NAMESPACE);
 		return ImmutableSet.of();
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	protected InputStream getResource(@Nonnull String name) throws IOException {
+	protected InputStream getResource(@NotNull String name) throws IOException {
 		if(name.equals("pack.mcmeta"))
 			return Quark.class.getResourceAsStream("/proxypack.mcmeta");
 
@@ -59,9 +59,9 @@ public class CustomEmoteIconResourcePack extends AbstractPackResources {
 		return new FileInputStream(file);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public Collection<ResourceLocation> getResources(@Nonnull PackType type, @Nonnull String pathIn, @Nonnull String idk, @Nonnull Predicate<ResourceLocation> filter) {
+	public Collection<ResourceLocation> getResources(@NotNull PackType type, @NotNull String pathIn, @NotNull String idk, @NotNull Predicate<ResourceLocation> filter) {
 		File rootPath = new File(this.file, type.getDirectory());
 		List<ResourceLocation> allResources = Lists.newArrayList();
 
@@ -95,7 +95,7 @@ public class CustomEmoteIconResourcePack extends AbstractPackResources {
 	}
 
 	@Override
-	protected boolean hasResource(@Nonnull String name) {
+	protected boolean hasResource(@NotNull String name) {
 		if(!verifiedNames.contains(name)) {
 			File file = getFile(name);
 			if(file.exists())
@@ -118,7 +118,7 @@ public class CustomEmoteIconResourcePack extends AbstractPackResources {
 		return true;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
 	public String getName() {
 		return "quark-emote-pack";

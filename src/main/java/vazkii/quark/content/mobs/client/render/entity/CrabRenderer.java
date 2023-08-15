@@ -8,7 +8,7 @@ import vazkii.quark.content.mobs.client.layer.CrabMoldLayer;
 import vazkii.quark.content.mobs.client.model.CrabModel;
 import vazkii.quark.content.mobs.entity.Crab;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class CrabRenderer extends MobRenderer<Crab, CrabModel> {
 
@@ -23,9 +23,9 @@ public class CrabRenderer extends MobRenderer<Crab, CrabModel> {
 		addLayer(new CrabMoldLayer(this));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ResourceLocation getTextureLocation(@Nonnull Crab entity) {
+	public ResourceLocation getTextureLocation(@NotNull Crab entity) {
 		return TEXTURES[entity.getVariant() % TEXTURES.length];
 	}
 }

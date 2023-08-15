@@ -32,8 +32,8 @@ import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.automation.block.be.FeedingTroughBlockEntity;
 import vazkii.quark.content.automation.module.FeedingTroughModule;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author WireSegal
@@ -55,9 +55,9 @@ public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 		registerDefaultState(defaultBlockState().setValue(FULL, false));
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getCollisionShape(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		Entity entity = context instanceof EntityCollisionContext ecc ? ecc.getEntity() : null;
 		if(entity instanceof Animal)
 			return ANIMAL_SHAPE;
@@ -65,15 +65,15 @@ public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 		return EMPTY_SHAPE;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getInteractionShape(@Nonnull BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos) {
+	public VoxelShape getInteractionShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos) {
 		return CUBOID_SHAPE;
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public VoxelShape getShape(BlockState state, @Nonnull BlockGetter world, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
+	public VoxelShape getShape(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return state.getValue(FULL) ? FULL_SHAPE : EMPTY_SHAPE;
 	}
 
@@ -90,7 +90,7 @@ public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public void fallOn(Level world, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull Entity entity, float distance) {
+	public void fallOn(Level world, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Entity entity, float distance) {
 		if (world.getBlockState(pos).getValue(FULL))
 			entity.causeFallDamage(distance, 0.2F, DamageSource.FALL);
 		else
@@ -98,7 +98,7 @@ public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public void onRemove(BlockState state, @Nonnull Level world, @Nonnull BlockPos pos, @Nonnull BlockState newState, boolean isMoving) {
+	public void onRemove(BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
 			BlockEntity tile = world.getBlockEntity(pos);
 			if (tile instanceof FeedingTroughBlockEntity) {
@@ -111,19 +111,19 @@ public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public boolean hasAnalogOutputSignal(@Nonnull BlockState state) {
+	public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
 		return true;
 	}
 
 	@Override
-	public int getAnalogOutputSignal(@Nonnull BlockState state, Level world, @Nonnull BlockPos pos) {
+	public int getAnalogOutputSignal(@NotNull BlockState state, Level world, @NotNull BlockPos pos) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
 	}
 
 
-	@Nonnull
+	@NotNull
 	@Override
-	public InteractionResult use(@Nonnull BlockState state, Level world, @Nonnull BlockPos pos, @Nonnull Player player, @Nonnull InteractionHand hand, @Nonnull BlockHitResult trace) {
+	public InteractionResult use(@NotNull BlockState state, Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult trace) {
 		if (world.isClientSide)
 			return InteractionResult.SUCCESS;
 		else {
@@ -136,7 +136,7 @@ public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public boolean triggerEvent(@Nonnull BlockState state, @Nonnull Level world, @Nonnull BlockPos pos, int id, int param) {
+	public boolean triggerEvent(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, int id, int param) {
 		super.triggerEvent(state, world, pos, id, param);
 		BlockEntity tile = world.getBlockEntity(pos);
 		return tile != null && tile.triggerEvent(id, param);
@@ -144,18 +144,18 @@ public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 
 	@Override
 	@Nullable
-	public MenuProvider getMenuProvider(@Nonnull BlockState state, Level world, @Nonnull BlockPos pos) {
+	public MenuProvider getMenuProvider(@NotNull BlockState state, Level world, @NotNull BlockPos pos) {
 		BlockEntity tile = world.getBlockEntity(pos);
 		return tile instanceof MenuProvider ? (MenuProvider)tile : null;
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
 		return new FeedingTroughBlockEntity(pos, state);
 	}
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level world, @Nonnull BlockState state, @Nonnull BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level world, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
 		return createTickerHelper(type, FeedingTroughModule.blockEntityType, FeedingTroughBlockEntity::tick);
 	}
 

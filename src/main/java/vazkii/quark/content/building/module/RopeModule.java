@@ -1,6 +1,6 @@
 package vazkii.quark.content.building.module;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -52,9 +52,9 @@ public class RopeModule extends QuarkModule {
 
 	public static class BehaviourRope extends OptionalDispenseItemBehavior {
 
-		@Nonnull
+		@NotNull
 		@Override
-		protected ItemStack execute(BlockSource source, @Nonnull ItemStack stack) {
+		protected ItemStack execute(BlockSource source, @NotNull ItemStack stack) {
 			Direction facing = source.getBlockState().getValue(DispenserBlock.FACING);
 			BlockPos pos = source.getPos().relative(facing);
 			Level world = source.getLevel();

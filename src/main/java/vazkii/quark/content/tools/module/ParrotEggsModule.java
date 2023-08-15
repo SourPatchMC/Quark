@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.Util;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -94,9 +94,9 @@ public class ParrotEggsModule extends QuarkModule {
 			parrotEggs.add(parrotEgg);
 
 			DispenserBlock.registerBehavior(parrotEgg, new AbstractProjectileDispenseBehavior() {
-				@Nonnull
+				@NotNull
 				@Override
-				protected Projectile getProjectile(@Nonnull Level world, @Nonnull Position pos, @Nonnull ItemStack stack) {
+				protected Projectile getProjectile(@NotNull Level world, @NotNull Position pos, @NotNull ItemStack stack) {
 					return Util.make(new ParrotEgg(world, pos.x(), pos.y(), pos.z()), (parrotEgg) -> {
 						parrotEgg.setItem(stack);
 						parrotEgg.setVariant(variant);

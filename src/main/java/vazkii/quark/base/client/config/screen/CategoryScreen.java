@@ -15,7 +15,7 @@ import vazkii.quark.base.client.config.external.ExternalCategory;
 import vazkii.quark.base.client.config.screen.widgets.ConfigElementList;
 import vazkii.quark.base.client.config.screen.widgets.ScrollableWidgetList;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class CategoryScreen extends AbstractScrollingWidgetScreen {
 
@@ -41,7 +41,7 @@ public class CategoryScreen extends AbstractScrollingWidgetScreen {
 	}
 
 	@Override
-	public void render(@Nonnull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
+	public void render(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
 		super.render(mstack, mouseX, mouseY, partialTicks);
 
 		int left = 20;

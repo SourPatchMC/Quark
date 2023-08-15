@@ -17,7 +17,7 @@ import vazkii.quark.addons.oddities.module.CrateModule;
 import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.oddities.ScrollCrateMessage;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class CrateMenu extends AbstractContainerMenu {
 
@@ -70,9 +70,9 @@ public class CrateMenu extends AbstractContainerMenu {
 		return crateData.get(1);
 	}
 
-	@Nonnull
+	@NotNull
 	@Override
-	public ItemStack quickMoveStack(@Nonnull Player playerIn, int index) {
+	public ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
 		ItemStack activeStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 
@@ -179,12 +179,12 @@ public class CrateMenu extends AbstractContainerMenu {
 	}
 
 	@Override
-	public boolean stillValid(@Nonnull Player playerIn) {
+	public boolean stillValid(@NotNull Player playerIn) {
 		return crate.stillValid(playerIn);
 	}
 
 	@Override
-	public void removed(@Nonnull Player playerIn) {
+	public void removed(@NotNull Player playerIn) {
 		super.removed(playerIn);
 		crate.stopOpen(playerIn);
 	}
