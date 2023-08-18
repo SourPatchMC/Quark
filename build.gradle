@@ -68,23 +68,22 @@ loom {
     }
 }
 
-//processResources {
-//    exclude("**/*.bbmodel", "**/*.lnk")
-//
-//    Map<String, Object> properties = [
-//            "version": version,
-//            "minecraft_version": minecraft_version,
-//            "loader_version": loader_version,
-//            "fabric_version": fabric_version,
-//    ]
-//    properties.forEach((k, v) -> inputs.property(k, v))
-//
-//    filesMatching("fabric.mod.json") {
-//        expand properties
-//    }
-//
-//    duplicatesStrategy = DuplicatesStrategy.WARN
-//}
+processResources {
+    exclude("**/*.bbmodel", "**/*.lnk")
+
+    Map<String, Object> properties = [
+            "version": version,
+            "minecraft_version": minecraft_version,
+            "loader_version": quilt_loader_version
+    ]
+    properties.forEach((k, v) -> inputs.property(k, v))
+
+    filesMatching("quilt.mod.json") {
+        expand properties
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.WARN
+}
 
 def targetJavaVersion = 17
 tasks.withType(JavaCompile).configureEach {

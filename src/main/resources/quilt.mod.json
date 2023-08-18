@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "vazkii.quark",
+    "id": "quark",
+    "version": "${version}",
+    "entrypoints": {
+      "init": "vazkii.quark.base.Quark"
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "versions": ">=${loader_version}-"
+      },
+      {
+        "id": "minecraft",
+        "versions": ">=${minecraft_version}"
+      },
+      {
+        "id": "quilted_fabric_api"
+      }
+    ],
+    "breaks": [
+      {
+        "id": "fabric",
+        "reason": "Quark is a Quilt Mod, and as such requires Quilted Fabric API, please use that.",
+        "unless": "quilted_fabric_api"
+      }
+    ],
+    "metadata": {
+      "name": "Quark",
+      "description": "Small things, improving Minecraft bit by bit. Ported to Quilt",
+      "contributors": {
+        "Vazkii": "Original Developer",
+        "WireSegal": "Original Developer",
+        "MCVinnyq": "Original Developer",
+        "Sully": "Original Developer",
+        "Siuolplex": "Quilt Porter",
+        "Maximum": "Quilt Porter",
+        "IThundxr": "Quilt Porter"
+      },
+      "license": "CC BY-NC-SA",
+      "icon": "logo.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary"
+  },
+  "mixin": [
+    "quark.mixins.json",
+    "quark_integrations.mixins.json"
+  ]
+}
