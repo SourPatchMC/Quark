@@ -81,7 +81,7 @@ public class SeedPouchItem extends QuarkItem implements IUsageTickerOverride, IT
 	}
 
 	public static boolean addItemToMe(Player player, ItemStack stack, ItemStack incoming, Slot slot) {
-		if(slot.mayPickup(player) && slot.mayPlace(stack) && canTakeItem(stack, incoming)) {
+		if(slot.mayPickup(player) && slot.mayPlace(stack) && canTakeItem(stack, incoming) && stack.getCount() == 1) {
 			Pair<ItemStack, Integer> contents = getContents(stack);
 
 			if(contents == null) {
@@ -107,7 +107,7 @@ public class SeedPouchItem extends QuarkItem implements IUsageTickerOverride, IT
 	private static boolean removeItemFromMe(Player player, ItemStack stack, Slot slot, SlotAccess accessor) {
 		Pair<ItemStack, Integer> contents = SeedPouchItem.getContents(stack);
 
-		if(contents != null && slot.allowModification(player)) {
+		if(contents != null && slot.allowModification(player) && stack.getCount() == 1) {
 			ItemStack held = accessor.get();
 			ItemStack seed = contents.getLeft();
 			int pouchCount = contents.getRight();
@@ -205,7 +205,11 @@ public class SeedPouchItem extends QuarkItem implements IUsageTickerOverride, IT
 
 	public static void setCount(ItemStack stack, int count) {
 		if(count <= 0) {
-			stack.getTag().remove(TAG_STORED_ITEM);
+			CompoundTag tag = stack.getTag();
+			if (tag != null) {
+				tag.remove(TAG_STORED_ITEM);
+				tag.remove(TAG_COUNT);
+			}
 			return;
 		}
 

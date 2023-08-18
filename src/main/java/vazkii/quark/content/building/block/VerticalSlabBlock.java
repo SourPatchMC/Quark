@@ -8,13 +8,15 @@ import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.Direction.AxisDirection;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -32,13 +34,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import vazkii.arl.interf.IBlockColorProvider;
 import vazkii.arl.interf.IItemColorProvider;
-import vazkii.quark.base.block.IQuarkBlock;
-import vazkii.quark.base.block.QuarkBlock;
-import vazkii.quark.base.block.QuarkSlabBlock;
-import vazkii.quark.base.module.QuarkModule;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 /**
@@ -56,7 +54,7 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 		this.parent = parent;
 		registerDefaultState(defaultBlockState().setValue(TYPE, VerticalSlabType.NORTH).setValue(WATERLOGGED, false));
 	}
-	
+
 	@Override
 	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return parent.get().isFlammable(state, world, pos, face);
@@ -66,16 +64,16 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return parent.get().getFlammability(state, world, pos, face);
 	}
-	
-	@NotNull
+
+	@Nonnull
 	@Override
-	public BlockState rotate(BlockState state, @NotNull Rotation rot) {
+	public BlockState rotate(BlockState state, @Nonnull Rotation rot) {
 		return state.getValue(TYPE) == VerticalSlabType.DOUBLE ? state : state.setValue(TYPE, VerticalSlabType.fromDirection(rot.rotate(state.getValue(TYPE).direction)));
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
-	public BlockState mirror(BlockState state, @NotNull Mirror mirrorIn) {
+	public BlockState mirror(BlockState state, @Nonnull Mirror mirrorIn) {
 		VerticalSlabType type = state.getValue(TYPE);
 		if(type == VerticalSlabType.DOUBLE || mirrorIn == Mirror.NONE)
 			return state;
@@ -97,9 +95,9 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 		builder.add(TYPE, WATERLOGGED);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
-	public VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+	public VoxelShape getShape(BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull CollisionContext context) {
 		return state.getValue(TYPE).shape;
 	}
 
@@ -136,33 +134,33 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 	}
 
 	@Override
-	public boolean canBeReplaced(BlockState state, @NotNull BlockPlaceContext useContext) {
+	public boolean canBeReplaced(BlockState state, @Nonnull BlockPlaceContext useContext) {
 		ItemStack itemstack = useContext.getItemInHand();
 		VerticalSlabType slabtype = state.getValue(TYPE);
 		return slabtype != VerticalSlabType.DOUBLE && itemstack.getItem() == this.asItem() &&
-			(useContext.replacingClickedOnBlock() && (useContext.getClickedFace() == slabtype.direction && getDirectionForPlacement(useContext) == slabtype.direction) || 
+			(useContext.replacingClickedOnBlock() && (useContext.getClickedFace() == slabtype.direction && getDirectionForPlacement(useContext) == slabtype.direction) ||
 			(!useContext.replacingClickedOnBlock() && useContext.getClickedFace() != slabtype.direction));
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public FluidState getFluidState(BlockState state) {
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
 	@Override
-	public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, BlockState state, @NotNull FluidState fluidStateIn) {
+	public boolean placeLiquid(@Nonnull LevelAccessor worldIn, @Nonnull BlockPos pos, BlockState state, @Nonnull FluidState fluidStateIn) {
 		return state.getValue(TYPE) != VerticalSlabType.DOUBLE && SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
 	}
 
 	@Override
-	public boolean canPlaceLiquid(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, BlockState state, @NotNull Fluid fluidIn) {
+	public boolean canPlaceLiquid(@Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, BlockState state, @Nonnull Fluid fluidIn) {
 		return state.getValue(TYPE) != VerticalSlabType.DOUBLE && SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
-	public BlockState updateShape(@NotNull BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
+	public BlockState updateShape(@Nonnull BlockState stateIn, @Nonnull Direction facing, @Nonnull BlockState facingState, @Nonnull LevelAccessor worldIn, @Nonnull BlockPos currentPos, @Nonnull BlockPos facingPos) {
 		if(stateIn.getValue(WATERLOGGED))
 			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 
@@ -170,20 +168,20 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 	}
 
 	@Override
-	public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull PathComputationType type) {
+	public boolean isPathfindable(@Nonnull BlockState state, @Nonnull BlockGetter worldIn, @Nonnull BlockPos pos, @Nonnull PathComputationType type) {
 		return type == PathComputationType.WATER && worldIn.getFluidState(pos).is(FluidTags.WATER);
 	}
 
 	@Override
-	@ClientOnly
+	@OnlyIn(Dist.CLIENT)
 	public BlockColor getBlockColor() {
-		return parent instanceof IBlockColorProvider provider ? provider.getBlockColor() : null;
+		return parent.get() instanceof IBlockColorProvider provider ? provider.getBlockColor() : null;
 	}
 
 	@Override
-	@ClientOnly
+	@OnlyIn(Dist.CLIENT)
 	public ItemColor getItemColor() {
-		return parent instanceof IItemColorProvider provider ? provider.getItemColor() : null;
+		return parent.get() instanceof IItemColorProvider provider ? provider.getItemColor() : null;
 	}
 
 	public enum VerticalSlabType implements StringRepresentable {
@@ -222,7 +220,7 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 			return name;
 		}
 
-		@NotNull
+		@Nonnull
 		@Override
 		public String getSerializedName() {
 			return name;

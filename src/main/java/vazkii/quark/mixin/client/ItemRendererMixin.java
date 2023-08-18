@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import vazkii.quark.content.management.module.ItemSharingModule;
 import vazkii.quark.content.tools.module.ColorRunesModule;
 
-@Mixin(ItemRenderer.class)
+@Mixin(value = ItemRenderer.class, priority = 1001) // To go after rubidium
 public abstract class ItemRendererMixin {
 
 	@Inject(method = "render(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/renderer/block/model/ItemTransforms$TransformType;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IILnet/minecraft/client/resources/model/BakedModel;)V", at = @At("HEAD"))
@@ -60,7 +60,7 @@ public abstract class ItemRendererMixin {
 		return ColorRunesModule.getEntityGlintDirect();
 	}
 
-	@ModifyConstant(method = "renderQuadList", constant = @Constant(floatValue = 1F))
+	@ModifyConstant(method = "renderQuadList", constant = @Constant(floatValue = 1F), require = 0) // Allow failure in case of rubidium
 	public float renderQuads(float constant) {
 		return ItemSharingModule.alphaValue * constant;
 	}
