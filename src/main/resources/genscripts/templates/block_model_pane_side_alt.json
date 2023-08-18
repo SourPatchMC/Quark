@@ -1,7 +1,0 @@
-{
-    "parent": "block/template_glass_pane_side_alt",
-    "textures": {
-        "edge": "%modid%:block/%name%_pane_top",
-        "pane": "%modid%:block/%name%"
-    }
-}

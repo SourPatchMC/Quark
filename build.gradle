@@ -10,7 +10,7 @@ archivesBaseName = archives_base_name
 repositories {
     maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt, Quilt Mappings
     maven { url = 'https://maven.parchmentmc.org' } // Parchment Mappings
-    maven { url = "https://mvn.devos.one/snapshots/" } // Porting Lib
+    maven { url = "https://mvn.devos.one/snapshots/" } // Porting Lib, AutoRegLib Port
     maven { url = "https://jitpack.io/" } // Mixin Extras
     maven { url = "https://maven.terraformersmc.com/" } // EMI
     maven { url = 'https://maven.minecraftforge.net/' } // TerraBlender
@@ -30,11 +30,12 @@ dependencies {
 
     modImplementation(include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${porting_lib_version}"))
 
+    modImplementation("vazkii.autoreglib:AutoRegLib-${minecraft_version}:${autoreglib_version}")
+
     modImplementation(include("com.github.LlamaLad7:MixinExtras:0.1.1"))
     annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
-    //compileOnly('org.jetbrains:annotations:23.0.0')
 
-    //modImplementation "dev.emi:emi-fabric:${emi_version}" // EMI
+    modImplementation "dev.emi:emi-fabric:${emi_version}" // EMI
 
 }
 

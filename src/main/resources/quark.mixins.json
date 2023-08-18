@@ -69,6 +69,7 @@
     "accessor.AccessorServerGamePacketListenerImpl"
   ],
   "client": [
+    "client.PlayerInfoMixin",
     "client.AbstractCandleBlockMixin",
     "client.ArmorStandModelMixin",
     "client.BannerItemMixin",

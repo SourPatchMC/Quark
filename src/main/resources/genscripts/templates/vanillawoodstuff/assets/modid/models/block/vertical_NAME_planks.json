@@ -1,6 +1,0 @@
-{   
-    "parent": "%modid%:block/vertical_planks",
-    "textures": {
-        "all": "block/%name%_planks"
-    }
-}

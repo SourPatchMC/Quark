@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "big=true": { "model": "%modid%:block/%name%_big_stool" },
-        "big=false": { "model": "%modid%:block/%name%_stool" }
-    }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "%modid%:block/post",
-  "textures": {
-    "texture": "minecraft:block/%name%_log"
-  }
-}

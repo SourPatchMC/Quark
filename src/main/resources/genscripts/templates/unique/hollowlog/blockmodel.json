@@ -1,8 +1,0 @@
-{
-	"parent": "%modid%:block/hollow_log",
-	"textures": {
-		"end": "%origspace%:block/%name%_top",
-		"side": "%origspace%:block/%name%",
-		"inside": "%origspace%:block/stripped_%name%"
-	}
-}

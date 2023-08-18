@@ -1,5 +1,6 @@
 package vazkii.quark.base;
 
+import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import vazkii.quark.base.proxy.ClientProxy;
@@ -22,5 +23,4 @@ public class Quark {
 //		proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 		proxy.start();
 	}
-	
 }

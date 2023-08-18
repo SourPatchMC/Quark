@@ -1,6 +1,0 @@
-{
-  "parent": "%modid%:block/post",
-  "textures": {
-    "texture": "minecraft:block/stripped_%name%_log"
-  }
-}

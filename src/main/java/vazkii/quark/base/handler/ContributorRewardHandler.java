@@ -28,6 +28,7 @@ import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import vazkii.quark.base.Quark;
 
 @Mod.EventBusSubscriber(modid = Quark.MOD_ID)
@@ -70,22 +71,7 @@ public class ContributorRewardHandler {
 		return tiers.getOrDefault(name.toLowerCase(Locale.ROOT), 0);
 	}
 
-	@SubscribeEvent
-	@ClientOnly
-	public static void onRenderPlayer(RenderPlayerEvent.Post event) {
-		Player player = event.getEntity();
-		String uuid = player.getUUID().toString();
-		if(player instanceof AbstractClientPlayer clientPlayer && DEV_UUID.contains(uuid) && !done.contains(uuid)) {
-			if(clientPlayer.isCapeLoaded()) {
-				PlayerInfo info = clientPlayer.playerInfo;
-				Map<MinecraftProfileTexture.Type, ResourceLocation> textures = info.textureLocations;
-				ResourceLocation loc = new ResourceLocation("quark", "textures/misc/dev_cape.png");
-				textures.put(MinecraftProfileTexture.Type.CAPE, loc);
-				textures.put(MinecraftProfileTexture.Type.ELYTRA, loc);
-				done.add(uuid);
-			}
-		}
-	}
+	// Moved to Dev capes to src/main/java/vazkii/quark/mixin/client/PlayerInfoMixin.java
 
 	@SubscribeEvent
 	@OnlyIn(Dist.DEDICATED_SERVER)
