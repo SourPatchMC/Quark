@@ -5,10 +5,10 @@ import net.minecraft.network.chat.MessageSignature;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkDirection;
 import vazkii.arl.network.IMessage;
 import vazkii.arl.network.MessageSerializer;
 import vazkii.arl.network.NetworkHandler;
+import vazkii.arl.util.NetworkDirection;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.network.message.*;
 import vazkii.quark.base.network.message.oddities.HandleBackpackMessage;
@@ -28,7 +28,8 @@ public final class QuarkNetwork {
 		MessageSerializer.mapHandlers(MessageSignature.class, (buf, field) -> new MessageSignature(buf), (buf, field, signature) -> signature.write(buf));
 		MessageSerializer.mapHandlers(LastSeenMessages.Update.class, (buf, field) -> new LastSeenMessages.Update(buf), (buf, field, update) -> update.write(buf));
 
-		network = new NetworkHandler(Quark.MOD_ID, PROTOCOL_VERSION);
+		// fixme got rid of PROTOCOL_VERSION here not sure if it is needed
+		network = new NetworkHandler(Quark.MOD_ID);
 
 		network.register(SortInventoryMessage.class, NetworkDirection.PLAY_TO_SERVER);
 		network.register(InventoryTransferMessage.class, NetworkDirection.PLAY_TO_SERVER);
