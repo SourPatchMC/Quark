@@ -3,8 +3,7 @@ package vazkii.quark.api.config;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 
 @ClientOnly
 public interface IExternalCategory extends IConfigCategory {

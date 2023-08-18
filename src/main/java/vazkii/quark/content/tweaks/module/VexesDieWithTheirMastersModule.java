@@ -9,6 +9,7 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 
+//todo: Convert to mixin
 @LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true)
 public class VexesDieWithTheirMastersModule extends QuarkModule {
 

@@ -13,6 +13,7 @@ package vazkii.quark.content.management.module;
 import com.mojang.blaze3d.platform.InputConstants.Type;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -27,8 +28,7 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ScreenEvent.KeyPressed;
 import net.minecraftforge.client.event.ScreenEvent.MouseButtonPressed;
@@ -47,7 +47,7 @@ import vazkii.quark.mixin.client.accessor.AccessorLocalPlayer;
 import java.time.Instant;
 import java.util.List;
 
-@LoadModule(category = ModuleCategory.MANAGEMENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = ModuleCategory.MANAGEMENT, hasSubscriptions = true, subscribeOn = EnvType.CLIENT)
 public class ItemSharingModule extends QuarkModule {
 
 	@Config

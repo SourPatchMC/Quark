@@ -30,8 +30,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent.MouseButtonPressed;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
@@ -42,7 +41,7 @@ import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = EnvType.CLIENT)
 public class MicrocraftingHelperModule extends QuarkModule {
 
 	@ClientOnly

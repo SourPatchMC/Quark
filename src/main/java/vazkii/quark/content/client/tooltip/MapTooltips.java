@@ -20,8 +20,7 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MapItem;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import vazkii.quark.content.client.module.ImprovedTooltipsModule;
 

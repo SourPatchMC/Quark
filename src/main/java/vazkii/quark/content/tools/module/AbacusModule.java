@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix4f;
 
+import net.fabricmc.api.EnvType;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
@@ -23,12 +24,11 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderHighlightEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -37,7 +37,7 @@ import vazkii.quark.base.module.config.type.inputtable.RGBAColorConfig;
 import vazkii.quark.base.module.hint.Hint;
 import vazkii.quark.content.tools.item.AbacusItem;
 
-@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = ModuleCategory.TOOLS, hasSubscriptions = true, subscribeOn = EnvType.CLIENT)
 public class AbacusModule extends QuarkModule {
 
 	@Hint public static Item abacus;

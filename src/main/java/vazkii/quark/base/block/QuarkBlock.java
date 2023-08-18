@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import vazkii.arl.block.BasicBlock;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.client.handler.RequiredModTooltipHandler;
@@ -22,7 +23,7 @@ public class QuarkBlock extends BasicBlock implements IQuarkBlock {
     private final QuarkModule module;
     private BooleanSupplier enabledSupplier = () -> true;
 
-    public QuarkBlock(String regname, QuarkModule module, CreativeModeTab creativeTab, Properties properties) {
+    public QuarkBlock(String regname, QuarkModule module, CreativeModeTab creativeTab, BlockBehaviour.Properties properties) {
         super(regname, properties);
         this.module = module;
 

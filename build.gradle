@@ -26,13 +26,12 @@ dependencies {
 
     modImplementation "org.quiltmc:quilt-loader:${quilt_loader_version}"
 
-    modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
+    modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${qfapi_version}-${minecraft_version}"
 
     modImplementation(include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${porting_lib_version}"))
 
-    modImplementation("vazkii.autoreglib:AutoRegLib-${minecraft_version}:${autoreglib_version}")
-
     modImplementation(include("com.github.LlamaLad7:MixinExtras:0.1.1"))
+    modImplementation(include("vazkii.autoreglib:AutoRegLib:1.9.0-rev.7fdc0cd"))
     annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
 
     modImplementation "dev.emi:emi-fabric:${emi_version}" // EMI

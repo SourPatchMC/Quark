@@ -30,8 +30,7 @@ import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
@@ -40,7 +39,7 @@ import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.module.config.Config;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = EnvType.CLIENT)
 public class VariantAnimalTexturesModule extends QuarkModule {
 
 	private static ListMultimap<VariantTextureType, ResourceLocation> textures;

@@ -24,8 +24,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent.CharacterTyped;
@@ -57,7 +56,7 @@ import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.regex.Pattern;
 
-@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = ModuleCategory.CLIENT, hasSubscriptions = true, subscribeOn = EnvType.CLIENT)
 public class ChestSearchingModule extends QuarkModule {
 
 	@Config

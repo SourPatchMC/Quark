@@ -2,8 +2,7 @@ package vazkii.quark.base.client.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.platform.InputConstants.Type;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.settings.KeyModifier;
 
 import org.jetbrains.annotations.NotNull;

@@ -49,8 +49,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.ScreenEvent.KeyPressed;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -213,8 +212,8 @@ public class MiscUtil {
 		return state.getMaterial() == Material.STONE && state.isValidSpawn(world, below, type);
 	}
 
-	public static <T> List<T> massRegistryGet(Collection<String> coll, IForgeRegistry<T> registry) {
-		return coll.stream().map(ResourceLocation::new).map(registry::getValue).filter(Objects::nonNull).collect(Collectors.toList());
+	public static <T> List<T> massRegistryGet(Collection<String> coll, Registry<T> registry) {
+		return coll.stream().map(ResourceLocation::new).map(registry::get).filter(Objects::nonNull).collect(Collectors.toList());
 	}
 
 	public static void syncTE(BlockEntity tile) {

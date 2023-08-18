@@ -1,5 +1,10 @@
 package vazkii.quark.addons.oddities.module;
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import net.fabricmc.api.EnvType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.resources.model.BakedModel;
@@ -11,6 +16,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
+import net.minecraftforge.client.event.ModelEvent;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.TinyPotatoBlock;
 import vazkii.quark.addons.oddities.block.be.TinyPotatoBlockEntity;
@@ -28,7 +34,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-@LoadModule(category = ModuleCategory.ODDITIES, antiOverlap = "botania", hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = ModuleCategory.ODDITIES, antiOverlap = "botania", hasSubscriptions = true, subscribeOn = EnvType.CLIENT)
 public class TinyPotatoModule extends QuarkModule {
 
 	public static BlockEntityType<TinyPotatoBlockEntity> blockEntityType;

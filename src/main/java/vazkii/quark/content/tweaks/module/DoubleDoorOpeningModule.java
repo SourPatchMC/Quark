@@ -3,6 +3,7 @@ package vazkii.quark.content.tweaks.module;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import net.fabricmc.api.EnvType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -44,7 +45,7 @@ import vazkii.quark.base.network.QuarkNetwork;
 import vazkii.quark.base.network.message.DoubleDoorMessage;
 import vazkii.quark.integration.claim.IClaimIntegration;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true, subscribeOn = Dist.CLIENT, antiOverlap = "utilitix")
+@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true, subscribeOn = EnvType.CLIENT, antiOverlap = "utilitix")
 public class DoubleDoorOpeningModule extends QuarkModule {
 
 	@Config(flag = "doors_open_together")

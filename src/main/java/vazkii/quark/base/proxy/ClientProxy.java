@@ -10,8 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.ModelEvent.BakingCompleted;
@@ -63,7 +62,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerListeners(IEventBus bus) {
 		super.registerListeners(bus);
 
-		bus.addListener(this::clientSetup);
+		bus.addListener(this::clientSetup); // Will be done at ClientModInitializer
 		bus.addListener(this::registerReloadListeners);
 		bus.addListener(this::modelBake);
 		bus.addListener(this::modelLayers);

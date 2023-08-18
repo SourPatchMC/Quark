@@ -18,7 +18,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.common.Tags;
+import me.alphamode.forgetags.Tags;
 import vazkii.quark.base.module.config.type.DimensionConfig;
 import vazkii.quark.base.world.generator.Generator;
 import vazkii.quark.content.world.module.FairyRingsModule;

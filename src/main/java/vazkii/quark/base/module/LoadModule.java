@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import net.minecraftforge.api.distmarker.Dist;
+import net.fabricmc.api.EnvType;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -18,7 +18,7 @@ public @interface LoadModule {
 	String[] antiOverlap() default { };
 
 	boolean hasSubscriptions() default false;
-	Dist[] subscribeOn() default { Dist.CLIENT, Dist.DEDICATED_SERVER };
+	EnvType[] subscribeOn() default {EnvType.CLIENT, EnvType.SERVER};
 
 	boolean enabledByDefault() default true;
 	

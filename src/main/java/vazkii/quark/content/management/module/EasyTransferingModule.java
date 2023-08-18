@@ -2,8 +2,7 @@ package vazkii.quark.content.management.module;
 
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import vazkii.quark.base.client.handler.InventoryButtonHandler;
 import vazkii.quark.base.client.handler.InventoryButtonHandler.ButtonTargetType;
