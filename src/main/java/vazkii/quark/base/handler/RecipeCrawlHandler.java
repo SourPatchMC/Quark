@@ -2,6 +2,7 @@ package vazkii.quark.base.handler;
 
 import com.google.common.collect.*;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -11,7 +12,6 @@ import net.minecraftforge.event.TickEvent.ServerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.api.event.RecipeCrawlEvent;
 import vazkii.quark.api.event.RecipeCrawlEvent.Visit;
 import vazkii.quark.base.Quark;
@@ -133,9 +133,9 @@ public class RecipeCrawlHandler {
 	 */
 
 	public static void recursivelyFindCraftedItemsFromStrings(@Nullable Collection<String> derivationList, @Nullable Collection<String> whitelist, @Nullable Collection<String> blacklist, Consumer<Item> callback) {
-		List<Item> parsedDerivationList = derivationList == null ? null : MiscUtil.massRegistryGet(derivationList, ForgeRegistries.ITEMS);
-		List<Item> parsedWhitelist      = whitelist == null      ? null : MiscUtil.massRegistryGet(whitelist, ForgeRegistries.ITEMS);
-		List<Item> parsedBlacklist      = blacklist == null      ? null : MiscUtil.massRegistryGet(blacklist, ForgeRegistries.ITEMS);
+		List<Item> parsedDerivationList = derivationList == null ? null : MiscUtil.massRegistryGet(derivationList, Registry.ITEM);
+		List<Item> parsedWhitelist      = whitelist == null      ? null : MiscUtil.massRegistryGet(whitelist, Registry.ITEM);
+		List<Item> parsedBlacklist      = blacklist == null      ? null : MiscUtil.massRegistryGet(blacklist, Registry.ITEM);
 
 		recursivelyFindCraftedItems(parsedDerivationList, parsedWhitelist, parsedBlacklist, callback);
 	}

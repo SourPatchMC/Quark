@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.function.Predicate;
 
+import net.minecraft.core.Registry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,7 +40,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.inventory.EnchantmentMatrix;
 import vazkii.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
@@ -294,9 +294,9 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 			if(influencer != null) {
 				int count = influencer.getInfluenceStack(world, pos, state);
 
-				List<Enchantment> influencedEnchants = ForgeRegistries.ENCHANTMENTS.getValues().stream()
+				List<Enchantment> influencedEnchants = Registry.ENCHANTMENT.stream()
 						.filter((it) -> influencer.influencesEnchantment(world, pos, state, it)).toList();
-				List<Enchantment> dampenedEnchants = ForgeRegistries.ENCHANTMENTS.getValues().stream()
+				List<Enchantment> dampenedEnchants = Registry.ENCHANTMENT.stream()
 						.filter((it) -> influencer.dampensEnchantment(world, pos, state, it)).toList();
 				if(!influencedEnchants.isEmpty() || !dampenedEnchants.isEmpty()) {
 					for(Enchantment e : influencedEnchants) {

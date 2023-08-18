@@ -61,9 +61,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
-import org.quiltmc.loader.api.minecraft.ClientOnly;
+
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.config.screen.AbstractQScreen;
 import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;
@@ -152,7 +150,7 @@ public class MiscUtil {
 	}
 
 	public static <T, V> void editFinalField(Class<T> clazz, String fieldName, Object obj, V value) {
-		Field f = ObfuscationReflectionHelper.findField(clazz, fieldName);
+		Field f = ObfuscationReflectionHelper.findField(clazz, fieldName); //todo: What the fuck
 		editFinalField(f, obj, value);
 	}
 
@@ -173,7 +171,7 @@ public class MiscUtil {
 	public static void initializeEnchantmentList(Iterable<String> enchantNames, List<Enchantment> enchants) {
 		enchants.clear();
 		for(String s : enchantNames) {
-			Enchantment enchant = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(s));
+			Enchantment enchant = Registry.ENCHANTMENT.get(new ResourceLocation(s));
 			if (enchant != null && !EnchantmentsBegoneModule.shouldBegone(enchant))
 				enchants.add(enchant);
 		}

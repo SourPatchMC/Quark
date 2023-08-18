@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
@@ -22,7 +23,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.content.client.module.ImprovedTooltipsModule;
@@ -143,7 +143,7 @@ public class EnchantedBookTooltips {
 		testItems = Lists.newArrayList();
 
 		for (String loc : ImprovedTooltipsModule.enchantingStacks) {
-			Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(loc));
+			Item item = Registry.ITEM.get(new ResourceLocation(loc));
 			if (item != null)
 				testItems.add(new ItemStack(item));
 		}
@@ -160,12 +160,12 @@ public class EnchantedBookTooltips {
 			String left = tokens[0];
 			String right = tokens[1];
 
-			Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(left));
+			Enchantment ench = Registry.ENCHANTMENT.get(new ResourceLocation(left));
 			if(ench != null) {
 				tokens = right.split(",");
 
 				for(String itemId : tokens) {
-					Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemId));
+					Item item = Registry.ITEM.get(new ResourceLocation(itemId));
 					if (item != null)
 						additionalStacks.put(ench, new ItemStack(item));
 				}

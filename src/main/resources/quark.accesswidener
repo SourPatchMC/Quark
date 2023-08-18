@@ -3,3 +3,4 @@ accessible method net/minecraft/world/entity/projectile/ThrownTrident getPickupI
 accessible field net/minecraft/world/item/Item descriptionId Ljava/lang/String;
 accessible field net/minecraft/world/level/block/Block descriptionId Ljava/lang/String;
 accessible method net/minecraft/util/random/Weight <init> (I)V
+accessible class net/minecraft/core/HolderSet$Named

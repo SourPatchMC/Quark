@@ -1,5 +1,6 @@
 package vazkii.quark.base.handler;
 
+import io.github.fabricators_of_create.porting_lib.transfer.item.SlotItemHandler;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -20,7 +21,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.addons.oddities.inventory.BackpackMenu;
 import vazkii.quark.addons.oddities.inventory.slot.CachedItemHandlerSlot;
 import vazkii.quark.api.ICustomSorting;
@@ -342,7 +342,7 @@ public final class SortingHandler {
 				else if (o instanceof ItemStack stack)
 					itemList.add(stack.getItem());
 				else if (o instanceof String s) {
-					Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s));
+					Item item = Registry.ITEM.get(new ResourceLocation(s));
 					if (item != null)
 						itemList.add(item);
 				}
