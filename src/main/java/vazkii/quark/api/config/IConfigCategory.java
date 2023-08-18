@@ -1,7 +1,6 @@
 package vazkii.quark.api.config;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 import org.jetbrains.annotations.NotNull;

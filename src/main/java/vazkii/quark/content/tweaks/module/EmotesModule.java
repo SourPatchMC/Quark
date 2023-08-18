@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
+import net.fabricmc.api.EnvType;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableSet;
@@ -30,8 +31,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.RepositorySource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
@@ -58,7 +58,7 @@ import vazkii.quark.content.tweaks.client.emote.ModelAccessor;
 import vazkii.quark.content.tweaks.client.screen.widgets.EmoteButton;
 import vazkii.quark.content.tweaks.client.screen.widgets.TranslucentButton;
 
-@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true, subscribeOn = Dist.CLIENT)
+@LoadModule(category = ModuleCategory.TWEAKS, hasSubscriptions = true, subscribeOn = EnvType.CLIENT)
 public class EmotesModule extends QuarkModule {
 
 	private static final Set<String> DEFAULT_EMOTE_NAMES = ImmutableSet.of(

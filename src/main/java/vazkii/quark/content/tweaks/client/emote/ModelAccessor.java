@@ -13,8 +13,7 @@ package vazkii.quark.content.tweaks.client.emote;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import vazkii.aurelienribon.tweenengine.TweenAccessor;
 
 import java.util.Map;

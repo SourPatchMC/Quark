@@ -1,5 +1,6 @@
 package vazkii.quark.addons.oddities.block;
 
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
@@ -38,7 +39,7 @@ public class CrateBlock extends QuarkBlock implements EntityBlock {
 	public static final BooleanProperty PROPERTY_OPEN = BlockStateProperties.OPEN;
 
 	public CrateBlock(QuarkModule module) {
-		super("crate", module, CreativeModeTab.TAB_DECORATIONS, Properties.copy(Blocks.BARREL));
+		super("crate", module, CreativeModeTab.TAB_DECORATIONS, BlockBehaviour.Properties.copy(Blocks.BARREL));
 		registerDefaultState(stateDefinition.any().setValue(PROPERTY_OPEN, false));
 	}
 

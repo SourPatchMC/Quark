@@ -22,8 +22,7 @@ import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -74,7 +73,7 @@ public class ContributorRewardHandler {
 	// Moved to Dev capes to src/main/java/vazkii/quark/mixin/client/PlayerInfoMixin.java
 
 	@SubscribeEvent
-	@OnlyIn(Dist.DEDICATED_SERVER)
+	@DedicatedServerOnly
 	public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
 		ContributorRewardHandler.init();
 	}

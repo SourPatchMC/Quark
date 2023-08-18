@@ -2,6 +2,7 @@ package vazkii.quark.base.item;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import vazkii.arl.item.BasicItem;
 import vazkii.quark.base.client.handler.RequiredModTooltipHandler;
@@ -15,7 +16,7 @@ public class QuarkItem extends BasicItem implements IQuarkItem {
 	private final QuarkModule module;
 	private BooleanSupplier enabledSupplier = () -> true;
 
-	public QuarkItem(String regname, QuarkModule module, Properties properties) {
+	public QuarkItem(String regname, QuarkModule module, Item.Properties properties) {
 		super(regname, properties);
 		this.module = module;
 

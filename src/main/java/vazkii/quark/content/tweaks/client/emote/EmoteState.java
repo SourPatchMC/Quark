@@ -15,8 +15,7 @@ import com.mojang.math.Vector3f;
 
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 
 @ClientOnly
 public class EmoteState {

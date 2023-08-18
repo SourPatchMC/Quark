@@ -18,17 +18,17 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}" // Minecraft
-    mappings loom.layered { // Mappings
-        it.mappings "org.quiltmc:quilt-mappings:${minecraft_version}+build.${qm_version}:intermediary-v2"
-        it.parchment "org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip"
+    mappings(loom.layered { // Mappings
+        it.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${qm_version}:intermediary-v2")
+        it.parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
         it.officialMojangMappings { nameSyntheticMembers = false }
-    }
+    })
 
     modImplementation "org.quiltmc:quilt-loader:${quilt_loader_version}"
 
-    modImplementation "org.quiltmc:qsl:${qsl_version}+${minecraft_version}"
+    modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${qfapi_version}-${minecraft_version}"
 
-    modImplementation include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${porting_lib_version}")
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${porting_lib_version}"))
 
     modImplementation "vazkii.autoreglib:AutoRegLib-${minecraft_version}:${autoreglib_version}"
 

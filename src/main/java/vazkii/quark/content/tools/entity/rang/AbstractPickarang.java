@@ -1,6 +1,7 @@
 package vazkii.quark.content.tools.entity.rang;
 
 import com.google.common.collect.Multimap;
+import io.github.fabricators_of_create.porting_lib.util.PortingHooks;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,6 +15,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.IndirectEntityDamageSource;
@@ -28,6 +30,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ClipContext;
@@ -35,6 +38,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -42,8 +46,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.HitResult.Type;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -309,7 +312,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 		if (f == -1.0F) {
 			return 0.0F;
 		} else {
-			float i = ForgeHooks.isCorrectToolForDrops(state, player) ? 30 : 100;
+			float i = PortingHooks.isCorrectToolForDrops(state, player) ? 30 : 100;
 			float digSpeed = getPlayerDigSpeed(player,state, pos);
 			return (digSpeed / f / i);
 		}
@@ -333,7 +336,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 
 			f *= f1;
 		}
-		if (this.isEyeInFluidType(ForgeMod.WATER_TYPE.get())) {
+		if (this.isEyeInFluid(FluidTags.WATER)) {
 			f /= 5.0F;
 		}
 		f = ForgeEventFactory.getBreakSpeed(player, state, f, pos);
@@ -579,11 +582,11 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 	}
 
 	public int getEfficiencyModifier() {
-		return getStack().getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY);
+		return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY, getStack());
 	}
 
 	public int getPiercingModifier() {
-		return getStack().getEnchantmentLevel(Enchantments.PIERCING);
+		return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PIERCING, getStack());
 	}
 
 	public ItemStack getStack() {
@@ -620,7 +623,9 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 		compound.putInt(TAG_BLOCKS_BROKEN, blockHitCount);
 		compound.putInt(TAG_RETURN_SLOT, slot);
 
-		compound.put(TAG_ITEM_STACK, getStack().serializeNBT());
+		CompoundTag stackTag = new CompoundTag();
+		getStack().save(stackTag);
+		compound.put(TAG_ITEM_STACK, stackTag);
 		if (this.ownerId != null)
 			compound.put("owner", NbtUtils.createUUID(this.ownerId));
 	}

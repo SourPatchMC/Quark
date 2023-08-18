@@ -2,6 +2,7 @@ package vazkii.quark.addons.oddities.block;
 
 import java.util.List;
 
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,8 +30,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import vazkii.quark.addons.oddities.block.be.MagnetBlockEntity;
 import vazkii.quark.addons.oddities.block.be.MagnetizedBlockBlockEntity;
 import vazkii.quark.addons.oddities.magnetsystem.MagnetSystem;
@@ -44,7 +44,7 @@ public class MagnetBlock extends QuarkBlock implements EntityBlock {
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
 	public MagnetBlock(QuarkModule module) {
-		super("magnet", module, CreativeModeTab.TAB_REDSTONE, Properties.copy(Blocks.IRON_BLOCK));
+		super("magnet", module, CreativeModeTab.TAB_REDSTONE, BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK));
 		registerDefaultState(defaultBlockState().setValue(FACING, Direction.DOWN).setValue(POWERED, false));
 	}
 

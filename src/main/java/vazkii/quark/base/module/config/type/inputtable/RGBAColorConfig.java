@@ -1,7 +1,6 @@
 package vazkii.quark.base.module.config.type.inputtable;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import vazkii.quark.base.module.config.Config;
 
 import java.util.Objects;
