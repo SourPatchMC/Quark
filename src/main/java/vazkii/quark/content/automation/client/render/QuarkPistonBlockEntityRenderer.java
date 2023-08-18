@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.piston.PistonMovingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.content.automation.module.PistonsMoveTileEntitiesModule;
 
@@ -37,7 +36,7 @@ public class QuarkPistonBlockEntityRenderer {
 		BlockEntity tile = eb.newBlockEntity(truePos, state);
 		if (tile == null) return false;
 		CompoundTag tileTag = PistonsMoveTileEntitiesModule.getMovingBlockEntityData(piston.getLevel(), truePos);
-		if (tileTag != null && tile.getType() == ForgeRegistries.BLOCK_ENTITY_TYPES.getValue(new ResourceLocation(tileTag.getString("id"))))
+		if (tileTag != null && tile.getType() == Registry.BLOCK_ENTITY_TYPE.get(new ResourceLocation(tileTag.getString("id"))))
 			tile.load(tileTag);
 		Vec3 offset = new Vec3(piston.getXOff(partialTicks), piston.getYOff(partialTicks), piston.getZOff(partialTicks));
 		return renderTESafely(piston.getLevel(), truePos, state, tile, piston, partialTicks, offset, matrix, bufferIn, combinedLightIn, combinedOverlayIn);

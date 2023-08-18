@@ -16,7 +16,7 @@ import vazkii.quark.api.event.RecipeCrawlEvent;
 import vazkii.quark.api.event.RecipeCrawlEvent.Visit;
 import vazkii.quark.base.Quark;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

@@ -9,9 +9,9 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.BredAnimalsTrigger;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.EntityTypePredicate;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.api.IMutableAdvancement;
 import vazkii.quark.base.handler.advancement.AdvancementModifier;
@@ -43,7 +43,7 @@ public class TwoByTwoModifier extends AdvancementModifier {
 			Criterion criterion = new Criterion(BredAnimalsTrigger.TriggerInstance
 					.bredAnimals(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(type))));
 			
-			String name = ForgeRegistries.ENTITY_TYPES.getKey(type).toString();
+			String name = Registry.ENTITY_TYPE.getKey(type).toString();
 			adv.addRequiredCriterion(name, criterion);
 		}
 		

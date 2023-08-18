@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -12,7 +13,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -64,14 +64,14 @@ public class GoldToolsHaveFortuneModule extends QuarkModule {
 			if (split1.length == 2) {
 				ResourceLocation itemLoc = ResourceLocation.tryParse(split1[0]);
 				if (itemLoc != null) {
-					Item item = ForgeRegistries.ITEMS.getValue(itemLoc);
+					Item item = Registry.ITEM.get(itemLoc);
 					if (item != null) {
 						String[] split2 = split1[1].split("@");
 						if (split2.length == 0 || split2.length > 2)
 							continue;
 						ResourceLocation enchantLoc = ResourceLocation.tryParse(split2[0]);
 						if (enchantLoc != null) {
-							Enchantment enchant = ForgeRegistries.ENCHANTMENTS.getValue(enchantLoc);
+							Enchantment enchant = Registry.ENCHANTMENT.get(enchantLoc);
 							if (enchant != null) {
 								try {
 									int strength = split2.length == 1 ? 1 : Integer.parseInt(split2[1]);
@@ -88,7 +88,7 @@ public class GoldToolsHaveFortuneModule extends QuarkModule {
 		}
 
 		if (fortuneLevel > 0) {
-			for (Item item : ForgeRegistries.ITEMS) {
+			for (Item item : Registry.ITEM) {
 				if (item instanceof TieredItem tiered && tiered.getTier() == Tiers.GOLD) {
 					Enchantment enchant = item instanceof SwordItem ? Enchantments.MOB_LOOTING : Enchantments.BLOCK_FORTUNE;
 					var pastry = wellBakedEnchantments.computeIfAbsent(item, it -> new Object2IntArrayMap<>());
@@ -143,8 +143,8 @@ public class GoldToolsHaveFortuneModule extends QuarkModule {
 	}
 
 	public static void fakeEnchantmentTooltip(ItemStack stack, List<Component> components) {
-		for (Map.Entry<Enchantment, Integer> entry : stack.getAllEnchantments().entrySet()) {
-			int actualLevel = EnchantmentHelper.getTagEnchantmentLevel(entry.getKey(), stack);
+		for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.getEnchantments(stack).entrySet()) {
+			int actualLevel = EnchantmentHelper.getItemEnchantmentLevel(entry.getKey(), stack);
 			if (actualLevel != entry.getValue()) {
 				Component comp = entry.getKey().getFullname(entry.getValue());
 				if (italicTooltip)
@@ -162,8 +162,8 @@ public class GoldToolsHaveFortuneModule extends QuarkModule {
 	public static ListTag hideSmallerEnchantments(ItemStack stack, ListTag tag) {
 		if (staticEnabled && displayBakedEnchantmentsInTooltip) {
 			List<ResourceLocation> toRemove = Lists.newArrayList();
-			for (Map.Entry<Enchantment, Integer> entry : stack.getAllEnchantments().entrySet()) {
-				int actualLevel = EnchantmentHelper.getTagEnchantmentLevel(entry.getKey(), stack);
+			for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.getEnchantments(stack).entrySet()) {
+				int actualLevel = EnchantmentHelper.getItemEnchantmentLevel(entry.getKey(), stack);
 				if (actualLevel != entry.getValue() && actualLevel != 0) {
 					toRemove.add(EnchantmentHelper.getEnchantmentId(entry.getKey()));
 				}

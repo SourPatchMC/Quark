@@ -3,6 +3,7 @@ package vazkii.quark.content.automation.module;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -24,7 +25,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
@@ -43,7 +43,7 @@ public class JukeboxAutomationModule extends QuarkModule {
 	@Override
 	public void setup() {
 		MusicDiscBehaviour behaviour = new MusicDiscBehaviour();
-		enqueue(() -> ForgeRegistries.ITEMS.forEach(i -> {
+		enqueue(() -> Registry.ITEM.forEach(i -> {
 			if (i instanceof RecordItem)
 				DispenserBlock.DISPENSER_REGISTRY.put(i, behaviour);
 		}));

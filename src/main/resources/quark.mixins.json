@@ -46,7 +46,6 @@
     "PistonBaseBlockMixin",
     "PistonMovingBlockEntityMixin",
     "PlayerAdvancementsMixin",
-    "PlayerMixin",
     "PotionUtilsMixin",
     "ServerAdvancementManagerMixin",
     "ServerEntityMixin",

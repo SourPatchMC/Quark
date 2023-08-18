@@ -44,7 +44,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.api.IRuneColorProvider;
 import vazkii.quark.api.QuarkCapabilities;
 import vazkii.quark.base.Quark;
@@ -442,7 +441,7 @@ public class AncientTomesModule extends QuarkModule {
 
 		for(int i = 0; i < list.size(); ++i) {
 			CompoundTag nbt = list.getCompound(i);
-			Enchantment enchant = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(nbt.getString("id")));
+			Enchantment enchant = Registry.ENCHANTMENT.get(ResourceLocation.tryParse(nbt.getString("id")));
 			if (enchant != null)
 				return enchant;
 		}

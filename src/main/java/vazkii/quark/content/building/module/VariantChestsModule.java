@@ -31,7 +31,6 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
@@ -94,7 +93,7 @@ public class VariantChestsModule extends QuarkModule {
 
 	@Override
 	public void register() {
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":mixed_exclusion", MixedExclusionRecipe.SERIALIZER);
+		Registry.register(Registry.RECIPE_SERIALIZER, Quark.MOD_ID + ":mixed_exclusion", MixedExclusionRecipe.SERIALIZER);
 
 		VANILLA_WOODS.forEach(s -> addChest(s.name(), Blocks.CHEST));
 		MOD_WOODS.forEach(s -> addModChest(s, Blocks.CHEST));
@@ -115,8 +114,8 @@ public class VariantChestsModule extends QuarkModule {
 			VariantTrappedChestBlock::new, VariantTrappedChestBlock.Compat::new, trappedChestMappings,
 			allChests::addAll, trappedChests::addAll);
 
-		RegistryHelper.register(chestTEType, "variant_chest", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
-		RegistryHelper.register(trappedChestTEType, "variant_trapped_chest", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(chestTEType, "variant_chest", Registry.BLOCK_ENTITY_TYPE);
+		RegistryHelper.register(trappedChestTEType, "variant_trapped_chest", Registry.BLOCK_ENTITY_TYPE);
 
 		ILootrIntegration.INSTANCE.postRegister();
 	}

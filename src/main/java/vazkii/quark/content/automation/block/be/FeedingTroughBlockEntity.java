@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.util.FakePlayer;
+import io.github.fabricators_of_create.porting_lib.fake_players.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.content.automation.block.FeedingTroughBlock;

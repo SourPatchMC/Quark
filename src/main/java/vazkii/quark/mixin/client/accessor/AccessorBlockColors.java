@@ -2,6 +2,7 @@ package vazkii.quark.mixin.client.accessor;
 
 import java.util.Map;
 
+import net.minecraft.core.IdMapper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
@@ -14,5 +15,5 @@ import net.minecraft.world.level.block.Block;
 public interface AccessorBlockColors {
 	//fixme
 	@Accessor("blockColors")
-	Map<Reference<Block>, BlockColor> quark$getBlockColors();
+	IdMapper<BlockColor> quark$getBlockColors();
 }

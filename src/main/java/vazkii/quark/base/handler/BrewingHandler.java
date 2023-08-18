@@ -14,7 +14,6 @@ import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 import vazkii.arl.util.RegistryHelper;
@@ -132,12 +131,12 @@ public class BrewingHandler {
 	}
 
 	private static void addBrewingRecipe(Potion input, Ingredient reagent, Potion output) {
-		AccessorPotionBrewing.quark$getPotionMixes().add(new PotionBrewing.Mix<>(ForgeRegistries.POTIONS, input, reagent, output));
+		AccessorPotionBrewing.quark$getPotionMixes().add(new PotionBrewing.Mix<>(input, reagent, output));
 	}
 
 	private static Potion addPotion(MobEffectInstance eff, String baseName, String name) {
 		Potion effect = new Potion(Quark.MOD_ID + "." + baseName, eff);
-		RegistryHelper.register(effect, name, Registry.POTION_REGISTRY);
+		RegistryHelper.register(effect, name, Registry.POTION);
 
 		return effect;
 	}

@@ -1,6 +1,8 @@
 package vazkii.quark.content.mobs.entity;
 
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -41,8 +43,6 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.QuarkSounds;
@@ -54,7 +54,7 @@ import java.util.Objects;
 
 public class Toretoise extends Animal {
 
-	private static final TagKey<Block> BREAKS_TORETOISE_ORE = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "breaks_toretoise_ore"));
+	private static final TagKey<Block> BREAKS_TORETOISE_ORE = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Quark.MOD_ID, "breaks_toretoise_ore"));
 
 	public static final int ORE_TYPES = 5;
 	public static final int ANGERY_TIME = 20;
@@ -106,7 +106,7 @@ public class Toretoise extends Animal {
 
 	private void computeGoodFood() {
 		goodFood = Ingredient.of(ToretoiseModule.foods.stream()
-				.map(loc -> ForgeRegistries.ITEMS.getValue(new ResourceLocation(loc)))
+				.map(loc -> Registry.ITEM.get(new ResourceLocation(loc)))
 				.filter(Objects::nonNull)
 				.map(ItemStack::new));
 	}

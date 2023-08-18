@@ -322,8 +322,8 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	@Override
 	public float getStepHeight() {
 		float baseStep = wasTouchingWater ? 1F : 0.6F;
-		AttributeInstance stepHeightAttribute = getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get());
-		if (stepHeightAttribute != null) return (float) Math.max(0, baseStep + stepHeightAttribute.getValue());
+		/*AttributeInstance stepHeightAttribute = getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get());
+		if (stepHeightAttribute != null) return (float) Math.max(0, baseStep + stepHeightAttribute.getValue());*/
 		return baseStep;
 	}
 
@@ -334,7 +334,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public boolean isPushedByFluid(FluidType type) {
+	public boolean isPushedByFluid() {
 		return false;
 	}
 
@@ -401,6 +401,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		return !stack.isEmpty() && getTemptationItems().test(stack);
 	}
 
+	//Todo: Suggest to Quark Upstream that they should turn this into a tag.
 	private Ingredient getTemptationItems() {
 		if(temptationItems == null)
 			temptationItems = Ingredient.merge(Lists.newArrayList(

@@ -27,12 +27,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.common.util.FakePlayer;
+import io.github.fabricators_of_create.porting_lib.fake_players.FakePlayer;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.MatrixEnchantingTableBlock;
@@ -231,7 +230,7 @@ public class MatrixEnchantingModule extends QuarkModule {
 			if (damp)
 				enchStr = enchStr.substring(1);
 
-			Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(enchStr));
+			Enchantment ench = Registry.ENCHANTMENT.get(new ResourceLocation(enchStr));
 			if (ench != null) {
 				if (damp)
 					dampen.add(ench);

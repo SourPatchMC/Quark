@@ -21,7 +21,6 @@ import net.minecraftforge.common.util.NonNullConsumer;
 import net.minecraftforge.event.TickEvent.LevelTickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 import vazkii.quark.api.IIndirectConnector;
 import vazkii.quark.api.IPistonCallback;
@@ -291,7 +290,7 @@ public class PistonsMoveTileEntitiesModule extends QuarkModule {
 		if (inWorldEntity == null) {
 			Quark.LOG.warn("No block entity found at {} (expected {})", pos.toShortString(), expectedTypeStr);
 			return null;
-		} else if (inWorldEntity.getType() != ForgeRegistries.BLOCK_ENTITY_TYPES.getValue(new ResourceLocation(expectedTypeStr))) {
+		} else if (inWorldEntity.getType() != Registry.BLOCK_ENTITY_TYPE.get(new ResourceLocation(expectedTypeStr))) {
 			Quark.LOG.warn("Wrong block entity found at {} (expected {}, got {})", pos.toShortString(), expectedTypeStr, BlockEntityType.getKey(inWorldEntity.getType()));
 			return null;
 		} else {

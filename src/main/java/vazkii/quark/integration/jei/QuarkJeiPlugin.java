@@ -15,6 +15,7 @@ import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -29,7 +30,6 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.client.screen.BackpackInventoryScreen;
@@ -93,8 +93,8 @@ public class QuarkJeiPlugin implements IModPlugin {
 				return;
 
 			Set<Potion> hidePotions = Sets.newHashSet();
-			for (Potion potion : ForgeRegistries.POTIONS.getValues()) {
-				ResourceLocation loc = ForgeRegistries.POTIONS.getKey(potion);
+			for (Potion potion : Registry.POTION) {
+				ResourceLocation loc = Registry.POTION.getKey(potion);
 				if (loc != null && loc.getNamespace().equals("quark")) {
 					if (!BrewingHandler.isEnabled(potion)) {
 						hidePotions.add(potion);
@@ -103,8 +103,8 @@ public class QuarkJeiPlugin implements IModPlugin {
 			}
 
 			NonNullList<ItemStack> stacks = NonNullList.create();
-			for (Item item : ForgeRegistries.ITEMS.getValues()) {
-				ResourceLocation loc = ForgeRegistries.ITEMS.getKey(item);
+			for (Item item : Registry.ITEM) {
+				ResourceLocation loc = Registry.ITEM.getKey(item);
 				if (loc != null && loc.getNamespace().equals("quark")) {
 					if ((item instanceof IQuarkItem quarkItem && !quarkItem.isEnabled()) ||
 							(item instanceof BlockItem blockItem && blockItem.getBlock() instanceof IQuarkBlock quarkBlock && !quarkBlock.isEnabled())) {
@@ -165,14 +165,14 @@ public class QuarkJeiPlugin implements IModPlugin {
 			MutableComponent hint = Component.translatable("quark.jei.hint_preamble");
 			hint.setStyle(hint.getStyle().withColor(0x0b5d4b));
 
-			List<Item> blacklist = MiscUtil.massRegistryGet(GeneralConfig.suppressedInfo, ForgeRegistries.ITEMS);
+			List<Item> blacklist = MiscUtil.massRegistryGet(GeneralConfig.suppressedInfo, Registry.ITEM);
 
 			ModuleLoader.INSTANCE.addStackInfo((i, c) -> {
 				if(blacklist.contains(i))
 					return;
 
 				MutableComponent compound = Component.literal("");
-				if(!ForgeRegistries.ITEMS.getKey(i).getNamespace().equals(Quark.MOD_ID))
+				if(!Registry.ITEM.getKey(i).getNamespace().equals(Quark.MOD_ID))
 					compound = compound.append(hint);
 				compound = compound.append(c);
 

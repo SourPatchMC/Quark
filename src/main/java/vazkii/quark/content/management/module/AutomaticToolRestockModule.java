@@ -32,7 +32,6 @@ import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.InventoryIIH;
 import vazkii.quark.addons.oddities.module.BackpackModule;
 import vazkii.quark.api.event.GatherToolClassesEvent;

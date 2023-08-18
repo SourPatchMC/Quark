@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.ImmutableSet;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraftforge.common.ToolActions;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.ToolInteractionHandler;
 import vazkii.quark.base.handler.VariantHandler;

@@ -1,6 +1,7 @@
 package vazkii.quark.content.management.module;
 
 import com.mojang.datafixers.util.Either;
+import io.github.fabricators_of_create.porting_lib.util.NetworkHooks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -41,7 +42,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
@@ -99,7 +99,7 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 	public void configChanged() {
 		staticEnabled = configEnabled;
 
-		shulkers = MiscUtil.massRegistryGet(GeneralConfig.shulkerBoxes, ForgeRegistries.ITEMS);
+		shulkers = MiscUtil.massRegistryGet(GeneralConfig.shulkerBoxes, Registry.ITEM);
 	}
 
 	public static boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player) {

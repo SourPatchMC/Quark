@@ -10,7 +10,7 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;

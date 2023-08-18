@@ -42,7 +42,7 @@ public class FuelHandler {
 	}
 
 	public static void addAllWoods() {
-		for(Block block : ForgeRegistries.BLOCKS) {
+		for(Block block : Registry.BLOCK) {
 			ResourceLocation regname = RegistryHelper.getRegistryName(block, Registry.BLOCK);
 			if(block != null && regname.getNamespace().equals(Quark.MOD_ID) && block.defaultBlockState().getMaterial() == Material.WOOD)
 				addWood(block);
