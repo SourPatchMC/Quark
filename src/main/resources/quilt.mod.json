@@ -18,6 +18,9 @@
       },
       {
         "id": "quilted_fabric_api"
+      },
+      {
+        "id": "autoreglib"
       }
     ],
     "breaks": [
@@ -47,5 +50,6 @@
   "mixin": [
     "quark.mixins.json",
     "quark_integrations.mixins.json"
-  ]
+  ],
+  "access_widener": "quark.accesswidener"
 }

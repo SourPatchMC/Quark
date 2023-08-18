@@ -49,7 +49,7 @@ sourceSets {
 }
 
 loom {
-//    accessWidenerPath = file("src/main/resources/quark.accesswidener")
+    accessWidenerPath = file("src/main/resources/quark.accesswidener")
 
     runs {
         datagen {
@@ -59,7 +59,7 @@ loom {
             vmArg "-Dfabric-api.datagen"
             vmArg "-Dfabric-api.datagen.output-dir=${file("src/generated/resources")}"
             vmArg "-Dfabric-api.datagen.modid=quark"
-//            vmArg "-Dporting_lib.datagen.existing_resources=${file("src/main/resources")}"
+            vmArg "-Dporting_lib.datagen.existing_resources=${file("src/main/resources")}"
         }
 
         server {
