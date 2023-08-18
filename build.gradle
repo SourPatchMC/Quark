@@ -30,9 +30,12 @@ dependencies {
 
     modImplementation(include("io.github.fabricators_of_create.Porting-Lib:Porting-Lib:${porting_lib_version}"))
 
-    modImplementation(include("com.github.LlamaLad7:MixinExtras:0.1.1"))
-    modImplementation(include("vazkii.autoreglib:AutoRegLib:1.9.0-rev.7fdc0cd"))
-    annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
+    modImplementation "vazkii.autoreglib:AutoRegLib-${minecraft_version}:${autoreglib_version}"
+
+    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${minecraft_version}-${terrablender_version}"
+
+    modImplementation include("com.github.LlamaLad7:MixinExtras:0.1.1")
+    annotationProcessor "com.github.LlamaLad7:MixinExtras:0.1.1"
 
     modImplementation "dev.emi:emi-fabric:${emi_version}" // EMI
 
