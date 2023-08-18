@@ -10,10 +10,8 @@ import vazkii.quark.content.experimental.module.GameNerfsModule;
 
 @Mixin(ElytraItem.class)
 public class ElytraItemMixin {
-
 	@ModifyReturnValue(method = "isFlyEnabled", at = @At("RETURN"), remap = false)
 	private static boolean canApply(boolean prev, ItemStack stack, LivingEntity living) {
 		return GameNerfsModule.canEntityUseElytra(living, prev);
 	}
-
 }

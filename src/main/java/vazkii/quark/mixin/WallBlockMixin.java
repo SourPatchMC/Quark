@@ -10,10 +10,8 @@ import vazkii.quark.content.building.module.VerticalSlabsModule;
 
 @Mixin(WallBlock.class)
 public class WallBlockMixin {
-
 	@ModifyReturnValue(method = "connectsTo", at = @At("RETURN"))
 	private boolean connectsTo(boolean prev, BlockState state, boolean sturdy, Direction dir) {
 		return VerticalSlabsModule.shouldWallConnect(state, dir, prev);
 	}
-
 }

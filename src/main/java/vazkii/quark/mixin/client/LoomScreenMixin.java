@@ -9,10 +9,8 @@ import vazkii.quark.content.tweaks.module.MoreBannerLayersModule;
 
 @Mixin(LoomScreen.class)
 public class LoomScreenMixin {
-
 	@ModifyConstant(method = "containerChanged", constant = @Constant(intValue = 6))
 	private static int getLimit(int curr) {
 		return MoreBannerLayersModule.getLimit(curr);
 	}
-	
 }

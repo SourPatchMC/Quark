@@ -11,7 +11,6 @@ import vazkii.quark.content.tools.item.PickarangItem;
 
 @Mixin(Enchantment.class)
 public class EnchantmentMixin {
-
 	@ModifyReturnValue(method = "canEnchant", at = @At("RETURN"))
 	private boolean canApply(boolean prev, ItemStack stack) {
 		Enchantment self = (Enchantment) (Object) this;
@@ -30,8 +29,8 @@ public class EnchantmentMixin {
 		return prev && !EnchantmentsBegoneModule.shouldBegone(self);
 	}
 
+	//fixme
 	private static boolean canPiercingApply(Enchantment enchantment, ItemStack stack) {
 		return enchantment == Enchantments.PIERCING && stack.getItem() instanceof PickarangItem;
 	}
-
 }

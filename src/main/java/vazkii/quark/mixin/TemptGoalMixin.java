@@ -15,7 +15,6 @@ import vazkii.quark.content.automation.module.FeedingTroughModule;
 
 @Mixin(TemptGoal.class)
 public class TemptGoalMixin {
-
 	@Shadow
 	protected Player player;
 

@@ -13,7 +13,6 @@ import vazkii.quark.content.building.module.VerticalSlabsModule;
 
 @Mixin(IronBarsBlock.class)
 public class IronBarsBlockMixin {
-
 	@ModifyReturnValue(method = "getStateForPlacement", at = @At("RETURN"))
 	private BlockState connectsTo(BlockState prev, BlockPlaceContext context) {
 		return VerticalSlabsModule.messWithPaneState(context.getLevel(), context.getClickedPos(), prev);
@@ -23,6 +22,4 @@ public class IronBarsBlockMixin {
 	private BlockState updateShape(BlockState prev, BlockState state, Direction dir, BlockState neighbor, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
 		return VerticalSlabsModule.messWithPaneState(level, pos, prev);
 	}
-
-
 }

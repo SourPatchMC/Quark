@@ -17,7 +17,6 @@ import java.util.function.Consumer;
 
 @Mixin(ServerEntity.class)
 public abstract class ServerEntityMixin {
-
 	@Final
 	@Shadow
 	private Entity entity;
@@ -36,5 +35,4 @@ public abstract class ServerEntityMixin {
 		if (entity instanceof ThrownTrident trident)
 			ColorRunesModule.syncTrident(send, trident, true);
 	}
-
 }

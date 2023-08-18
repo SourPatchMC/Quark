@@ -11,7 +11,6 @@ import java.util.List;
 
 @Mixin(VillagerTrades.EnchantBookForEmeralds.class)
 public class EnchantBookForEmeraldsMixin {
-
 	@ModifyVariable(method = "getOffer", at = @At("STORE"))
 	private List<Enchantment> filterBegoneFromTrades(List<Enchantment> enchantments) {
 		return EnchantmentsBegoneModule.begoneEnchantments(enchantments);

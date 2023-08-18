@@ -9,8 +9,6 @@ import java.util.List;
 
 @Mixin(LootTable.class)
 public interface AccessorLootTable {
-
 	@Accessor("pools")
 	LootPool[] quark$getPools();
-
 }

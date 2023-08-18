@@ -9,10 +9,8 @@ import java.util.List;
 
 @Mixin(PotionBrewing.class)
 public interface AccessorPotionBrewing {
-
 	@Accessor("POTION_MIXES")
 	static List<PotionBrewing.Mix<Potion>> quark$getPotionMixes() {
 		throw new UnsupportedOperationException();
 	}
-
 }

@@ -12,7 +12,6 @@ import vazkii.quark.base.item.QuarkMusicDiscItem;
 
 @Mixin(LevelRenderer.class)
 public class LevelRendererMixin {
-
 	@Inject(method = "playStreamingMusic(Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/RecordItem;)V",
 			remap = false,
 			at = @At(value = "JUMP", ordinal = 1),
@@ -22,5 +21,17 @@ public class LevelRendererMixin {
 			info.cancel();
 	}
 
-
+	// fixme this should work however i am not sure and cant test
+	// 	@Final
+	//	@Shadow
+	//	private final Map<BlockPos, SoundInstance> playingRecords = Maps.newHashMap();
+	//
+	//	@Inject(method = "playStreamingMusic(Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V",
+	//			remap = false,
+	//			at = @At(value = "JUMP", ordinal = 1),
+	//			cancellable = true)
+	//	public void playStreamingMusic(SoundEvent soundEvent, BlockPos pos, CallbackInfo ci) {
+	//		if(playingRecords instanceof QuarkMusicDiscItem quarkDisc && quarkDisc.playAmbientSound(pos))
+	//			ci.cancel();
+	//	}
 }

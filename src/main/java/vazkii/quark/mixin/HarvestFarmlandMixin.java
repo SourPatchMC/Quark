@@ -12,16 +12,18 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import vazkii.quark.content.tweaks.module.SimpleHarvestModule;
 
+import java.util.Objects;
+
 @Mixin(HarvestFarmland.class)
 public class HarvestFarmlandMixin {
-
 	@WrapOperation(method = "tick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/npc/Villager;J)V",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;destroyBlock(Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/entity/Entity;)Z"))
 	private boolean harvestAndReplant(ServerLevel instance, BlockPos pos, boolean b, Entity entity, Operation<Boolean> original) {
 		if (!SimpleHarvestModule.staticEnabled && SimpleHarvestModule.villagersUseSimpleHarvest) {
 			BlockState state = instance.getBlockState(pos);
 			SimpleHarvestModule.harvestAndReplant(instance, pos, state, entity, ItemStack.EMPTY);
-			if (state.equals(instance.getBlockState(pos)))
+			//fixme replaced state.equals(instance.getBlockState(pos)) with Objects.equals(state, instance.getBlockState(pos))
+			if (Objects.equals(state, instance.getBlockState(pos)))
 				return original.call(instance, pos, b, entity);
 			return true;
 		}

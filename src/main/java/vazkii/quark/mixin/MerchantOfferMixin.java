@@ -10,12 +10,10 @@ import vazkii.quark.content.tools.module.AncientTomesModule;
 
 @Mixin(MerchantOffer.class)
 public class MerchantOfferMixin {
-
 	@Inject(method = "isRequiredItem", at = @At("HEAD"), cancellable = true)
 	private void isRequiredItem(ItemStack comparing, ItemStack reference, CallbackInfoReturnable<Boolean> cir) {
 		MerchantOffer offer = (MerchantOffer) (Object) this;
 		if (AncientTomesModule.matchWildcardEnchantedBook(offer, comparing, reference))
 			cir.setReturnValue(true);
 	}
-
 }

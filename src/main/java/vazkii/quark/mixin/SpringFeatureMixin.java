@@ -11,11 +11,9 @@ import vazkii.quark.content.world.module.NoMoreLavaPocketsModule;
 
 @Mixin(SpringFeature.class)
 public class SpringFeatureMixin {
-
 	@Inject(method = "place", at = @At("HEAD"), cancellable = true)
 	private void canSurvive(FeaturePlaceContext<SpringConfiguration> context, CallbackInfoReturnable<Boolean> cir) {
 		if (NoMoreLavaPocketsModule.shouldDisable(context.config()))
 			cir.setReturnValue(false);
 	}
-
 }

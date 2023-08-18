@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ArrowPiercingEnchantment.class)
 public class ArrowPiercingEnchantmentMixin {
-
 	@ModifyReturnValue(method = "checkCompatibility", at = @At("RETURN"))
 	private boolean checkCompatibility(boolean compatible, Enchantment enchantment) {
 		return compatible && enchantment != Enchantments.BLOCK_EFFICIENCY;

@@ -12,7 +12,6 @@ import vazkii.quark.content.tools.module.AncientTomesModule;
 
 @Mixin(MerchantMenu.class)
 public abstract class MerchantMenuMixin {
-
 	@Final
 	@Shadow
 	private MerchantContainer tradeContainer;

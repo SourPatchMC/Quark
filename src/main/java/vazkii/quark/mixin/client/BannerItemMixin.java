@@ -9,10 +9,8 @@ import vazkii.quark.content.tweaks.module.MoreBannerLayersModule;
 
 @Mixin(BannerItem.class)
 public class BannerItemMixin {
-
 	@ModifyConstant(method = "appendHoverTextFromBannerBlockEntityTag", constant = @Constant(intValue = 6))
 	private static int getLimit(int curr) {
 		return MoreBannerLayersModule.getLimit(curr);
 	}
-	
 }

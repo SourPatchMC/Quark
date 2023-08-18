@@ -8,9 +8,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import vazkii.quark.content.tools.module.TorchArrowModule;
 
-@Mixin({CrossbowItem.class})
+@Mixin(CrossbowItem.class)
 public abstract class CrossbowMultishotMixin {
-
+    //fixme
     @ModifyVariable(method = "tryLoadProjectiles", at = @At("STORE"), ordinal = 1)
     private static int tryLoadProjectiles(int original, LivingEntity entity, ItemStack stack) {
         if (original > 1 && entity.getProjectile(stack).is(TorchArrowModule.ignoreMultishot)) return 1;

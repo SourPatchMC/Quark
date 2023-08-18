@@ -22,7 +22,6 @@ import java.util.Map;
 
 @Mixin(PistonBaseBlock.class)
 public class PistonBaseBlockMixin {
-
 	@ModifyExpressionValue(method = "isPushable", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;hasBlockEntity()Z"))
 	private static boolean isPushable(boolean prev, BlockState blockStateIn) {
 		return PistonsMoveTileEntitiesModule.shouldMoveTE(prev, blockStateIn);
@@ -33,6 +32,7 @@ public class PistonBaseBlockMixin {
 		PistonsMoveTileEntitiesModule.detachTileEntities(worldIn, pistonBlockStructureHelper, directionIn, extending);
 	}
 
+	//fixme
 	@ModifyExpressionValue(method = {"checkIfExtend", "moveBlocks"}, at = @At(value = "NEW", target = "net/minecraft/world/level/block/piston/PistonStructureResolver"))
 	private PistonStructureResolver transformStructureHelper(PistonStructureResolver prev) {
 		return new QuarkPistonStructureResolver(prev);

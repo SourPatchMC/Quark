@@ -9,7 +9,7 @@ import vazkii.quark.content.tools.item.PickarangItem;
 
 @Mixin(DamageEnchantment.class)
 public class DamageEnchantmentMixin {
-
+	//fixme
 	@ModifyReturnValue(method = "canEnchant", at = @At("RETURN"))
 	private boolean canEnchant(boolean prev, ItemStack stack) {
 		return prev || stack.getItem() instanceof PickarangItem;

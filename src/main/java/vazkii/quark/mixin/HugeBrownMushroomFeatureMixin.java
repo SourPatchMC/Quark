@@ -13,11 +13,9 @@ import vazkii.quark.content.experimental.module.GameNerfsModule;
 
 @Mixin(value = HugeBrownMushroomFeature.class)
 public class HugeBrownMushroomFeatureMixin {
-
 	@WrapWithCondition(method = "makeCap", at = @At(value = "INVOKE",
 		target = "Lnet/minecraft/world/level/levelgen/feature/HugeBrownMushroomFeature;setBlock(Lnet/minecraft/world/level/LevelWriter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V"))
 	public boolean isValidRepairItem(HugeBrownMushroomFeature instance, LevelWriter level, BlockPos pos, BlockState stateToSet) {
 		return !GameNerfsModule.shouldMushroomsUseTreeReplacementLogic() || TreeFeature.isAirOrLeaves((LevelAccessor) level, pos);
 	}
-
 }

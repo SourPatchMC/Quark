@@ -7,8 +7,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(AbstractArrow.class)
 public interface AccessorAbstractArrow {
-
 	@Invoker("getPickupItem")
 	ItemStack quark$getPickupItem();
-
 }

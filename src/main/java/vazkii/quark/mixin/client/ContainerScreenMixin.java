@@ -9,19 +9,17 @@ import vazkii.quark.content.management.module.EasyTransferingModule;
 
 @Mixin(AbstractContainerScreen.class)
 public class ContainerScreenMixin {
-
 	@ModifyVariable(method = "mouseClicked(DDI)Z",
 			at = @At("STORE"),
-			index = 15)
+			index = 12)
 	private boolean hasShiftDownClick(boolean curr) {
 		return EasyTransferingModule.hasShiftDown(curr);
 	}
 	
 	@ModifyVariable(method = "mouseReleased(DDI)Z",
 			at = @At("STORE"),
-			index = 12)
+			index = 9)
 	private boolean hasShiftDownRelease(boolean curr) {
 		return EasyTransferingModule.hasShiftDown(curr);
 	}
-	
 }

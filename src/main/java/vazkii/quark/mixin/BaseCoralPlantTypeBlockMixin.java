@@ -12,7 +12,6 @@ import vazkii.quark.content.tweaks.module.CoralOnCactusModule;
 
 @Mixin(BaseCoralPlantTypeBlock.class)
 public class BaseCoralPlantTypeBlockMixin {
-
 	@ModifyReturnValue(method = "scanForWater", at = @At("RETURN"))
 	private static boolean scanForWater(boolean prev, BlockState state, BlockGetter getter, BlockPos pos) {
 		return CoralOnCactusModule.scanForWater(state, getter, pos, prev);
@@ -22,5 +21,4 @@ public class BaseCoralPlantTypeBlockMixin {
 	private boolean canSurvive(boolean prev, BlockState state, LevelReader getter, BlockPos pos) {
 		return CoralOnCactusModule.scanForWater(state, getter, pos, prev);
 	}
-
 }

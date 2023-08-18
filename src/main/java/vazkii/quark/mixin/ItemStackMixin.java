@@ -38,9 +38,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//fixme
 @Mixin(ItemStack.class)
 public class ItemStackMixin implements PseudoAccessorItemStack {
-
 	@ModifyReturnValue(method = "getDisplayName", at = @At("RETURN"))
 	private Component getHoverName(Component prev) {
 		return ItemSharingModule.createStackComponent((ItemStack) (Object) this, (MutableComponent) prev);

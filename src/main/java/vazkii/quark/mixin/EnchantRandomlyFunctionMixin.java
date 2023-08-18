@@ -11,7 +11,6 @@ import java.util.List;
 
 @Mixin(EnchantRandomlyFunction.class)
 public class EnchantRandomlyFunctionMixin {
-
 	@ModifyVariable(method = "run", at = @At("STORE"))
 	private List<Enchantment> filterBegoneFromTrades(List<Enchantment> enchantments) {
 		return EnchantmentsBegoneModule.begoneEnchantments(enchantments);

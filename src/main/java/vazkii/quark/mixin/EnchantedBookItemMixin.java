@@ -12,10 +12,8 @@ import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;
 
 @Mixin(EnchantedBookItem.class)
 public class EnchantedBookItemMixin {
-
 	@Inject(method = "fillItemCategory", at = @At("RETURN"))
 	private void canApply(CreativeModeTab tab, NonNullList<ItemStack> stacks, CallbackInfo ci) {
 		EnchantmentsBegoneModule.begoneItems(stacks);
 	}
-
 }

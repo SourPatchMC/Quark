@@ -15,7 +15,6 @@ import vazkii.quark.content.client.module.UsesForCursesModule;
 
 @Mixin(ArmorStandModel.class)
 public class ArmorStandModelMixin {
-
 	@Shadow
 	@Final
 	private ModelPart rightBodyStick;

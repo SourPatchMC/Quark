@@ -17,10 +17,8 @@ import vazkii.quark.base.handler.UndergroundBiomeHandler;
 
 @Mixin(OverworldBiomeBuilder.class)
 public class OverworldBiomeBuilderMixin {
-
 	@Inject(method = "addUndergroundBiomes", at = @At("RETURN"))
 	public void addUndergroundBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer, CallbackInfo info) {
 		UndergroundBiomeHandler.addUndergroundBiomes((OverworldBiomeBuilder) (Object) this, consumer);
 	}
-	
 }

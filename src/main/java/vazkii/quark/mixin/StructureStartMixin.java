@@ -20,7 +20,6 @@ import vazkii.quark.base.handler.StructureBlockReplacementHandler;
 
 @Mixin(StructureStart.class)
 public class StructureStartMixin {
-
 	@Shadow
 	@Final
 	private PiecesContainer pieceContainer;
@@ -38,6 +37,5 @@ public class StructureStartMixin {
 	public void resetReference(WorldGenLevel level, StructureManager manager, ChunkGenerator generator, RandomSource random, BoundingBox bounds, ChunkPos pos, CallbackInfo callback) {
 		StructureBlockReplacementHandler.setActiveStructure(null, null);
 	}
-
 }
 

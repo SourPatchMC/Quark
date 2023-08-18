@@ -11,11 +11,9 @@ import vazkii.quark.content.client.module.SoulCandlesModule;
 
 @Mixin(AbstractCandleBlock.class)
 public class AbstractCandleBlockMixin {
-
 	@WrapOperation(method = "addParticlesAndSound", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addParticle(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V"))
 	private static void addParticlesAndSound(Level instance, ParticleOptions options, double x, double y, double z, double mx, double my, double mz, Operation<Void> original) {
 		ParticleOptions newOptions = SoulCandlesModule.getParticleOptions(options, instance, x, y, z);
 		original.call(instance, newOptions, x, y, z, mx, my, mz);
 	}
-
 }

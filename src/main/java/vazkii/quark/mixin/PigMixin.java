@@ -10,11 +10,9 @@ import vazkii.quark.content.tweaks.module.PigLittersModule;
 
 @Mixin(Pig.class)
 public class PigMixin {
-
 	@Inject(method = "isFood", at = @At("HEAD"), cancellable = true)
 	public void pigsEatGoldenCarrots(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
 		if (PigLittersModule.canEat(stack))
 			cir.setReturnValue(true);
 	}
-
 }

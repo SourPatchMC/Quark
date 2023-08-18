@@ -12,7 +12,6 @@ import vazkii.quark.content.management.module.ItemSharingModule;
 
 @Mixin(ChatComponent.class)
 public class ChatComponentMixin {
-
 	@WrapOperation(method = "render", at = @At(value = "INVOKE",
 			target = "Lnet/minecraft/client/gui/Font;drawShadow(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/util/FormattedCharSequence;FFI)I"))
 	private int drawItems(Font instance, PoseStack poseStack, FormattedCharSequence sequence, float x, float y, int color, Operation<Integer> original) {

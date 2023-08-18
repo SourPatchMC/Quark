@@ -16,7 +16,6 @@ import vazkii.quark.content.tweaks.module.EnhancedLaddersModule;
 
 @Mixin(LadderBlock.class)
 public class LadderBlockMixin {
-	
 	@Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
 	private void canSurvive(BlockState state, LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		if(EnhancedLaddersModule.canLadderSurvive(state, level, pos)) {
@@ -24,7 +23,8 @@ public class LadderBlockMixin {
 			callbackInfoReturnable.cancel();
 		}
 	}
-	
+
+	//fixme
 	@Inject(method = "updateShape", at = @At("HEAD"), cancellable = true)
 	private void updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos, CallbackInfoReturnable<BlockState> callbackInfoReturnable) {
 		if(!EnhancedLaddersModule.updateLadder(state, facing, facingState, world, currentPos, facingPos)) {
@@ -32,5 +32,4 @@ public class LadderBlockMixin {
 			callbackInfoReturnable.cancel();
 		}
 	}
-	
 }

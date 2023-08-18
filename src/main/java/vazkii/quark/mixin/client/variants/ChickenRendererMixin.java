@@ -14,7 +14,6 @@ import vazkii.quark.content.tweaks.module.GrabChickensModule;
 
 @Mixin(ChickenRenderer.class)
 public class ChickenRendererMixin {
-	
 	@Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/animal/Chicken;)Lnet/minecraft/resources/ResourceLocation;", at = @At("HEAD"), cancellable = true)
 	private void overrideTexture(Chicken chicken, CallbackInfoReturnable<ResourceLocation> cir) {
 		ChickenRenderer render = (ChickenRenderer) ((Object) this);

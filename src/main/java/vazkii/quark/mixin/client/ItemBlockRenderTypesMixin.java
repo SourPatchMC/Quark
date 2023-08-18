@@ -13,7 +13,6 @@ import vazkii.quark.content.management.module.ItemSharingModule;
 
 @Mixin(ItemBlockRenderTypes.class)
 public class ItemBlockRenderTypesMixin {
-
 	@Inject(method = "getRenderType(Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/client/renderer/RenderType;",
 			at = @At("HEAD"), cancellable = true)
 	private static void overrideRenderType(BlockState state, boolean needsCulling, CallbackInfoReturnable<RenderType> cir) {
@@ -25,5 +24,4 @@ public class ItemBlockRenderTypesMixin {
 			}
 		}
 	}
-
 }

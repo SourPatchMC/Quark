@@ -16,7 +16,6 @@ import java.util.List;
 
 @Mixin(value = PotionUtils.class)
 public class PotionUtilsMixin {
-
 	@ModifyVariable(method = "addPotionTooltip", at = @At(value = "INVOKE", target = "Ljava/util/List;isEmpty()Z", ordinal = 1, shift = At.Shift.BEFORE), ordinal = 2)
 	private static List<Pair<Attribute, AttributeModifier>> overrideAttributeTooltips(List<Pair<Attribute, AttributeModifier>> attributes, ItemStack stack) {
 		if (AttributeTooltips.shouldHideAttributes()) {

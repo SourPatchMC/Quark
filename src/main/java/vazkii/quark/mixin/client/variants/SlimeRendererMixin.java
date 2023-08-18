@@ -12,7 +12,6 @@ import vazkii.quark.content.client.module.VariantAnimalTexturesModule;
 
 @Mixin(SlimeRenderer.class)
 public class SlimeRendererMixin {
-	
 	@Inject(method = "getTextureLocation(Lnet/minecraft/world/entity/monster/Slime;)Lnet/minecraft/resources/ResourceLocation;", at = @At("HEAD"), cancellable = true)
 	private void overrideTexture(Slime slime, CallbackInfoReturnable<ResourceLocation> cir) {
 		ResourceLocation loc = VariantAnimalTexturesModule.getSlimeTexture(slime);

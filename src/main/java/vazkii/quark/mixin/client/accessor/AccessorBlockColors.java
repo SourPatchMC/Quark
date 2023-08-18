@@ -12,8 +12,7 @@ import net.minecraft.world.level.block.Block;
 
 @Mixin(BlockColors.class)
 public interface AccessorBlockColors {
-
+	//fixme
 	@Accessor("blockColors")
 	Map<Reference<Block>, BlockColor> quark$getBlockColors();
-
 }

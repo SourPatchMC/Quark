@@ -8,10 +8,8 @@ import vazkii.quark.content.client.module.GreenerGrassModule;
 
 @Mixin(Biome.class)
 public class BiomeMixin {
-
 	@ModifyReturnValue(method = {"getWaterColor", "getWaterFogColor"}, at = @At("RETURN"))
 	private int getWaterColor(int prev) {
 		return GreenerGrassModule.getWaterColor(prev);
 	}
-
 }

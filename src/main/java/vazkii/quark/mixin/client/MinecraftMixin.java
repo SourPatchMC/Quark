@@ -16,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
-
 	@Shadow @Nullable public HitResult hitResult;
 
 	@Inject(method = "pickBlock", at = @At("HEAD"))
@@ -31,5 +30,4 @@ public class MinecraftMixin {
 		Minecraft self = (Minecraft) (Object) this;
 		self.hitResult = hitResult.get();
 	}
-
 }

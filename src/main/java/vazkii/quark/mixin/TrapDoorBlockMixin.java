@@ -12,7 +12,7 @@ import vazkii.quark.content.building.module.VariantLaddersModule;
 
 @Mixin(TrapDoorBlock.class)
 public class TrapDoorBlockMixin {
-
+	// fixme
 	@ModifyReturnValue(method = "isLadder", at = @At("RETURN"), remap = false)
 	private boolean isTrapdoorLadder(boolean prev, BlockState state, LevelReader world, BlockPos pos, LivingEntity entity) {
 		return VariantLaddersModule.isTrapdoorLadder(prev, world, pos);

@@ -11,7 +11,6 @@ import vazkii.quark.content.tweaks.module.LockRotationModule;
 
 @Mixin(BlockItem.class)
 public class BlockItemMixin {
-
 	@ModifyExpressionValue(method = "place", at = @At(value = "INVOKE",
 			target = "Lnet/minecraft/world/item/BlockItem;getPlacementState(Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;"))
 	private BlockState alterPlacementState(BlockState state, @Local(ordinal = 1) BlockPlaceContext context) {

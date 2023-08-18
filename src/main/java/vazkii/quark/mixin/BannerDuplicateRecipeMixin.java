@@ -9,7 +9,6 @@ import vazkii.quark.content.tweaks.module.MoreBannerLayersModule;
 
 @Mixin(BannerDuplicateRecipe.class)
 public class BannerDuplicateRecipeMixin {
-
 	@ModifyConstant(method = "matches(Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/level/Level;)Z", constant = @Constant(intValue = 6))
 	public int getLimitMatches(int curr) {
 		return MoreBannerLayersModule.getLimit(curr);
@@ -19,5 +18,4 @@ public class BannerDuplicateRecipeMixin {
 	public int getLimitAssemble(int curr) {
 		return MoreBannerLayersModule.getLimit(curr);
 	}
-
 }

@@ -12,7 +12,6 @@ import vazkii.quark.content.client.module.UsesForCursesModule;
 
 @Mixin(Gui.class)
 public class GuiMixin {
-
 	@Inject(method = "renderTextureOverlay", at = @At("HEAD"), cancellable = true)
 	public void changeArmorItem(ResourceLocation location, float alpha, CallbackInfo ci) {
 		Player player = Minecraft.getInstance().player;

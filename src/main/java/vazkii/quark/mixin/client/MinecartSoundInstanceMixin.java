@@ -13,7 +13,6 @@ import vazkii.quark.content.client.module.WoolShutsUpMinecartsModule;
 
 @Mixin(MinecartSoundInstance.class)
 public class MinecartSoundInstanceMixin {
-
 	@Shadow
 	@Final
 	private AbstractMinecart minecart;
@@ -25,6 +24,4 @@ public class MinecartSoundInstanceMixin {
 			ci.cancel();
 		}
 	}
-
-
 }

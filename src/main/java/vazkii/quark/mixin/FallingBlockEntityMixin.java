@@ -11,7 +11,6 @@ import static org.spongepowered.asm.mixin.injection.At.Shift.AFTER;
 
 @Mixin(FallingBlockEntity.class)
 public class FallingBlockEntityMixin {
-
 	@Inject(method = "tick", at = {
 		@At("HEAD"),
 		@At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/FallingBlockEntity;move(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V", shift = AFTER)
@@ -21,5 +20,4 @@ public class FallingBlockEntityMixin {
 			ci.cancel();
 		}
 	}
-
 }

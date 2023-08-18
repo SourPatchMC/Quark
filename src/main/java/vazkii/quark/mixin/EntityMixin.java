@@ -8,10 +8,8 @@ import vazkii.quark.content.tools.module.PickarangModule;
 
 @Mixin(Entity.class)
 public class EntityMixin {
-
 	@ModifyReturnValue(method = "fireImmune", at = @At("RETURN"))
 	private boolean isImmuneToFire(boolean prev) {
 		return PickarangModule.getIsFireResistant(prev, (Entity) (Object) this);
 	}
-
 }

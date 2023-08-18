@@ -28,5 +28,4 @@ public class ServerAdvancementManagerMixin {
 										  CallbackInfo ci, Map<ResourceLocation, Advancement.Builder> builders) {
 		AutomaticRecipeUnlockModule.removeRecipeAdvancements(builders);
 	}
-
 }

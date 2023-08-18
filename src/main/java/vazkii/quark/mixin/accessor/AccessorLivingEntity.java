@@ -9,11 +9,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(LivingEntity.class)
 public interface AccessorLivingEntity {
-
 	@Invoker("createLootContext")
 	LootContext.Builder quark$createLootContext(boolean playerLoot, DamageSource source);
 
 	@Accessor("lastHurtByPlayerTime")
 	int quark$lastHurtByPlayerTime();
-
 }

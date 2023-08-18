@@ -12,10 +12,8 @@ import vazkii.quark.content.tweaks.module.PigLittersModule;
 
 @Mixin(Animal.class)
 public class AnimalMixin {
-
 	@Inject(method = "usePlayerItem", at = @At("HEAD"))
 	public void onEatGoldenCarrot(Player player, InteractionHand hand, ItemStack stack, CallbackInfo ci) {
 		PigLittersModule.onEat((Animal) (Object) this, stack);
 	}
-
 }

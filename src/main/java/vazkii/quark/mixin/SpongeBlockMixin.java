@@ -8,7 +8,6 @@ import vazkii.quark.content.tweaks.module.SpongesBetterModule;
 
 @Mixin(SpongeBlock.class)
 public class SpongeBlockMixin {
-
 	@ModifyConstant(method = "removeWaterBreadthFirstSearch", constant = @Constant(intValue = 64))
 	public int getDrainLimit(int limit) {
 		return SpongesBetterModule.drainLimit(limit);
@@ -18,5 +17,4 @@ public class SpongeBlockMixin {
 	public int getCrawlLimit(int limit) {
 		return SpongesBetterModule.crawlLimit(limit);
 	}
-
 }

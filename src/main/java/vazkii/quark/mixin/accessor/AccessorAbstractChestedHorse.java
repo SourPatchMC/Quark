@@ -6,8 +6,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(AbstractChestedHorse.class)
 public interface AccessorAbstractChestedHorse {
-
 	@Invoker("playChestEquipsSound")
 	void quark$playChestEquipsSound();
-
 }

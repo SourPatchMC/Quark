@@ -13,13 +13,11 @@ import vazkii.quark.addons.oddities.module.PipesModule;
 
 @Mixin(HalfTransparentBlock.class)
 public class HalfTransparentBlockMixin {
-
 	@Inject(method = "skipRendering", at = @At("HEAD"), cancellable = true)
 	private void skipRendering(BlockState state, BlockState other, Direction direction, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		if(state.is(Blocks.GLASS) && other.is(PipesModule.encasedPipe)) {
 			callbackInfoReturnable.setReturnValue(true);
 			callbackInfoReturnable.cancel();
 		}
-	}	
-	
+	}
 }
