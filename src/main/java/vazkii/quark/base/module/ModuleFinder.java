@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.fabricmc.api.EnvType;
 import org.apache.commons.lang3.text.WordUtils;
 import org.objectweb.asm.Type;
 
@@ -76,11 +77,11 @@ public final class ModuleFinder {
 				moduleObj.hasSubscriptions = (boolean) vals.get("hasSubscriptions");
 
 			if(vals.containsKey("subscribeOn")) {
-				Set<Dist> subscribeTargets = EnumSet.noneOf(Dist.class);
+				Set<EnvType> subscribeTargets = EnumSet.noneOf(EnvType.class);
 
 				List<ModAnnotation.EnumHolder> holders = (List<ModAnnotation.EnumHolder>) vals.get("subscribeOn");
 				for (ModAnnotation.EnumHolder holder : holders)
-					subscribeTargets.add(Dist.valueOf(holder.getValue()));
+					subscribeTargets.add(EnvType.valueOf(holder.getValue()));
 
 				moduleObj.subscriptionTarget = Lists.newArrayList(subscribeTargets);
 			}

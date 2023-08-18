@@ -1,5 +1,6 @@
 package vazkii.quark.base.proxy;
 
+import net.minecraft.core.Registry;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -18,6 +19,7 @@ import net.minecraftforge.registries.RegisterEvent;
 import vazkii.arl.util.ClientTicker;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.capability.CapabilityHandler;
+import vazkii.quark.base.events.QuarkEvents;
 import vazkii.quark.base.handler.*;
 import vazkii.quark.base.module.ModuleLoader;
 import vazkii.quark.base.module.config.IConfigCallback;
@@ -36,17 +38,18 @@ public class CommonProxy {
 	private boolean configGuiSaving = false;
 
 	public void start() {
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":exclusion", ExclusionRecipe.SERIALIZER);
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":maintaining", DataMaintainingRecipe.SERIALIZER);
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":maintaining_smelting", DataMaintainingSmeltingRecipe.SERIALIZER);
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":maintaining_campfire", DataMaintainingCampfireRecipe.SERIALIZER);
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":maintaining_smoking", DataMaintainingSmokingRecipe.SERIALIZER);
+		Registry.register(Registry.RECIPE_SERIALIZER, Quark.MOD_ID + ":exclusion", ExclusionRecipe.SERIALIZER);
+		Registry.register(Registry.RECIPE_SERIALIZER, Quark.MOD_ID + ":maintaining", DataMaintainingRecipe.SERIALIZER);
+		Registry.register(Registry.RECIPE_SERIALIZER, Quark.MOD_ID + ":maintaining_smelting", DataMaintainingSmeltingRecipe.SERIALIZER);
+		Registry.register(Registry.RECIPE_SERIALIZER, Quark.MOD_ID + ":maintaining_campfire", DataMaintainingCampfireRecipe.SERIALIZER);
+		Registry.register(Registry.RECIPE_SERIALIZER, Quark.MOD_ID + ":maintaining_smoking", DataMaintainingSmokingRecipe.SERIALIZER);
 
 		QuarkSounds.start();
 		ModuleLoader.INSTANCE.start();
 
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-		registerListeners(bus);
+
+		//IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		//registerListeners(bus);
 
 		LocalDateTime now = LocalDateTime.now();
 		if (now.getMonth() == Month.DECEMBER && now.getDayOfMonth() >= 16 || now.getMonth() == Month.JANUARY && now.getDayOfMonth() <= 2)

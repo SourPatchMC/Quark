@@ -20,6 +20,6 @@ public class QuarkEffect extends MobEffect {
 	public QuarkEffect(String name, MobEffectCategory type, int color) {
 		super(type, color);
 		
-		RegistryHelper.register(this, name, Registry.MOB_EFFECT_REGISTRY);
+		RegistryHelper.register(this, name, Registry.MOB_EFFECT);
 	}
 }

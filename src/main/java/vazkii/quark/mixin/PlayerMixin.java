@@ -25,13 +25,9 @@ public abstract class PlayerMixin extends LivingEntity implements PlayerExtensio
     // Acts as our own version of PlayerTickEvent from Forge. Most methods, unless explicitly otherwise, will use this version.
     @Inject(method = "tick", at = @At(value = "HEAD"))
     private void quarkQuilt$playerTickEvent(CallbackInfo ci) {
-        new CampfiresBoostElytraModule().onPlayerTick((Player)((Object)this));
         new ColorRunesModule().onPlayerTick((Player)((Object)this));
-        new EnhancedLaddersModule().onPlayerTick((Player)((Object)this));
+        new EnhancedLaddersModule().onPlayerTick((Player)((Object)this)); // Explicitly asks for start of tick
     }
+    // Acts as our own version of PlayerInteractEvent from Forge.
 
-    @Inject(method = "tick", at = @At(value = "TAIL"))
-    private void quarkQuilt$playerTickEventEnd(CallbackInfo ci) {
-        new AutomaticToolRestockModule().onPlayerTick((Player)((Object)this));
-    }
 }

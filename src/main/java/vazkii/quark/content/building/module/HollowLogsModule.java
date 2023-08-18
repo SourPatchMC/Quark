@@ -1,8 +1,10 @@
 package vazkii.quark.content.building.module;
 
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerTickEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
@@ -11,9 +13,6 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.api.ICrawlSpaceBlock;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.advancement.QuarkAdvancementHandler;
@@ -40,6 +39,11 @@ public class HollowLogsModule extends QuarkModule {
 	@Hint(key = "hollow_logs", value = "hollow_log_auto_crawl")
 	TagKey<Block> hollowLogsTag;
 
+	public HollowLogsModule() {
+		super();
+		PlayerTickEvents.START.register(this::playerTick);
+	}
+
 	@Override
 	public void register() {
 		for(Wood wood : VanillaWoods.ALL) {
@@ -52,13 +56,11 @@ public class HollowLogsModule extends QuarkModule {
 
 	@Override
 	public void setup() {
-		hollowLogsTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "hollow_logs"));
+		hollowLogsTag = TagKey.create(Registry.BLOCK_REGISTRY, new  ResourceLocation(Quark.MOD_ID, "hollow_logs"));
 	}
 
-	@SubscribeEvent
-	public void playerTick(PlayerTickEvent event) {
-		if(enableAutoCrawl && event.phase == Phase.START) {
-			Player player = event.player;
+	public void playerTick(Player player) {
+		if(enableAutoCrawl) {
 			BlockPos playerPos = player.blockPosition();
 			boolean isTrying = player.isVisuallyCrawling() ||
 				(player.isCrouching() && !player.isColliding(playerPos, player.level.getBlockState(playerPos)));

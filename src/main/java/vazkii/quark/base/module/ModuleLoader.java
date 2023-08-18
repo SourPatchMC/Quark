@@ -197,6 +197,11 @@ public final class ModuleLoader {
 		return foundModules.get(moduleClazz);
 	}
 
+	// This is probably not very trustable. But I feel like this might be our better option compared to regular getModuleInstance
+	public <T extends QuarkModule> T getModuleInstanceAsModule(Class<T> moduleClazz) {
+		return (T) foundModules.get(moduleClazz);
+	}
+
 	public boolean isItemEnabled(Item i) {
 		if(i instanceof IQuarkItem qi) {
 			return qi.isEnabled();
