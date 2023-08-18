@@ -182,39 +182,35 @@ public class EnhancedLaddersModule extends QuarkModule {
 		}
 	}
 
-	@SubscribeEvent
-	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+	public void onPlayerTick(Player player) {
 		if(!allowSliding)
 			return;
 
-		if(event.phase == TickEvent.Phase.START) {
-			Player player = event.player;
-			if(player.onClimbable() && player.level.isClientSide) {
-				BlockPos playerPos = player.blockPosition();
-				BlockPos downPos = playerPos.below();
+        if (player.onClimbable() && player.level.isClientSide) {
+            BlockPos playerPos = player.blockPosition();
+            BlockPos downPos = playerPos.below();
 
-				boolean scaffold = player.level.getBlockState(playerPos).isScaffolding(player);
-				if(player.isCrouching() == scaffold &&
-						player.zza == 0 &&
-						player.yya <= 0 &&
-						player.xxa == 0 &&
-						player.getXRot() > 70 &&
-						!player.jumping &&
-						!player.getAbilities().flying &&
-						player.level.getBlockState(downPos).isLadder(player.level, downPos, player)) {
+            boolean scaffold = player.level.getBlockState(playerPos).isScaffolding(player);
+            if (player.isCrouching() == scaffold &&
+                    player.zza == 0 &&
+                    player.yya <= 0 &&
+                    player.xxa == 0 &&
+                    player.getXRot() > 70 &&
+                    !player.jumping &&
+                    !player.getAbilities().flying &&
+                    player.level.getBlockState(downPos).isLadder(player.level, downPos, player)) {
 
-					Vec3 move = new Vec3(0, fallSpeed, 0);
-					AABB target = player.getBoundingBox().move(move);
-					
-					Iterable<VoxelShape> collisions = player.level.getBlockCollisions(player, target);
-					if(!collisions.iterator().hasNext()) {
-						player.setBoundingBox(target);
-						player.move(MoverType.SELF, move);
-					}
-				}
-			}
-		}
-	}
+                Vec3 move = new Vec3(0, fallSpeed, 0);
+                AABB target = player.getBoundingBox().move(move);
+
+                Iterable<VoxelShape> collisions = player.level.getBlockCollisions(player, target);
+                if (!collisions.iterator().hasNext()) {
+                    player.setBoundingBox(target);
+                    player.move(MoverType.SELF, move);
+                }
+            }
+        }
+    }
 
 	@SubscribeEvent
 	@ClientOnly

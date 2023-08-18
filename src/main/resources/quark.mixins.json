@@ -46,6 +46,7 @@
     "PistonBaseBlockMixin",
     "PistonMovingBlockEntityMixin",
     "PlayerAdvancementsMixin",
+    "PlayerMixin",
     "PotionUtilsMixin",
     "ServerAdvancementManagerMixin",
     "ServerEntityMixin",
@@ -69,7 +70,6 @@
     "accessor.AccessorServerGamePacketListenerImpl"
   ],
   "client": [
-    "client.PlayerInfoMixin",
     "client.AbstractCandleBlockMixin",
     "client.ArmorStandModelMixin",
     "client.BannerItemMixin",
@@ -91,6 +91,7 @@
     "client.MinecraftMixin",
     "client.ParrotRendererMixin",
     "client.PistonTileEntityRendererMixin",
+    "client.PlayerInfoMixin",
     "client.RenderBuffersMixin",
     "client.ScreenMixin",
     "client.ThrownTridentRendererMixin",

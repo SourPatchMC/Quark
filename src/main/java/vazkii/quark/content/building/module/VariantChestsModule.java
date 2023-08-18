@@ -151,7 +151,7 @@ public class VariantChestsModule extends QuarkModule {
 				String left = toks[0];
 				String right = toks[1];
 
-				Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(right));
+				Block block = Registry.BLOCK.get(new ResourceLocation(right));
 				if (block != null && block != Blocks.AIR) {
 					manualChestMappings.put(new ResourceLocation(left), block);
 					if (chests.contains(block)) {

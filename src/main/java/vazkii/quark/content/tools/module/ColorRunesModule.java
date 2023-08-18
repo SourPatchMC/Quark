@@ -246,10 +246,8 @@ public class ColorRunesModule extends QuarkModule {
 			applyRuneTrigger.trigger(sp);
 	}
 
-	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event) {
+	public void onPlayerTick(Player player) {
 		final String tag = "quark:what_are_you_gay_or_something";
-		Player player = event.player;
 
 		boolean wasRainbow = player.getPersistentData().getBoolean(tag);
 		boolean rainbow = isPlayerRainbow(player);

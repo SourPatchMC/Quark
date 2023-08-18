@@ -2,13 +2,13 @@ package vazkii.quark.content.experimental.module;
 
 import com.google.common.collect.Lists;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -36,7 +36,7 @@ public class EnchantmentsBegoneModule extends QuarkModule {
 		enchantments.clear();
 
 		for (String enchantKey : enchantmentsToBegone) {
-			Enchantment enchantment = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(enchantKey));
+			Enchantment enchantment = Registry.ENCHANTMENT.get(new ResourceLocation(enchantKey));
 			if (enchantment != null)
 				enchantments.add(enchantment);
 		}

@@ -12,6 +12,7 @@ import java.util.WeakHashMap;
 import java.util.function.Predicate;
 
 import com.google.common.collect.Lists;
+import io.github.fabricators_of_create.porting_lib.util.ToolAction;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
@@ -158,14 +159,13 @@ public class AutomaticToolRestockModule extends QuarkModule {
 		return false;
 	}
 
-	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event) {
-		if(event.phase == Phase.END && !event.player.level.isClientSide && replacements.containsKey(event.player)) {
-			Stack<QueuedRestock> replacementStack = replacements.get(event.player);
+	public void onPlayerTick(Player player) {
+		if(!player.level.isClientSide && replacements.containsKey(player)) {
+			Stack<QueuedRestock> replacementStack = replacements.get(player);
 			synchronized(mutex) {
 				while(!replacementStack.isEmpty()) {
 					QueuedRestock restock = replacementStack.pop();
-					switchItems(event.player, restock);
+					switchItems(player, restock);
 				}
 			}
 		}
