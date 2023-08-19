@@ -1,11 +1,11 @@
 package vazkii.quark.base.network.message.oddities;
 
+import io.github.fabricators_of_create.porting_lib.util.NetworkHooks;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.network.NetworkHooks;
 import vazkii.arl.network.IMessage;
 import vazkii.quark.addons.oddities.inventory.BackpackMenu;
 

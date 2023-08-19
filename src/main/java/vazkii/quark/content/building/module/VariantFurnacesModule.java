@@ -32,7 +32,7 @@ public class VariantFurnacesModule extends QuarkModule {
 		blackstoneFurnace = new SoulFurnaceBlock("blackstone", this, Properties.copy(Blocks.BLACKSTONE).lightLevel(litBlockEmission(13)));
 
 		blockEntityType = BlockEntityType.Builder.of(VariantFurnaceBlockEntity::new, deepslateFurnace, blackstoneFurnace).build(null);
-		RegistryHelper.register(blockEntityType, "variant_furnace", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(blockEntityType, "variant_furnace", Registry.BLOCK_ENTITY_TYPE);
 	}
 
 	private static ToIntFunction<BlockState> litBlockEmission(int lvl) {

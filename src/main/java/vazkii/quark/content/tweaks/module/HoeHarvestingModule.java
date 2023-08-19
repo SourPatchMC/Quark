@@ -1,7 +1,11 @@
 package vazkii.quark.content.tweaks.module;
 
+import io.github.fabricators_of_create.porting_lib.util.IPlantable;
+import io.github.fabricators_of_create.porting_lib.util.PlantType;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -20,10 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
 import me.alphamode.forgetags.Tags;
-import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.Quark;
@@ -75,7 +76,7 @@ public class HoeHarvestingModule extends QuarkModule {
 
 	@Override
 	public void setup() {
-		bigHarvestingHoesTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "big_harvesting_hoes"));
+		bigHarvestingHoesTag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "big_harvesting_hoes"));
 	}
 
 	@SubscribeEvent

@@ -55,7 +55,7 @@ public class ForgottenModule extends QuarkModule {
 				.setCustomClientFactory((spawnEntity, world) -> new Forgotten(forgottenType, world))
 				.build("forgotten");
 
-		RegistryHelper.register(forgottenType, "forgotten", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(forgottenType, "forgotten", Registry.ENTITY_TYPE);
 		EntitySpawnHandler.addEgg(forgottenType, 0x969487, 0x3a3330, this, () -> true);
 
 		EntityAttributeHandler.put(forgottenType, Forgotten::registerAttributes);

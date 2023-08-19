@@ -59,7 +59,7 @@ public class MonsterBoxModule extends QuarkModule {
 		monster_box = new MonsterBoxBlock(this);
 
 		blockEntityType = BlockEntityType.Builder.of(MonsterBoxBlockEntity::new, monster_box).build(null);
-		RegistryHelper.register(blockEntityType, "monster_box", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(blockEntityType, "monster_box", Registry.BLOCK_ENTITY_TYPE);
 	}
 
 	@Override

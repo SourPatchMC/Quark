@@ -1,5 +1,6 @@
 package vazkii.quark.addons.oddities.magnetsystem;
 
+import io.github.fabricators_of_create.porting_lib.util.IPlantable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
@@ -14,7 +15,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.IPlantable;
 import vazkii.quark.api.IMagnetMoveAction;
 
 import java.util.HashMap;

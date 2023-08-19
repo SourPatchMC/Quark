@@ -35,10 +35,10 @@ public class CrateModule extends QuarkModule {
         crate = new CrateBlock(this);
 
         menuType = IForgeMenuType.create(CrateMenu::fromNetwork);
-        RegistryHelper.register(menuType, "crate", Registry.MENU_REGISTRY);
+        RegistryHelper.register(menuType, "crate", Registry.MENU);
 
         blockEntityType = BlockEntityType.Builder.of(CrateBlockEntity::new, crate).build(null);
-        RegistryHelper.register(blockEntityType, "crate", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+        RegistryHelper.register(blockEntityType, "crate", Registry.BLOCK_ENTITY_TYPE);
     }
 
     @Override

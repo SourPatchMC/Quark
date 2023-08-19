@@ -73,7 +73,7 @@ public class FoxhoundModule extends QuarkModule {
 				.fireImmune()
 				.setCustomClientFactory((spawnEntity, world) -> new Foxhound(foxhoundType, world))
 				.build("foxhound");
-		RegistryHelper.register(foxhoundType, "foxhound", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(foxhoundType, "foxhound", Registry.ENTITY_TYPE);
 
 		EntitySpawnHandler.registerSpawn(this, foxhoundType, MobCategory.MONSTER, Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Foxhound::spawnPredicate, spawnConfig);
 		EntitySpawnHandler.track(this, foxhoundType, MobCategory.MONSTER, lesserSpawnConfig, true);

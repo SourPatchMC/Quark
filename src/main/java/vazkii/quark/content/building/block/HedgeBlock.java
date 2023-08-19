@@ -2,6 +2,8 @@ package vazkii.quark.content.building.block;
 
 import java.util.function.BooleanSupplier;
 
+import io.github.fabricators_of_create.porting_lib.util.IPlantable;
+import io.github.fabricators_of_create.porting_lib.util.PlantType;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableList;
@@ -31,8 +33,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
 import vazkii.arl.interf.IBlockColorProvider;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.block.IQuarkBlock;
@@ -184,7 +184,7 @@ public class HedgeBlock extends FenceBlock implements IQuarkBlock, IBlockColorPr
 	@ClientOnly
 	public ItemColor getItemColor() {
 		final ItemStack leafStack = new ItemStack(leaf);
-		return (stack, tintIndex) -> Minecraft.getInstance().getItemColors().getColor(leafStack, tintIndex);
+		return (stack, tintIndex) -> Minecraft.getInstance().itemColors.getColor(leafStack, tintIndex);
 	}
 
 	@Override

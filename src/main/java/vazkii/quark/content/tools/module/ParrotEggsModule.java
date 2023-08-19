@@ -83,7 +83,7 @@ public class ParrotEggsModule extends QuarkModule {
 				.updateInterval(10) // update interval
 				.setCustomClientFactory((spawnEntity, world) -> new ParrotEgg(parrotEggType, world))
 				.build("parrot_egg");
-		RegistryHelper.register(parrotEggType, "parrot_egg", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(parrotEggType, "parrot_egg", Registry.ENTITY_TYPE);
 
 		parrotEggs = new ArrayList<>();
 		for (int i = 0; i < ParrotEgg.VARIANTS; i++) {

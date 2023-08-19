@@ -11,6 +11,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.decoration.HangingEntity;
@@ -27,6 +28,7 @@ import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.DyeHandler;
@@ -47,14 +49,14 @@ public class DyeableItemFramesModule extends QuarkModule {
 
 	@Override
 	public void register() {
-		entityType = EntityType.Builder.<DyedItemFrame>of(DyedItemFrame::new, MobCategory.MISC)
-				.sized(0.5F, 0.5F)
-				.clientTrackingRange(10)
-				.updateInterval(Integer.MAX_VALUE) // update interval
-				.setShouldReceiveVelocityUpdates(false)
-				.setCustomClientFactory((spawnEntity, world) -> new DyedItemFrame(entityType, world))
-				.build("dyed_item_frame");
-		RegistryHelper.register(entityType, "dyed_item_frame", Registry.ENTITY_TYPE_REGISTRY);
+		entityType = QuiltEntityTypeBuilder.<DyedItemFrame>create(MobCategory.MISC, DyedItemFrame::new)
+				.setDimensions(EntityDimensions.fixed(0.5F, 0.5F))
+				.maxChunkTrackingRange(10)
+				.alwaysUpdateVelocity(false)
+				.entityFactory((spawnEntity, world) -> new DyedItemFrame(entityType, world))
+				.build();
+
+		RegistryHelper.register(entityType, "dyed_item_frame", Registry.ENTITY_TYPE);
 
 		DyeHandler.addDyeable(Items.ITEM_FRAME, this);
 		DyeHandler.addDyeable(Items.GLOW_ITEM_FRAME, this);

@@ -96,7 +96,7 @@ public class QuarkSounds {
 
 	public static void start() {
 		for (SoundEvent event : REGISTRY_DEFERENCE)
-			RegistryHelper.register(event, Registry.SOUND_EVENT_REGISTRY);
+			RegistryHelper.register(event, Registry.SOUND_EVENT);
 		REGISTRY_DEFERENCE.clear();
 	}
 

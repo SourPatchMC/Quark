@@ -60,7 +60,7 @@ public class WorldGenHandler {
 			// Always do .toLowerCase(Locale.ENGLISH) with that locale. If you leave it off, computers in
 			// countries like Turkey will use a special character instead of i and well, crash the ResourceLocation.
 			String name = "deferred_feature_" + stage.name().toLowerCase(Locale.ENGLISH);
-			RegistryHelper.register(deferredFeature, name, Registry.FEATURE_REGISTRY);
+			RegistryHelper.register(deferredFeature, name, Registry.FEATURE);
 			
 			ConfiguredFeature<?, ?> feature = new ConfiguredFeature<>(deferredFeature, FeatureConfiguration.NONE);
 

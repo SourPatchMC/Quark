@@ -1,5 +1,6 @@
 package vazkii.quark.content.tweaks.module;
 
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -53,6 +54,6 @@ public class GlassShardModule extends QuarkModule {
 
 	@Override
 	public void setup() {
-		shardTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "shards"));
+		shardTag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "shards"));
 	}
 }

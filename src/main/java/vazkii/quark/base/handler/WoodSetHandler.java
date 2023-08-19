@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.common.ToolActions;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import vazkii.arl.util.RegistryHelper;
@@ -62,8 +62,8 @@ public class WoodSetHandler {
 				.setCustomClientFactory((spawnEntity, world) -> new QuarkChestBoat(quarkChestBoatEntityType, world))
 				.build("quark_chest_boat");
 
-		RegistryHelper.register(quarkBoatEntityType, "quark_boat", Registry.ENTITY_TYPE_REGISTRY);
-		RegistryHelper.register(quarkChestBoatEntityType, "quark_chest_boat", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(quarkBoatEntityType, "quark_boat", Registry.ENTITY_TYPE);
+		RegistryHelper.register(quarkChestBoatEntityType, "quark_chest_boat", Registry.ENTITY_TYPE);
 	}
 
 	public static void setup(FMLCommonSetupEvent event) {

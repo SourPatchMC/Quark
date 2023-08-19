@@ -168,10 +168,10 @@ public class MatrixEnchantingModule extends QuarkModule {
 		matrixEnchanter = new MatrixEnchantingTableBlock(this);
 
 		menuType = IForgeMenuType.create(MatrixEnchantingMenu::fromNetwork);
-		RegistryHelper.register(menuType, "matrix_enchanting", Registry.MENU_REGISTRY);
+		RegistryHelper.register(menuType, "matrix_enchanting", Registry.MENU);
 
 		blockEntityType = BlockEntityType.Builder.of(MatrixEnchantingTableBlockEntity::new, matrixEnchanter).build(null);
-		RegistryHelper.register(blockEntityType, "matrix_enchanting", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(blockEntityType, "matrix_enchanting", Registry.BLOCK_ENTITY_TYPE);
 		
 		influenceTrigger = QuarkAdvancementHandler.registerGenericTrigger("influence");
 	}

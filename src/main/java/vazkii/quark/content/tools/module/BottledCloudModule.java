@@ -41,7 +41,7 @@ public class BottledCloudModule extends QuarkModule {
 		bottled_cloud = new BottledCloudItem(this);
 		
 		blockEntityType = BlockEntityType.Builder.of(CloudBlockEntity::new, cloud).build(null);
-		RegistryHelper.register(blockEntityType, "cloud", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(blockEntityType, "cloud", Registry.BLOCK_ENTITY_TYPE);
 	} 
 	
 	@Override

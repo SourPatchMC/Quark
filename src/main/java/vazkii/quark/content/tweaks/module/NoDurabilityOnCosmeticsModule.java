@@ -1,5 +1,6 @@
 package vazkii.quark.content.tweaks.module;
 
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -23,7 +24,7 @@ public class NoDurabilityOnCosmeticsModule extends QuarkModule {
 
 	@Override
 	public void setup() {
-		cosmeticTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "cosmetic_anvil_items"));
+		cosmeticTag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "cosmetic_anvil_items"));
 	}
 	
 	@SubscribeEvent

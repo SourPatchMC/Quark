@@ -50,7 +50,7 @@ public class TinyPotatoModule extends QuarkModule {
 		tiny_potato = new TinyPotatoBlock(this);
 
 		blockEntityType = BlockEntityType.Builder.of(TinyPotatoBlockEntity::new, tiny_potato).build(null);
-		RegistryHelper.register(Registry.BLOCK_ENTITY_TYPE, "tiny_potato", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(Registry.BLOCK_ENTITY_TYPE, "tiny_potato", Registry.BLOCK_ENTITY_TYPE);
 
 		patPotatoTrigger = QuarkAdvancementHandler.registerGenericTrigger("pat_potato");
 	}

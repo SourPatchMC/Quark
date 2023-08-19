@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import org.jetbrains.annotations.Nullable;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.MiscUtil;

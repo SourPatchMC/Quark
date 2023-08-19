@@ -49,7 +49,7 @@ public class SkullPikesModule extends QuarkModule {
 				.setShouldReceiveVelocityUpdates(false)
 				.setCustomClientFactory((spawnEntity, world) -> new SkullPike(skullPikeType, world))
 				.build("skull_pike");
-		RegistryHelper.register(skullPikeType, "skull_pike", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(skullPikeType, "skull_pike", Registry.ENTITY_TYPE);
 	}
 
 	@Override

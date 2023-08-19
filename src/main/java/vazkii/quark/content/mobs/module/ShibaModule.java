@@ -50,7 +50,7 @@ public class ShibaModule extends QuarkModule {
 				.clientTrackingRange(8)
 				.setCustomClientFactory((spawnEntity, world) -> new Shiba(shibaType, world))
 				.build("shiba");
-		RegistryHelper.register(shibaType, "shiba", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(shibaType, "shiba", Registry.ENTITY_TYPE);
 
 		EntitySpawnHandler.registerSpawn(this, shibaType, MobCategory.CREATURE, Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, spawnConfig);
 		EntitySpawnHandler.addEgg(shibaType, 0xa86741, 0xe8d5b6, spawnConfig);

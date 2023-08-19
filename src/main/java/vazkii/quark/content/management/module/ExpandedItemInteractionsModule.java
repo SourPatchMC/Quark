@@ -87,7 +87,7 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 	@Override
 	public void register() {
 		heldShulkerBoxMenuType = IForgeMenuType.create(HeldShulkerBoxMenu::fromNetwork);
-		RegistryHelper.register(heldShulkerBoxMenuType, "held_shulker_box", Registry.MENU_REGISTRY);
+		RegistryHelper.register(heldShulkerBoxMenuType, "held_shulker_box", Registry.MENU);
 	}
 
 	@Override

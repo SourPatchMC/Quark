@@ -1,6 +1,7 @@
 package vazkii.quark.content.tools.entity.rang;
 
 import com.google.common.collect.Multimap;
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerEvents;
 import io.github.fabricators_of_create.porting_lib.util.PortingHooks;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.core.BlockPos;
@@ -9,6 +10,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -47,10 +49,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.HitResult.Type;
 import net.minecraft.world.phys.Vec3;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.network.NetworkHooks;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.content.mobs.entity.Toretoise;
 import vazkii.quark.content.tools.config.PickarangType;
@@ -255,7 +253,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 						PickarangModule.setActivePickarang(this);
 
 						hitEntity: {
-							if(hit instanceof Toretoise toretoise) {
+							if (hit instanceof Toretoise toretoise) {
 								int ore = toretoise.getOreType();
 
 								if(ore != 0) {
@@ -271,8 +269,8 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 								}
 							}
 
-							if (owner instanceof Player)
-								((Player) owner).attack(hit);
+							if (owner instanceof Player owningSFPlayer)
+								owningSFPlayer.attack(hit);
 							else
 								owner.doHurtTarget(hit);
 
@@ -313,7 +311,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 			return 0.0F;
 		} else {
 			float i = PortingHooks.isCorrectToolForDrops(state, player) ? 30 : 100;
-			float digSpeed = getPlayerDigSpeed(player,state, pos);
+			float digSpeed = getPlayerDigSpeed(player, state, pos);
 			return (digSpeed / f / i);
 		}
 	}
@@ -339,7 +337,9 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 		if (this.isEyeInFluid(FluidTags.WATER)) {
 			f /= 5.0F;
 		}
-		f = ForgeEventFactory.getBreakSpeed(player, state, f, pos);
+
+
+		f = new PlayerEvents.BreakSpeed(player, state, f, pos).getNewSpeed();
 		return f;
 	}
 
@@ -633,7 +633,7 @@ public abstract class AbstractPickarang<T extends AbstractPickarang<T>> extends 
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return new ClientboundAddEntityPacket(this);
 	}
 
 }

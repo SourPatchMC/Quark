@@ -104,7 +104,7 @@ public class GlimmeringWealdModule extends QuarkModule {
 
 	@Override
 	public void postRegister() {
-		RegistryHelper.register(makeBiome(), Registry.BIOME_REGISTRY);
+		RegistryHelper.register(makeBiome(), Registry.BIOME);
 		float wmin = (float) minDepthRange;
 		float wmax = (float) maxDepthRange;
 		if(wmin >= wmax){
@@ -140,7 +140,7 @@ public class GlimmeringWealdModule extends QuarkModule {
 	private static Holder<PlacedFeature> place(String featureName, Feature<NoneFeatureConfiguration> feature, List<PlacementModifier> placer) {
 		String name = Quark.MOD_ID + ":" + featureName;
 
-		RegistryHelper.register(feature, name, Registry.FEATURE_REGISTRY);
+		RegistryHelper.register(feature, name, Registry.FEATURE);
 		Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> configured = FeatureUtils.register(name, feature, NoneFeatureConfiguration.NONE);
 		return PlacementUtils.register(name, configured, placer);
 	}
