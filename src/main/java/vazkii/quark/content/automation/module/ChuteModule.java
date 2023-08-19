@@ -32,6 +32,6 @@ public class ChuteModule extends QuarkModule {
 						.sound(SoundType.WOOD));
 
 		blockEntityType = BlockEntityType.Builder.of(ChuteBlockEntity::new, chute).build(null);
-		RegistryHelper.register(blockEntityType, "chute", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(blockEntityType, "chute", Registry.BLOCK_ENTITY_TYPE);
 	}
 }

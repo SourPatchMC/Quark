@@ -102,10 +102,9 @@ public class HollowWoodBlock extends HollowFrameBlock {
         def.add(UP, DOWN, NORTH, SOUTH, WEST, EAST);
     }
 
-    // TODO: AAAAAAAAAAAAAA - Maximum
-    // @Override
-    // public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-    //     return flammable;
-    // }
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return flammable;
+    }
 }
 

@@ -149,7 +149,7 @@ public class ReacharoundPlacingModule extends QuarkModule {
 				else if(res == InteractionResult.CONSUME) {
 					BlockPos placedPos = target.pos;
 					BlockState state = player.level.getBlockState(placedPos);
-					SoundType soundtype = state.getSoundType(player.level, placedPos, context.getPlayer());
+					SoundType soundtype = state.getSoundType();
 
 					if(player.level instanceof ServerLevel)
 						player.level.playSound(null, placedPos, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);

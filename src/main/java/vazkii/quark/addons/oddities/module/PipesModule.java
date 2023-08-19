@@ -56,12 +56,12 @@ public class PipesModule extends QuarkModule {
 		encasedPipe = new EncasedPipeBlock(this);
 		
 		blockEntityType = BlockEntityType.Builder.of(PipeBlockEntity::new, pipe, encasedPipe).build(null);
-		RegistryHelper.register(blockEntityType, "pipe", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(blockEntityType, "pipe", Registry.BLOCK_ENTITY_TYPE);
 	}
 	
 	@Override
 	public void setup() {
-		pipesTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "pipes"));
+		pipesTag = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Quark.MOD_ID, "pipes"));
 	}
 	
 	@Override

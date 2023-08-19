@@ -1,14 +1,15 @@
 package vazkii.quark.content.experimental.module;
 
 import com.google.common.collect.Lists;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
@@ -37,13 +38,13 @@ public class EnchantmentPredicatesModule extends QuarkModule {
 	public void clientSetup() {
 		if(enabled) {
 			enqueue(() -> {
-				List<Item> items = MiscUtil.massRegistryGet(itemsToChange, ForgeRegistries.ITEMS);
-				List<Enchantment> enchants = MiscUtil.massRegistryGet(enchantmentsToRegister, ForgeRegistries.ENCHANTMENTS);
+				List<Item> items = MiscUtil.massRegistryGet(itemsToChange, Registry.ITEM);
+				List<Enchantment> enchants = MiscUtil.massRegistryGet(enchantmentsToRegister, Registry.ENCHANTMENT);
 
 				for(Enchantment enchant : enchants) {
-					ResourceLocation enchantRes = ForgeRegistries.ENCHANTMENTS.getKey(enchant);
+					ResourceLocation enchantRes = Registry.ENCHANTMENT.getKey(enchant);
 					ResourceLocation name = new ResourceLocation(Quark.MOD_ID + "_has_enchant_" + enchantRes.getNamespace() + "_" + enchantRes.getPath());
-					ItemPropertyFunction fun = (stack, level, entity, i) -> EnchantmentHelper.getTagEnchantmentLevel(enchant, stack);
+					ItemPropertyFunction fun = (stack, level, entity, i) -> EnchantmentHelper.getItemEnchantmentLevel(enchant, stack);
 
 					for(Item item : items)
 						ItemProperties.register(item, name, fun);

@@ -11,10 +11,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.core.Holder.Reference;
+import net.minecraft.core.IdMapper;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -123,20 +124,16 @@ public class GreenerGrassModule extends QuarkModule {
 		BlockColors colors = Minecraft.getInstance().getBlockColors();
 
 		// Can't be AT'd as it's changed by forge
-		Map<Reference<Block>, BlockColor> map = ((AccessorBlockColors) colors).quark$getBlockColors();
+		// Todo: Well it can be AW'd in quilt huh.
+		IdMapper<BlockColor> colorMap = ((AccessorBlockColors) colors).quark$getBlockColors();
 
-		for(String id : ids) {
-			Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(id));
+		for (String id : ids) {
+			Block block = Registry.BLOCK.get(new ResourceLocation(id));
 			if (block != null) {
-				Optional<Reference<Block>> optDelegate = ForgeRegistries.BLOCKS.getDelegate(block);
-				
-				if(optDelegate != null && optDelegate.isPresent()) {
-					Reference<Block> delegate = optDelegate.get();
-					
-					BlockColor color = map.get(delegate);
-					if(color != null)
-						colors.register(getConvulsedColor(config, color, condition), block);
-				}
+				int blockID = Registry.BLOCK.getId(block);
+				BlockColor color = colorMap.byId(blockID);
+				if (color != null)
+					colors.register(getConvulsedColor(config, color, condition), block);
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 package vazkii.quark.content.tools.module;
 
 import com.google.common.collect.ImmutableSet;
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerTickEvents;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -20,7 +21,6 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -172,6 +172,11 @@ public class ColorRunesModule extends QuarkModule {
 
 	public static ItemStack withRune(ItemStack stack, DyeColor color) {
 		return withRune(stack, new ItemStack(runes.get(color.getId())));
+	}
+
+	public ColorRunesModule() {
+		super();
+		PlayerTickEvents.START.register(this::onPlayerTick);
 	}
 
 	@Override

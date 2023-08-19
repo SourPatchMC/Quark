@@ -6,6 +6,7 @@ import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
@@ -22,7 +23,6 @@ import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.recipe.DyeRecipe;
@@ -40,7 +40,7 @@ public final class DyeHandler {
 	private static final DyeSurrogate SURROGATE = new DyeSurrogate();
 
 	public static void register() {
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":dye_item", DyeRecipe.SERIALIZER);
+		Registry.register(Registry.RECIPE_SERIALIZER, Quark.MOD_ID + ":dye_item", DyeRecipe.SERIALIZER);
 	}
 
 	@ClientOnly

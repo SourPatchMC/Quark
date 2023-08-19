@@ -10,15 +10,14 @@ import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.base.item.QuarkMusicDiscItem;
@@ -37,6 +36,11 @@ public class AmbientDiscsModule extends QuarkModule {
 	@Hint(key = "ambience_discs")
 	private final List<Item> discs = new ArrayList<>();
 
+	public AmbientDiscsModule() {
+		super();
+
+	}
+
 	@Override
 	public void register() {
 		disc(QuarkSounds.AMBIENT_DRIPS);
@@ -54,11 +58,10 @@ public class AmbientDiscsModule extends QuarkModule {
 		discs.add(new QuarkMusicDiscItem(15, () -> sound, name, this, Integer.MAX_VALUE));
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void onMobDeath(LivingDeathEvent event) {
-		if(dropOnSpiderKill && event.getEntity() instanceof Spider && event.getSource().getEntity() instanceof Skeleton) {
-			Item item = discs.get(event.getEntity().level.random.nextInt(discs.size()));
-			event.getEntity().spawnAtLocation(item, 0);
+	public void onMobDeath(LivingEntity entity, DamageSource source) {
+		if(dropOnSpiderKill && entity instanceof Spider && source.getEntity() instanceof Skeleton) {
+			Item item = discs.get(entity.level.random.nextInt(discs.size()));
+			entity.spawnAtLocation(item, 0);
 		}
 	}
 

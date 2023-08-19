@@ -34,7 +34,7 @@ public class PlayerInfoMixin {
                 "6c175d10-198a-49f9-8e2b-c74f1f0178f3", // MilkBringer / Sully
                 "e67eb09a-b5af-4822-b756-9065cdc49913", // IThundxr
                 "0d21b52c-296f-49b7-b9c6-358da211090e", // Maximum
-                "07cb3dfd-ee1d-4ecf-b5b5-f70d317a82eb", // Sioulplex
+                "07cb3dfd-ee1d-4ecf-b5b5-f70d317a82eb", // Sioulplex // Dont you fucking dare call me Sioul I will slaughter you - Siuol
                 "7b888d55-dc30-4a4c-9cc8-c7073024f286"  // Bubblie
 
         );

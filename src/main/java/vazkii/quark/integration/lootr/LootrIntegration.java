@@ -65,8 +65,8 @@ public class LootrIntegration implements ILootrIntegration {
 			lootrChests.put(VariantChestsModule.trappedChests.get(i), trappedChests.get(i));
 		}
 
-		RegistryHelper.register(chestTEType, "lootr_variant_chest", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
-		RegistryHelper.register(trappedChestTEType, "lootr_variant_trapped_chest", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(chestTEType, "lootr_variant_chest", Registry.BLOCK_ENTITY_TYPE);
+		RegistryHelper.register(trappedChestTEType, "lootr_variant_trapped_chest", Registry.BLOCK_ENTITY_TYPE);
 	}
 
 	@Override

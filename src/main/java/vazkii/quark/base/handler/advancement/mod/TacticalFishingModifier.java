@@ -5,10 +5,10 @@ import com.google.common.collect.ImmutableSet;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.FilledBucketTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.api.IMutableAdvancement;
 import vazkii.quark.base.handler.advancement.AdvancementModifier;
 import vazkii.quark.base.handler.advancement.MutableAdvancement;
@@ -41,7 +41,7 @@ public class TacticalFishingModifier extends AdvancementModifier {
                 TriggerInstance.filledBucket(ItemPredicate.Builder.item()
                         .of(array).build()));
 
-        String name = ForgeRegistries.ITEMS.getKey(array[0].asItem()).toString();
+        String name = Registry.ITEM.getKey(array[0].asItem()).toString();
         adv.addOrCriterion(name, criterion);
 
         return true;

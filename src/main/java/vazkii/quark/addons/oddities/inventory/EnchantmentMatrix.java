@@ -13,7 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.addons.oddities.module.MatrixEnchantingModule;
 import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;
 
@@ -144,8 +143,8 @@ public class EnchantmentMatrix {
 		List<Piece> marked = pieces.values().stream().filter(p -> p.marked).collect(Collectors.toList());
 
 		List<EnchantmentDataWrapper> validEnchants = new ArrayList<>();
-		ForgeRegistries.ENCHANTMENTS.forEach(enchantment -> {
-			String id = ForgeRegistries.ENCHANTMENTS.getKey(enchantment).toString();
+		Registry.ENCHANTMENT.forEach(enchantment -> {
+			String id = Registry.ENCHANTMENT.getKey(enchantment).toString();
 			boolean isValid = true;
 			if(enchantment.isTreasureOnly()){
 				isValid = MatrixEnchantingModule.allowTreasures ||
@@ -155,7 +154,8 @@ public class EnchantmentMatrix {
 			if (isValid
 					&& !EnchantmentsBegoneModule.shouldBegone(enchantment)
 					&& !MatrixEnchantingModule.disallowedEnchantments.contains(id)
-					&& ((enchantment.canEnchant(target) && enchantment.canApplyAtEnchantingTable(target)) || (book && enchantment.isAllowedOnBooks()))) {
+					//Todo: Check if these are valid.
+					&& ((enchantment.canEnchant(target) /*&& enchantment.canApplyAtEnchantingTable(target)*/) /*|| (book && enchantment.isAllowedOnBooks())*/)) {
 				int enchantLevel = 1;
 				if (book) {
 					for (int i = enchantment.getMaxLevel(); i > enchantment.getMinLevel() - 1; --i) {
@@ -472,7 +472,7 @@ public class EnchantmentMatrix {
 		public void readFromNBT(CompoundTag cmp) {
 			color = cmp.getInt(TAG_COLOR);
 			type = cmp.getInt(TAG_TYPE);
-			enchant = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(cmp.getString(TAG_ENCHANTMENT)));
+			enchant = Registry.ENCHANTMENT.get(new ResourceLocation(cmp.getString(TAG_ENCHANTMENT)));
 			level = cmp.getInt(TAG_LEVEL);
 			x = cmp.getInt(TAG_X);
 			y = cmp.getInt(TAG_Y);

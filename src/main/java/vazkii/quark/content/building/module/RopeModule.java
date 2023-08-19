@@ -68,7 +68,7 @@ public class RopeModule extends QuarkModule {
 					return stack;
 				}
 			} else if(world.isEmptyBlock(pos) && rope.defaultBlockState().canSurvive(world, pos)) {
-				SoundType soundtype = rope.getSoundType(state, world, pos, null);
+				SoundType soundtype = rope.getSoundType(state);
 				world.setBlockAndUpdate(pos, rope.defaultBlockState());
 				world.playSound(null, pos, soundtype.getPlaceSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 				setSuccess(true);

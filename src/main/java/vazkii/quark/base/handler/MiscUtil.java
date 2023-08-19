@@ -61,9 +61,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
-import org.quiltmc.loader.api.minecraft.ClientOnly;
+
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.config.screen.AbstractQScreen;
 import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;
@@ -72,10 +70,7 @@ import vazkii.quark.mixin.accessor.AccessorLootTable;
 import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @EventBusSubscriber(modid = Quark.MOD_ID)
@@ -134,7 +129,7 @@ public class MiscUtil {
 	}
 
 	public static void addToLootTable(LootTable table, LootPoolEntryContainer entry) {
-		List<LootPool> pools = ((AccessorLootTable) table).quark$getPools();
+		List<LootPool> pools = Arrays.stream(((AccessorLootTable) table).quark$getPools()).toList();
 		if (pools != null && !pools.isEmpty()) {
 			LootPool firstPool = pools.get(0);
 			LootPoolEntryContainer[] entries = firstPool.entries;
@@ -152,7 +147,7 @@ public class MiscUtil {
 	}
 
 	public static <T, V> void editFinalField(Class<T> clazz, String fieldName, Object obj, V value) {
-		Field f = ObfuscationReflectionHelper.findField(clazz, fieldName);
+		Field f = ObfuscationReflectionHelper.findField(clazz, fieldName); //todo: What the fuck
 		editFinalField(f, obj, value);
 	}
 
@@ -173,7 +168,7 @@ public class MiscUtil {
 	public static void initializeEnchantmentList(Iterable<String> enchantNames, List<Enchantment> enchants) {
 		enchants.clear();
 		for(String s : enchantNames) {
-			Enchantment enchant = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(s));
+			Enchantment enchant = Registry.ENCHANTMENT.get(new ResourceLocation(s));
 			if (enchant != null && !EnchantmentsBegoneModule.shouldBegone(enchant))
 				enchants.add(enchant);
 		}

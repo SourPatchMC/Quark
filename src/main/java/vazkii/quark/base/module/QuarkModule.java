@@ -8,11 +8,13 @@ import java.util.function.Supplier;
 
 import com.google.common.collect.Lists;
 
+import net.fabricmc.api.EnvType;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.world.item.Item;
+import org.quiltmc.loader.api.QuiltLoader;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
@@ -38,7 +40,7 @@ public class QuarkModule {
 	public String description = "";
 	public List<String> antiOverlap = null;
 	public boolean hasSubscriptions = false;
-	public List<Dist> subscriptionTarget = Lists.newArrayList(Dist.CLIENT, Dist.DEDICATED_SERVER);
+	public List<EnvType> subscriptionTarget = Lists.newArrayList(EnvType.CLIENT, EnvType.SERVER);
 	public boolean enabledByDefault = true;
 	public boolean missingDep = false;
 	public List<HintObject> hints = Lists.newArrayList();
@@ -166,16 +168,14 @@ public class QuarkModule {
 		configEnabled = enabled;
 		if(firstLoad) {
 			Quark.LOG.info("Loading Module " + displayName);
-			MinecraftForge.EVENT_BUS.post(new ModuleLoadedEvent(lowercaseName));
+			//MinecraftForge.EVENT_BUS.post(new ModuleLoadedEvent(lowercaseName));
 		}
 
 		disabledByOverlap = false;
-		if(missingDep)
-			enabled = false;
+		if(missingDep) enabled = false;
 		else if(!ignoreAntiOverlap && antiOverlap != null) {
-			ModList list = ModList.get();
 			for(String s : antiOverlap)
-				if(list.isLoaded(s)) {
+				if(QuiltLoader.getAllMods().contains(s)) {
 					disabledByOverlap = true;
 					enabled = false;
 					break;

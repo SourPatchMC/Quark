@@ -2,6 +2,8 @@ package vazkii.quark.content.building.block;
 
 import java.util.function.BooleanSupplier;
 
+import io.github.fabricators_of_create.porting_lib.util.IPlantable;
+import io.github.fabricators_of_create.porting_lib.util.PlantType;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableList;
@@ -184,7 +186,7 @@ public class HedgeBlock extends FenceBlock implements IQuarkBlock, IBlockColorPr
 	@ClientOnly
 	public ItemColor getItemColor() {
 		final ItemStack leafStack = new ItemStack(leaf);
-		return (stack, tintIndex) -> Minecraft.getInstance().getItemColors().getColor(leafStack, tintIndex);
+		return (stack, tintIndex) -> Minecraft.getInstance().itemColors.getColor(leafStack, tintIndex);
 	}
 
 	@Override

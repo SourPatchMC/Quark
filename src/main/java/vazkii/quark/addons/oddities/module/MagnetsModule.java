@@ -54,10 +54,10 @@ public class MagnetsModule extends QuarkModule {
 		magnetized_block = new MovingMagnetizedBlock(this);
 
 		magnetType = BlockEntityType.Builder.of(MagnetBlockEntity::new, magnet).build(null);
-		RegistryHelper.register(magnetType, "magnet", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(magnetType, "magnet", Registry.BLOCK_ENTITY_TYPE);
 
 		magnetizedBlockType = BlockEntityType.Builder.of(MagnetizedBlockBlockEntity::new, magnetized_block).build(null);
-		RegistryHelper.register(magnetizedBlockType, "magnetized_block", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(magnetizedBlockType, "magnetized_block", Registry.BLOCK_ENTITY_TYPE);
 	}
 
 	@Override

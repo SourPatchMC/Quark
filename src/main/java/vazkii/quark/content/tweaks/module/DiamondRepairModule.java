@@ -2,12 +2,12 @@ package vazkii.quark.content.tweaks.module;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
@@ -58,15 +58,15 @@ public class DiamondRepairModule extends QuarkModule {
 			if(toks.length == 2) {
 				ResourceLocation itemRes = new ResourceLocation(toks[0]);
 
-				if(ForgeRegistries.ITEMS.containsKey(itemRes)) {
+				if(Registry.ITEM.containsKey(itemRes)) {
 					String repairItems = toks[1];
 					String[] repairToks = repairItems.split(",");
 					for(String repairTok : repairToks) {
 						ResourceLocation repairItemRes = new ResourceLocation(repairTok);
 
-						if(ForgeRegistries.ITEMS.containsKey(repairItemRes)) {
-							Item item = ForgeRegistries.ITEMS.getValue(itemRes);
-							Item repairItem = ForgeRegistries.ITEMS.getValue(repairItemRes);
+						if(Registry.ITEM.containsKey(repairItemRes)) {
+							Item item = Registry.ITEM.get(itemRes);
+							Item repairItem = Registry.ITEM.get(repairItemRes);
 							repairChanges.put(item, repairItem);
 						}
 					}
@@ -74,7 +74,7 @@ public class DiamondRepairModule extends QuarkModule {
 			}
 		}
 
-		unrepairableItems = MiscUtil.massRegistryGet(unrepairableItemsList, ForgeRegistries.ITEMS);
+		unrepairableItems = MiscUtil.massRegistryGet(unrepairableItemsList, Registry.ITEM);
 	}
 
 	@Override

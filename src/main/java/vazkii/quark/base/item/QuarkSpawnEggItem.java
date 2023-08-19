@@ -11,15 +11,14 @@ import vazkii.quark.base.module.QuarkModule;
 
 import org.jetbrains.annotations.NotNull;
 import java.util.function.BooleanSupplier;
-import java.util.function.Supplier;
 
 public class QuarkSpawnEggItem extends SpawnEggItem implements IQuarkItem {
 
 	private final QuarkModule module;
 	private BooleanSupplier enabledSupplier = () -> true;
 
-	public QuarkSpawnEggItem(Supplier<EntityType<? extends Mob>> type, int primaryColor, int secondaryColor, String regname, QuarkModule module, Properties properties) {
-		super(type.get(), primaryColor, secondaryColor, properties);
+	public QuarkSpawnEggItem(EntityType<? extends Mob> type, int primaryColor, int secondaryColor, String regname, QuarkModule module, Properties properties) {
+		super(type, primaryColor, secondaryColor, properties);
 
 		RegistryHelper.registerItem(this, regname);
 		this.module = module;

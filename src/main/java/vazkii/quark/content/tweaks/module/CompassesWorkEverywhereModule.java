@@ -2,18 +2,17 @@ package vazkii.quark.content.tweaks.module;
 
 import java.util.function.BiConsumer;
 
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerTickEvents;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -33,6 +32,11 @@ public class CompassesWorkEverywhereModule extends QuarkModule {
 	@Config public static boolean enableEnd = true;
 	
 	@Hint("clock_nerf") Item clock = Items.CLOCK;
+
+	public CompassesWorkEverywhereModule() {
+		super();
+		PlayerTickEvents.START.register(this::onUpdate);
+	}
 
 	@Override
 	@ClientOnly
@@ -66,18 +70,15 @@ public class CompassesWorkEverywhereModule extends QuarkModule {
 		consumer.accept(Items.COMPASS, comp);
 	}
 
-	@SubscribeEvent
-	public void onUpdate(PlayerTickEvent event) {
-		if(event.phase == Phase.START) {
-			Inventory inventory = event.player.getInventory();
-			for(int i = 0; i < inventory.getContainerSize(); i++) {
-				ItemStack stack = inventory.getItem(i);
-				if(stack.getItem() == Items.COMPASS)
-					CompassAngleGetter.tickCompass(event.player, stack);
-				else if(stack.getItem() == Items.CLOCK)
-					ClockTimeGetter.tickClock(stack);
-			}
-		}
-	}
+	public void onUpdate(Player player) {
+        Inventory inventory = player.getInventory();
+        for(int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if(stack.getItem() == Items.COMPASS)
+                CompassAngleGetter.tickCompass(player, stack);
+            else if(stack.getItem() == Items.CLOCK)
+                ClockTimeGetter.tickClock(stack);
+        }
+    }
 
 }

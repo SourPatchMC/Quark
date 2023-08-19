@@ -3,7 +3,6 @@ package vazkii.quark.base.handler;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-
 import io.github.fabricators_of_create.porting_lib.util.ToolAction;
 import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.minecraft.advancements.CriteriaTriggers;

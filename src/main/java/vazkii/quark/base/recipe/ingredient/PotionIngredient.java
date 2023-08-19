@@ -13,7 +13,6 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IIngredientSerializer;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.handler.BrewingHandler;
 
 import org.jetbrains.annotations.NotNull;
@@ -70,23 +69,23 @@ public class PotionIngredient extends Ingredient {
 		@NotNull
 		@Override
 		public PotionIngredient parse(@NotNull FriendlyByteBuf buffer) {
-			Item item = ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation());
-			Potion potion = ForgeRegistries.POTIONS.getValue(buffer.readResourceLocation());
+			Item item = Registry.ITEM.get(buffer.readResourceLocation());
+			Potion potion = Registry.POTION.get(buffer.readResourceLocation());
 			return new PotionIngredient(item, potion);
 		}
 
 		@NotNull
 		@Override
 		public PotionIngredient parse(@NotNull JsonObject json) {
-			Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(json.getAsJsonPrimitive("item").getAsString()));
-			Potion potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(json.getAsJsonPrimitive("potion").getAsString()));
+			Item item = Registry.ITEM.get(new ResourceLocation(json.getAsJsonPrimitive("item").getAsString()));
+			Potion potion = Registry.POTION.get(new ResourceLocation(json.getAsJsonPrimitive("potion").getAsString()));
 			return new PotionIngredient(item, potion);
 		}
 
 		@Override
 		public void write(@NotNull FriendlyByteBuf buffer, @NotNull PotionIngredient ingredient) {
-			buffer.writeUtf(Objects.toString(ForgeRegistries.ITEMS.getKey(ingredient.item)));
-			buffer.writeUtf(Objects.toString(ForgeRegistries.POTIONS.getKey(ingredient.potion)));
+			buffer.writeUtf(Objects.toString(Registry.ITEM.getKey(ingredient.item)));
+			buffer.writeUtf(Objects.toString(Registry.POTION.getKey(ingredient.potion)));
 		}
 	}
 }

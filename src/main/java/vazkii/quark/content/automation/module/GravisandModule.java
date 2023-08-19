@@ -34,7 +34,7 @@ public class GravisandModule extends QuarkModule {
 				.updateInterval(20) // update interval
 				.setCustomClientFactory((spawnEntity, world) -> new Gravisand(gravisandType, world))
 				.build("gravisand");
-		RegistryHelper.register(gravisandType, "gravisand", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(gravisandType, "gravisand", Registry.ENTITY_TYPE);
 	}
 
 	@Override

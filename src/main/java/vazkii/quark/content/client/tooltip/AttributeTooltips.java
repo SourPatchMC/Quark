@@ -15,6 +15,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.MutableComponent;
@@ -34,7 +35,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.ClientTicker;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.base.Quark;
@@ -70,7 +70,7 @@ public class AttributeTooltips {
 
 	@Nullable
 	private static AttributeIconEntry getIconForAttribute(Attribute attribute) {
-		ResourceLocation loc = ForgeRegistries.ATTRIBUTES.getKey(attribute);
+		ResourceLocation loc = Registry.ATTRIBUTE.getKey(attribute);
 		if (loc != null) return attributes.get(loc);
 		return null;
 	}
@@ -166,7 +166,7 @@ public class AttributeTooltips {
 				if (!map.containsKey(Attributes.ATTACK_SPEED) && map.containsKey(Attributes.ATTACK_DAMAGE))
 					map.put(Attributes.ATTACK_SPEED, new AttributeModifier(Util.NIL_UUID, "-", 0, AttributeModifier.Operation.ADDITION));
 
-				if (!map.containsKey(Attributes.ATTACK_KNOCKBACK) && stack.getEnchantmentLevel(Enchantments.KNOCKBACK) > 0)
+				if (!map.containsKey(Attributes.ATTACK_KNOCKBACK) && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, stack) > 0)
 					map.put(Attributes.ATTACK_KNOCKBACK, new AttributeModifier(Util.NIL_UUID, "-", 0, AttributeModifier.Operation.ADDITION));
 			}
 			return map;
@@ -312,7 +312,7 @@ public class AttributeTooltips {
 		if (key.equals(Attributes.ATTACK_DAMAGE) && slot == AttributeSlot.MAINHAND)
 			value += EnchantmentHelper.getDamageBonus(stack, MobType.UNDEFINED);
 		if (key.equals(Attributes.ATTACK_KNOCKBACK) && slot == AttributeSlot.MAINHAND)
-			value += stack.getEnchantmentLevel(Enchantments.KNOCKBACK);
+			value += EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, stack);
 
 		if (displayType == AttributeDisplayType.DIFFERENCE) {
 			if (slot != null || !key.equals(Attributes.ATTACK_DAMAGE)) {

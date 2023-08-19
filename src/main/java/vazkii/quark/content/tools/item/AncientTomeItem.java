@@ -2,6 +2,7 @@ package vazkii.quark.content.tools.item;
 
 import java.util.List;
 
+import net.minecraft.core.Registry;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.ChatFormatting;
@@ -17,7 +18,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.Level;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;
@@ -40,7 +40,6 @@ public class AncientTomeItem extends QuarkItem {
 		return true;
 	}
 
-	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
 		return false;
 	}
@@ -55,7 +54,7 @@ public class AncientTomeItem extends QuarkItem {
 	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
 		if (isEnabled() || group == CreativeModeTab.TAB_SEARCH) {
 			if (group == CreativeModeTab.TAB_SEARCH || group.getEnchantmentCategories().length != 0) {
-				ForgeRegistries.ENCHANTMENTS.forEach(ench -> {
+				Registry.ENCHANTMENT.forEach(ench -> {
 					if (!EnchantmentsBegoneModule.shouldBegone(ench) && ench.getMaxLevel() != 1) {
 						if (!AncientTomesModule.isInitialized() || AncientTomesModule.validEnchants.contains(ench)) {
 							if (group == CreativeModeTab.TAB_SEARCH || group.hasEnchantmentCategory(ench.category)) {

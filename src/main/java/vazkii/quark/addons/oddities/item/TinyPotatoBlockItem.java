@@ -2,6 +2,13 @@ package vazkii.quark.addons.oddities.item;
 
 import java.util.List;
 
+import io.github.fabricators_of_create.porting_lib.extensions.ItemExtensions;
+import io.github.fabricators_of_create.porting_lib.item.EquipmentItem;
+import net.fabricmc.fabric.api.item.v1.FabricItem;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Wearable;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.ChatFormatting;
@@ -23,7 +30,7 @@ import vazkii.quark.addons.oddities.util.TinyPotatoInfo;
 import vazkii.quark.api.IRuneColorProvider;
 import vazkii.quark.base.handler.ContributorRewardHandler;
 
-public class TinyPotatoBlockItem extends BlockItem implements IRuneColorProvider {
+public class TinyPotatoBlockItem extends BlockItem implements IRuneColorProvider, Wearable, EquipmentItem {
 	private static final int NOT_MY_NAME = 17;
 	private static final List<String> TYPOS = List.of("vaskii", "vazki", "voskii", "vazkkii", "vazkki", "vazzki", "vaskki", "vozkii", "vazkil", "vaskil", "vazkill", "vaskill", "vaski");
 
@@ -33,11 +40,7 @@ public class TinyPotatoBlockItem extends BlockItem implements IRuneColorProvider
 		super(block, properties);
 	}
 
-	@Override
-	public boolean canEquip(ItemStack stack, EquipmentSlot armorType, Entity entity) {
-		return super.canEquip(stack, armorType, entity) ||
-				(entity instanceof Player player && ContributorRewardHandler.getTier(player) > 0);
-	}
+	// canEquip() has been moved to InventoryMenuMixin and LivingEntityMixin.
 
 	@NotNull
 	@Override
@@ -102,5 +105,10 @@ public class TinyPotatoBlockItem extends BlockItem implements IRuneColorProvider
 		if (stack.hasCustomHoverName())
 			return TinyPotatoInfo.fromComponent(stack.getHoverName()).runeColor();
 		return -1;
+	}
+
+	@Override
+	public EquipmentSlot getEquipmentSlot(ItemStack stack) {
+		return EquipmentSlot.HEAD;
 	}
 }

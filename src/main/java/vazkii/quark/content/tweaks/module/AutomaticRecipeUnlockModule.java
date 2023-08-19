@@ -1,6 +1,7 @@
 package vazkii.quark.content.tweaks.module;
 
 import com.google.common.collect.Lists;
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerTickEvents;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
@@ -22,6 +23,9 @@ import net.minecraftforge.client.event.ScreenEvent.Init;
 import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.quiltmc.qsl.lifecycle.api.client.event.ClientTickEvents;
+import org.quiltmc.qsl.networking.api.ServerPlayConnectionEvents;
+import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
@@ -49,39 +53,35 @@ public class AutomaticRecipeUnlockModule extends QuarkModule {
 		staticEnabled = enabled;
 	}
 
-	@SubscribeEvent
-	public void onPlayerLoggedIn(PlayerLoggedInEvent event) {
-		Player player = event.getEntity();
+	public AutomaticRecipeUnlockModule() {
+		super();
+		ServerPlayConnectionEvents.INIT.register((handler, server) -> onPlayerLoggedIn(handler.getPlayer()));
+		ClientTickEvents.START.register((minecraft) -> clientTick());
+	}
 
-		if(player instanceof ServerPlayer spe) {
-			MinecraftServer server = spe.getServer();
-			if (server != null) {
-				List<Recipe<?>> recipes = new ArrayList<>(server.getRecipeManager().getRecipes());
-				recipes.removeIf(
-						(recipe) ->
-						recipe == null
-						|| recipe.getResultItem() == null
-						|| ignoredRecipes.contains(Objects.toString(recipe.getId()))
-						|| recipe.getResultItem().isEmpty());
+	public void onPlayerLoggedIn(ServerPlayer serverPlayer) {
+		MinecraftServer server = serverPlayer.getServer();
+		if (server != null) {
+			List<Recipe<?>> recipes = new ArrayList<>(server.getRecipeManager().getRecipes());
+			recipes.removeIf((recipe) -> recipe == null || recipe.getResultItem() == null
+					|| ignoredRecipes.contains(Objects.toString(recipe.getId())) || recipe.getResultItem().isEmpty());
 
-				int idx = 0;
-				int maxShift = 1000;
-				int shift;
-				int size = recipes.size();
-				do {
-					shift = size - idx;
-					int effShift = Math.min(maxShift, shift);
+			int idx = 0;
+			int maxShift = 1000;
+			int shift;
+			int size = recipes.size();
+			do {
+				shift = size - idx;
+				int effShift = Math.min(maxShift, shift);
 
-					List<Recipe<?>> sectionedRecipes = recipes.subList(idx, idx + effShift);
-					player.awardRecipes(sectionedRecipes);
-					idx += effShift;
-				} while(shift > maxShift);
+				List<Recipe<?>> sectionedRecipes = recipes.subList(idx, idx + effShift);
+				serverPlayer.awardRecipes(sectionedRecipes);
+				idx += effShift;
+			} while (shift > maxShift);
 
-
-				if (forceLimitedCrafting)
-					player.level.getGameRules().getRule(GameRules.RULE_LIMITED_CRAFTING).set(true, server);
-			}
+			if (forceLimitedCrafting) serverPlayer.level.getGameRules().getRule(GameRules.RULE_LIMITED_CRAFTING).set(true, server);
 		}
+
 	}
 
 	@SubscribeEvent
@@ -100,9 +100,8 @@ public class AutomaticRecipeUnlockModule extends QuarkModule {
 		}
 	}
 
-	@SubscribeEvent
 	@ClientOnly
-	public void clientTick(ClientTickEvent event) {
+	public void clientTick() {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.player != null && mc.player.tickCount < 20) {
 			ToastComponent toasts = mc.getToasts();

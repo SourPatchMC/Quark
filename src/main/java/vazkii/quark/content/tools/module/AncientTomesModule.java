@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -11,6 +13,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -29,6 +32,8 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
@@ -44,7 +49,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.api.IRuneColorProvider;
 import vazkii.quark.api.QuarkCapabilities;
 import vazkii.quark.base.Quark;
@@ -130,6 +134,11 @@ public class AncientTomesModule extends QuarkModule {
 	public static QuarkGenericTrigger overlevelTrigger;
 	public static QuarkGenericTrigger instamineDeepslateTrigger;
 
+	public AncientTomesModule() {
+		super();
+		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> this::onLootTableLoad);
+	}
+
 	@Override
 	public void register() {
 		ancient_tome = new AncientTomeItem(this);
@@ -180,9 +189,7 @@ public class AncientTomesModule extends QuarkModule {
 		initialized = true;
 	}
 
-	@SubscribeEvent
-	public void onLootTableLoad(LootTableLoadEvent event) {
-		ResourceLocation res = event.getName();
+	public void onLootTableLoad(ResourceManager resourceManager, LootTables lootManager, ResourceLocation res, LootTable.Builder tableBuilder, LootTableSource source) {
 		int weight = lootTableWeights.getOrDefault(res, 0);
 
 		if(weight > 0) {
@@ -192,7 +199,7 @@ public class AncientTomesModule extends QuarkModule {
 					.apply(() -> new EnchantTome(new LootItemCondition[0]))
 					.build();
 
-			MiscUtil.addToLootTable(event.getTable(), entry);
+			MiscUtil.addToLootTable(lootManager.get(res), entry);
 		}
 	}
 
@@ -442,7 +449,7 @@ public class AncientTomesModule extends QuarkModule {
 
 		for(int i = 0; i < list.size(); ++i) {
 			CompoundTag nbt = list.getCompound(i);
-			Enchantment enchant = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(nbt.getString("id")));
+			Enchantment enchant = Registry.ENCHANTMENT.get(ResourceLocation.tryParse(nbt.getString("id")));
 			if (enchant != null)
 				return enchant;
 		}

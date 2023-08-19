@@ -1,6 +1,8 @@
 package vazkii.quark.content.tweaks.module;
 
 import com.google.common.collect.Lists;
+import io.github.fabricators_of_create.porting_lib.event.common.EntityEvents;
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerEvents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -44,6 +46,10 @@ public class PatTheDogsModule extends QuarkModule {
 	@Config(description = "Even if `petAllMobs` is not set, these mobs can be pet")
 	public static List<String> pettableAllowlist = Lists.newArrayList();
 
+	public void configChanged() {
+		staticEnabled = enabled;
+	}
+
 	@SubscribeEvent
 	public void onWolfAppear(EntityJoinLevelEvent event) {
 		if (dogsWantLove > 0 && event.getEntity() instanceof Wolf wolf) {
@@ -58,6 +64,7 @@ public class PatTheDogsModule extends QuarkModule {
 
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent.EntityInteract event) {
+
 		var player = event.getEntity();
 
 		if (player.isDiscrete() && player.getMainHandItem().isEmpty()) {

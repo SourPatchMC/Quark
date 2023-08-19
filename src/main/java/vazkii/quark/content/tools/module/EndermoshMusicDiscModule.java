@@ -1,17 +1,19 @@
 package vazkii.quark.content.tools.module;
 
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.event.LootTableLoadEvent;
-import net.minecraftforge.event.TickEvent.ClientTickEvent;
-import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.quiltmc.qsl.lifecycle.api.client.event.ClientTickEvents;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.base.item.QuarkMusicDiscItem;
@@ -36,33 +38,35 @@ public class EndermoshMusicDiscModule extends QuarkModule {
 	@ClientOnly private int delay;
 	@ClientOnly private SimpleSoundInstance sound;
 
+	public EndermoshMusicDiscModule() {
+		super();
+		LootTableEvents.MODIFY.register(this::onLootTableLoad);
+		ClientTickEvents.END.register(this::tick);
+	}
+
 	@Override
 	public void register() {
 		endermosh = new QuarkMusicDiscItem(14, () -> QuarkSounds.MUSIC_ENDERMOSH, "endermosh", this, 3783); // Tick length calculated from endermosh.ogg - 3:09.150
 	}
 
-	@SubscribeEvent
-	public void onLootTableLoad(LootTableLoadEvent event) {
+	public void onLootTableLoad(ResourceManager resourceManager, LootTables lootManager, ResourceLocation res, LootTable.Builder tableBuilder, LootTableSource source) {
 		if(addToEndCityLoot) {
-			ResourceLocation res = event.getName();
 			if(res.equals(BuiltInLootTables.END_CITY_TREASURE)) {
 				LootPoolEntryContainer entry = LootItem.lootTableItem(endermosh)
 						.setWeight(lootWeight)
 						.setQuality(lootQuality)
 						.build();
 
-				MiscUtil.addToLootTable(event.getTable(), entry);
+				MiscUtil.addToLootTable(LootTable.lootTable().build(), entry);
 			}
 		}
 	}
 
-	@SubscribeEvent
 	@ClientOnly
-	public void tick(ClientTickEvent event) {
-		if(event.phase == Phase.END && playEndermoshDuringEnderdragonFight) {
+	public void tick(Minecraft mc) {
+		if (playEndermoshDuringEnderdragonFight) {
 			boolean wasFightingDragon = isFightingDragon;
 
-			Minecraft mc = Minecraft.getInstance();
 			isFightingDragon = mc.level != null
 					&& mc.level.dimension().location().equals(LevelStem.END.location())
 					&& mc.gui.getBossOverlay().shouldPlayMusic();
@@ -89,5 +93,4 @@ public class EndermoshMusicDiscModule extends QuarkModule {
 			}
 		}
 	}
-
 }

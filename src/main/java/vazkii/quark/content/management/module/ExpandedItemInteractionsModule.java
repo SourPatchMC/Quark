@@ -1,6 +1,7 @@
 package vazkii.quark.content.management.module;
 
 import com.mojang.datafixers.util.Either;
+import io.github.fabricators_of_create.porting_lib.util.NetworkHooks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -87,7 +88,7 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 	@Override
 	public void register() {
 		heldShulkerBoxMenuType = IForgeMenuType.create(HeldShulkerBoxMenu::fromNetwork);
-		RegistryHelper.register(heldShulkerBoxMenuType, "held_shulker_box", Registry.MENU_REGISTRY);
+		RegistryHelper.register(heldShulkerBoxMenuType, "held_shulker_box", Registry.MENU);
 	}
 
 	@Override
@@ -99,7 +100,7 @@ public class ExpandedItemInteractionsModule extends QuarkModule {
 	public void configChanged() {
 		staticEnabled = configEnabled;
 
-		shulkers = MiscUtil.massRegistryGet(GeneralConfig.shulkerBoxes, ForgeRegistries.ITEMS);
+		shulkers = MiscUtil.massRegistryGet(GeneralConfig.shulkerBoxes, Registry.ITEM);
 	}
 
 	public static boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player) {

@@ -3,11 +3,13 @@ package vazkii.quark.content.tweaks.module;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerTickEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -63,7 +65,13 @@ public class EnhancedLaddersModule extends QuarkModule {
 
 	@Override
 	public void setup() {
-		laddersTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "ladders"));
+		laddersTag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "ladders"));
+	}
+
+	public EnhancedLaddersModule() {
+		super();
+		PlayerTickEvents.START.register(this::onPlayerTick);
+
 	}
 
 	@Override

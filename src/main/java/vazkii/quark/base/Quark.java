@@ -1,10 +1,15 @@
 package vazkii.quark.base;
 
+import net.fabricmc.api.EnvType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.loader.api.minecraft.MinecraftQuiltLoader;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
+import vazkii.quark.base.proxy.ClientProxy;
 import vazkii.quark.base.proxy.CommonProxy;
+
+import java.util.Objects;
 
 //@Mod(Quark.MOD_ID)
 public class Quark implements ModInitializer {
@@ -21,7 +26,13 @@ public class Quark implements ModInitializer {
 	public void onInitialize(ModContainer mod) {
 		instance = this;
 
-//		proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+		// todo: Migrate the proxies over to initialization stuff. Client should not be referenced here as well.
+        if (Objects.requireNonNull(MinecraftQuiltLoader.getEnvironmentType()) == EnvType.CLIENT) {
+            proxy = new ClientProxy();
+        } else {
+            proxy = new CommonProxy();
+        }
+
 		proxy.start();
 	}
 }

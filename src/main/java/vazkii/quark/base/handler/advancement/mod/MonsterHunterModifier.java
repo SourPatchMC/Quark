@@ -8,9 +8,9 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.EntityTypePredicate;
 import net.minecraft.advancements.critereon.KilledTrigger;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.api.IMutableAdvancement;
 import vazkii.quark.base.handler.advancement.AdvancementModifier;
@@ -42,7 +42,7 @@ public class MonsterHunterModifier extends AdvancementModifier {
 		for(EntityType<?> type : entityTypes) {
 			Criterion criterion = new Criterion(KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(type))));
 			
-			String name = ForgeRegistries.ENTITY_TYPES.getKey(type).toString();
+			String name = Registry.ENTITY_TYPE.getKey(type).toString();
 			if(all)
 				adv.addRequiredCriterion(name, criterion);
 			else adv.addOrCriterion(name, criterion);

@@ -2,12 +2,13 @@ package vazkii.quark.base.item;
 
 import java.util.function.BooleanSupplier;
 
+import io.github.fabricators_of_create.porting_lib.extensions.ItemExtensions;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.world.item.Item;
 import vazkii.quark.base.module.QuarkModule;
 
-public interface IQuarkItem {
+public interface IQuarkItem extends ItemExtensions {
 
 	@Nullable
 	QuarkModule getModule();

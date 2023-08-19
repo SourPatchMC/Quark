@@ -40,7 +40,6 @@ import net.minecraftforge.common.world.ModifiableBiomeInfo.BiomeInfo.Builder;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
@@ -61,7 +60,7 @@ public class WorldGenHandler {
 			// Always do .toLowerCase(Locale.ENGLISH) with that locale. If you leave it off, computers in
 			// countries like Turkey will use a special character instead of i and well, crash the ResourceLocation.
 			String name = "deferred_feature_" + stage.name().toLowerCase(Locale.ENGLISH);
-			RegistryHelper.register(deferredFeature, name, Registry.FEATURE_REGISTRY);
+			RegistryHelper.register(deferredFeature, name, Registry.FEATURE);
 			
 			ConfiguredFeature<?, ?> feature = new ConfiguredFeature<>(deferredFeature, FeatureConfiguration.NONE);
 

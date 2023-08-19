@@ -40,7 +40,7 @@ public class TorchArrowModule extends QuarkModule {
 				.clientTrackingRange(4)
 				.updateInterval(20) // update interval
 				.build("torch_arrow");
-		RegistryHelper.register(torchArrowType, "torch_arrow", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(torchArrowType, "torch_arrow", Registry.ENTITY_TYPE);
 	}
 	
 	@Override

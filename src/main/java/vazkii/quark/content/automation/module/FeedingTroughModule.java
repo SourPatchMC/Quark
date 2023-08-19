@@ -3,6 +3,7 @@ package vazkii.quark.content.automation.module;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import io.github.fabricators_of_create.porting_lib.fake_players.FakePlayer;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.base.Predicates;
@@ -34,7 +35,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -163,10 +163,10 @@ public class FeedingTroughModule extends QuarkModule {
 				Block.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD));
 
 		blockEntityType = BlockEntityType.Builder.of(FeedingTroughBlockEntity::new, feeding_trough).build(null);
-		RegistryHelper.register(blockEntityType, "feeding_trough", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(blockEntityType, "feeding_trough", Registry.BLOCK_ENTITY_TYPE);
 
 		feedingTroughPoi = new PoiType(getBlockStates(feeding_trough), 1, 32);
-		RegistryHelper.register(feedingTroughPoi, "feeding_trough", Registry.POINT_OF_INTEREST_TYPE_REGISTRY);
+		RegistryHelper.register(feedingTroughPoi, "feeding_trough", Registry.POINT_OF_INTEREST_TYPE);
 	}
 
 	private static Set<BlockState> getBlockStates(Block p_218074_) {

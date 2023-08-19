@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.common.ToolActions;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.block.QuarkFlammableBlock;
 import vazkii.quark.base.block.QuarkFlammablePillarBlock;

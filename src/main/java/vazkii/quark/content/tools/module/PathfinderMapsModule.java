@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import io.github.fabricators_of_create.porting_lib.event.common.LivingEntityEvents;
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerTickEvents;
+import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.platform.Window;
@@ -41,7 +44,6 @@ import net.minecraft.world.phys.Vec3;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
@@ -118,6 +120,12 @@ public class PathfinderMapsModule extends QuarkModule {
 	
 	@Config public static boolean drawHud = true;
 	@Config public static boolean hudOnTop = false;
+
+	public PathfinderMapsModule() {
+		super();
+		PlayerTickEvents.START.register(this::playerTick);
+		LivingEntityEvents.TICK.register(this::livingTick);
+	}
 
 	@Override
 	public void register() {
@@ -216,9 +224,8 @@ public class PathfinderMapsModule extends QuarkModule {
 			}
 	}
 	
-	@SubscribeEvent
-	public void livingTick(LivingTickEvent event) {
-		if(event.getEntity() instanceof WanderingTrader wt && addToWanderingTraderForced && !wt.getPersistentData().getBoolean(TAG_CHECKED_FOR_PATHFINDER)) {
+	public void livingTick(LivingEntity entity) {
+		if(entity instanceof WanderingTrader wt && addToWanderingTraderForced && !wt.getPersistentData().getBoolean(TAG_CHECKED_FOR_PATHFINDER)) {
 			boolean hasPathfinder = false;
 			MerchantOffers offers = wt.getOffers();
 			
@@ -241,9 +248,7 @@ public class PathfinderMapsModule extends QuarkModule {
 		}
 	}
 	
-	@SubscribeEvent
-	public void playerTick(PlayerTickEvent event) {
-		Player player = event.player;
+	public void playerTick(Player player) {
 		if(!(player instanceof ServerPlayer))
 			return;
 

@@ -1,5 +1,6 @@
 package vazkii.quark.base.network.message.oddities;
 
+import io.github.fabricators_of_create.porting_lib.util.NetworkHooks;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -9,8 +10,6 @@ import vazkii.arl.quilt.NetworkContext;
 import vazkii.quark.addons.oddities.inventory.BackpackMenu;
 
 import java.io.Serial;
-
-import io.github.fabricators_of_create.porting_lib.util.NetworkHooks;
 
 public class HandleBackpackMessage implements IMessage {
 

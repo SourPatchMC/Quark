@@ -12,7 +12,9 @@ import java.util.WeakHashMap;
 import java.util.function.Predicate;
 
 import com.google.common.collect.Lists;
+import io.github.fabricators_of_create.porting_lib.event.common.PlayerTickEvents;
 import io.github.fabricators_of_create.porting_lib.util.ToolAction;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
@@ -24,14 +26,12 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.InventoryIIH;
 import vazkii.quark.addons.oddities.module.BackpackModule;
 import vazkii.quark.api.event.GatherToolClassesEvent;
@@ -45,6 +45,10 @@ import vazkii.quark.base.module.config.Config;
 
 @LoadModule(category = ModuleCategory.MANAGEMENT, hasSubscriptions = true, antiOverlap = "inventorytweaks")
 public class AutomaticToolRestockModule extends QuarkModule {
+	public AutomaticToolRestockModule() {
+		super();
+		PlayerTickEvents.END.register(this::onPlayerTick);
+	}
 
 	private static final Map<ToolAction, String> ACTION_TO_CLASS = new HashMap<>();
 	
@@ -55,7 +59,7 @@ public class AutomaticToolRestockModule extends QuarkModule {
 		ACTION_TO_CLASS.put(ToolActions.PICKAXE_DIG, "pickaxe");
 		ACTION_TO_CLASS.put(ToolActions.SWORD_SWEEP, "sword");
 		ACTION_TO_CLASS.put(ToolActions.SHEARS_HARVEST, "shears");
-		ACTION_TO_CLASS.put(ToolActions.FISHING_ROD_CAST, "fishing_rod");
+		//ACTION_TO_CLASS.put(ToolActions.FISHING_ROD_CAST, "fishing_rod");
 	}
 	
 	private static final WeakHashMap<Player, Stack<QueuedRestock>> replacements = new WeakHashMap<>();
@@ -86,8 +90,8 @@ public class AutomaticToolRestockModule extends QuarkModule {
 	
 	@Override
 	public void configChanged() {
-		importantEnchants = MiscUtil.massRegistryGet(enchantNames, ForgeRegistries.ENCHANTMENTS);
-		itemsToIgnore = MiscUtil.massRegistryGet(ignoredItems, ForgeRegistries.ITEMS);
+		importantEnchants = MiscUtil.massRegistryGet(enchantNames, Registry.ENCHANTMENT);
+		itemsToIgnore = MiscUtil.massRegistryGet(ignoredItems, Registry.ITEM);
 	}
 
 	@SubscribeEvent

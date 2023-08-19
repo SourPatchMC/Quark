@@ -11,6 +11,8 @@
 package vazkii.quark.content.mobs.entity;
 
 import com.google.common.collect.Lists;
+
+import io.github.fabricators_of_create.porting_lib.entity.ExtraSpawnDataEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -55,8 +57,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.entity.IEntityAdditionalSpawnData;
 import net.minecraftforge.fluids.FluidType;
 
 import vazkii.quark.base.handler.QuarkSounds;
@@ -67,7 +67,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.util.function.BiConsumer;
 
-public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketable {
+public class Crab extends Animal implements ExtraSpawnDataEntity, Bucketable {
 
 	public static final int COLORS = 3;
 	public static final ResourceLocation CRAB_LOOT_TABLE = new ResourceLocation("quark", "entities/crab");
@@ -322,8 +322,8 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	@Override
 	public float getStepHeight() {
 		float baseStep = wasTouchingWater ? 1F : 0.6F;
-		AttributeInstance stepHeightAttribute = getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get());
-		if (stepHeightAttribute != null) return (float) Math.max(0, baseStep + stepHeightAttribute.getValue());
+		/*AttributeInstance stepHeightAttribute = getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get());
+		if (stepHeightAttribute != null) return (float) Math.max(0, baseStep + stepHeightAttribute.getValue());*/
 		return baseStep;
 	}
 
@@ -334,7 +334,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	}
 
 	@Override
-	public boolean isPushedByFluid(FluidType type) {
+	public boolean isPushedByFluid() {
 		return false;
 	}
 
@@ -401,6 +401,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 		return !stack.isEmpty() && getTemptationItems().test(stack);
 	}
 
+	//Todo: Suggest to Quark Upstream that they should turn this into a tag.
 	private Ingredient getTemptationItems() {
 		if(temptationItems == null)
 			temptationItems = Ingredient.merge(Lists.newArrayList(
@@ -465,7 +466,7 @@ public class Crab extends Animal implements IEntityAdditionalSpawnData, Bucketab
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return ExtraSpawnDataEntity.createExtraDataSpawnPacket(this);
 	}
 
 	@Override

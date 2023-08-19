@@ -5,12 +5,11 @@ import com.google.common.collect.ImmutableSet;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ConsumeItemTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.api.IMutableAdvancement;
 import vazkii.quark.base.handler.advancement.AdvancementModifier;
-import vazkii.quark.base.handler.advancement.MutableAdvancement;
 import vazkii.quark.base.module.QuarkModule;
 
 import java.util.Set;
@@ -40,7 +39,7 @@ public class BalancedDietModifier extends AdvancementModifier {
         Criterion criterion = new Criterion(ConsumeItemTrigger.TriggerInstance.usedItem(
                 ItemPredicate.Builder.item().of(array).build()));
 
-        String name = ForgeRegistries.ITEMS.getKey(array[0].asItem()).toString();
+        String name = Registry.ITEM.getKey(array[0].asItem()).toString();
 
         adv.addRequiredCriterion(name, criterion);
 

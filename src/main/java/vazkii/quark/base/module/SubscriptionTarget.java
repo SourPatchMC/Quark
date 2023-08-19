@@ -1,6 +1,7 @@
 package vazkii.quark.base.module;
 
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.fabricmc.api.EnvType;
+import org.quiltmc.loader.api.minecraft.MinecraftQuiltLoader;
 
 public enum SubscriptionTarget {
 
@@ -18,7 +19,7 @@ public enum SubscriptionTarget {
 	private final boolean server;
 
 	public boolean shouldSubscribe() {
-		return FMLEnvironment.dist.isClient() ? client : server;
+		return MinecraftQuiltLoader.getEnvironmentType().equals(EnvType.CLIENT) ? client : server;
 	}
 
 	public static SubscriptionTarget fromString(String s) {

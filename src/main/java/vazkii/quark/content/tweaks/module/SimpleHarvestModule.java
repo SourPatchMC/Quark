@@ -13,6 +13,7 @@ package vazkii.quark.content.tweaks.module;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -40,10 +41,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import vazkii.quark.api.event.SimpleHarvestEvent;
 import vazkii.quark.api.event.SimpleHarvestEvent.ActionType;
@@ -114,14 +113,14 @@ public class SimpleHarvestModule extends QuarkModule {
         staticEnabled = enabled;
 
         if (doHarvestingSearch) {
-            ForgeRegistries.BLOCKS.getValues().stream()
+            Registry.BLOCK.stream()
                     .filter(b -> !isVanilla(b) && b instanceof CropBlock)
                     .map(b -> (CropBlock) b)
                     //only grabbing blocks whose max age is acceptable
                     .filter(b -> b.isMaxAge(b.defaultBlockState().setValue(b.getAgeProperty(), last(b.getAgeProperty().getPossibleValues()))))
                     .forEach(b -> crops.put(b.defaultBlockState().setValue(b.getAgeProperty(), last(b.getAgeProperty().getPossibleValues())), b.defaultBlockState()));
 
-            ForgeRegistries.BLOCKS.getValues().stream()
+            Registry.BLOCK.stream()
                     .filter(b -> !isVanilla(b) && (b instanceof BushBlock || b instanceof GrowingPlantBlock) && b instanceof BonemealableBlock && !(b instanceof CropBlock))
                     .forEach(rightClickCrops::add);
         }
@@ -140,7 +139,7 @@ public class SimpleHarvestModule extends QuarkModule {
         }
 
         for (String blockName : rightClickableBlocks) {
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockName));
+            Block block = Registry.BLOCK.get(new ResourceLocation(blockName));
             if (block != null)
                 rightClickCrops.add(block);
         }

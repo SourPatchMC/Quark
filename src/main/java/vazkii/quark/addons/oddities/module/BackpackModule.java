@@ -80,7 +80,7 @@ public class BackpackModule extends QuarkModule {
 		ravager_hide = new QuarkItem("ravager_hide", this, new Item.Properties().rarity(Rarity.RARE).tab(CreativeModeTab.TAB_MATERIALS)).setCondition(() -> enableRavagerHide);
 
 		menyType = IForgeMenuType.create(BackpackMenu::fromNetwork);
-		RegistryHelper.register(menyType, "backpack", Registry.MENU_REGISTRY);
+		RegistryHelper.register(menyType, "backpack", Registry.MENU);
 
 		bonded_ravager_hide = new QuarkBlock("bonded_ravager_hide", this, CreativeModeTab.TAB_BUILDING_BLOCKS, Block.Properties.of(Material.WOOL, DyeColor.BLACK)
 				.strength(1F)
@@ -92,7 +92,7 @@ public class BackpackModule extends QuarkModule {
 	
 	@Override
 	public void setup() {
-		backpackBlockedTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "backpack_blocked"));
+		backpackBlockedTag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "backpack_blocked"));
 	}
 
 	@Override

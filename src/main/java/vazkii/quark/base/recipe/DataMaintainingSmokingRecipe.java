@@ -1,5 +1,6 @@
 package vazkii.quark.base.recipe;
 
+import net.minecraft.core.Registry;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
@@ -18,7 +19,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmokingRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.ItemNBTHelper;
 
 /**
@@ -136,7 +136,7 @@ public class DataMaintainingSmokingRecipe extends SmokingRecipe {
 
 			Ingredient pullFrom = Ingredient.fromJson(json.get("copy_data_from"));
 
-			RecipeSerializer<?> serializer = ForgeRegistries.RECIPE_SERIALIZERS.getValue(new ResourceLocation(trueType));
+			RecipeSerializer<?> serializer = Registry.RECIPE_SERIALIZER.get(new ResourceLocation(trueType));
 			if (serializer == null)
 				throw new JsonSyntaxException("Invalid or unsupported recipe type '" + trueType + "'");
 			Recipe<?> parent = serializer.fromJson(recipeId, json);
@@ -153,7 +153,7 @@ public class DataMaintainingSmokingRecipe extends SmokingRecipe {
 
 			String trueType = "minecraft:smoking";
 
-			RecipeSerializer<?> serializer = ForgeRegistries.RECIPE_SERIALIZERS.getValue(new ResourceLocation(trueType));
+			RecipeSerializer<?> serializer = Registry.RECIPE_SERIALIZER.get(new ResourceLocation(trueType));
 			if (serializer == null)
 				throw new IllegalArgumentException("Invalid or unsupported recipe type '" + trueType + "'");
 			Recipe<?> parent = serializer.fromNetwork(recipeId, buffer);

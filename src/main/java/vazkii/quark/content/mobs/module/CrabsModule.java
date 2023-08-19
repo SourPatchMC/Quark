@@ -1,6 +1,8 @@
 package vazkii.quark.content.mobs.module;
 
 import com.google.common.collect.ImmutableSet;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +11,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements.Type;
@@ -22,6 +25,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.material.Fluids;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
+import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
+import org.quiltmc.qsl.entity.impl.QuiltEntityType;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.BrewingHandler;
@@ -99,12 +104,12 @@ public class CrabsModule extends QuarkModule {
 
 		BrewingHandler.addPotionMix("crab_brewing", () -> Ingredient.of(crab_shell), resilience);
 
-		crabType = EntityType.Builder.<Crab>of(Crab::new, MobCategory.CREATURE)
-				.sized(0.9F, 0.5F)
-				.clientTrackingRange(8)
-				.setCustomClientFactory((spawnEntity, world) -> new Crab(crabType, world))
-				.build("crab");
-		RegistryHelper.register(crabType, "crab", Registry.ENTITY_TYPE_REGISTRY);
+		crabType = QuiltEntityTypeBuilder.<Crab>create(MobCategory.CREATURE, Crab::new)
+				.setDimensions(new EntityDimensions( 0.9F, 0.5F, true))
+				.maxChunkTrackingRange(8)
+				.entityFactory((spawnEntity, world) -> new Crab(crabType, world))
+				.build();
+		RegistryHelper.register(crabType, "crab", Registry.ENTITY_TYPE);
 
 		EntitySpawnHandler.registerSpawn(this, crabType, MobCategory.CREATURE, Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, Crab::spawnPredicate, spawnConfig);
 		EntitySpawnHandler.addEgg(crabType, 0x893c22, 0x916548, spawnConfig);
@@ -119,12 +124,12 @@ public class CrabsModule extends QuarkModule {
 
 	@Override
 	public void setup() {
-		crabSpawnableTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "crab_spawnable"));
+		crabSpawnableTag = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Quark.MOD_ID, "crab_spawnable"));
 	}
 
 	@Override
 	@ClientOnly
 	public void clientSetup() {
-		EntityRenderers.register(crabType, CrabRenderer::new);
+		EntityRendererRegistry.register(crabType, CrabRenderer::new);
 	}
 }

@@ -25,7 +25,7 @@ public class EnderWatcherModule extends QuarkModule {
 	public void register() {
 		ender_watcher = new EnderWatcherBlock(this);
 		blockEntityType = BlockEntityType.Builder.of(EnderWatcherBlockEntity::new, ender_watcher).build(null);
-		RegistryHelper.register(blockEntityType, "ender_watcher", Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(blockEntityType, "ender_watcher", Registry.BLOCK_ENTITY_TYPE);
 		
 		watcherCenterTrigger = QuarkAdvancementHandler.registerGenericTrigger("watcher_center");
 	}

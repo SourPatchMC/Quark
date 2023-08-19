@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.registries.ForgeRegistries;
+import org.quiltmc.qsl.item.content.registry.api.ItemContentRegistries;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.content.building.block.VerticalSlabBlock;
@@ -42,7 +43,7 @@ public class FuelHandler {
 	}
 
 	public static void addAllWoods() {
-		for(Block block : ForgeRegistries.BLOCKS) {
+		for(Block block : Registry.BLOCK) {
 			ResourceLocation regname = RegistryHelper.getRegistryName(block, Registry.BLOCK);
 			if(block != null && regname.getNamespace().equals(Quark.MOD_ID) && block.defaultBlockState().getMaterial() == Material.WOOD)
 				addWood(block);
@@ -55,5 +56,4 @@ public class FuelHandler {
 		if(fuelValues.containsKey(item))
 			event.setBurnTime(fuelValues.get(item));
 	}
-
 }

@@ -68,7 +68,7 @@ public class TotemOfHoldingModule extends QuarkModule {
 				.setShouldReceiveVelocityUpdates(false)
 				.setCustomClientFactory((spawnEntity, world) -> new TotemOfHoldingEntity(totemType, world))
 				.build("totem");
-		RegistryHelper.register(totemType, "totem", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(totemType, "totem", Registry.ENTITY_TYPE);
 	}
 
 	@Override

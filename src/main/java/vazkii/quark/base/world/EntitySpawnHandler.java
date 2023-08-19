@@ -47,7 +47,7 @@ public class EntitySpawnHandler {
 	}
 
 	public static void addEgg(EntityType<? extends Mob> entityType, int color1, int color2, QuarkModule module, BooleanSupplier enabledSupplier) {
-		new QuarkSpawnEggItem(() -> entityType, color1, color2, RegistryHelper.getInternalName(entityType) + "_spawn_egg", module,
+		new QuarkSpawnEggItem(entityType, color1, color2, RegistryHelper.getInternalName(entityType) + "_spawn_egg", module,
 				new Item.Properties().tab(CreativeModeTab.TAB_MISC))
 		.setCondition(enabledSupplier);
 	}

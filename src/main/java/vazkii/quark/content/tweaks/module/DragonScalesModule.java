@@ -1,14 +1,14 @@
 package vazkii.quark.content.tweaks.module;
 
+import io.github.fabricators_of_create.porting_lib.event.common.LivingEntityEvents;
+import net.minecraft.core.Registry;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.item.QuarkItem;
 import vazkii.quark.base.module.LoadModule;
@@ -22,16 +22,20 @@ public class DragonScalesModule extends QuarkModule {
 
 	@Hint public static Item dragon_scale;
 
+	public DragonScalesModule() {
+		super();
+		LivingEntityEvents.TICK.register(this::onEntityTick);
+	}
+
 	@Override
 	public void register() {
-		ForgeRegistries.RECIPE_SERIALIZERS.register(Quark.MOD_ID + ":elytra_duplication", ElytraDuplicationRecipe.SERIALIZER);
+		Registry.register(Registry.RECIPE_SERIALIZER, Quark.MOD_ID + ":elytra_duplication", ElytraDuplicationRecipe.SERIALIZER);
 
 		dragon_scale = new QuarkItem("dragon_scale", this, new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS));
 	}
 
-	@SubscribeEvent
-	public void onEntityTick(LivingTickEvent event) {
-		if(event.getEntity() instanceof EnderDragon dragon && !event.getEntity().getCommandSenderWorld().isClientSide) {
+	public void onEntityTick(LivingEntity entity) {
+		if(entity instanceof EnderDragon dragon && !entity.getCommandSenderWorld().isClientSide) {
 			if(dragon.getDragonFight() != null && dragon.getDragonFight().hasPreviouslyKilledDragon() && dragon.dragonDeathTime == 100) {
 				Vec3 pos = dragon.position();
 				ItemEntity item = new ItemEntity(dragon.level, pos.x, pos.y, pos.z, new ItemStack(dragon_scale, 1));

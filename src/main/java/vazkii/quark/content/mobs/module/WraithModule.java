@@ -91,7 +91,7 @@ public class WraithModule extends QuarkModule {
 				.fireImmune()
 				.setCustomClientFactory((spawnEntity, world) -> new Wraith(wraithType, world))
 				.build("wraith");
-		RegistryHelper.register(wraithType, "wraith", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(wraithType, "wraith", Registry.ENTITY_TYPE);
 
 		soulBeadType = EntityType.Builder.of(SoulBead::new, MobCategory.MISC)
 				.sized(0F, 0F)
@@ -100,7 +100,7 @@ public class WraithModule extends QuarkModule {
 				.fireImmune()
 				.setCustomClientFactory((spawnEntity, world) -> new SoulBead(soulBeadType, world))
 				.build("soul_bead");
-		RegistryHelper.register(soulBeadType, "soul_bead", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(soulBeadType, "soul_bead", Registry.ENTITY_TYPE);
 
 		EntitySpawnHandler.registerSpawn(this, wraithType, MobCategory.MONSTER, Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, spawnConfig);
 		EntitySpawnHandler.addEgg(wraithType, 0xececec, 0xbdbdbd, spawnConfig);
