@@ -50,16 +50,17 @@ public interface SimpleFluidloggedBlock extends BucketPickup, LiquidBlockContain
 			return ItemStack.EMPTY;
 	}
 
-	@NotNull
-	@Override
-	default Optional<SoundEvent> getPickupSound() {
-		return Optional.empty(); // Irrelevant - using state variant below
-	}
+	// Note: I don't think this is needed on quilt - Maximum
+	// @NotNull
+	// @Override
+	// default Optional<SoundEvent> getPickupSound() {
+	// 	return Optional.empty(); // Irrelevant - using state variant below
+	// }
 
-	@Override
-	default Optional<SoundEvent> getPickupSound(BlockState state) {
-		return fluidContained(state).getPickupSound();
-	}
+	// @Override
+	// default Optional<SoundEvent> getPickupSound(BlockState state) {
+	// 	return fluidContained(state).getPickupSound();
+	// }
 
 	boolean acceptsFluid(@NotNull Fluid fluid);
 

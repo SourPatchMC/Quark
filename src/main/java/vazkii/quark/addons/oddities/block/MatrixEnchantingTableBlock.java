@@ -7,6 +7,8 @@ import org.jetbrains.annotations.Nullable;
 
 import com.mojang.math.Vector3f;
 
+import io.github.fabricators_of_create.porting_lib.enchant.EnchantmentBonusBlock;
+import io.github.fabricators_of_create.porting_lib.util.NetworkHooks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -31,7 +33,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.network.NetworkHooks;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.module.MatrixEnchantingModule;
@@ -164,7 +165,7 @@ public class MatrixEnchantingTableBlock extends EnchantmentTableBlock implements
 							}
 						}
 
-						if(state.getEnchantPowerBonus(worldIn, blockpos) > 0) {
+						if(state.getBlock() instanceof EnchantmentBonusBlock block && block.getEnchantPowerBonus(state, worldIn, blockpos) > 0) {
 							worldIn.addParticle(ParticleTypes.ENCHANT, pos.getX() + 0.5, pos.getY() + 2.0, pos.getZ() + 0.5, i + rand.nextFloat() - 0.5, k - rand.nextFloat() - 1.0, j + rand.nextFloat() - 0.5);
 						}
 					}

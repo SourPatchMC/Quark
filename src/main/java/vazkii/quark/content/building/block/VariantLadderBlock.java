@@ -45,10 +45,11 @@ public class VariantLadderBlock extends LadderBlock implements IQuarkBlock {
 			flammable);
 	}
 
-	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return flammable;
-	}
+	// TODO: AAAAAAAAAAA - Maximum
+	// @Override
+	// public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return flammable;
+	// }
 
 	@Override
 	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {

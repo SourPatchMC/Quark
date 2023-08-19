@@ -37,13 +37,14 @@ public class PaperLanternBlock extends QuarkBlock {
 		return SHAPE;
 	}
 
-	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return 30;
-	}
+	// TODO: AAAAAAAAAAAAA - Maximum
+	// @Override
+	// public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return 30;
+	// }
 
-	@Override
-	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return 60;
-	}
+	// @Override
+	// public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return 60;
+	// }
 }

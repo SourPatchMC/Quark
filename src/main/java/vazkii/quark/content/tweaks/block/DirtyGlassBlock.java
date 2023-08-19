@@ -21,10 +21,11 @@ public class DirtyGlassBlock extends QuarkGlassBlock {
 		super(regname, module, creativeTab, true, properties);
 	}
 
-	@Nullable
-	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-		return BEACON_COLOR_MULTIPLIER;
-	}
+	// TODO: Refer to QuarkInheritedPaneBlock.java's todo - Maximum
+	// @Nullable
+	// @Override
+	// public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	// 	return BEACON_COLOR_MULTIPLIER;
+	// }
 
 }

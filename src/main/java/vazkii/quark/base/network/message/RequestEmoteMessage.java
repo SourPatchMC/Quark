@@ -1,12 +1,13 @@
 package vazkii.quark.base.network.message;
 
+import java.io.Serial;
+
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
+
 import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
 import vazkii.quark.base.handler.ContributorRewardHandler;
 import vazkii.quark.base.network.QuarkNetwork;
-
-import java.io.Serial;
 
 public class RequestEmoteMessage implements IMessage {
 
@@ -22,13 +23,12 @@ public class RequestEmoteMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
-		ServerPlayer player = context.getSender();
+	public void receive(NetworkContext context) {
+		ServerPlayer player = context.sender();
 		if (player != null && player.server != null)
 			context.enqueueWork(() -> QuarkNetwork.sendToAllPlayers(
 					new DoEmoteMessage(emote, player.getUUID(), ContributorRewardHandler.getTier(player)),
 					player.server));
-		return true;
 	}
 
 }

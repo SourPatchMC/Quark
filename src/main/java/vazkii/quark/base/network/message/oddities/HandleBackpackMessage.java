@@ -4,12 +4,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.network.NetworkHooks;
 import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
 import vazkii.quark.addons.oddities.inventory.BackpackMenu;
 
 import java.io.Serial;
+
+import io.github.fabricators_of_create.porting_lib.util.NetworkHooks;
 
 public class HandleBackpackMessage implements IMessage {
 
@@ -25,8 +26,8 @@ public class HandleBackpackMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
-		ServerPlayer player = context.getSender();
+	public void receive(NetworkContext context) {
+		ServerPlayer player = context.sender();
 		context.enqueueWork(() -> {
 			if(open) {
 				ItemStack stack = player.getItemBySlot(EquipmentSlot.CHEST);
@@ -47,8 +48,6 @@ public class HandleBackpackMessage implements IMessage {
 				}
 			}
 		});
-
-		return true;
 	}
 
 }

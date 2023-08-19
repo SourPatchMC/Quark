@@ -2,12 +2,12 @@ package vazkii.quark.base.block;
 
 import java.util.function.BooleanSupplier;
 
+import io.github.fabricators_of_create.porting_lib.util.IPlantable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.IPlantable;
 import vazkii.quark.base.module.QuarkModule;
 
 // Wrapper to allow vanilla blocks to be treated as quark blocks contextualized under a module

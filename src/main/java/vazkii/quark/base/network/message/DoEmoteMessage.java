@@ -7,8 +7,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
 import vazkii.quark.content.tweaks.client.emote.EmoteHandler;
 
 public class DoEmoteMessage implements IMessage {
@@ -30,14 +30,12 @@ public class DoEmoteMessage implements IMessage {
 
 	@Override
 	@ClientOnly
-	public boolean receive(NetworkEvent.Context context) {
+	public void receive(NetworkContext context) {
 		context.enqueueWork(() -> {
 			Level world = Minecraft.getInstance().level;
 			Player player = world.getPlayerByUUID(playerUUID);
 			EmoteHandler.putEmote(player, emote, tier);
 		});
-
-		return true;
 	}
 
 }

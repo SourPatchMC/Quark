@@ -40,15 +40,16 @@ public class QuarkSlabBlock extends SlabBlock implements IQuarkBlock, IBlockColo
 		RenderLayerHandler.setInherited(this, parent.getBlock());
 	}
 
-	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.isFlammable(state, world, pos, face);
-	}
+	// TODO: AAAAAAAAAAAAAAAAAAA - Maximum
+	// @Override
+	// public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return parent.isFlammable(state, world, pos, face);
+	// }
 
-	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.getFlammability(state, world, pos, face);
-	}
+	// @Override
+	// public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return parent.getFlammability(state, world, pos, face);
+	// }
 	
 	@Override
 	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {
@@ -73,11 +74,12 @@ public class QuarkSlabBlock extends SlabBlock implements IQuarkBlock, IBlockColo
 		return enabledSupplier.getAsBoolean();
 	}
 
-	@Nullable
-	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-		return parent.getBlock().getBeaconColorMultiplier(parent.getBlock().defaultBlockState(), world, pos, beaconPos);
-	}
+	// TODO: Refer to QuarkInheritedPaneBlock.java's todo - Maximum
+	// @Nullable
+	// @Override
+	// public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	// 	return parent.getBlock().getBeaconColorMultiplier(parent.getBlock().defaultBlockState(), world, pos, beaconPos);
+	// }
 
 	@Override
 	@ClientOnly

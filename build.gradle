@@ -41,6 +41,11 @@ dependencies {
 
 }
 
+configurations.configureEach {
+    exclude(group: "net.fabricmc", module: "fabric-loader")
+    exclude(group: "net.fabricmc.fabric-api")
+}
+
 sourceSets {
     main {
         resources {
@@ -71,8 +76,6 @@ loom {
 }
 
 processResources {
-    exclude("**/*.bbmodel", "**/*.lnk")
-
     Map<String, Object> properties = [
             "version": version,
             "minecraft_version": minecraft_version,
@@ -83,8 +86,6 @@ processResources {
     filesMatching("quilt.mod.json") {
         expand properties
     }
-
-    duplicatesStrategy = DuplicatesStrategy.WARN
 }
 
 def targetJavaVersion = 17

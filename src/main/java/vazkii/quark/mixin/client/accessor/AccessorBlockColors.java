@@ -8,11 +8,12 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.core.Holder.Reference;
+import net.minecraft.core.IdMapper;
 import net.minecraft.world.level.block.Block;
 
 @Mixin(BlockColors.class)
 public interface AccessorBlockColors {
 	//fixme
 	@Accessor("blockColors")
-	Map<Reference<Block>, BlockColor> quark$getBlockColors();
+	IdMapper<BlockColor> quark$getBlockColors();
 }

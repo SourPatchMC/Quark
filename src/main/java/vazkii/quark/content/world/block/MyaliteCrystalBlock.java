@@ -33,10 +33,11 @@ public class MyaliteCrystalBlock extends QuarkGlassBlock implements IMyaliteColo
 		return new float[] { (float) r / 255.0F, (float) g / 255.0F, (float) b / 255.0F };
 	}
 	
-	@Nullable
-	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-		return decompColor(IMyaliteColorProvider.getColor(pos, myaliteS(), myaliteB()));
-	}
+	// TODO: Refer to QuarkInheritedPaneBlock.java's todo - Maximum
+	// @Nullable
+	// @Override
+	// public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	// 	return decompColor(IMyaliteColorProvider.getColor(pos, myaliteS(), myaliteB()));
+	// }
 	
 }

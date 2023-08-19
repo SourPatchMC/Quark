@@ -12,7 +12,9 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.Lists;
 
+import io.github.fabricators_of_create.porting_lib.enchant.EnchantmentBonusBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -39,7 +41,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.addons.oddities.inventory.EnchantmentMatrix;
 import vazkii.quark.addons.oddities.inventory.EnchantmentMatrix.Piece;
@@ -239,7 +240,7 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 		if(item.isEmpty())
 			return;
 
-		enchantability = item.getItem().getEnchantmentValue(item);
+		enchantability = item.getItem().getEnchantmentValue();
 
 		boolean allowWater = MatrixEnchantingModule.allowUnderwaterEnchanting;
 		boolean allowShort = MatrixEnchantingModule.allowShortBlockEnchanting;
@@ -294,9 +295,9 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 			if(influencer != null) {
 				int count = influencer.getInfluenceStack(world, pos, state);
 
-				List<Enchantment> influencedEnchants = ForgeRegistries.ENCHANTMENTS.getValues().stream()
+				List<Enchantment> influencedEnchants = Registry.ENCHANTMENT.stream()
 						.filter((it) -> influencer.influencesEnchantment(world, pos, state, it)).toList();
-				List<Enchantment> dampenedEnchants = ForgeRegistries.ENCHANTMENTS.getValues().stream()
+				List<Enchantment> dampenedEnchants = Registry.ENCHANTMENT.stream()
 						.filter((it) -> influencer.dampensEnchantment(world, pos, state, it)).toList();
 				if(!influencedEnchants.isEmpty() || !dampenedEnchants.isEmpty()) {
 					for(Enchantment e : influencedEnchants) {
@@ -314,7 +315,10 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 			}
 		}
 
-		return state.getEnchantPowerBonus(world, pos);
+		if(state.getBlock() instanceof EnchantmentBonusBlock block) {
+			return block.getEnchantPowerBonus(state, world, pos);
+		}
+		return 0;
 	}
 
 	@Override
@@ -391,7 +395,7 @@ public class MatrixEnchantingTableBlockEntity extends AbstractEnchantingTableBlo
 					BlockState below = world.getBlockState(posBelow);
 					if (below.is(BlockTags.SOUL_FIRE_BASE_BLOCKS))
 						return INVERTED_INSTANCE;
-					else if (below.getEnchantPowerBonus(world, posBelow) > 0) {
+					else if (below.getBlock() instanceof EnchantmentBonusBlock blockBelow && blockBelow.getEnchantPowerBonus(below, world, posBelow) > 0) {
 						posBelow = posBelow.below();
 						below = world.getBlockState(posBelow);
 						if (below.is(BlockTags.SOUL_FIRE_BASE_BLOCKS))

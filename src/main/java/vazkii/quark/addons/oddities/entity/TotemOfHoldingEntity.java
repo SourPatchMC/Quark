@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 
+import io.github.fabricators_of_create.porting_lib.entity.ExtraSpawnDataEntity;
+import io.github.fabricators_of_create.porting_lib.extensions.INBTSerializableCompound;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -22,7 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 import vazkii.quark.addons.oddities.item.BackpackItem;
 import vazkii.quark.addons.oddities.module.TotemOfHoldingModule;
 
@@ -193,7 +194,7 @@ public class TotemOfHoldingEntity extends Entity {
 	protected void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		ListTag list = new ListTag();
 		for(ItemStack stack : storedItems) {
-			list.add(stack.serializeNBT());
+			list.add(((INBTSerializableCompound) (Object) stack).serializeNBT());
 		}
 
 		compound.put(TAG_ITEMS, list);
@@ -205,6 +206,6 @@ public class TotemOfHoldingEntity extends Entity {
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return ExtraSpawnDataEntity.createExtraDataSpawnPacket(this);
 	}
 }

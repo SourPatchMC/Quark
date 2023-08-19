@@ -29,10 +29,10 @@ public class HollowLogBlock extends HollowPillarBlock {
         RenderLayerHandler.setRenderType(this, RenderTypeSkeleton.CUTOUT_MIPPED);
     }
 
-
-    @Override
-    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return flammable;
-    }
+    // TODO: AAAAAAAAAAAAA - Maximum
+    // @Override
+    // public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    //     return flammable;
+    // }
 }
 

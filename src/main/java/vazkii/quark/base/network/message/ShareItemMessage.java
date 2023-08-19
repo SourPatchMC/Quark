@@ -4,8 +4,8 @@ import net.minecraft.network.chat.LastSeenMessages;
 import net.minecraft.network.chat.MessageSignature;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent.Context;
 import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
 import vazkii.quark.content.management.module.ItemSharingModule;
 
 import java.io.Serial;
@@ -37,12 +37,10 @@ public class ShareItemMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(Context context) {
-		ServerPlayer player = context.getSender();
+	public void receive(NetworkContext context) {
+		ServerPlayer player = context.sender();
 		if (player != null && player.server != null)
 			context.enqueueWork(() -> ItemSharingModule.shareItem(player, message, stack, timeStamp, salt, signature, signedPreview, lastSeenMessages));
-
-		return true;
 	}
 
 }

@@ -17,7 +17,7 @@ public class MatrixEnchantingPieceList extends ObjectSelectionList<MatrixEnchant
 	private final int listWidth;
 
 	public MatrixEnchantingPieceList(MatrixEnchantingScreen parent, int listWidth, int listHeight, int top, int bottom, int entryHeight) {
-		super(parent.getMinecraft(), listWidth, listHeight, top, bottom, entryHeight);
+		super(parent.getClient(), listWidth, listHeight, top, bottom, entryHeight);
 		this.listWidth = listWidth;
 		this.parent = parent;
 	}
@@ -50,7 +50,7 @@ public class MatrixEnchantingPieceList extends ObjectSelectionList<MatrixEnchant
 
 		fill(stack, getLeft(), getTop(), getLeft() + getWidth() + 1, getTop() + getHeight(), 0xFF2B2B2B);
 
-		Window main = parent.getMinecraft().getWindow();
+		Window main = parent.getClient().getWindow();
 		int res = (int) main.getGuiScale();
 		RenderSystem.enableScissor(getLeft() * res, (main.getGuiScaledHeight() - getBottom()) * res, getWidth() * res, getHeight() * res);
 		renderList(stack, mouseX, mouseY, partialTicks);

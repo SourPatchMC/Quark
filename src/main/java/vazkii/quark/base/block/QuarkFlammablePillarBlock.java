@@ -16,14 +16,15 @@ public class QuarkFlammablePillarBlock extends QuarkPillarBlock {
 		this.flammability = flamability;
 	}
 
-	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return true;
-	}
+	// TODO: AAAAAAAAAAAAA - Maximum
+	// @Override
+	// public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return true;
+	// }
 
-	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return flammability;
-	}
+	// @Override
+	// public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return flammability;
+	// }
 
 }

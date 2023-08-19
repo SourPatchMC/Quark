@@ -20,13 +20,14 @@ public class VariantBookshelfBlock extends QuarkBlock {
 		this.flammable = flammable;
 	}
 	
-	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return flammable;
-	}
+	// TODO: AAAAAAAAAAAAAAA - Maximum
+	// @Override
+	// public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return flammable;
+	// }
 	
-	@Override
-	public float getEnchantPowerBonus(BlockState state, LevelReader world, BlockPos pos) {
-		return 1;
-	}
+	// @Override
+	// public float getEnchantPowerBonus(BlockState state, LevelReader world, BlockPos pos) {
+	// 	return 1;
+	// }
 }

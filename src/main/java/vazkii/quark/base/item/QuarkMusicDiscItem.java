@@ -29,7 +29,7 @@ public class QuarkMusicDiscItem extends RecordItem implements IQuarkItem {
 	private BooleanSupplier enabledSupplier = () -> true;
 
 	public QuarkMusicDiscItem(int comparatorValue, Supplier<SoundEvent> sound, String name, QuarkModule module, int lengthInTicks) {
-		super(comparatorValue, sound, (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE), lengthInTicks);
+		super(comparatorValue, sound.get(), (new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC).rarity(Rarity.RARE), lengthInTicks);
 
 		RegistryHelper.registerItem(this, "music_disc_" + name);
 		this.module = module;

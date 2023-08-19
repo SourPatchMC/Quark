@@ -9,7 +9,6 @@ import vazkii.arl.network.IMessage;
 import vazkii.arl.network.MessageSerializer;
 import vazkii.arl.network.NetworkHandler;
 import vazkii.arl.util.NetworkDirection;
-import vazkii.quark.base.Quark;
 import vazkii.quark.base.network.message.*;
 import vazkii.quark.base.network.message.oddities.HandleBackpackMessage;
 import vazkii.quark.base.network.message.oddities.MatrixEnchanterOperationMessage;
@@ -17,9 +16,10 @@ import vazkii.quark.base.network.message.oddities.ScrollCrateMessage;
 
 import java.time.Instant;
 
-public final class QuarkNetwork {
+import me.pepperbell.simplenetworking.C2SPacket;
+import me.pepperbell.simplenetworking.S2CPacket;
 
-	private static final int PROTOCOL_VERSION = 1;
+public final class QuarkNetwork {
 
 	private static NetworkHandler network;
 
@@ -27,9 +27,6 @@ public final class QuarkNetwork {
 		MessageSerializer.mapHandlers(Instant.class, (buf, field) -> buf.readInstant(), (buf, field, instant) -> buf.writeInstant(instant));
 		MessageSerializer.mapHandlers(MessageSignature.class, (buf, field) -> new MessageSignature(buf), (buf, field, signature) -> signature.write(buf));
 		MessageSerializer.mapHandlers(LastSeenMessages.Update.class, (buf, field) -> new LastSeenMessages.Update(buf), (buf, field, update) -> update.write(buf));
-
-		// fixme got rid of PROTOCOL_VERSION here not sure if it is needed
-		network = new NetworkHandler(Quark.MOD_ID);
 
 		network.register(SortInventoryMessage.class, NetworkDirection.PLAY_TO_SERVER);
 		network.register(InventoryTransferMessage.class, NetworkDirection.PLAY_TO_SERVER);
@@ -68,7 +65,9 @@ public final class QuarkNetwork {
 	}
 
 	public static Packet<?> toVanillaPacket(IMessage msg, NetworkDirection direction) {
-		return network.channel.toVanillaPacket(msg, direction);
+		if (direction == NetworkDirection.PLAY_TO_CLIENT)
+			return network.channel.createVanillaPacket((S2CPacket) msg);
+		return network.channel.createVanillaPacket((C2SPacket) msg);
 	}
 
 }

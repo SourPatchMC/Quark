@@ -1,12 +1,12 @@
 package vazkii.quark.base.network.message.oddities;
 
+import java.io.Serial;
+
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
 import vazkii.quark.addons.oddities.inventory.CrateMenu;
-
-import java.io.Serial;
 
 public class ScrollCrateMessage implements IMessage {
 
@@ -22,16 +22,14 @@ public class ScrollCrateMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public void receive(NetworkContext context) {
 		context.enqueueWork(() -> {
-			ServerPlayer player = context.getSender();
+			ServerPlayer player = context.sender();
 			AbstractContainerMenu container = player.containerMenu;
 
 			if(container instanceof CrateMenu crate)
 				crate.scroll(down, false);
 		});
-
-		return true;
 	}
 
 }

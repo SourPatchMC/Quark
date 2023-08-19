@@ -54,15 +54,16 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 		registerDefaultState(defaultBlockState().setValue(TYPE, VerticalSlabType.NORTH).setValue(WATERLOGGED, false));
 	}
 
-	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.get().isFlammable(state, world, pos, face);
-	}
+	// TODO: AAAAAAAAAAAAAA - Maximum
+	// @Override
+	// public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return parent.get().isFlammable(state, world, pos, face);
+	// }
 
-	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.get().getFlammability(state, world, pos, face);
-	}
+	// @Override
+	// public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return parent.get().getFlammability(state, world, pos, face);
+	// }
 
 	@Nonnull
 	@Override
@@ -172,13 +173,13 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public BlockColor getBlockColor() {
 		return parent.get() instanceof IBlockColorProvider provider ? provider.getBlockColor() : null;
 	}
 
 	@Override
-	@OnlyIn(Dist.CLIENT)
+	@ClientOnly
 	public ItemColor getItemColor() {
 		return parent.get() instanceof IItemColorProvider provider ? provider.getItemColor() : null;
 	}

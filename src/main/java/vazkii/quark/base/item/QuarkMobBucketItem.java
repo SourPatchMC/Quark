@@ -21,7 +21,7 @@ public class QuarkMobBucketItem extends MobBucketItem implements IQuarkItem {
 	private BooleanSupplier enabledSupplier = () -> true;
 
 	public QuarkMobBucketItem(Supplier<? extends EntityType<?>> entity, Supplier<? extends Fluid> fluid, Supplier<? extends SoundEvent> sound, String name, QuarkModule module) {
-		super(entity, fluid, sound, (new Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC));
+		super(entity.get(), fluid.get(), sound.get(), (new Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC));
 
 		RegistryHelper.registerItem(this, name);
 		this.module = module;

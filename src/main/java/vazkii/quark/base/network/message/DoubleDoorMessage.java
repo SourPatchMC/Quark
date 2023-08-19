@@ -5,8 +5,8 @@ import java.io.Serial;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
 import vazkii.quark.content.tweaks.module.DoubleDoorOpeningModule;
 
 public class DoubleDoorMessage implements IMessage {
@@ -27,9 +27,8 @@ public class DoubleDoorMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
-		context.enqueueWork(() -> DoubleDoorOpeningModule.openBlock(extractWorld(context.getSender()), context.getSender(), pos));
-		return true;
+	public void receive(NetworkContext context) {
+		context.enqueueWork(() -> DoubleDoorOpeningModule.openBlock(extractWorld(context.sender()), context.sender(), pos));
 	}
 
 }

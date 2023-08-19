@@ -77,7 +77,7 @@ public class PipeBlock extends BasePipeBlock implements SimpleWaterloggedBlock {
 					newBe.load(cmp);
 				}
 
-				SoundType type = Blocks.GLASS.defaultBlockState().getSoundType(worldIn, pos, player);
+				SoundType type = Blocks.GLASS.getSoundType(state);
 				SoundEvent sound = type.getPlaceSound();
 				worldIn.playSound(player, pos, sound, SoundSource.BLOCKS, (type.getVolume() + 1.0F) / 2.0F, type.getPitch() * 0.8F);
 

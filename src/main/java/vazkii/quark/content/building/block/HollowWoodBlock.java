@@ -14,9 +14,10 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.Nullable;
+
+import io.github.fabricators_of_create.porting_lib.util.ToolAction;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.base.handler.RenderLayerHandler;
@@ -101,9 +102,10 @@ public class HollowWoodBlock extends HollowFrameBlock {
         def.add(UP, DOWN, NORTH, SOUTH, WEST, EAST);
     }
 
-    @Override
-    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return flammable;
-    }
+    // TODO: AAAAAAAAAAAAAA - Maximum
+    // @Override
+    // public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    //     return flammable;
+    // }
 }
 

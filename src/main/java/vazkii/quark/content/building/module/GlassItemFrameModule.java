@@ -1,5 +1,6 @@
 package vazkii.quark.content.building.module;
 
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Registry;
@@ -7,7 +8,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.client.event.ModelEvent;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.LoadModule;
@@ -42,10 +42,8 @@ public class GlassItemFrameModule extends QuarkModule {
 				.sized(0.5F, 0.5F)
 				.clientTrackingRange(10)
 				.updateInterval(Integer.MAX_VALUE) // update interval
-				.setShouldReceiveVelocityUpdates(false)
-				.setCustomClientFactory((spawnEntity, world) -> new GlassItemFrame(glassFrameEntity, world))
 				.build("glass_frame");
-		RegistryHelper.register(glassFrameEntity, "glass_frame", Registry.ENTITY_TYPE_REGISTRY);
+		RegistryHelper.register(glassFrameEntity, "glass_frame", Registry.ENTITY_TYPE);
 
 		glassFrame = new QuarkItemFrameItem("glass_item_frame", this, GlassItemFrame::new);
 		glowingGlassFrame = new QuarkItemFrameItem("glowing_glass_item_frame", this, 
@@ -59,7 +57,7 @@ public class GlassItemFrameModule extends QuarkModule {
 	@Override
 	@ClientOnly
 	public void clientSetup() {
-		EntityRenderers.register(glassFrameEntity, GlassItemFrameRenderer::new);
+		EntityRendererRegistry.register(glassFrameEntity, GlassItemFrameRenderer::new);
 	}
 
 	@Override

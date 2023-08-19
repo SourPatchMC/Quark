@@ -44,15 +44,16 @@ public class QuarkVineBlock extends VineBlock implements IQuarkBlock {
 		tick(state, worldIn, pos, random);
 	}
 
-	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return true;
-	}
+	// TODO: AAAAAAAAAAAAAAAAAAA - Maximum
+	// @Override
+	// public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return true;
+	// }
 
-	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return 300;
-	}
+	// @Override
+	// public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return 300;
+	// }
 
 	@Override
 	public void fillItemCategory(@NotNull CreativeModeTab group, @NotNull NonNullList<ItemStack> items) {

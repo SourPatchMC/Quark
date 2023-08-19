@@ -1,11 +1,12 @@
 package vazkii.quark.base.network.message;
 
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
-import vazkii.quark.content.tweaks.module.LockRotationModule;
-import vazkii.quark.content.tweaks.module.LockRotationModule.LockProfile;
 
 import java.io.Serial;
+
+import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
+import vazkii.quark.content.tweaks.module.LockRotationModule;
+import vazkii.quark.content.tweaks.module.LockRotationModule.LockProfile;
 
 public class SetLockProfileMessage implements IMessage {
 
@@ -21,9 +22,8 @@ public class SetLockProfileMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
-		context.enqueueWork(() -> LockRotationModule.setProfile(context.getSender(), profile));
-		return true;
+	public void receive(NetworkContext context) {
+		context.enqueueWork(() -> LockRotationModule.setProfile(context.sender(), profile));
 	}
 
 }

@@ -115,10 +115,11 @@ public class CorundumBlock extends QuarkGlassBlock {
 			}
 	}
 
-	@Nullable
-	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-		return colorComponents;
-	}
+	// TODO: Refer to QuarkInheritedPaneBlock.java's todo - Maximum
+	// @Nullable
+	// @Override
+	// public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	// 	return colorComponents;
+	// }
 
 }

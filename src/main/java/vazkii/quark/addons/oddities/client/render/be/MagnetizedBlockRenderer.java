@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.piston.PistonHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.client.ForgeHooksClient;
 import vazkii.quark.addons.oddities.block.be.MagnetizedBlockBlockEntity;
 import vazkii.quark.content.automation.client.render.QuarkPistonBlockEntityRenderer;
 

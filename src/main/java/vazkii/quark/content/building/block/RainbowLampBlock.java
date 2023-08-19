@@ -95,10 +95,11 @@ public class RainbowLampBlock extends QuarkGlassBlock {
 		builder.add(LIT);
 	}
 
-	@Nullable
-	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-		return state.getValue(LIT) ? colorComponents : null;
-	}
+	// TODO: Refer to QuarkInheritedPaneBlock.java's todo - Maximum
+	// @Nullable
+	// @Override
+	// public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	// 	return state.getValue(LIT) ? colorComponents : null;
+	// }
 
 }

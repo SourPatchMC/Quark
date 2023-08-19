@@ -1,6 +1,9 @@
 package vazkii.quark.content.building.entity;
 
 import com.mojang.authlib.GameProfile;
+
+import io.github.fabricators_of_create.porting_lib.entity.ExtraSpawnDataEntity;
+import io.github.fabricators_of_create.porting_lib.fake_players.FakePlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -27,10 +30,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.common.util.FakePlayerFactory;
-import net.minecraftforge.entity.IEntityAdditionalSpawnData;
-import net.minecraftforge.network.NetworkHooks;
+
 import vazkii.quark.content.building.module.GlassItemFrameModule;
 
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.ref.WeakReference;
 import java.util.UUID;
 
-public class GlassItemFrame extends ItemFrame implements IEntityAdditionalSpawnData {
+public class GlassItemFrame extends ItemFrame implements ExtraSpawnDataEntity {
 
 	public static final EntityDataAccessor<Boolean> IS_SHINY = SynchedEntityData.defineId(GlassItemFrame.class, EntityDataSerializers.BOOLEAN);
 
@@ -96,7 +96,7 @@ public class GlassItemFrame extends ItemFrame implements IEntityAdditionalSpawnD
 
 				MapItemSavedData data = MapItem.getSavedData(clone, level);
 				if(data != null && !data.locked) {
-					var fakePlayer = FakePlayerFactory.get(sworld, DUMMY_PROFILE);
+					var fakePlayer = new FakePlayer(sworld, DUMMY_PROFILE);
 
 					clone.setEntityRepresentation(null);
 					fakePlayer.setPos(getX(), getY(), getZ());
@@ -155,7 +155,7 @@ public class GlassItemFrame extends ItemFrame implements IEntityAdditionalSpawnD
 
 	@NotNull
 	@Override
-	public ItemStack getPickedResult(HitResult target) {
+	public ItemStack getPickResult() {
 		ItemStack held = getItem();
 		if (held.isEmpty())
 			return new ItemStack(getDroppedItem());
@@ -184,7 +184,7 @@ public class GlassItemFrame extends ItemFrame implements IEntityAdditionalSpawnD
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return ExtraSpawnDataEntity.createExtraDataSpawnPacket(this);
 	}
 
 	@Override

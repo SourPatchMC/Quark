@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -25,7 +25,7 @@ public abstract class UndergroundStyle {
 			return false;
 
 		if(fillerTag == null)
-			fillerTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "underground_biome_replaceable"));
+			fillerTag = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Quark.MOD_ID, "underground_biome_replaceable"));
 
 		return state.is(fillerTag);
 	};

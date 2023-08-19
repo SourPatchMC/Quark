@@ -1,5 +1,6 @@
 package vazkii.quark.content.building.block.be;
 
+import io.github.fabricators_of_create.porting_lib.block.CustomRenderBoundingBoxBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
@@ -7,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import vazkii.quark.content.building.module.VariantChestsModule;
 
-public class VariantChestBlockEntity extends ChestBlockEntity {
+public class VariantChestBlockEntity extends ChestBlockEntity implements CustomRenderBoundingBoxBlockEntity {
 
 	protected VariantChestBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
 		super(typeIn, pos, state);

@@ -50,9 +50,10 @@ public class EncasedPipeBlock extends BasePipeBlock {
 		return true;
 	}
 
-	@Override
-	public boolean shouldDisplayFluidOverlay(BlockState state, BlockAndTintGetter world, BlockPos pos, FluidState fluidState) {
-		return true;
-	}
+	// Note: I don't think this is needed - Maximum
+	// @Override
+	// public boolean shouldDisplayFluidOverlay(BlockState state, BlockAndTintGetter world, BlockPos pos, FluidState fluidState) {
+	// 	return true;
+	// }
 
 }

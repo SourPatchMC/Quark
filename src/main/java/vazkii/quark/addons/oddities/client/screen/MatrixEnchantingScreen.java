@@ -83,7 +83,7 @@ public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchan
 
 	@Override
 	protected void renderBg(@NotNull PoseStack stack, float partialTicks, int mouseX, int mouseY) {
-		Minecraft mc = getMinecraft();
+		Minecraft mc = getClient();
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, BACKGROUND);
@@ -336,13 +336,13 @@ public class MatrixEnchantingScreen extends AbstractContainerScreen<MatrixEnchan
 	}
 
 	private void click() {
-		getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+		getClient().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
 	}
 
 	private void updateButtonStatus() {
 		plusButton.active = (enchanter.matrix != null
-				&& (getMinecraft().player.getAbilities().instabuild || enchanter.charge > 0)
-				&& enchanter.matrix.validateXp(getMinecraft().player, enchanter.bookshelfPower)
+				&& (getClient().player.getAbilities().instabuild || enchanter.charge > 0)
+				&& enchanter.matrix.validateXp(getClient().player, enchanter.bookshelfPower)
 				&& enchanter.matrix.canGeneratePiece(enchanter.influences, enchanter.bookshelfPower, enchanter.enchantability));
 	}
 

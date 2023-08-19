@@ -5,11 +5,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
 
 import java.io.Serial;
+
+import org.quiltmc.loader.api.minecraft.ClientOnly;
+
+import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
 
 public class UpdateTridentMessage implements IMessage {
 
@@ -28,7 +30,7 @@ public class UpdateTridentMessage implements IMessage {
 
 	@Override
 	@ClientOnly
-	public boolean receive(NetworkEvent.Context context) {
+	public void receive(NetworkContext context) {
 		context.enqueueWork(() -> {
 			Level level = Minecraft.getInstance().level;
 			if (level != null) {
@@ -38,8 +40,6 @@ public class UpdateTridentMessage implements IMessage {
 				}
 			}
 		});
-
-		return true;
 	}
 
 }

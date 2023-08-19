@@ -1,10 +1,10 @@
 package vazkii.quark.base.network.message;
 
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
-import vazkii.quark.base.handler.SortingHandler;
-
 import java.io.Serial;
+
+import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
+import vazkii.quark.base.handler.SortingHandler;
 
 public class SortInventoryMessage implements IMessage {
 
@@ -20,9 +20,8 @@ public class SortInventoryMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
-		context.enqueueWork(() -> SortingHandler.sortInventory(context.getSender(), forcePlayer));
-		return true;
+	public void receive(NetworkContext context) {
+		context.enqueueWork(() -> SortingHandler.sortInventory(context.sender(), forcePlayer));
 	}
 
 }

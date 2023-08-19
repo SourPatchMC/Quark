@@ -31,7 +31,7 @@ public class QuarkStairsBlock extends StairBlock implements IQuarkBlock, IBlockC
 	private BooleanSupplier enabledSupplier = () -> true;
 
 	public QuarkStairsBlock(IQuarkBlock parent) {
-		super(parent.getBlock()::defaultBlockState, VariantHandler.realStateCopy(parent));
+		super(parent.getBlock().defaultBlockState(), VariantHandler.realStateCopy(parent));
 
 		this.parent = parent;
 		RegistryHelper.registerBlock(this, IQuarkBlock.inheritQuark(parent, "%s_stairs"));
@@ -47,15 +47,16 @@ public class QuarkStairsBlock extends StairBlock implements IQuarkBlock, IBlockC
 			super.fillItemCategory(group, items);
 	}
 	
-	@Override
-	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.isFlammable(state, world, pos, face);
-	}
+	// TODO: AAAAAAAAAAAAAAAA - Maximum
+	// @Override
+	// public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return parent.isFlammable(state, world, pos, face);
+	// }
 
-	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.getFlammability(state, world, pos, face);
-	}
+	// @Override
+	// public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+	// 	return parent.getFlammability(state, world, pos, face);
+	// }
 	
 
 	@Nullable
@@ -75,11 +76,12 @@ public class QuarkStairsBlock extends StairBlock implements IQuarkBlock, IBlockC
 		return enabledSupplier.getAsBoolean();
 	}
 
-	@Nullable
-	@Override
-	public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-		return parent.getBlock().getBeaconColorMultiplier(parent.getBlock().defaultBlockState(), world, pos, beaconPos);
-	}
+	// TODO: Refer to QuarkInheritedPaneBlock.java's todo - Maximum
+	// @Nullable
+	// @Override
+	// public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
+	// 	return parent.getBlock().getBeaconColorMultiplier(parent.getBlock().defaultBlockState(), world, pos, beaconPos);
+	// }
 	
 	@Override
 	@ClientOnly

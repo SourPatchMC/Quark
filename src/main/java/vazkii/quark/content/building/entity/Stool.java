@@ -12,10 +12,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.piston.PistonMovingBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
+
 import vazkii.quark.content.building.block.StoolBlock;
 
 import org.jetbrains.annotations.NotNull;
+
+import io.github.fabricators_of_create.porting_lib.entity.ExtraSpawnDataEntity;
+
 import java.util.List;
 
 public class Stool extends Entity {
@@ -94,7 +97,7 @@ public class Stool extends Entity {
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return ExtraSpawnDataEntity.createExtraDataSpawnPacket(this);
 	}
 
 }

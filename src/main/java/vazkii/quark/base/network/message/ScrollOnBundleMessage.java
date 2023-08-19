@@ -1,10 +1,11 @@
 package vazkii.quark.base.network.message;
 
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
-import vazkii.quark.content.management.module.ExpandedItemInteractionsModule;
 
 import java.io.Serial;
+
+import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
+import vazkii.quark.content.management.module.ExpandedItemInteractionsModule;
 
 public class ScrollOnBundleMessage implements IMessage {
 
@@ -26,9 +27,8 @@ public class ScrollOnBundleMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
-		context.enqueueWork(() -> ExpandedItemInteractionsModule.scrollOnBundle(context.getSender(), containerId, stateId, slotNum, scrollDelta));
-		return true;
+	public void receive(NetworkContext context) {
+		context.enqueueWork(() -> ExpandedItemInteractionsModule.scrollOnBundle(context.sender(), containerId, stateId, slotNum, scrollDelta));
 	}
 
 }

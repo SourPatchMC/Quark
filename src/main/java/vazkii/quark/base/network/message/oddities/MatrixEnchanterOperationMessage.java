@@ -1,13 +1,13 @@
 package vazkii.quark.base.network.message.oddities;
 
+import java.io.Serial;
+
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraftforge.network.NetworkEvent;
 import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
 import vazkii.quark.addons.oddities.block.be.MatrixEnchantingTableBlockEntity;
 import vazkii.quark.addons.oddities.inventory.MatrixEnchantingMenu;
-
-import java.io.Serial;
 
 public class MatrixEnchanterOperationMessage implements IMessage {
 
@@ -27,9 +27,9 @@ public class MatrixEnchanterOperationMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public void receive(NetworkContext context) {
 		context.enqueueWork(() -> {
-			ServerPlayer player = context.getSender();
+			ServerPlayer player = context.sender();
 			AbstractContainerMenu container = player.containerMenu;
 
 			if(container instanceof MatrixEnchantingMenu matrixMenu) {
@@ -37,8 +37,6 @@ public class MatrixEnchanterOperationMessage implements IMessage {
 				enchanter.onOperation(player, operation, arg0, arg1, arg2);
 			}
 		});
-
-		return true;
 	}
 
 }

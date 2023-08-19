@@ -78,7 +78,6 @@
     "client.ChatComponentMixin",
     "client.ContainerScreenMixin",
     "client.ElytraLayerMixin",
-    "client.ForgeGuiMixin",
     "client.GuiMixin",
     "client.HumanoidArmorLayerMixin",
     "client.HumanoidModelMixin",

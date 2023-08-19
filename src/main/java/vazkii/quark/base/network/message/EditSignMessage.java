@@ -1,11 +1,11 @@
 package vazkii.quark.base.network.message;
 
-import net.minecraft.core.BlockPos;
-import net.minecraftforge.network.NetworkEvent;
-import vazkii.arl.network.IMessage;
-import vazkii.quark.content.tweaks.module.SignEditingModule;
-
 import java.io.Serial;
+
+import net.minecraft.core.BlockPos;
+import vazkii.arl.network.IMessage;
+import vazkii.arl.quilt.NetworkContext;
+import vazkii.quark.content.tweaks.module.SignEditingModule;
 
 public class EditSignMessage implements IMessage {
 
@@ -21,10 +21,8 @@ public class EditSignMessage implements IMessage {
 	}
 
 	@Override
-	public boolean receive(NetworkEvent.Context context) {
+	public void receive(NetworkContext context) {
 		context.enqueueWork(() -> SignEditingModule.openSignGuiClient(pos));
-
-		return true;
 	}
 
 }
