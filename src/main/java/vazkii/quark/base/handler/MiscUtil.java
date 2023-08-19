@@ -70,10 +70,7 @@ import vazkii.quark.mixin.accessor.AccessorLootTable;
 import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @EventBusSubscriber(modid = Quark.MOD_ID)
@@ -132,7 +129,7 @@ public class MiscUtil {
 	}
 
 	public static void addToLootTable(LootTable table, LootPoolEntryContainer entry) {
-		List<LootPool> pools = ((AccessorLootTable) table).quark$getPools();
+		List<LootPool> pools = Arrays.stream(((AccessorLootTable) table).quark$getPools()).toList();
 		if (pools != null && !pools.isEmpty()) {
 			LootPool firstPool = pools.get(0);
 			LootPoolEntryContainer[] entries = firstPool.entries;

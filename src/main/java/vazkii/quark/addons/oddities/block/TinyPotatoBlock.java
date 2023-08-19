@@ -102,8 +102,8 @@ public class TinyPotatoBlock extends QuarkBlock implements SimpleWaterloggedBloc
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
-		ItemStack stack = super.getCloneItemStack(state, target, level, pos, player);
+	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+		ItemStack stack = super.getCloneItemStack(level, pos, state);
 		BlockEntity be = level.getBlockEntity(pos);
 		if (be instanceof TinyPotatoBlockEntity tater) {
 			if (tater.hasCustomName())

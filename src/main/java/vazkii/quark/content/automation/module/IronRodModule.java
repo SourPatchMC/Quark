@@ -1,5 +1,6 @@
 package vazkii.quark.content.automation.module;
 
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -29,6 +30,6 @@ public class IronRodModule extends QuarkModule {
 
 	@Override
 	public void setup() {
-		ironRodImmuneTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "iron_rod_immune"));
+		ironRodImmuneTag = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Quark.MOD_ID, "iron_rod_immune"));
 	}
 }

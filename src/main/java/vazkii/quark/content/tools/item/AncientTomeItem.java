@@ -40,7 +40,6 @@ public class AncientTomeItem extends QuarkItem {
 		return true;
 	}
 
-	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
 		return false;
 	}

@@ -28,6 +28,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
+import org.quiltmc.loader.api.minecraft.DedicatedServerOnly;
 import vazkii.quark.base.Quark;
 
 @Mod.EventBusSubscriber(modid = Quark.MOD_ID)

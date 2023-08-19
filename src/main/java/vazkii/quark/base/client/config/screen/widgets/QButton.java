@@ -36,7 +36,7 @@ public class QButton extends Button {
 	private static final List<Celebration> CELEBRATIONS = new ArrayList<>();
 	static {
 		celebrate("quark", 21, Month.MARCH, QUARK);
-		celebrate("vm", 29, Month.APRIL, PURPLE);
+		celebrate("vm", 29, Month.APRIL, PURPLE); // MF THATS MY BIRTHDAY AINT NO FUCKING WAY :sob: - Siuol
 		celebrate("minecraft", 18, Month.NOVEMBER, ORANGE);
 
 		celebrate("vns", 9, Month.APRIL, ORANGE);

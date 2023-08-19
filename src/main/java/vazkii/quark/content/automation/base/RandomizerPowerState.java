@@ -13,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 public enum RandomizerPowerState implements StringRepresentable {
 	OFF, LEFT, RIGHT;
 
-
 	@NotNull
 	@Override
 	public String getSerializedName() {

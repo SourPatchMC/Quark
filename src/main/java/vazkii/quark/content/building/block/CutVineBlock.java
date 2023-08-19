@@ -38,7 +38,7 @@ public class CutVineBlock extends QuarkVineBlock implements IBlockColorProvider 
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
 		return new ItemStack(Items.VINE);
 	}
 
@@ -53,7 +53,7 @@ public class CutVineBlock extends QuarkVineBlock implements IBlockColorProvider 
 	@ClientOnly
 	public ItemColor getItemColor() {
 		final ItemStack grass = new ItemStack(Items.VINE);
-		return (stack, tintIndex) -> Minecraft.getInstance().getItemColors().getColor(grass, tintIndex);
+		return (stack, tintIndex) -> Minecraft.getInstance().itemColors.getColor(grass, tintIndex);
 	}
 
 }

@@ -56,7 +56,7 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 
 	@Override
 	public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return parent.get().isFlammable(state, world, pos, face);
+		return parent.get().defaultBlockState().getMaterial().isFlammable();
 	}
 
 	@Override

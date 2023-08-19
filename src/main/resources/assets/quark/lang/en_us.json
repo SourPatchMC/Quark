@@ -114,6 +114,7 @@
 	"_quark.config.automation.feeding_trough.max_animals.desc": "Testerino with one line",
 	"_quark.config.automation.feeding_trough.love_chance.name": "This do be a test doe",
 	"_quark.config.automation.feeding_trough.love_chance.desc": "",
+	"_quiltified_quark.comment": "Too much testing left our forefathers silent. What a shame.",
 
 	"quark.camera.filter": "Filter: ",
 	"quark.camera.filter.none": "None",

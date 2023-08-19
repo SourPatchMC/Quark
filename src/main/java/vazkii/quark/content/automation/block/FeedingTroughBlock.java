@@ -41,7 +41,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 
-	private static final SoundType WOOD_WITH_PLANT_STEP = new ForgeSoundType(1.0F, 1.0F, () -> SoundEvents.WOOD_BREAK, () -> SoundEvents.GRASS_STEP, () -> SoundEvents.WOOD_PLACE, () -> SoundEvents.WOOD_HIT, () -> SoundEvents.WOOD_FALL);
+	private static final SoundType WOOD_WITH_PLANT_STEP = new SoundType(1.0F, 1.0F, SoundEvents.WOOD_BREAK, SoundEvents.GRASS_STEP, SoundEvents.WOOD_PLACE, SoundEvents.WOOD_HIT, SoundEvents.WOOD_FALL);
 
 	public static BooleanProperty FULL = BooleanProperty.create("full");
 
@@ -83,10 +83,10 @@ public class FeedingTroughBlock extends QuarkBlock implements EntityBlock {
 	}
 
 	@Override
-	public SoundType getSoundType(BlockState state, LevelReader world, BlockPos pos, @Nullable Entity entity) {
+	public SoundType getSoundType(BlockState state) {
 		if (state.getValue(FULL))
 			return WOOD_WITH_PLANT_STEP;
-		return super.getSoundType(state, world, pos, entity);
+		return super.getSoundType(state);
 	}
 
 	@Override

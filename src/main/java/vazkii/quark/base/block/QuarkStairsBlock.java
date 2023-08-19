@@ -31,7 +31,7 @@ public class QuarkStairsBlock extends StairBlock implements IQuarkBlock, IBlockC
 	private BooleanSupplier enabledSupplier = () -> true;
 
 	public QuarkStairsBlock(IQuarkBlock parent) {
-		super(parent.getBlock()::defaultBlockState, VariantHandler.realStateCopy(parent));
+		super(parent.getBlock().defaultBlockState(), VariantHandler.realStateCopy(parent));
 
 		this.parent = parent;
 		RegistryHelper.registerBlock(this, IQuarkBlock.inheritQuark(parent, "%s_stairs"));

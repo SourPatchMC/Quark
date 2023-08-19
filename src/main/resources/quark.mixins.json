@@ -31,7 +31,6 @@
     "HarvestFarmlandMixin",
     "HugeBrownMushroomFeatureMixin",
     "HugeRedMushroomFeatureMixin",
-    "IForgeItemMixin",
     "IronBarsBlockMixin",
     "ItemMixin",
     "ItemsMixin",

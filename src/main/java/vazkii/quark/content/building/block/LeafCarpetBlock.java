@@ -37,7 +37,7 @@ public class LeafCarpetBlock extends QuarkBlock implements IBlockColorProvider {
 
 	public LeafCarpetBlock(String name, Block base, QuarkModule module) {
 		super(name, module, CreativeModeTab.TAB_DECORATIONS,
-				Block.Properties.of(Material.CLOTH_DECORATION, base.defaultBlockState().materialColor)
+				Block.Properties.of(Material.CLOTH_DECORATION, base.defaultBlockState().getMaterial().getColor())
 						.strength(0F)
 						.sound(SoundType.GRASS)
 						.noOcclusion());
@@ -82,7 +82,7 @@ public class LeafCarpetBlock extends QuarkBlock implements IBlockColorProvider {
 		if (baseStack == null)
 			baseStack = new ItemStack(baseState.getBlock());
 
-		return (stack, tintIndex) -> Minecraft.getInstance().getItemColors().getColor(baseStack, tintIndex);
+		return (stack, tintIndex) -> Minecraft.getInstance().itemColors.getColor(baseStack, tintIndex);
 	}
 
 	@Override
