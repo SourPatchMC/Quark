@@ -49,27 +49,23 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
-import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.ScreenEvent.KeyPressed;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
-
+import org.jetbrains.annotations.NotNull;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.config.screen.AbstractQScreen;
 import vazkii.quark.content.experimental.module.EnchantmentsBegoneModule;
 import vazkii.quark.mixin.accessor.AccessorLootTable;
 
-import org.jetbrains.annotations.NotNull;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -144,25 +140,6 @@ public class MiscUtil {
 
 	public static void damageStack(Player player, InteractionHand hand, ItemStack stack, int dmg) {
 		stack.hurtAndBreak(dmg, player, (p) -> p.broadcastBreakEvent(hand));
-	}
-
-	public static <T, V> void editFinalField(Class<T> clazz, String fieldName, Object obj, V value) {
-		Field f = ObfuscationReflectionHelper.findField(clazz, fieldName); //todo: What the fuck
-		editFinalField(f, obj, value);
-	}
-
-	public static <T> void editFinalField(Field f, Object obj, T value) {
-		try {
-			f.setAccessible(true);
-
-			Field modifiers = Field.class.getDeclaredField("modifiers");
-			modifiers.setAccessible(true);
-			modifiers.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-
-			f.set(obj, value);
-		} catch(ReflectiveOperationException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	public static void initializeEnchantmentList(Iterable<String> enchantNames, List<Enchantment> enchants) {
