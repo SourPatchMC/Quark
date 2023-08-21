@@ -125,13 +125,14 @@ public abstract class BasePipeBlock extends QuarkBlock implements EntityBlock {
 		return super.use(state, worldIn, pos, player, handIn, hit);
 	}
 
-	@Override
-	public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction) {
-		BlockState newState = state;
-		for (Direction dir : Direction.values())
-			newState = newState.setValue(property(dir), state.getValue(property(direction.rotate(dir))));
-		return newState;
-	}
+	//fixme not needed i think
+//	@Override
+//	public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction) {
+//		BlockState newState = state;
+//		for (Direction dir : Direction.values())
+//			newState = newState.setValue(property(dir), state.getValue(property(direction.rotate(dir))));
+//		return newState;
+//	}
 
 	@NotNull
 	@Override
