@@ -14,6 +14,7 @@ repositories {
     maven { url = "https://jitpack.io/" } // Mixin Extras
     maven { url = "https://maven.terraformersmc.com/" } // EMI
     maven { url = 'https://maven.minecraftforge.net/' } // TerraBlender
+    maven { url = "https://cursemaven.com" } // Lootr Fabric
 }
 
 dependencies {
@@ -33,6 +34,8 @@ dependencies {
     modImplementation "vazkii.autoreglib:AutoRegLib-${minecraft_version}:${autoreglib_version}"
 
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${minecraft_version}-${terrablender_version}"
+
+    modImplementation "curse.maven:lootr-fabric-615106:${lootr_version}"
 
     modImplementation include("com.github.LlamaLad7:MixinExtras:0.1.1")
     annotationProcessor "com.github.LlamaLad7:MixinExtras:0.1.1"
