@@ -55,14 +55,14 @@ public class VariantHandler {
 		Block.Properties props = Block.Properties.of(Material.DECORATION).strength(0F);
 		props = propertiesFunc.apply(props);
 
-		FlowerPotBlock potted = new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> block, props);
+		FlowerPotBlock potted = new FlowerPotBlock(Blocks.FLOWER_POT, props);
 		RenderLayerHandler.setRenderType(potted, RenderTypeSkeleton.CUTOUT);
 		ResourceLocation resLoc = RegistryHelper.getRegistryName(block, Registry.BLOCK);
 		if (resLoc == null)
 			resLoc = new ResourceLocation("missingno");
 
 		RegistryHelper.registerBlock(potted, "potted_" + name, false);
-		((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(resLoc, () -> potted);
+		((FlowerPotBlock)Blocks.FLOWER_POT).content = potted; // Done for Quilt reasons
 
 		return potted;
 	}

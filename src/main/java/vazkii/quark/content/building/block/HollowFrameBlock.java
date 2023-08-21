@@ -152,7 +152,8 @@ public abstract class HollowFrameBlock extends QuarkBlock implements SimpleWater
         return SHAPES[code];
     }
 
-    @Override
+    // Disabling this on the quilt port until this feature is implemented in main version.
+    /*@Override
     public boolean isLadder(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
         if (entity.isVisuallyCrawling() && entity.isShiftKeyDown())
             return false;
@@ -167,7 +168,7 @@ public abstract class HollowFrameBlock extends QuarkBlock implements SimpleWater
             return true;
 
         return super.isLadder(state, level, pos, entity);
-    }
+    }*/
 
     @Override
     public BlockState getStateForPlacement(@NotNull BlockPlaceContext ctx) {

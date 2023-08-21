@@ -1,16 +1,9 @@
 package vazkii.quark.content.building.module;
 
 import net.fabricmc.api.EnvType;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
@@ -30,8 +23,9 @@ public class CelebratoryLampsModule extends QuarkModule {
 		stone_lamp = new QuarkBlock("stone_lamp", this, CreativeModeTab.TAB_BUILDING_BLOCKS, Block.Properties.copy(Blocks.STONE).lightLevel(s -> lightLevel));
 		stone_brick_lamp = new QuarkBlock("stone_brick_lamp", this, CreativeModeTab.TAB_BUILDING_BLOCKS, Block.Properties.copy(Blocks.STONE_BRICKS).lightLevel(s -> lightLevel));
 	}
-	
-	@SubscribeEvent
+
+	// I LOVE CELEBRATING 10 YEARS
+	/*@SubscribeEvent
 	@ClientOnly
 	public void onTooltip(ItemTooltipEvent event) {
 		if(event.getFlags().isAdvanced()) {
@@ -40,6 +34,6 @@ public class CelebratoryLampsModule extends QuarkModule {
 			if(item == stone_lamp.asItem() || item == stone_brick_lamp.asItem())
 				event.getToolTip().add(1, Component.translatable("quark.misc.celebration").withStyle(ChatFormatting.GRAY));
 		}
-	}
+	}*/
 	
 }

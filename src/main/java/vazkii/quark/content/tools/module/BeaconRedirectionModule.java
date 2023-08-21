@@ -7,6 +7,7 @@ import java.util.function.BiConsumer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -39,7 +40,7 @@ import vazkii.quark.content.world.module.CorundumModule;
 @LoadModule(category = ModuleCategory.TOOLS)
 public class BeaconRedirectionModule extends QuarkModule {
 
-	private static final TagKey<Block> BEACON_TRANSPARENT = BlockTags.create(new ResourceLocation("quark:beacon_transparent"));
+	private static final TagKey<Block> BEACON_TRANSPARENT = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation("quark:beacon_transparent"));
 
 	@Config 
 	public static int horizontalMoveLimit = 64;

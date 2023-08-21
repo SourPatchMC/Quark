@@ -12,10 +12,12 @@ public class ElderPrismarineBlock extends QuarkBlock {
 	public ElderPrismarineBlock(String regname, QuarkModule module, CreativeModeTab creativeTab, Properties properties) {
 		super(regname, module, creativeTab, properties);
 	}
-	
+
+	// Another one that needs a mixin and an interface in order to function...
+    /*
 	@Override
 	public boolean isConduitFrame(BlockState state, LevelReader world, BlockPos pos, BlockPos conduit) {
 		return true;
-	}
+	}*/
 
 }

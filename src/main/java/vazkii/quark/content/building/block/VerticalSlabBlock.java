@@ -32,6 +32,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
+import org.quiltmc.qsl.block.content.registry.api.BlockContentRegistries;
+import org.quiltmc.qsl.block.content.registry.api.FlammableBlockEntry;
 import vazkii.arl.interf.IBlockColorProvider;
 import vazkii.arl.interf.IItemColorProvider;
 
@@ -52,18 +54,10 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 		super(properties);
 		this.parent = parent;
 		registerDefaultState(defaultBlockState().setValue(TYPE, VerticalSlabType.NORTH).setValue(WATERLOGGED, false));
+		if (BlockContentRegistries.FLAMMABLE_BLOCK.getNullable(this.parent.get()) != null) {
+			BlockContentRegistries.FLAMMABLE_BLOCK.put(this, BlockContentRegistries.FLAMMABLE_BLOCK.getNullable(this.parent.get()));
+		}
 	}
-
-	// TODO: AAAAAAAAAAAAAA - Maximum
-	// @Override
-	// public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-	// 	return parent.get().isFlammable(state, world, pos, face);
-	// }
-
-	// @Override
-	// public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-	// 	return parent.get().getFlammability(state, world, pos, face);
-	// }
 
 	@NotNull
 	@Override
@@ -101,10 +95,12 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock, 
 		return state.getValue(TYPE).shape;
 	}
 
+	// Another one that needs a mixin and an interface in order to function...
+	/*
 	@Override
 	public boolean isConduitFrame(BlockState state, LevelReader world, BlockPos pos, BlockPos conduit) {
 		return parent.get().isConduitFrame(state, world, pos, conduit);
-	}
+	}*/
 
 	@Override
 	@Nullable

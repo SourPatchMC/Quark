@@ -29,3 +29,5 @@ accessible method net/minecraft/world/item/trading/MerchantOffer isRequiredItem 
 accessible method net/minecraft/world/level/block/entity/HopperBlockEntity setCooldown (I)V
 accessible field net/minecraft/world/entity/ai/goal/TemptGoal items Lnet/minecraft/world/item/crafting/Ingredient;
 accessible field net/minecraft/world/entity/ai/goal/TemptGoal mob Lnet/minecraft/world/entity/PathfinderMob;
+accessible field net/minecraft/world/level/block/entity/BeaconBlockEntity checkingBeamSections Ljava/util/List;
+accessible field net/minecraft/world/level/block/entity/BeaconBlockEntity$BeaconBeamSection height I

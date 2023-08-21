@@ -1,5 +1,6 @@
 package vazkii.quark.content.building.module;
 
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -41,7 +42,7 @@ public class HedgesModule extends QuarkModule {
 	
 	@Override
 	public void setup() {
-		hedgesTag = BlockTags.create(new ResourceLocation(Quark.MOD_ID, "hedges"));
+		hedgesTag = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Quark.MOD_ID, "hedges"));
 	}
 	
 }

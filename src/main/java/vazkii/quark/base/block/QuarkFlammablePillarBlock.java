@@ -5,15 +5,16 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
+	import org.quiltmc.qsl.block.content.registry.api.BlockContentRegistries;
+import org.quiltmc.qsl.block.content.registry.api.FlammableBlockEntry;
 import vazkii.quark.base.module.QuarkModule;
 
 public class QuarkFlammablePillarBlock extends QuarkPillarBlock {
 
-	private final int flammability;
-
-	public QuarkFlammablePillarBlock(String regname, QuarkModule module, CreativeModeTab creativeTab, int flamability, Properties properties) {
+	public QuarkFlammablePillarBlock(String regname, QuarkModule module, CreativeModeTab creativeTab, int flammability, Properties properties) {
 		super(regname, module, creativeTab, properties);
-		this.flammability = flamability;
+		BlockContentRegistries.FLAMMABLE_BLOCK.put(this, new FlammableBlockEntry(5, flammability)); //todo: This is probably not 1:1 with Forge, we should probably fix that.
+
 	}
 
 	// TODO: AAAAAAAAAAAAA - Maximum

@@ -67,13 +67,14 @@ public class HollowWoodBlock extends HollowFrameBlock {
         return shapeCode(state, DOWN, UP, NORTH, SOUTH, WEST, EAST);
     }
 
-    @Override
+    // Disabling this on the quilt port until this feature is implemented in main version.
+    /*@Override
     public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction) {
         BlockState newState = state;
         for (Direction dir : Direction.values())
             newState = newState.setValue(directionProperty(dir), state.getValue(directionProperty(direction.rotate(dir))));
         return newState;
-    }
+    }*/
 
     @NotNull
     @Override
