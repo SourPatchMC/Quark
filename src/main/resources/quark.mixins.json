@@ -67,7 +67,8 @@
     "accessor.AccessorLootTable",
     "accessor.AccessorPistonStructureResolver",
     "accessor.AccessorPotionBrewing",
-    "accessor.AccessorServerGamePacketListenerImpl"
+    "accessor.AccessorServerGamePacketListenerImpl",
+    "accessor.AccessorTreeConfiguration"
   ],
   "client": [
     "client.AbstractCandleBlockMixin",
