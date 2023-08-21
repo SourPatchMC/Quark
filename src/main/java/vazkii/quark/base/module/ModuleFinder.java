@@ -1,5 +1,6 @@
 package vazkii.quark.base.module;
 
+import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,11 +11,7 @@ import org.objectweb.asm.Type;
 
 import com.google.common.collect.Lists;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.moddiscovery.ModAnnotation;
-import net.minecraftforge.forgespi.language.ModFileScanData;
-import net.minecraftforge.forgespi.language.ModFileScanData.AnnotationData;
+import org.quiltmc.loader.api.QuiltLoader;
 import vazkii.quark.base.Quark;
 
 public final class ModuleFinder {
@@ -24,18 +21,24 @@ public final class ModuleFinder {
 
 	private final Map<Class<? extends QuarkModule>, QuarkModule> foundModules = new LinkedHashMap<>();
 
+	// Modified to fit Quilt in QuiltQuark
 	public void findModules() {
-		ModFileScanData scanData = ModList.get().getModFileById(Quark.MOD_ID).getFile().getScanResult();
-		scanData.getAnnotations().stream()
-				.filter(annotationData -> LOAD_MODULE_TYPE.equals(annotationData.annotationType()))
+		Annotation[] annotations = QuiltLoader.getModContainer(Quark.MOD_ID).get().getClassLoader().getDefinedPackage("vazkii.quark").getAnnotations();
+		Arrays.stream(annotations)
+				.filter(annotationData -> LOAD_MODULE_TYPE.equals(Type.getType(annotationData.annotationType())))
 				.sorted(Comparator.comparing(d -> d.getClass().getName()))
-				.forEach(this::loadModule);
+				.forEach(annotation -> {
+					if (annotation instanceof LoadModule moduleAnnotation) {
+						loadModule(moduleAnnotation);
+					}
+				});
 	}
 
+	// Modified to fit Quilt in QuiltQuark
 	@SuppressWarnings("unchecked")
-	private void loadModule(AnnotationData target) {
+	private void loadModule(LoadModule annotation) {
 		try {
-			Type type = target.clazz();
+			Type type = Type.getType(annotation.annotationType());
 			String name = type.getClassName();
 			
 			Matcher m = MODULE_CLASS_PATTERN.matcher(name);
@@ -47,60 +50,59 @@ public final class ModuleFinder {
 			
 			QuarkModule moduleObj = (QuarkModule) clazz.getDeclaredConstructor().newInstance();
 
-			Map<String, Object> vals = target.annotationData();
-			ModuleCategory category = getOrMakeCategory((ModAnnotation.EnumHolder) vals.get("category"));
+			ModuleCategory category = annotation.category();
 
 			String categoryName = category.name;
 			String packageName = m.group(1);
-			if(!categoryName.equals(packageName))
+			if (!categoryName.equals(packageName))
 				throw new RuntimeException("Module " + name + " is defined in " + packageName + " but in category " + categoryName);
 			
-			if(category.isAddon()) {
+			if (category.isAddon()) {
 				String mod = category.requiredMod;
-				if(mod != null && !mod.isEmpty() && !ModList.get().isLoaded(mod))
+				if(mod != null && !mod.isEmpty() && !QuiltLoader.isModLoaded(mod))
 					moduleObj.missingDep = true;
 			}
 
-			if(vals.containsKey("name"))
-				moduleObj.displayName = (String) vals.get("name");
+			if (annotation.name() != null)
+				moduleObj.displayName = annotation.name();
 			else
 				moduleObj.displayName = WordUtils.capitalizeFully(clazz.getSimpleName().replaceAll("Module$", "").replaceAll("(?<=.)([A-Z])", " $1"));
 			moduleObj.lowercaseName = moduleObj.displayName.toLowerCase(Locale.ROOT).replaceAll(" ", "_");
 
-			if(vals.containsKey("description"))
-				moduleObj.description = (String) vals.get("description");
+			if (annotation.description() != null)
+				moduleObj.description = annotation.description();
 
-			if(vals.containsKey("antiOverlap"))
-				moduleObj.antiOverlap = (List<String>) vals.get("antiOverlap");
+			if (annotation.antiOverlap() != null)
+				moduleObj.antiOverlap = List.of(annotation.antiOverlap());
 
-			if(vals.containsKey("hasSubscriptions"))
-				moduleObj.hasSubscriptions = (boolean) vals.get("hasSubscriptions");
+			if (annotation.hasSubscriptions())
+				moduleObj.hasSubscriptions = true;
 
-			if(vals.containsKey("subscribeOn")) {
+			if (annotation.subscribeOn() != null) {
 				Set<EnvType> subscribeTargets = EnumSet.noneOf(EnvType.class);
 
-				List<ModAnnotation.EnumHolder> holders = (List<ModAnnotation.EnumHolder>) vals.get("subscribeOn");
-				for (ModAnnotation.EnumHolder holder : holders)
-					subscribeTargets.add(EnvType.valueOf(holder.getValue()));
+				List<EnvType> holders = Arrays.stream(annotation.subscribeOn()).toList();
+				subscribeTargets.addAll(holders);
 
 				moduleObj.subscriptionTarget = Lists.newArrayList(subscribeTargets);
 			}
 
-			if(vals.containsKey("enabledByDefault"))
-				moduleObj.enabledByDefault = (Boolean) vals.get("enabledByDefault");
+			if (annotation.enabledByDefault())
+				moduleObj.enabledByDefault = true;
 
 			category.addModule(moduleObj);
 			moduleObj.category = category;
 
 			foundModules.put((Class<? extends QuarkModule>) clazz, moduleObj);
 		} catch(ReflectiveOperationException e) {
-			throw new RuntimeException("Failed to load Module " + target, e);
+			throw new RuntimeException("Failed to load Module " + annotation.name(), e);
 		}
 	}
 
-	private ModuleCategory getOrMakeCategory(ModAnnotation.EnumHolder category) {
+	// Redundant in QuiltQuark
+	/*private ModuleCategory getOrMakeCategory(ModAnnotation.EnumHolder category) {
 		return ModuleCategory.valueOf(category.getValue());
-	}
+	}*/
 
 	public Map<Class<? extends QuarkModule>, QuarkModule> getFoundModules() {
 		return foundModules;

@@ -56,7 +56,7 @@ public final class ModuleLoader {
 	@ClientOnly
 	public void clientStart() {
 		dispatch(Step.CONSTRUCT_CLIENT, QuarkModule::constructClient);
-		MinecraftForge.EVENT_BUS.register(this);
+		//MinecraftForge.EVENT_BUS.register(this); - Run a custom event.
 	}
 
 	private void findModules() {

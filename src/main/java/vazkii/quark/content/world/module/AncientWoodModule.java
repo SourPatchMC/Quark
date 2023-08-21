@@ -3,11 +3,18 @@ package vazkii.quark.content.world.module;
 import com.google.common.base.Functions;
 import com.google.common.collect.ImmutableSet;
 
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableSource;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraftforge.event.LootTableLoadEvent;
@@ -55,6 +62,11 @@ public class AncientWoodModule extends QuarkModule {
 
 	public static QuarkGenericTrigger ancientFruitTrigger;
 
+	public AncientWoodModule() {
+		super();
+		LootTableEvents.MODIFY.register(this::onLootTableLoad); // Choice 1 only
+	}
+
 	@Override
 	public void setup() {
 		enqueue(() -> {
@@ -78,11 +90,10 @@ public class AncientWoodModule extends QuarkModule {
 		ancientFruitTrigger = QuarkAdvancementHandler.registerGenericTrigger("ancient_fruit_overlevel");
 	}
 
-	@SubscribeEvent
-	public void onLootTableLoad(LootTableLoadEvent event) {
+	public void onLootTableLoad(ResourceManager resourceManager, LootTables lootManager, ResourceLocation id, LootTable.Builder tableBuilder, LootTableSource source) {
 		int weight = 0;
 
-		if(event.getName().equals(BuiltInLootTables.ANCIENT_CITY))
+		if(id.equals(BuiltInLootTables.ANCIENT_CITY))
 			weight = ancientCityLootWeight;
 
 		if(weight > 0) {
@@ -90,8 +101,7 @@ public class AncientWoodModule extends QuarkModule {
 					.setWeight(weight)
 					.setQuality(ancientCityLootQuality)
 					.build();
-			MiscUtil.addToLootTable(event.getTable(), entry);
+			MiscUtil.addToLootTable(tableBuilder, entry);
 		}
 	}
-
 }

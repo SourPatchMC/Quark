@@ -8,6 +8,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import io.github.fabricators_of_create.porting_lib.transfer.item.ItemItemStorages;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.Util;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
@@ -124,18 +126,9 @@ public class MiscUtil {
 		matrix.popPose();
 	}
 
-	public static void addToLootTable(LootTable table, LootPoolEntryContainer entry) {
-		List<LootPool> pools = Arrays.stream(((AccessorLootTable) table).quark$getPools()).toList();
-		if (pools != null && !pools.isEmpty()) {
-			LootPool firstPool = pools.get(0);
-			LootPoolEntryContainer[] entries = firstPool.entries;
-
-			LootPoolEntryContainer[] newEntries = new LootPoolEntryContainer[entries.length + 1];
-			System.arraycopy(entries, 0, newEntries, 0, entries.length);
-
-			newEntries[entries.length] = entry;
-			firstPool.entries = newEntries;
-		}
+	public static void addToLootTable(LootTable.Builder tableBuilder, LootPoolEntryContainer entry) {
+		LootPool.Builder poolBuilder = LootPool.lootPool().with(entry);
+		tableBuilder.pool(poolBuilder.build());
 	}
 
 	public static void damageStack(Player player, InteractionHand hand, ItemStack stack, int dmg) {

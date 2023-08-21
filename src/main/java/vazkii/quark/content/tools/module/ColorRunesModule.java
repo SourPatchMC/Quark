@@ -2,11 +2,15 @@ package vazkii.quark.content.tools.module;
 
 import com.google.common.collect.ImmutableSet;
 import io.github.fabricators_of_create.porting_lib.event.common.PlayerTickEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,6 +18,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
@@ -177,6 +183,8 @@ public class ColorRunesModule extends QuarkModule {
 	public ColorRunesModule() {
 		super();
 		PlayerTickEvents.START.register(this::onPlayerTick);
+		LootTableEvents.MODIFY.register(this::onLootTableLoad);
+
 	}
 
 	@Override
@@ -192,21 +200,20 @@ public class ColorRunesModule extends QuarkModule {
 
 	@Override
 	public void setup() {
-		runesTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "runes"));
-		runesLootableTag = ItemTags.create(new ResourceLocation(Quark.MOD_ID, "runes_lootable"));
+		runesTag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "runes"));
+		runesLootableTag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "runes_lootable"));
 	}
 
-	@SubscribeEvent
-	public void onLootTableLoad(LootTableLoadEvent event) {
+	public void onLootTableLoad(ResourceManager resourceManager, LootTables lootManager, ResourceLocation id, LootTable.Builder tableBuilder, LootTableSource source) {
 		int weight = 0;
 
-		if(event.getName().equals(BuiltInLootTables.SIMPLE_DUNGEON))
+		if (id.equals(BuiltInLootTables.SIMPLE_DUNGEON))
 			weight = dungeonWeight;
-		else if(event.getName().equals(BuiltInLootTables.NETHER_BRIDGE))
+		else if (id.equals(BuiltInLootTables.NETHER_BRIDGE))
 			weight = netherFortressWeight;
-		else if(event.getName().equals(BuiltInLootTables.JUNGLE_TEMPLE))
+		else if (id.equals(BuiltInLootTables.JUNGLE_TEMPLE))
 			weight = jungleTempleWeight;
-		else if(event.getName().equals(BuiltInLootTables.DESERT_PYRAMID))
+		else if (id.equals(BuiltInLootTables.DESERT_PYRAMID))
 			weight = desertTempleWeight;
 
 		if(weight > 0) {
@@ -214,7 +221,7 @@ public class ColorRunesModule extends QuarkModule {
 					.setWeight(weight)
 					.setQuality(itemQuality)
 					.build();
-			MiscUtil.addToLootTable(event.getTable(), entry);
+			MiscUtil.addToLootTable(tableBuilder, entry);
 		}
 	}
 

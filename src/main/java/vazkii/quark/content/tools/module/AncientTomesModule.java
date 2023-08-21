@@ -136,7 +136,8 @@ public class AncientTomesModule extends QuarkModule {
 
 	public AncientTomesModule() {
 		super();
-		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> this::onLootTableLoad);
+		LootTableEvents.MODIFY.register(this::onLootTableLoad);
+
 	}
 
 	@Override
@@ -199,7 +200,7 @@ public class AncientTomesModule extends QuarkModule {
 					.apply(() -> new EnchantTome(new LootItemCondition[0]))
 					.build();
 
-			MiscUtil.addToLootTable(lootManager.get(res), entry);
+			MiscUtil.addToLootTable(tableBuilder, entry);
 		}
 	}
 

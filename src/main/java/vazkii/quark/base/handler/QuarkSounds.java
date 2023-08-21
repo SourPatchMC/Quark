@@ -1,22 +1,17 @@
 package vazkii.quark.base.handler;
 
-import com.google.common.collect.Lists;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraftforge.registries.GameData;
 import vazkii.arl.util.RegistryHelper;
 
-import java.util.List;
 
 /**
  * @author WireSegal
  * Created at 12:40 PM on 9/9/19.
  */
 public class QuarkSounds {
-	private static final List<SoundEvent> REGISTRY_DEFERENCE = Lists.newArrayList();
-
 	public static final SoundEvent ENTITY_STONELING_MEEP = register("entity.stoneling.meep");
 	public static final SoundEvent ENTITY_STONELING_PURR = register("entity.stoneling.purr");
 	public static final SoundEvent ENTITY_STONELING_GIVE = register("entity.stoneling.give");
@@ -94,17 +89,13 @@ public class QuarkSounds {
 	public static final SoundEvent MUSIC_ENDERMOSH = register("music.endermosh");
 	public static final SoundEvent MUSIC_GLIMMERING_WEALD = register("music.glimmering_weald");
 
-	public static void start() {
-		for (SoundEvent event : REGISTRY_DEFERENCE)
-			RegistryHelper.register(event, Registry.SOUND_EVENT);
-		REGISTRY_DEFERENCE.clear();
-	}
+	// Modified for Quilt ig
+	public static void start() {}
 
 	public static SoundEvent register(String name) {
-		ResourceLocation loc = GameData.checkPrefix(name, false);
+		ResourceLocation loc = new ResourceLocation("quark", name);
 		SoundEvent event = new SoundEvent(loc);
-		RegistryHelper.setInternalName(event, loc);
-		REGISTRY_DEFERENCE.add(event);
+		RegistryHelper.register(event, name, Registry.SOUND_EVENT);
 		return event;
 	}
 }

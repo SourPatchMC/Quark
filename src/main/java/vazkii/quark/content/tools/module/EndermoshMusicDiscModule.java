@@ -57,7 +57,7 @@ public class EndermoshMusicDiscModule extends QuarkModule {
 						.setQuality(lootQuality)
 						.build();
 
-				MiscUtil.addToLootTable(LootTable.lootTable().build(), entry);
+				MiscUtil.addToLootTable(tableBuilder, entry);
 			}
 		}
 	}
