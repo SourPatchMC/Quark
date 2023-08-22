@@ -35,7 +35,7 @@ public class IconButton extends Button {
 		mc.getItemRenderer().renderGuiItem(icon, x + 5, y + 2);
 
 		int iconPad = (16 + 5) / 2;
-		drawCenteredString(mstack, mc.font, text, x + width / 2 + iconPad, y + (height - 8) / 2, getFGColor());
+		drawCenteredString(mstack, mc.font, text, x + width / 2 + iconPad, y + (height - 8) / 2, active ? 0xffffff : 0xa0a0a0);
 	}
 
 }

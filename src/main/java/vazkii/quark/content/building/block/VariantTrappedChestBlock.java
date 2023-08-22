@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.quiltmc.loader.api.QuiltLoader;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import vazkii.arl.interf.IBlockItemProvider;
 import vazkii.arl.util.RegistryHelper;
@@ -109,7 +110,7 @@ public class VariantTrappedChestBlock extends ChestBlock implements IBlockItemPr
 
 		public Compat(String type, String mod, QuarkModule module, Supplier<BlockEntityType<? extends ChestBlockEntity>> supplier, Properties props) {
 			super(type, module, supplier, props);
-			setCondition(() -> ModList.get().isLoaded(mod));
+			setCondition(() -> QuiltLoader.isModLoaded(mod));
 		}
 
 		@Override

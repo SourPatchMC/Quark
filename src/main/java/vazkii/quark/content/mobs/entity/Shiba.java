@@ -3,6 +3,7 @@ package vazkii.quark.content.mobs.entity;
 import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
@@ -192,7 +193,7 @@ public class Shiba extends TamableAnimal {
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return new ClientboundAddEntityPacket(this);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -110,14 +111,30 @@ public class QButton extends Button {
 		showBubble = !getQuarkMarkerFile().exists();
 	}
 
-	@Override
 	public int getFGColor() {
 		return gay ? Color.HSBtoRGB((ClientTicker.total / 200F), 1F, 1F) : 0x48DDBC;
 	}
 
 	@Override
 	public void renderButton(@NotNull PoseStack mstack, int mouseX, int mouseY, float partialTicks) {
-		super.renderButton(mstack, mouseX, mouseY, partialTicks);
+		// "Oh Siuol you silly child, super.renderButton() exists!" I know, but a certain Forge Loader adds a method that doesnt exist on Quilt.
+		Minecraft minecraft = Minecraft.getInstance();
+		Font font = minecraft.font;
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderTexture(0, WIDGETS_LOCATION);
+		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
+		int k = this.getYImage(this.isHoveredOrFocused());
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.enableDepthTest();
+		this.blit(mstack, this.x, this.y, 0, 46 + k * 20, this.width / 2, this.height);
+		this.blit(mstack, this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + k * 20, this.width / 2, this.height);
+		this.renderBg(mstack, minecraft, mouseX, mouseY);
+		int l = getFGColor();
+		drawCenteredString(mstack, font, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, l | Mth.ceil(this.alpha * 255.0F) << 24);
+		if (this.isHoveredOrFocused()) {
+			this.renderToolTip(mstack, mouseX, mouseY);
+		}
 
 		int iconIndex = Math.min(4, ContributorRewardHandler.localPatronTier);
 		if(celebrating != null) {
@@ -155,7 +172,6 @@ public class QButton extends Button {
 		}
 		
 		if(showBubble && GeneralConfig.enableOnboarding) {
-			Font font = Minecraft.getInstance().font;
 			int cy = y - 2;
 			if(ClientTicker.total % 20 > 10)
 				cy++;

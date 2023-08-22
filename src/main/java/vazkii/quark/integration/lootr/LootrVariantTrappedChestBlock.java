@@ -23,10 +23,10 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.fml.ModList;
 import noobanidus.mods.lootr.block.entities.LootrChestBlockEntity;
 import noobanidus.mods.lootr.config.ConfigManager;
 import noobanidus.mods.lootr.util.ChestUtil;
+import org.quiltmc.loader.api.QuiltLoader;
 import vazkii.arl.interf.IItemPropertiesFiller;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.building.block.VariantTrappedChestBlock;
@@ -128,7 +128,7 @@ public class LootrVariantTrappedChestBlock extends VariantTrappedChestBlock impl
 
 		public Compat(String type, String mod, QuarkModule module, Supplier<BlockEntityType<? extends ChestBlockEntity>> supplier, Properties props) {
 			super(type, module, supplier, props);
-			setCondition(() -> ModList.get().isLoaded(mod));
+			setCondition(() -> QuiltLoader.isModLoaded(mod));
 		}
 
 		@Override

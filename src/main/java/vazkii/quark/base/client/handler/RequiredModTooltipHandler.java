@@ -10,10 +10,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import org.quiltmc.loader.api.QuiltLoader;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
@@ -37,7 +37,7 @@ public class RequiredModTooltipHandler {
 			return new ArrayList<>();
 		
 		return ITEMS.entrySet().stream()
-				.filter((entry) -> !ModList.get().isLoaded(entry.getValue()))
+				.filter((entry) -> !QuiltLoader.isModLoaded(entry.getValue()))
 				.map((entry) -> new ItemStack(entry.getKey()))
 				.toList();
 	}
@@ -54,7 +54,7 @@ public class RequiredModTooltipHandler {
 		Item item = event.getItemStack().getItem();
 		if(ITEMS.containsKey(item)) {
 			String mod = ITEMS.get(item);
-			if (!ModList.get().isLoaded(mod)) {
+			if (!QuiltLoader.isModLoaded(mod)) {
 				event.getToolTip().add(Component.translatable("quark.misc.mod_disabled", mod).withStyle(ChatFormatting.GRAY));
 			}
 		}

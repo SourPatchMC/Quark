@@ -4,14 +4,14 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.fml.ModList;
 
 import org.jetbrains.annotations.NotNull;
+import org.quiltmc.loader.api.QuiltLoader;
 
 public interface IClaimIntegration {
 
     IClaimIntegration INSTANCE = Util.make(() -> {
-        if (ModList.get().isLoaded("flan")) {
+        if (QuiltLoader.isModLoaded("flan")) {
             return new FlanIntegration();
         }
         return new IClaimIntegration() {

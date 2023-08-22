@@ -1,5 +1,6 @@
 package vazkii.quark.content.tools.entity;
 
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
@@ -73,7 +74,7 @@ public class SkullPike extends Entity {
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return new ClientboundAddEntityPacket(this);
 	}
 
 }

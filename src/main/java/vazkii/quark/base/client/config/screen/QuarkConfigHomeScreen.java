@@ -17,7 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.ModList;
+import org.quiltmc.loader.api.QuiltLoader;
 import vazkii.quark.api.config.IConfigCategory;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.client.config.IngameConfigHandler;
@@ -78,7 +78,7 @@ public class QuarkConfigHomeScreen extends AbstractQScreen {
 			addRenderableWidget(icon);
 			addRenderableWidget(checkbox);
 
-			if(category.requiredMod != null && !ModList.get().isLoaded(category.requiredMod)) {
+			if(category.requiredMod != null && !QuiltLoader.isModLoaded(category.requiredMod)) {
 				icon.active = false;
 				checkbox.active = false;
 			}

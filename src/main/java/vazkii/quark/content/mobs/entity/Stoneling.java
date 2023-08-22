@@ -8,6 +8,8 @@ import static vazkii.quark.content.world.module.NewStoneTypesModule.shaleBlock;
 import java.util.List;
 import java.util.Set;
 
+import io.github.fabricators_of_create.porting_lib.extensions.EntityExtensions;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -148,12 +150,12 @@ public class Stoneling extends PathfinderMob {
 		this.yBodyRot = this.getYRot();
 	}
 
-	@Override
-	public MobCategory getClassification(boolean forSpawnCount) {
+	// Im pretty sure this isnt needed rn
+	/*public MobCategory getClassification(boolean forSpawnCount) {
 		if (isTame)
 			return MobCategory.CREATURE;
 		return MobCategory.MONSTER;
-	}
+	}*/
 
 	@Override
 	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
@@ -431,7 +433,9 @@ public class Stoneling extends PathfinderMob {
 	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 
-		compound.put(TAG_CARRYING_ITEM, getCarryingItem().serializeNBT());
+		CompoundTag stackTag = new CompoundTag();
+		getCarryingItem().save(stackTag);
+		compound.put(TAG_CARRYING_ITEM, stackTag);
 
 		compound.putByte(TAG_VARIANT, getVariant().getIndex());
 		compound.putFloat(TAG_HOLD_ANGLE, getItemAngle());
@@ -493,7 +497,7 @@ public class Stoneling extends PathfinderMob {
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return new ClientboundAddEntityPacket(this);
 	}
 
 	@Override

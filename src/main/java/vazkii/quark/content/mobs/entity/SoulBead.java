@@ -1,5 +1,6 @@
 package vazkii.quark.content.mobs.entity;
 
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import org.jetbrains.annotations.NotNull;
 
 import com.mojang.math.Vector3f;
@@ -101,7 +102,7 @@ public class SoulBead extends Entity {
 	@NotNull
 	@Override
 	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return new ClientboundAddEntityPacket(this);
 	}
 
 }

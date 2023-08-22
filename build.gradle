@@ -15,6 +15,7 @@ repositories {
     maven { url = "https://maven.terraformersmc.com/" } // EMI
     maven { url = 'https://maven.minecraftforge.net/' } // TerraBlender
     maven { url = "https://cursemaven.com" } // Lootr Fabric
+    maven { url = "https://api.modrinth.com/maven" } // Lootr Fabric
 }
 
 dependencies {
@@ -38,6 +39,8 @@ dependencies {
     modImplementation "curse.maven:lootr-fabric-615106:${lootr_version}"
 
     modImplementation include("com.github.LlamaLad7:MixinExtras:0.1.1")
+    modImplementation(include("maven.modrinth:forge-config-api-port:4.2.11"))
+
     annotationProcessor "com.github.LlamaLad7:MixinExtras:0.1.1"
 
     modImplementation "dev.emi:emi-fabric:${emi_version}" // EMI

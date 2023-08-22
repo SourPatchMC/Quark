@@ -4,9 +4,9 @@ import net.minecraft.Util;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import org.quiltmc.loader.api.QuiltLoader;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.fml.ModList;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public interface ILootrIntegration {
 
 	ILootrIntegration INSTANCE = Util.make(() -> {
-		if (ModList.get().isLoaded("lootr")) {
+		if (QuiltLoader.isModLoaded("lootr")) {
 			return new LootrIntegration();
 		}
 		return new ILootrIntegration() {

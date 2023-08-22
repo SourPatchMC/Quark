@@ -3,10 +3,10 @@ package vazkii.quark.base.module.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.github.fabricators_of_create.porting_lib.crafting.CraftingHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.base.recipe.ingredient.FlagIngredient;

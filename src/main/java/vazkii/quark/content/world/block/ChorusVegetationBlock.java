@@ -1,5 +1,6 @@
 package vazkii.quark.content.world.block;
 
+import io.github.fabricators_of_create.porting_lib.extensions.IShearable;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
@@ -31,14 +32,13 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IForgeShearable;
 import vazkii.quark.base.block.QuarkBlock;
 import vazkii.quark.base.handler.RenderLayerHandler;
 import vazkii.quark.base.handler.RenderLayerHandler.RenderTypeSkeleton;
 import vazkii.quark.base.module.QuarkModule;
 import vazkii.quark.content.world.module.ChorusVegetationModule;
 
-public class ChorusVegetationBlock extends QuarkBlock implements BonemealableBlock, IForgeShearable {
+public class ChorusVegetationBlock extends QuarkBlock implements BonemealableBlock, IShearable {
 
 	protected static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 13, 14);
 

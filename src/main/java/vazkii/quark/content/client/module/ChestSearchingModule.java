@@ -2,6 +2,7 @@ package vazkii.quark.content.client.module;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.EditBox;
@@ -24,6 +25,8 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.loader.api.QuiltLoader;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.ContainerScreenEvent;
 import net.minecraftforge.client.event.ScreenEvent;
@@ -33,8 +36,6 @@ import net.minecraftforge.client.event.ScreenEvent.MouseButtonPressed;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import vazkii.arl.util.ItemNBTHelper;
@@ -279,8 +280,8 @@ public class ChestSearchingModule extends QuarkModule {
 		//			return true;
 
 		ResourceLocation itemName = Registry.ITEM.getKey(item);
-		Optional<? extends ModContainer> mod = ModList.get().getModContainerById(itemName.getPath());
-		if(mod.isPresent() && matcher.test(mod.orElse(null).getModInfo().getDisplayName().toLowerCase(Locale.ROOT), search))
+		Optional<? extends ModContainer> mod = QuiltLoader.getModContainer(itemName.getPath());
+		if(mod.isPresent() && matcher.test(mod.orElse(null).metadata().name().toLowerCase(Locale.ROOT), search))
 			return true;
 
 		return matcher.test(name, search);

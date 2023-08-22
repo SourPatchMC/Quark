@@ -31,3 +31,13 @@ accessible field net/minecraft/world/entity/ai/goal/TemptGoal items Lnet/minecra
 accessible field net/minecraft/world/entity/ai/goal/TemptGoal mob Lnet/minecraft/world/entity/PathfinderMob;
 accessible field net/minecraft/world/level/block/entity/BeaconBlockEntity checkingBeamSections Ljava/util/List;
 accessible field net/minecraft/world/level/block/entity/BeaconBlockEntity$BeaconBeamSection height I
+accessible field net/minecraft/advancements/critereon/EffectsChangedTrigger$TriggerInstance effects Lnet/minecraft/advancements/critereon/MobEffectsPredicate;
+mutable field net/minecraft/advancements/critereon/EffectsChangedTrigger$TriggerInstance effects Lnet/minecraft/advancements/critereon/MobEffectsPredicate;
+accessible field net/minecraft/advancements/critereon/ItemInteractWithBlockTrigger$TriggerInstance location Lnet/minecraft/advancements/critereon/LocationPredicate;
+mutable field net/minecraft/advancements/critereon/ItemInteractWithBlockTrigger$TriggerInstance location Lnet/minecraft/advancements/critereon/LocationPredicate;
+accessible field net/minecraft/advancements/Advancement criteria Ljava/util/Map;
+mutable field net/minecraft/advancements/Advancement criteria Ljava/util/Map;
+accessible field net/minecraft/advancements/Advancement requirements [[Ljava/lang/String;
+mutable field net/minecraft/advancements/Advancement requirements [[Ljava/lang/String;
+accessible method net/minecraft/client/renderer/GameRenderer loadEffect (Lnet/minecraft/resources/ResourceLocation;)V
+accessible field net/minecraft/world/entity/player/Player inventoryMenu Lnet/minecraft/world/inventory/InventoryMenu;
