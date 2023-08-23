@@ -8,11 +8,14 @@ import net.fabricmc.api.EnvType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
@@ -50,18 +53,17 @@ public class TinyPotatoModule extends QuarkModule {
 		tiny_potato = new TinyPotatoBlock(this);
 
 		blockEntityType = BlockEntityType.Builder.of(TinyPotatoBlockEntity::new, tiny_potato).build(null);
-		RegistryHelper.register(Registry.BLOCK_ENTITY_TYPE, "tiny_potato", Registry.BLOCK_ENTITY_TYPE);
+		RegistryHelper.register(blockEntityType, "tiny_potato", Registry.BLOCK_ENTITY_TYPE);
 
 		patPotatoTrigger = QuarkAdvancementHandler.registerGenericTrigger("pat_potato");
 	}
 
 	@Override
 	@ClientOnly
-	public void modelBake(ModelEvent.BakingCompleted event) {
+	public void modelBake(ModelManager manager, Map<ResourceLocation, BakedModel> models, ModelBakery loader) {
 		ResourceLocation tinyPotato = new ModelResourceLocation(new ResourceLocation("quark", "tiny_potato"), "inventory");
-		Map<ResourceLocation, BakedModel> map = event.getModels();
-		BakedModel originalPotato = map.get(tinyPotato);
-		map.put(tinyPotato, new TinyPotatoModel(originalPotato));
+        BakedModel originalPotato = models.get(tinyPotato);
+		models.put(tinyPotato, new TinyPotatoModel(originalPotato));
 	}
 	
 	@Override

@@ -51,8 +51,8 @@ public class HeldShulkerBoxScreen extends AbstractContainerScreen<HeldShulkerBox
 			int s = menu.blockedSlot;
 			ItemStack stack = player.getInventory().getItem(s);
 
-			int x = getGuiLeft() + (8 + (s % 9) * 18);
-			int y = getGuiTop() + (s < 9 ? 142 : 84 + ((s - 9) / 9) * 18);
+			int x = leftPos + (8 + (s % 9) * 18);
+			int y = topPos + (s < 9 ? 142 : 84 + ((s - 9) / 9) * 18);
 
 			mc.getItemRenderer().renderGuiItem(stack, x, y);
 

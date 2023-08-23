@@ -41,3 +41,7 @@ accessible field net/minecraft/advancements/Advancement requirements [[Ljava/lan
 mutable field net/minecraft/advancements/Advancement requirements [[Ljava/lang/String;
 accessible method net/minecraft/client/renderer/GameRenderer loadEffect (Lnet/minecraft/resources/ResourceLocation;)V
 accessible field net/minecraft/world/entity/player/Player inventoryMenu Lnet/minecraft/world/inventory/InventoryMenu;
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen leftPos I
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen topPos I
+accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
+mutable method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z

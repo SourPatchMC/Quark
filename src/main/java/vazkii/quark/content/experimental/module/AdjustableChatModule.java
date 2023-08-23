@@ -1,5 +1,6 @@
 package vazkii.quark.content.experimental.module;
 
+import io.github.fabricators_of_create.porting_lib.event.client.OverlayRenderCallback;
 import net.fabricmc.api.EnvType;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;

@@ -1,7 +1,6 @@
 package vazkii.quark.api.config;
 
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
@@ -25,7 +24,7 @@ public interface IQuarkConfig {
 	 * in the interest of keeping things somewhat clean.<br><br>
 	 *
 	 * @param modid Your mod ID. This will be used to map the configs per mod, and automatically handle refreshing the config
-	 * whenever {@link ModConfigEvent} is fired. <b>Note:</b> If your config is loaded in any way where ModConfigEvent wouldn't
+	 * whenever [HYPERLINK BLOCKED] (ModConfigEvent on Forge) is fired. <b>Note:</b> If your config is loaded in any way where ModConfigEvent wouldn't
 	 * fire for it, you must call {@link IConfigCategory#refresh()} manually.
 	 * @param name The name of the category. This is a display only name and bears no internal significance.
 	 * @param onChangedCallback The function to be called when this config changes. You can use {@link IQuarkConfig#writeToFileCallback(String)}

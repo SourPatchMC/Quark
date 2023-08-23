@@ -7,7 +7,6 @@ import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.eventbus.api.Cancelable;
 import net.minecraftforge.eventbus.api.Event;
 
-@Cancelable
 @ClientOnly
 public class UsageTickerEvent extends Event {
 

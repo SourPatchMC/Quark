@@ -31,7 +31,7 @@ public class MiniInventoryButton extends Button {
 	private BooleanSupplier shiftTexture = () -> false;
 
 	public MiniInventoryButton(AbstractContainerScreen<?> parent, int type, int x, int y, Consumer<List<String>> tooltip, OnPress onPress) {
-		super(parent.getGuiLeft() + x, parent.getGuiTop() + y, 10, 10, Component.literal(""), onPress);
+		super(parent.leftPos + x, parent.topPos + y, 10, 10, Component.literal(""), onPress);
 		this.parent = parent;
 		this.type = type;
 		this.tooltip = tooltip;
@@ -50,7 +50,7 @@ public class MiniInventoryButton extends Button {
 	@Override
 	public void render(@NotNull PoseStack matrix, int mouseX, int mouseY, float partialTicks) {
 		if(parent instanceof RecipeUpdateListener)
-			x = parent.getGuiLeft() + startX;
+			x = parent.leftPos + startX;
 
 		super.render(matrix, mouseX, mouseY, partialTicks);
 	}

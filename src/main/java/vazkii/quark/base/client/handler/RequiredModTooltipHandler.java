@@ -5,20 +5,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.fabricmc.api.EnvType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.Nullable;
 import org.quiltmc.loader.api.QuiltLoader;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import org.quiltmc.loader.api.minecraft.MinecraftQuiltLoader;
+import org.quiltmc.qsl.tooltip.api.client.ItemTooltipCallback;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.handler.GeneralConfig;
 
-@EventBusSubscriber(modid = Quark.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = Quark.MOD_ID, value = EnvType.CLIENT)
 public class RequiredModTooltipHandler {
 
 	private static final Map<Item, String> ITEMS = new HashMap<>();
@@ -42,21 +46,25 @@ public class RequiredModTooltipHandler {
 				.toList();
 	}
 
-	@SubscribeEvent
 	@ClientOnly
-	public static void onTooltip(ItemTooltipEvent event) {
-		if(!BLOCKS.isEmpty() && event.getEntity() != null && event.getEntity().level != null) {
+	public static void onTooltip(ItemStack itemStack, @Nullable Player player, TooltipFlag context, List<Component> lines) {
+		if(!BLOCKS.isEmpty() && player != null && player.getLevel() != null) {
 			for(Block b : BLOCKS.keySet())
 				ITEMS.put(b.asItem(), BLOCKS.get(b));
 			BLOCKS.clear();
 		}
 
-		Item item = event.getItemStack().getItem();
+
+		Item item = itemStack.getItem();
 		if(ITEMS.containsKey(item)) {
 			String mod = ITEMS.get(item);
 			if (!QuiltLoader.isModLoaded(mod)) {
-				event.getToolTip().add(Component.translatable("quark.misc.mod_disabled", mod).withStyle(ChatFormatting.GRAY));
+				lines.add(Component.translatable("quark.misc.mod_disabled", mod).withStyle(ChatFormatting.GRAY));
 			}
 		}
+	}
+
+	static {
+		if (MinecraftQuiltLoader.getEnvironmentType() == EnvType.CLIENT) ItemTooltipCallback.EVENT.register(RequiredModTooltipHandler::onTooltip);
 	}
 }

@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -16,6 +17,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.FormattedCharSink;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
@@ -24,10 +27,6 @@ import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.base.handler.SimilarBlockTypeHandler;
 import vazkii.quark.content.client.module.ChestSearchingModule;
@@ -41,11 +40,11 @@ public class ShulkerBoxTooltips {
 
 	public static final ResourceLocation WIDGET_RESOURCE = new ResourceLocation("quark", "textures/misc/shulker_widget.png");
 
+	// Todo: Change this to work with Quilt.
 	@ClientOnly
-	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
-		ItemStack stack = event.getItemStack();
-		if(SimilarBlockTypeHandler.isShulkerBox(stack)) {
-			CompoundTag cmp = ItemNBTHelper.getCompound(stack, "BlockEntityTag", false);
+	public static void makeTooltip(@NotNull ItemStack itemStack, PoseStack poseStack, int x, int y, int screenWidth, int screenHeight, @NotNull Font font, @NotNull List<ClientTooltipComponent> components) {
+		/*if(SimilarBlockTypeHandler.isShulkerBox(itemStack)) {
+			CompoundTag cmp = ItemNBTHelper.getCompound(itemStack, "BlockEntityTag", false);
 
 			if(cmp.contains("LootTable"))
 				return;
@@ -53,17 +52,15 @@ public class ShulkerBoxTooltips {
 			if(!cmp.contains("id"))
 				return;
 
-			BlockEntity te = BlockEntity.loadStatic(BlockPos.ZERO, ((BlockItem) stack.getItem()).getBlock().defaultBlockState(), cmp);
+			BlockEntity te = BlockEntity.loadStatic(BlockPos.ZERO, ((BlockItem) itemStack.getItem()).getBlock().defaultBlockState(), cmp);
 			if (te != null && te.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent()) {
-				List<Either<FormattedText, TooltipComponent>> tooltip = event.getTooltipElements();
-				List<Either<FormattedText, TooltipComponent>> tooltipCopy = new ArrayList<>(tooltip);
+				List<ClientTooltipComponent> componentsCopy = new ArrayList<>(components);
 
-				for (int i = 1; i < tooltipCopy.size(); i++) {
-					Either<FormattedText, TooltipComponent> either = tooltipCopy.get(i);
-					if(either.left().isPresent()) {
-						String s = either.left().get().getString();
+				for (int i = 1; i < componentsCopy.size(); i++) {
+					ClientTooltipComponent copiedComponent = componentsCopy.get(i);
+					if (copiedComponent instanceof ClientTextTooltip textTooltip) {
 						if (!s.startsWith("\u00a7") || s.startsWith("\u00a7o"))
-							tooltip.remove(either);
+							components.remove(either);
 					}
 				}
 
@@ -72,7 +69,7 @@ public class ShulkerBoxTooltips {
 				if(ImprovedTooltipsModule.shulkerBoxRequireShift && !Screen.hasShiftDown())
 					tooltip.add(1, Either.left(Component.translatable("quark.misc.shulker_box_shift")));
 			}
-		}
+		}*/
 	}
 
 	@ClientOnly

@@ -2,8 +2,17 @@ package vazkii.quark.base.module;
 
 import com.google.common.collect.Lists;
 import net.fabricmc.api.EnvType;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,6 +25,7 @@ import vazkii.quark.base.module.config.ConfigFlagManager;
 import vazkii.quark.base.module.hint.HintObject;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -87,12 +97,12 @@ public class QuarkModule {
 	}
 
 	@ClientOnly
-	public void modelBake(ModelEvent.BakingCompleted event) {
+	public void modelBake(ModelManager manager, Map<ResourceLocation, BakedModel> models, ModelBakery loader) {
 		// NO-OP
 	}
 
 	@ClientOnly
-	public void modelLayers(EntityRenderersEvent.AddLayers event) {
+	public void modelLayers(final Map<EntityType<?>, EntityRenderer<?>> renderers, final Map<String, EntityRenderer<? extends Player>> skinMap) {
 		// NO-OP
 	}
 

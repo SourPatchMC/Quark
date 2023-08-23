@@ -1,11 +1,7 @@
 package vazkii.quark.content.client.tooltip;
 
-import org.jetbrains.annotations.NotNull;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.datafixers.util.Either;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
@@ -16,27 +12,26 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
+import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.common.ForgeHooks;
+import org.quiltmc.qsl.item.content.registry.api.ItemContentRegistries;
 import vazkii.quark.base.handler.MiscUtil;
 import vazkii.quark.content.client.module.ImprovedTooltipsModule;
+
+import java.util.List;
+import java.util.Optional;
 
 public class FuelTooltips {
 
 	@ClientOnly
-	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
-		ItemStack stack = event.getItemStack();
-		if(!stack.isEmpty()) {
+	public static void makeTooltip(@NotNull ItemStack itemStack, PoseStack poseStack, int x, int y, int screenWidth, int screenHeight, @NotNull Font font, @NotNull List<ClientTooltipComponent> components) {
+		if(!itemStack.isEmpty()) {
 			Screen screen = Minecraft.getInstance().screen;
 			if(screen != null && screen instanceof AbstractFurnaceScreen<?>) {
-				int count = ForgeHooks.getBurnTime(stack, RecipeType.SMELTING);
-				if(count > 0) {
-					Font font = Minecraft.getInstance().font;
-					
-					String time = getDisplayString(count);
-					event.getTooltipElements().add(Either.right(new FuelComponent(stack, 18 + font.width(time), count)));
+				Optional<Integer> count = ItemContentRegistries.FUEL_TIME.get(itemStack.getItem());
+				if (count.isPresent() && count.get() > 0) {
+					String time = getDisplayString(count.get());
+					components.add(new FuelComponent(itemStack, 18 + font.width(time), count.get()));
 				}
 			}
 		}

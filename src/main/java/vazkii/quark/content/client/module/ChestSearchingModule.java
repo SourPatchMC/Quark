@@ -140,7 +140,7 @@ public class ChestSearchingModule extends QuarkModule {
 	@SubscribeEvent
 	public void onClick(MouseButtonPressed.Pre event) {
 		if(searchBar != null && searchEnabled && event.getScreen() instanceof AbstractContainerScreen<?> containerScreen) {
-			searchBar.mouseClicked(event.getMouseX() - containerScreen.getGuiLeft(), event.getMouseY() - containerScreen.getGuiTop(), event.getButton());
+			searchBar.mouseClicked(event.getMouseX() - containerScreen.leftPos, event.getMouseY() - containerScreen.topPos, event.getButton());
 
 			long time = System.currentTimeMillis();
 			long delta = time - lastClick;

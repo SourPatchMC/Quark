@@ -4,27 +4,25 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.datafixers.util.Either;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedText;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MapItem;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
+import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.client.event.RenderTooltipEvent;
 import vazkii.quark.content.client.module.ImprovedTooltipsModule;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class MapTooltips {
@@ -32,15 +30,13 @@ public class MapTooltips {
 	private static final ResourceLocation RES_MAP_BACKGROUND = new ResourceLocation("textures/map/map_background.png");
 
 	@ClientOnly
-	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
-		ItemStack stack = event.getItemStack();
-		if(!stack.isEmpty() && stack.getItem() instanceof MapItem) {
-			List<Either<FormattedText, TooltipComponent>> tooltip = event.getTooltipElements();
+	public static void makeTooltip(@NotNull ItemStack itemStack, PoseStack poseStack, int x, int y, int screenWidth, int screenHeight, @NotNull Font font, @NotNull List<ClientTooltipComponent> components) {
+		if(!itemStack.isEmpty() && itemStack.getItem() instanceof MapItem) {
 
 			if(!ImprovedTooltipsModule.mapRequireShift || Screen.hasShiftDown())
-				tooltip.add(1, Either.right(new MapComponent(stack)));
+				components.add(1, new MapComponent(itemStack));
 			else if(ImprovedTooltipsModule.mapRequireShift && !Screen.hasShiftDown())
-				tooltip.add(1, Either.left(Component.translatable("quark.misc.map_shift")));
+				components.add(1, new ClientTextTooltip(Component.translatable("quark.misc.map_shift").getVisualOrderText()));
 		}
 	}
 

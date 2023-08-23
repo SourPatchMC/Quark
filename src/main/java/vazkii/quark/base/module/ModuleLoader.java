@@ -1,7 +1,24 @@
 package vazkii.quark.base.module;
 
 import com.google.common.base.Preconditions;
+import io.github.fabricators_of_create.porting_lib.event.client.EntityAddedLayerCallback;
+import io.github.fabricators_of_create.porting_lib.event.client.ModelLoadCallback;
+import io.github.fabricators_of_create.porting_lib.event.client.ModelsBakedCallback;
+import io.github.fabricators_of_create.porting_lib.mixin.client.EntityRenderDispatcherMixin;
+import io.github.fabricators_of_create.porting_lib.mixin.client.ModelBakeryMixin;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -14,6 +31,7 @@ import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
+import org.quiltmc.qsl.lifecycle.api.client.event.ClientTickEvents;
 import vazkii.quark.base.Quark;
 import vazkii.quark.base.block.IQuarkBlock;
 import vazkii.quark.base.handler.CreativeTabHandler;
@@ -45,7 +63,12 @@ public final class ModuleLoader {
 	private boolean clientTicked = false;
 	private ParallelDispatchEvent event;
 
-	private ModuleLoader() { }
+	private ModuleLoader() {
+		ModelsBakedCallback.EVENT.register(this::modelBake);
+		EntityAddedLayerCallback.EVENT.register(this::modelLayers);
+		ClientTickEvents.END.register(this::firstClientTick);
+
+	}
 
 	public void start() {
 		findModules();
@@ -117,13 +140,13 @@ public final class ModuleLoader {
 	}
 
 	@ClientOnly
-	public void modelBake(BakingCompleted event) {
-		dispatch(Step.MODEL_BAKE, m -> m.modelBake(event));
+	public void modelBake(ModelManager manager, Map<ResourceLocation, BakedModel> models, ModelBakery loader) {
+		dispatch(Step.MODEL_BAKE, m -> m.modelBake(manager, models, loader));
 	}
 
 	@ClientOnly
-	public void modelLayers(EntityRenderersEvent.AddLayers event) {
-		dispatch(Step.MODEL_LAYERS, m -> m.modelLayers(event));
+	public void modelLayers(final Map<EntityType<?>, EntityRenderer<?>> renderers, final Map<String, EntityRenderer<? extends Player>> skinMap) {
+		dispatch(Step.MODEL_LAYERS, m -> m.modelLayers(renderers, skinMap));
 	}
 
 	@ClientOnly
@@ -164,9 +187,8 @@ public final class ModuleLoader {
 	}
 
 	@ClientOnly
-	@SubscribeEvent
-	public void firstClientTick(ClientTickEvent event) {
-		if(!clientTicked && event.phase == Phase.END) {
+	public void firstClientTick(Minecraft client) {
+		if (!clientTicked) {
 			dispatch(Step.FIRST_CLIENT_TICK, QuarkModule::firstClientTick);
 			clientTicked = true;
 		}

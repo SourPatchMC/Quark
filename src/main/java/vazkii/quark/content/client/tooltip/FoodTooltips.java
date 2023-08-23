@@ -2,28 +2,25 @@ package vazkii.quark.content.client.tooltip;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.FormattedText;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
 import vazkii.quark.content.client.module.ImprovedTooltipsModule;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class FoodTooltips {
@@ -38,10 +35,9 @@ public class FoodTooltips {
 	}
 
 	@ClientOnly
-	public static void makeTooltip(RenderTooltipEvent.GatherComponents event, boolean showFood, boolean showSaturation) {
-		ItemStack stack = event.getItemStack();
-		if(stack.isEdible()) {
-			FoodProperties food = stack.getItem().getFoodProperties();
+	public static void makeTooltip(@NotNull ItemStack itemStack, PoseStack poseStack, int x, int y, int screenWidth, int screenHeight, @NotNull Font font, @NotNull List<ClientTooltipComponent> components, boolean showFood, boolean showSaturation) {
+		if(itemStack.isEdible()) {
+			FoodProperties food = itemStack.getItem().getFoodProperties();
 			if (food != null) {
 				int pips = food.getNutrition();
 				if(pips == 0)
@@ -67,22 +63,20 @@ public class FoodTooltips {
 				String prefix = isPoison(food) ? "quark.misc.bad_saturation" : "quark.misc.saturation";
 
 				Component saturationText = Component.translatable(prefix + saturationSimplified).withStyle(ChatFormatting.GRAY);
-				List<Either<FormattedText, TooltipComponent>> tooltip = event.getTooltipElements();
-
-				if (tooltip.isEmpty()) {
+				if (components.isEmpty()) {
 					if(showFood)
-						tooltip.add(Either.right(new FoodComponent(stack, len, 10)));
+						components.add(new FoodComponent(itemStack, len, 10));
 					if(showSaturation)
-						tooltip.add(Either.left(saturationText));
+						components.add(ClientTooltipComponent.create(saturationText.getVisualOrderText()));
 				}
 				else {
 					int i = 1;
 					if(showFood) {
-						tooltip.add(i, Either.right(new FoodComponent(stack, len, 10)));
+						components.add(i, new FoodComponent(itemStack, len, 10));
 						i++;
 					}
 					if(showSaturation)
-						tooltip.add(i, Either.left(saturationText));
+						components.add(i, ClientTooltipComponent.create(saturationText.getVisualOrderText()));
 				}
 			}
 		}
@@ -124,7 +118,7 @@ public class FoodTooltips {
 					pose.translate(0, 0, 500);
 					RenderSystem.setShader(GameRenderer::getPositionTexShader);
 					RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-					RenderSystem.setShaderTexture(0, ForgeGui.GUI_ICONS_LOCATION);
+					RenderSystem.setShaderTexture(0, Gui.GUI_ICONS_LOCATION);
 
 					for (int i = 0; i < renderCount; i++) {
 						int x = tooltipX + i * 9 - 1;

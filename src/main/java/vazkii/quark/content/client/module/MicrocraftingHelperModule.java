@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Stack;
 import java.util.function.BooleanSupplier;
 
+import net.fabricmc.api.EnvType;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.Lists;
@@ -133,8 +134,8 @@ public class MicrocraftingHelperModule extends QuarkModule {
 		if(screen instanceof CraftingScreen cscreen) {
 			PoseStack mstack = event.getPoseStack();
 			ItemRenderer render = mc.getItemRenderer();
-			int left = cscreen.getGuiLeft() + 95;
-			int top = cscreen.getGuiTop() + 6;
+			int left = cscreen.leftPos + 95;
+			int top = cscreen.topPos + 6;
 
 			if(!recipes.isEmpty()) {
 				RenderSystem.setShader(GameRenderer::getPositionTexShader);

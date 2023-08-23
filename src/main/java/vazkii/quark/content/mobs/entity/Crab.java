@@ -406,7 +406,7 @@ public class Crab extends Animal implements ExtraSpawnDataEntity, Bucketable {
 	//Todo: Suggest to Quark Upstream that they should turn this into a tag.
 	private Ingredient getTemptationItems() {
 		if(temptationItems == null)
-			temptationItems = Ingredient.of(new TagKey(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "crab_tempt_items")));
+			temptationItems = Ingredient.of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Quark.MOD_ID, "crab_tempt_items")));
 
 		return temptationItems;
 	}

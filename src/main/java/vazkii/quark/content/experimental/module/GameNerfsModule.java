@@ -17,20 +17,22 @@ import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.quiltmc.qsl.tooltip.api.client.ItemTooltipCallback;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -84,6 +86,11 @@ public class GameNerfsModule extends QuarkModule {
 	public static List<String> elytraAllowedDimensions = Arrays.asList("minecraft:the_end");
 
 	private static boolean staticEnabled;
+
+	public GameNerfsModule() {
+		super();
+		ItemTooltipCallback.EVENT.register(this::onTooltip);
+	}
 
 	@Override
 	public void configChanged() {
@@ -209,14 +216,14 @@ public class GameNerfsModule extends QuarkModule {
 
 	@SubscribeEvent
 	@ClientOnly
-	public void onTooltip(ItemTooltipEvent event) {
+	public void onTooltip(ItemStack itemStack, @Nullable Player player, TooltipFlag context, List<Component> lines) {
 		if(!nerfMending)
 			return;
 
 		Component itemgotmodified = Component.translatable("quark.misc.repaired").withStyle(ChatFormatting.YELLOW);
-		int repairCost = event.getItemStack().getBaseRepairCost();
+		int repairCost = itemStack.getBaseRepairCost();
 		if(repairCost > 0)
-			event.getToolTip().add(itemgotmodified);
+			lines.add(itemgotmodified);
 	}
 
 	@SubscribeEvent

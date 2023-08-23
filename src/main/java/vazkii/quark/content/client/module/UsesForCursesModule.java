@@ -2,8 +2,11 @@ package vazkii.quark.content.client.module;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ArmorStandRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
@@ -13,7 +16,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.client.event.EntityRenderersEvent.AddLayers;
 import vazkii.quark.base.module.LoadModule;
 import vazkii.quark.base.module.ModuleCategory;
 import vazkii.quark.base.module.QuarkModule;
@@ -47,9 +49,10 @@ public class UsesForCursesModule extends QuarkModule {
 
 	@Override
 	@ClientOnly
-	public void modelLayers(AddLayers event) {
-		ArmorStandRenderer render = event.getRenderer(EntityType.ARMOR_STAND);
-		render.addLayer(new ArmorStandFakePlayerLayer<>(render, event.getEntityModels()));
+	public void modelLayers(final Map<EntityType<?>, EntityRenderer<?>> renderers, final Map<String, EntityRenderer<? extends Player>> skinMap) {
+		if (renderers.get(EntityType.ARMOR_STAND) instanceof ArmorStandRenderer render) {
+			render.addLayer(new ArmorStandFakePlayerLayer<>(render, Minecraft.getInstance().getEntityModels()));
+		}
 	}
 
 	@ClientOnly

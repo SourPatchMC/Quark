@@ -6,6 +6,7 @@ import com.google.common.collect.Multimap;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Either;
+import io.github.fabricators_of_create.porting_lib.event.client.PreRenderTooltipCallback;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -34,7 +35,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
-import net.minecraftforge.client.event.RenderTooltipEvent;
 import vazkii.arl.util.ClientTicker;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.quark.base.Quark;
@@ -77,33 +77,30 @@ public class AttributeTooltips {
 
 	private static MutableComponent format(Attribute attribute, double value, AttributeDisplayType displayType) {
 		switch (displayType) {
-		case DIFFERENCE -> {
-			return Component.literal((value > 0 ? "+" : "") + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value))
-					.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
-		}
-		case PERCENTAGE -> {
-			return Component.literal((value > 0 ? "+" : "") + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value * 100) + "%")
-					.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
-		}
-		case MULTIPLIER -> {
-			AttributeSupplier supplier = DefaultAttributes.getSupplier(EntityType.PLAYER);
-			double scaledValue = value / supplier.getBaseValue(attribute);
-			return Component.literal(ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(scaledValue) + "x")
-					.withStyle(scaledValue < 1 ? ChatFormatting.RED : ChatFormatting.WHITE);
-		}
-		default -> {
-			return Component.literal(ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value))
-					.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
-		}
+			case DIFFERENCE -> {
+				return Component.literal((value > 0 ? "+" : "") + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value))
+						.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
+			}
+			case PERCENTAGE -> {
+				return Component.literal((value > 0 ? "+" : "") + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value * 100) + "%")
+						.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
+			}
+			case MULTIPLIER -> {
+				AttributeSupplier supplier = DefaultAttributes.getSupplier(EntityType.PLAYER);
+				double scaledValue = value / supplier.getBaseValue(attribute);
+				return Component.literal(ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(scaledValue) + "x")
+						.withStyle(scaledValue < 1 ? ChatFormatting.RED : ChatFormatting.WHITE);
+			}
+			default -> {
+				return Component.literal(ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(value))
+						.withStyle(value < 0 ? ChatFormatting.RED : ChatFormatting.WHITE);
+			}
 		}
 	}
 
 	@ClientOnly
-	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
-		ItemStack stack = event.getItemStack();
-
+	public static boolean makeTooltip(@NotNull ItemStack itemStack, PoseStack poseStack, int x, int y, int screenWidth, int screenHeight, @NotNull Font font, @NotNull List<ClientTooltipComponent> components) {
 		if(!Screen.hasShiftDown()) {
-			List<Either<FormattedText, TooltipComponent>> tooltipRaw = event.getTooltipElements();
 			Map<AttributeSlot, MutableComponent> attributeTooltips = Maps.newHashMap();
 
 			boolean onlyInvalid = true;
@@ -111,8 +108,8 @@ public class AttributeTooltips {
 			boolean allAreSame = true;
 
 			for(AttributeSlot slot : AttributeSlot.values()) {
-				if (canShowAttributes(stack, slot)) {
-					Multimap<Attribute, AttributeModifier> slotAttributes = getModifiers(stack, slot);
+				if (canShowAttributes(itemStack, slot)) {
+					Multimap<Attribute, AttributeModifier> slotAttributes = getModifiers(itemStack, slot);
 
 					if (baseCheck == null)
 						baseCheck = slotAttributes;
@@ -122,17 +119,17 @@ public class AttributeTooltips {
 					if (!slotAttributes.isEmpty() && !slot.hasCanonicalSlot())
 						allAreSame = false;
 
-					onlyInvalid = extractAttributeValues(stack, attributeTooltips, onlyInvalid, slot, slotAttributes);
+					onlyInvalid = extractAttributeValues(itemStack, attributeTooltips, onlyInvalid, slot, slotAttributes);
 				}
 			}
 
-			AttributeSlot primarySlot = getPrimarySlot(stack);
+			AttributeSlot primarySlot = getPrimarySlot(itemStack);
 
 			int i = 1;
 			for (AttributeSlot slot : AttributeSlot.values()) {
 				if (attributeTooltips.containsKey(slot)) {
 					int tooltipSlot = (slot == primarySlot ? 1 : i);
-					tooltipRaw.add(tooltipSlot, Either.right(new AttributeComponent(stack, slot)));
+					components.add(tooltipSlot, new AttributeComponent(itemStack, slot));
 					i++;
 
 					if(allAreSame)
@@ -140,6 +137,8 @@ public class AttributeTooltips {
 				}
 			}
 		}
+
+		return false;
 	}
 
 	public static Multimap<Attribute, AttributeModifier> getModifiersOnEquipped(Player player, ItemStack stack, Multimap<Attribute, AttributeModifier> attributes, AttributeSlot slot) {
@@ -482,5 +481,4 @@ public class AttributeTooltips {
 		}
 
 	}
-
 }

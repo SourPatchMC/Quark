@@ -15,23 +15,22 @@ import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import io.github.fabricators_of_create.porting_lib.fake_players.FakePlayer;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.quiltmc.qsl.tooltip.api.client.ItemTooltipCallback;
 import vazkii.arl.util.ItemNBTHelper;
 import vazkii.arl.util.RegistryHelper;
 import vazkii.quark.addons.oddities.block.MatrixEnchantingTableBlock;
@@ -193,12 +192,15 @@ public class MatrixEnchantingModule extends QuarkModule {
 		BlockEntityRenderers.register(blockEntityType, MatrixEnchantingTableRenderer::new);
 	}
 
-	@SubscribeEvent
+	public MatrixEnchantingModule() {
+		super();
+		ItemTooltipCallback.EVENT.register(this::onTooltip);
+	}
+
 	@ClientOnly
-	public void onTooltip(ItemTooltipEvent event) {
-		ItemStack stack = event.getItemStack();
-		if(showTooltip && ItemNBTHelper.verifyExistence(stack, MatrixEnchantingTableBlockEntity.TAG_STACK_MATRIX))
-			event.getToolTip().add(Component.translatable("quark.gui.enchanting.pending").withStyle(ChatFormatting.AQUA));
+	public void onTooltip(ItemStack itemStack, @Nullable Player player, TooltipFlag context, List<Component> lines) {
+		if(showTooltip && ItemNBTHelper.verifyExistence(itemStack, MatrixEnchantingTableBlockEntity.TAG_STACK_MATRIX))
+			lines.add(Component.translatable("quark.gui.enchanting.pending").withStyle(ChatFormatting.AQUA));
 	}
 
 	@SubscribeEvent

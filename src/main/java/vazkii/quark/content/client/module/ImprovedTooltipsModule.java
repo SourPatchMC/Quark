@@ -6,10 +6,13 @@ import java.util.function.Function;
 
 import com.google.common.collect.Lists;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.server.packs.resources.PreparableReloadListener;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
@@ -109,23 +112,22 @@ public class ImprovedTooltipsModule extends QuarkModule {
 		event.register(clazz, Function.identity());
 	}
 
-	@SubscribeEvent
 	@ClientOnly
-	public void makeTooltip(RenderTooltipEvent.GatherComponents event) {
-		if(ignore(event.getItemStack()))
+	public void makeTooltip(@NotNull ItemStack itemStack, PoseStack poseStack, int x, int y, int screenWidth, int screenHeight, @NotNull Font font, @NotNull List<ClientTooltipComponent> components) {
+		if(ignore(itemStack))
 			return;
 
 		if (attributeTooltips)
-			AttributeTooltips.makeTooltip(event);
+			AttributeTooltips.makeTooltip(itemStack, poseStack, x, y, screenWidth, screenHeight, font, components);
 		if (foodTooltips || showSaturation)
-			FoodTooltips.makeTooltip(event, foodTooltips, showSaturation);
+			FoodTooltips.makeTooltip(itemStack, poseStack, x, y, screenWidth, screenHeight, font, components, foodTooltips, showSaturation);
 		if (shulkerTooltips)
-			ShulkerBoxTooltips.makeTooltip(event);
+			ShulkerBoxTooltips.makeTooltip(itemStack, poseStack, x, y, screenWidth, screenHeight, font, components);
 		if (mapTooltips)
-			MapTooltips.makeTooltip(event);
+			MapTooltips.makeTooltip(itemStack, poseStack, x, y, screenWidth, screenHeight, font, components);
 		if (enchantingTooltips)
-			EnchantedBookTooltips.makeTooltip(event);
+			EnchantedBookTooltips.makeTooltip(itemStack, poseStack, x, y, screenWidth, screenHeight, font, components);
 		if(fuelTimeTooltips)
-			FuelTooltips.makeTooltip(event);
+			FuelTooltips.makeTooltip(itemStack, poseStack, x, y, screenWidth, screenHeight, font, components);
 	}
 }

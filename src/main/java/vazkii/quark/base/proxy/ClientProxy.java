@@ -4,9 +4,17 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
@@ -35,6 +43,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Map;
 
 @ClientOnly
 public class ClientProxy extends CommonProxy {
@@ -85,12 +94,12 @@ public class ClientProxy extends CommonProxy {
 		ModuleLoader.INSTANCE.registerReloadListeners(event);
 	}
 
-	public void modelBake(BakingCompleted event) {
-		ModuleLoader.INSTANCE.modelBake(event);
+	public void modelBake(ModelManager manager, Map<ResourceLocation, BakedModel> models, ModelBakery loader) {
+		ModuleLoader.INSTANCE.modelBake(manager, models, loader);
 	}
 
-	public void modelLayers(EntityRenderersEvent.AddLayers event) {
-		ModuleLoader.INSTANCE.modelLayers(event);
+	public void modelLayers(final Map<EntityType<?>, EntityRenderer<?>> renderers, final Map<String, EntityRenderer<? extends Player>> skinMap) {
+		ModuleLoader.INSTANCE.modelLayers(renderers, skinMap);
 	}
 
 	public void textureStitch(TextureStitchEvent.Pre event) {

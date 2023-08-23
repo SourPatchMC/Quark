@@ -8,6 +8,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Either;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.Registry;
@@ -47,34 +48,32 @@ public class EnchantedBookTooltips {
 	}
 
 	@ClientOnly
-	public static void makeTooltip(RenderTooltipEvent.GatherComponents event) {
+	public static void makeTooltip(@NotNull ItemStack itemStack, PoseStack poseStack, int x, int y, int screenWidth, int screenHeight, @NotNull Font font, @NotNull List<ClientTooltipComponent> components) {
 		Minecraft mc = Minecraft.getInstance();
 		if(mc.player == null)
 			return;
 
-		ItemStack stack = event.getItemStack();
-		if(stack.getItem() == Items.ENCHANTED_BOOK || stack.getItem() == AncientTomesModule.ancient_tome) {
-			List<Either<FormattedText, TooltipComponent>> tooltip = event.getTooltipElements();
+		if(itemStack.getItem() == Items.ENCHANTED_BOOK || itemStack.getItem() == AncientTomesModule.ancient_tome) {
 			int tooltipIndex = 0;
 
-			List<EnchantmentInstance> enchants = getEnchantedBookEnchantments(stack);
+			List<EnchantmentInstance> enchants = getEnchantedBookEnchantments(itemStack);
 			for(EnchantmentInstance ed : enchants) {
 				Component match;
-				if (stack.getItem() == Items.ENCHANTED_BOOK)
+				if (itemStack.getItem() == Items.ENCHANTED_BOOK)
 					match = ed.enchantment.getFullname(ed.level);
 				else
 					match = AncientTomeItem.getFullTooltipText(ed.enchantment);
 
-				for(; tooltipIndex < tooltip.size(); tooltipIndex++) {
-					Either<FormattedText, TooltipComponent> elmAt = tooltip.get(tooltipIndex);
-					if(elmAt.left().isPresent() && elmAt.left().get().equals(match)) {
-						boolean tableOnly = ItemNBTHelper.getBoolean(stack, TABLE_ONLY_DISPLAY, false);
+				for(; tooltipIndex < components.size(); tooltipIndex++) {
+					ClientTooltipComponent elmAt = components.get(tooltipIndex);
+					if (elmAt.equals(new ClientTextTooltip(match.getVisualOrderText()))) {
+						boolean tableOnly = ItemNBTHelper.getBoolean(itemStack, TABLE_ONLY_DISPLAY, false);
 						List<ItemStack> items = getItemsForEnchantment(ed.enchantment, tableOnly);
 						int itemCount = items.size();
 						int lines = (int) Math.ceil((double) itemCount / 10.0);
 
 						int len = 3 + Math.min(10, itemCount) * 9;
-						tooltip.add(tooltipIndex + 1, Either.right(new EnchantedBookComponent(len, lines * 10, ed.enchantment, tableOnly)));
+						components.add(tooltipIndex + 1, new EnchantedBookComponent(len, lines * 10, ed.enchantment, tableOnly));
 
 						break;
 					}
